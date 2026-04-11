@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PARE Visualizer</title>
+    <title>PARE Capability Fingerprint Viewer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,11 +18,11 @@
 
     <main class="app">
       <section class="hero">
-        <p class="eyebrow">PARE Analytics</p>
-        <h1>PARE Scoring Radar Studio</h1>
+        <p class="eyebrow">BioinfoAgentBench</p>
+        <h1>PARE Capability Fingerprint Viewer</h1>
         <p class="subtitle">
-          A static viewer for comparing PARE score profiles, filtering by benchmark, and
-          drilling into single-record evidence.
+          A static viewer for comparing PARE capability fingerprints, filtering by
+          benchmark, and inspecting single-question evidence.
         </p>
       </section>
 
@@ -32,7 +32,7 @@
           <select id="benchSelect"></select>
         </div>
         <div class="control grow">
-          <label for="searchInput">Search Records (ID / text)</label>
+          <label for="searchInput">Search Questions (ID / text)</label>
           <input id="searchInput" type="text" placeholder="Type a keyword..." />
         </div>
         <div class="control">
@@ -44,8 +44,8 @@
       <section class="grid">
         <div class="panel left-col">
           <div class="section-title-row">
-            <h2>Record List</h2>
-            <span id="recordCountTag" class="tag">0 records</span>
+            <h2>Question List</h2>
+            <span id="recordCountTag" class="tag">0 questions</span>
           </div>
           <div id="questionList" class="question-list"></div>
         </div>
@@ -53,7 +53,7 @@
         <div class="right-col">
           <div class="panel">
             <div class="section-title-row">
-              <h2>Overlay Radar</h2>
+              <h2>Fingerprint Comparison</h2>
               <span id="selectedCountTag" class="tag">0 selected</span>
             </div>
             <div class="chart-wrap">
@@ -63,7 +63,7 @@
 
           <div class="panel bench-stats">
             <div class="section-title-row">
-              <h2>Benchmark Mean Profile</h2>
+              <h2>Benchmark Mean Fingerprint</h2>
               <span id="benchStatsTag" class="tag">-</span>
             </div>
             <div class="chart-wrap bench-chart">
@@ -75,8 +75,8 @@
 
       <section class="panel detail-panel">
         <div class="section-title-row">
-          <h2>Record Details</h2>
-          <span class="tag">Focused view</span>
+          <h2>Question Details</h2>
+          <span class="tag">PARE profile</span>
         </div>
         <div id="detailCards" class="detail-cards"></div>
       </section>

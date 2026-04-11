@@ -69,9 +69,9 @@ function updateBenchSelector() {
 
 function renderQuestionList() {
   const rows = getFilteredRecords();
-  el.recordCountTag.textContent = `${rows.length} records`;
+  el.recordCountTag.textContent = `${rows.length} questions`;
   if (!rows.length) {
-    el.questionList.innerHTML = `<div class="empty">No records match the current filters.</div>`;
+    el.questionList.innerHTML = `<div class="empty">No questions match the current filters.</div>`;
     return;
   }
 
@@ -152,7 +152,7 @@ function renderBenchChart() {
   if (state.benchChart) state.benchChart.destroy();
 
   if (bench === "all" || !state.benchStats[bench]) {
-    el.benchStatsTag.textContent = "Select one benchmark";
+    el.benchStatsTag.textContent = "Select a benchmark";
     state.benchChart = new Chart(el.benchRadar, makeRadarConfig([]));
     return;
   }
@@ -190,7 +190,7 @@ function confidenceText(record) {
 function renderDetails() {
   const selected = getSelectedRecords();
   if (!selected.length) {
-    el.detailCards.innerHTML = `<div class="empty">Select at least one record to inspect the score breakdown.</div>`;
+    el.detailCards.innerHTML = `<div class="empty">Select at least one question to inspect the PARE fingerprint and score breakdown.</div>`;
     return;
   }
 
@@ -204,7 +204,7 @@ function renderDetails() {
             <div class="qid">${r.id}</div>
             <div class="meta">${r.bench} · ${r.model || "-"} · ${r.scoring_mode || "-"}</div>
           </div>
-          <span class="tag">Single-record radar</span>
+          <span class="tag">Single-question fingerprint</span>
         </div>
         <div class="detail-body">
           <div class="mini-chart"><canvas id="mini-${r.id}"></canvas></div>

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "bioinfoagentbench"
 version = "0.1.0"
-description = "Public release repository for BioinfoAgentBench benchmark assets and PARE scoring."
+description = "Public release repository for the BioinfoAgentBench unified black-box evaluation framework and PARE evaluation utilities."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

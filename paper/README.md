@@ -6,8 +6,8 @@ This directory keeps manuscript-facing artifacts separate from reusable benchmar
 
 - `sources/`: input spreadsheets and CSV files used to generate the committed
   supplementary artifacts
-- `results/baseline/`: baseline-tier result summaries
-- `results/frontier/`: frontier-tier result summaries and figure prompts
+- `results/baseline/`: Baseline Tier result summaries
+- `results/frontier/`: Frontier Tier result summaries and figure prompts
 - `supplementary/`: generated supplementary tables and compact figures
 
 ## Scope

@@ -1,6 +1,7 @@
 # PARE Visualizer
 
-`tools/pare_visualizer/` is a static viewer for committed example PARE outputs.
+`tools/pare_visualizer/` is a static viewer for committed PARE capability fingerprints
+and example outputs.
 
 ## Rebuild the index
 
