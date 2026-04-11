@@ -76,6 +76,9 @@ The repository includes a GitHub Pages workflow at
 
 The workflow rebuilds `tools/pare_visualizer/data/scores_index.json` from
 `examples/pare_outputs/` and publishes `tools/pare_visualizer/` as a static site.
+If you prefer fully automatic first-time enablement, add a repository secret named
+`PAGES_TOKEN` backed by a Personal Access Token with repository/pages write access; the
+workflow will then try to enable Pages for the repository on its own.
 
 ## Repository layout
 

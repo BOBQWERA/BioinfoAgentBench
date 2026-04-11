@@ -30,6 +30,9 @@ This repository includes `.github/workflows/deploy-visualizer.yml`, which publis
 
 Each deployment rebuilds `data/scores_index.json` from `examples/pare_outputs/` before
 publishing.
+If you want the workflow to attempt first-time Pages enablement automatically, add a
+repository secret named `PAGES_TOKEN` containing a Personal Access Token with
+repository/pages write access.
 
 ## Data source
 

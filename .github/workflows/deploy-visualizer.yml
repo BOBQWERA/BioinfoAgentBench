@@ -10,6 +10,9 @@ on:
       - tools/pare_visualizer/**
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 permissions:
   contents: read
   pages: write
@@ -27,12 +30,15 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          token: ${{ secrets.PAGES_TOKEN != '' && secrets.PAGES_TOKEN || github.token }}
+          enablement: ${{ secrets.PAGES_TOKEN != '' }}
 
       - name: Rebuild scores index
         run: python tools/pare_visualizer/scripts/build_scores_index.py
