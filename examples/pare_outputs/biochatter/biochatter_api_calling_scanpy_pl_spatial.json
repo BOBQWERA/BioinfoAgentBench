@@ -1,0 +1,125 @@
+{
+  "question": {
+    "benchmark": "biochatter",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biochatter_api_calling_scanpy_pl_spatial",
+      "question": "plot a the spatial data colored by n_genes_by_counts.\n\n[template_input]\n{\"prompt\": {\"abbreviations\": \"spatial data plt with n_genes_by_counts as colors.\", \"general_question\": \"How can I plot the spatial data with n_genes_by_counts as colors?\", \"help_request\": \"Can you help me with plotting the spatial data with n_genes_by_counts as colors?\", \"specific\": \"plot a the spatial data colored by n_genes_by_counts.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.pl.spatial\\\\(\", \"adata=adata\", \"n_genes_by_counts\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:pl:spatial",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biochatter_api_calling_scanpy_pl_spatial",
+    "benchmark": "biochatter",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "plot the spatial data colored by n_genes_by_counts",
+          "api_calling",
+          "scanpy:pl:spatial"
+        ],
+        "reason": "The task is a direct API call to plot spatial data colored by a specific variable. There is only a single, standard method (sc.pl.spatial) for this in Scanpy, and no evidence of required workflow decomposition or method branching. The goal is concrete and does not require planning beyond invoking the correct plotting function."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "plot the spatial data colored by n_genes_by_counts",
+          "has_file: true"
+        ],
+        "reason": "There is a minor artifact realization load: the output is a plot (figure), and the correct coloring by n_genes_by_counts must be specified. However, there is no evidence of multiple output types, strict format constraints, or explicit parameterization/thresholds. The action is limited to producing a single plot with a specified coloring."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of ambiguous semantics or data representation issues.",
+          "No mention of schema mismatch, missing fields, or need for repair."
+        ],
+        "reason": "The task is clearly defined and does not require semantic or data repair. The variable to color by is explicitly stated, and there is no ambiguity or representational inconsistency."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience transfer context present."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward API-calling task to plot spatial data colored by a specific variable using Scanpy. There is minimal planning or branching required, a minor action load to produce the correct plot, and no evidence of semantic/data repair or experience transfer.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2279,
+        "completion_tokens": 558,
+        "total_tokens": 2837
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "plot the spatial data colored by n_genes_by_counts",
+            "api_calling",
+            "scanpy:pl:spatial"
+          ],
+          "reason": "The task is a direct API call to plot spatial data colored by a specific variable. There is only a single, standard method (sc.pl.spatial) for this in Scanpy, and no evidence of required workflow decomposition or method branching. The goal is concrete and does not require planning beyond invoking the correct plotting function.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "plot the spatial data colored by n_genes_by_counts",
+            "has_file: true"
+          ],
+          "reason": "There is a minor artifact realization load: the output is a plot (figure), and the correct coloring by n_genes_by_counts must be specified. However, there is no evidence of multiple output types, strict format constraints, or explicit parameterization/thresholds. The action is limited to producing a single plot with a specified coloring.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of ambiguous semantics or data representation issues.",
+            "No mention of schema mismatch, missing fields, or need for repair."
+          ],
+          "reason": "The task is clearly defined and does not require semantic or data repair. The variable to color by is explicitly stated, and there is no ambiguity or representational inconsistency.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience transfer context present."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward API-calling task to plot spatial data colored by a specific variable using Scanpy. There is minimal planning or branching required, a minor action load to produce the correct plot, and no evidence of semantic/data repair or experience transfer.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T10:39:48.479816+00:00"
+  }
+}

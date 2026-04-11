@@ -1,0 +1,145 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_1",
+      "question": "You are analyzing the genetic testing data of a patient with a genetic disease. The patient's variant data is stored in the following files: {MUT_edit1.fastq.gz}{MUT_edit2.fastq.gz}. Please use the GATK best practice workflow for variant identification, and based on the variant results, identify the pathogenic variants in the patient.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0001/files/MUT_edit1.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0001/files/MUT_edit2.fastq.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"tumor.recal.bam\", \"path\": \"downloaded_files\\\\index_0001\\\\milestone\\\\tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\", \"path\": \"downloaded_files\\\\index_0001\\\\milestone\\\\tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\", \"path\": \"downloaded_files\\\\index_0001\\\\milestone\\\\tumor.recal.fil.maf\"}], \"milestones\": [\"Generate comparison result: bam\", \"Generate VCF\", \"There are records of mutation results: chr6-49427089-A-G, chr6-49419304-A-G.\"], \"steps\": [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "DNA",
+        "task_abbr": "GATK haplotyper",
+        "task": "DNA",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 11.01,
+        "milestone_count": 3,
+        "step_count": 3
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_1",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Question requires use of GATK best practice workflow for variant identification",
+          "Input files are FASTQ, outputs include BAM, VCF, and MAF",
+          "Milestones and steps: 'Generate comparison result: bam', 'Generate VCF', 'Comment, generate maf'",
+          "Step list: 'Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr)', 'Identification and generation of VCF', 'Comment, generate maf'"
+        ],
+        "reason": "The task requires structuring a multi-stage workflow from FASTQ to BAM to VCF to MAF, following GATK best practices. The workflow is not a single direct step and involves a dependency-constrained step graph. However, the method is specified (GATK best practice), so branching decision load is limited."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Multiple artifact types: BAM, VCF, MAF",
+          "Milestone files explicitly listed: 'tumor.recal.bam', 'tumor.recal.vcf', 'tumor.recal.fil.maf'",
+          "Steps and milestones specify generation of these files"
+        ],
+        "reason": "There is a moderate artifact realization load due to the requirement to produce multiple heterogeneous output files (BAM, VCF, MAF). However, there is no explicit evidence of strict parameterization, thresholds, or format rigidity beyond standard file types."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Question is clear and specifies GATK best practice workflow",
+          "No evidence of missing semantic fields or data schema inconsistency"
+        ],
+        "reason": "There is little to no need for semantic or data repair; the question is clear and the data is well-structured. No ambiguity or contradiction is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience text, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task requires moderate planning and action load due to the multi-stage GATK workflow from FASTQ to BAM to VCF to MAF, with explicit milestones and artifact types. There is little need for semantic or data repair, and no transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2556,
+        "completion_tokens": 651,
+        "total_tokens": 3207
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Question requires use of GATK best practice workflow for variant identification",
+            "Input files are FASTQ, outputs include BAM, VCF, and MAF",
+            "Milestones and steps: 'Generate comparison result: bam', 'Generate VCF', 'Comment, generate maf'",
+            "Step list: 'Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr)', 'Identification and generation of VCF', 'Comment, generate maf'"
+          ],
+          "reason": "The task requires structuring a multi-stage workflow from FASTQ to BAM to VCF to MAF, following GATK best practices. The workflow is not a single direct step and involves a dependency-constrained step graph. However, the method is specified (GATK best practice), so branching decision load is limited.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Multiple artifact types: BAM, VCF, MAF",
+            "Milestone files explicitly listed: 'tumor.recal.bam', 'tumor.recal.vcf', 'tumor.recal.fil.maf'",
+            "Steps and milestones specify generation of these files"
+          ],
+          "reason": "There is a moderate artifact realization load due to the requirement to produce multiple heterogeneous output files (BAM, VCF, MAF). However, there is no explicit evidence of strict parameterization, thresholds, or format rigidity beyond standard file types.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Question is clear and specifies GATK best practice workflow",
+            "No evidence of missing semantic fields or data schema inconsistency"
+          ],
+          "reason": "There is little to no need for semantic or data repair; the question is clear and the data is well-structured. No ambiguity or contradiction is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience text, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires moderate planning and action load due to the multi-stage GATK workflow from FASTQ to BAM to VCF to MAF, with explicit milestones and artifact types. There is little need for semantic or data repair, and no transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:00:44.598098+00:00"
+  }
+}

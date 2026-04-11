@@ -1,0 +1,157 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_e1_upgrade_top5_2_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_234",
+      "question": "[Abstracted Experience Guidance]\n- Principle 1: Confirm mapping between grouping field and plotted axes before rendering, because mislabeled aesthetics produce visually plausible but semantically wrong plots.\n- Principle 2: Keep transformation steps (sorting/aggregation/normalization) explicit and reproducible before plotting.\n- Decision rationale: Visualization correctness is defined by data-to-encoding consistency, not by visual attractiveness.\n- Switch condition: If grouped trends are noisy at raw resolution, apply documented aggregation; otherwise keep raw granularity.\n- Caution: Typical failure includes mixing grouped and ungrouped statistics in one panel without consistent encoding semantics.\n\n[Target Task]\nThere is a data file boxplot.tsv, the \"Age_Group\" column represents different age groups, and the 'WBC' column contains the white blood cell counts corresponding to each age group. Please create a bar plot where the x-axis represents all age groups from the 'Age_Group' column, and the y-axis represents the values from the 'WBC' column for each group.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0234/files/boxplot.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"barplot-boxplot.jpg\", \"path\": \"downloaded_files\\\\index_0234\\\\milestone\\\\barplot-boxplot.jpg\"}], \"milestones\": [\"Generate bar plot\", \"The result file for saving the image is in jpg format, which is correct.\"], \"steps\": [\"Draw a bar plot\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Basic plot",
+        "task_abbr": "bar plot",
+        "task": "Basic plot",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.03,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E1",
+          "selection_basis": "['targets_not_overlap_existing_r1_r2_e1_e2_sets', 'targets_are_tsv_or_csv_only', 'source_target_same_family']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 232,
+              "workflow_memory_Index": 72,
+              "task_abbr": "Area plot",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps in sequence:\n1. **Goal**: Load the TSV file and parse the data directly into a structured format.\n    - **Tool**: None\n    - **Input**: \"area.tsv\"\n    - **Output**: List of dictionaries containing the data from the file, ensuring it includes 'group', 'xaxis.value', and 'yaxis.value' columns.\n    - **Description**: Read the TSV file and convert it into a structured format for plotting without intermediate steps.\n\n2. **Goal**: Create the area chart using a suitable plotting library directly from the loaded data.\n    - **Tool**: None\n    - **Input**: List of dictionaries from the previous step.\n    - **Output**: Area chart visualization.\n    - **Description**: Use a plotting library to generate an area chart that displays the values for Group1, Group2, and Group3, ensuring proper labeling and legends. Include error handling to check for the presence of 'group', 'xaxis.value', and 'yaxis.value' keys before plotting to prevent KeyErrors.\n]"
+            },
+            "original_question": "There is a data file boxplot.tsv, the \"Age_Group\" column represents different age groups, and the 'WBC' column contains the white blood cell counts corresponding to each age group. Please create a bar plot where the x-axis represents all age groups from the 'Age_Group' column, and the y-axis represents the values from the 'WBC' column for each group."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_234",
+    "benchmark": "biomed_aqa_e1_upgrade_top5_2_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Task requires mapping 'Age_Group' to x-axis and 'WBC' to y-axis for a bar plot",
+          "Principle 1: Confirm mapping between grouping field and plotted axes before rendering",
+          "No explicit multi-stage workflow or branching method choice; standard plotting pipeline implied"
+        ],
+        "reason": "There is a minor workflow structuring load in ensuring correct mapping of data columns to plot axes, as highlighted by Principle 1, but the task is otherwise a standard single-step plotting task with no evidence of branching decisions or complex dependency chains."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output artifact is a bar plot image in jpg format",
+          "Milestone: 'The result file for saving the image is in jpg format, which is correct.'",
+          "No explicit parameterization, threshold, or strict schema constraints beyond file format"
+        ],
+        "reason": "There is a weak artifact realization load due to the requirement to produce a specific image file in a specified format, but there is no evidence of heterogeneous outputs, strict parameterization, or complex verification."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Principle 1 and caution about mapping and encoding semantics",
+          "No evidence of missing fields, schema mismatch, or ambiguous semantics in the target task statement"
+        ],
+        "reason": "There is a trace need to be careful about mapping semantics (as per the experience guidance), but the target task itself is unambiguous and the data columns are clearly specified. No repair is required for data or semantics."
+      },
+      "E": {
+        "score": 3,
+        "evidence": [
+          "[Abstracted Experience Guidance] section provides generalizable principles and rationale",
+          "Principle 1 and 2, decision rationale, switch condition, and caution are all present as transferable experience",
+          "Target task is a new instance requiring application (not copying) of these principles"
+        ],
+        "reason": "There is a moderate evolution load: the agent must assimilate and apply abstracted principles from prior experience to a new but related plotting task, requiring transfer of strategy rather than rote copying. However, the transfer is not made more difficult by schema or constraint changes."
+      }
+    },
+    "overall_summary": "The task is a standard plotting exercise with minor workflow structuring and artifact realization loads, as the main challenge is to correctly map data columns to plot axes and output a file in the specified format. There is trace reflection load due to the need for semantic care, but no repair is required. The main complexity comes from the need to assimilate and apply general experience principles to ensure correct mapping and reproducibility, but the transfer is not made more difficult by major changes in schema or constraints.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2997,
+        "completion_tokens": 721,
+        "total_tokens": 3718
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Task requires mapping 'Age_Group' to x-axis and 'WBC' to y-axis for a bar plot",
+            "Principle 1: Confirm mapping between grouping field and plotted axes before rendering",
+            "No explicit multi-stage workflow or branching method choice; standard plotting pipeline implied"
+          ],
+          "reason": "There is a minor workflow structuring load in ensuring correct mapping of data columns to plot axes, as highlighted by Principle 1, but the task is otherwise a standard single-step plotting task with no evidence of branching decisions or complex dependency chains.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output artifact is a bar plot image in jpg format",
+            "Milestone: 'The result file for saving the image is in jpg format, which is correct.'",
+            "No explicit parameterization, threshold, or strict schema constraints beyond file format"
+          ],
+          "reason": "There is a weak artifact realization load due to the requirement to produce a specific image file in a specified format, but there is no evidence of heterogeneous outputs, strict parameterization, or complex verification.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Principle 1 and caution about mapping and encoding semantics",
+            "No evidence of missing fields, schema mismatch, or ambiguous semantics in the target task statement"
+          ],
+          "reason": "There is a trace need to be careful about mapping semantics (as per the experience guidance), but the target task itself is unambiguous and the data columns are clearly specified. No repair is required for data or semantics.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 3,
+          "evidence": [
+            "[Abstracted Experience Guidance] section provides generalizable principles and rationale",
+            "Principle 1 and 2, decision rationale, switch condition, and caution are all present as transferable experience",
+            "Target task is a new instance requiring application (not copying) of these principles"
+          ],
+          "reason": "There is a moderate evolution load: the agent must assimilate and apply abstracted principles from prior experience to a new but related plotting task, requiring transfer of strategy rather than rote copying. However, the transfer is not made more difficult by schema or constraint changes.",
+          "subdimension_breakdown": {
+            "E1": 3,
+            "E2": 2
+          }
+        }
+      },
+      "overall_summary": "The task is a standard plotting exercise with minor workflow structuring and artifact realization loads, as the main challenge is to correctly map data columns to plot axes and output a file in the specified format. There is trace reflection load due to the need for semantic care, but no repair is required. The main complexity comes from the need to assimilate and apply general experience principles to ensure correct mapping and reproducibility, but the transfer is not made more difficult by major changes in schema or constraints.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-09T03:57:57.505009+00:00"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_37699004_4",
+      "question": "For patients with average onset, get the indicators of their putative driver mutations, for four types: missense, inframe indel, truncating, and splice. The outputs should be `mutations` with columns\n- PATIENT_ID\n- Hugo_Symbol\n- Missense\n- Inframe_InDel\n- Truncating\n- Splice\nwhere `1` means altered, `0` means wildtype.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_sv.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\n\\n# Load the data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\ndata_mutations = pd.read_csv(\\\"/workdir/data_mutations.csv\\\")\\ndata_clinical_sample = pd.read_csv(\\\"/workdir/data_clinical_sample.csv\\\")\\n\\n\\n# Filter patients with average onset\\naverage_onset_patients = data_clinical_patient[data_clinical_patient['AGE_CATEGORY'] == 'Average Onset']['PATIENT_ID']\\n\\n# Filter mutations for these patients\\nmutations = data_clinical_sample[[\\\"SAMPLE_ID\\\",\\\"PATIENT_ID\\\"]].merge(data_mutations.rename(columns={\\\"Tumor_Sample_Barcode\\\":\\\"SAMPLE_ID\\\"}), on=\\\"SAMPLE_ID\\\")\\nmutations = mutations[[\\\"PATIENT_ID\\\",\\\"Hugo_Symbol\\\",\\\"Variant_Classification\\\"]]\\nmutations = mutations[mutations[\\\"PATIENT_ID\\\"].isin(average_onset_patients)].reset_index(drop=True)\\n\\n# Define mutation types\\nmutation_types = {\\n    'Missense': ['Missense_Mutation'],\\n    'Inframe_InDel': ['In_Frame_Del'],\\n    'Truncating': ['Nonsense_Mutation', 'Frame_Shift_Del', 'Frame_Shift_Ins', 'Translation_Start_Site', 'Nonstop_Mutation'],\\n    'Splice': ['Splice_Site','Splice_Region']\\n}\\n\\nfor k, v in mutation_types.items():\\n    mutations[k] = mutations['Variant_Classification'].apply(lambda x: 1 if x in v else 0)\\nmutations = mutations.drop(['Variant_Classification'], axis=1)\\nmutations = mutations.groupby(['PATIENT_ID', 'Hugo_Symbol'], as_index=False).sum()\\nmutations.iloc[:, 2:] = mutations.iloc[:, 2:].clip(upper=1)\", \"test_cases\": \"assert mutations[\\\"Missense\\\"].max() == 1\\n\\n\\nassert mutations[\\\"Missense\\\"].sum() == 4104\\n\\n\\nassert mutations[\\\"Inframe_InDel\\\"].sum() == 137\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "37699004_4",
+        "study_id": "37699004",
+        "question_id": "4",
+        "analysis_types": "['Genomic Alteration Profiling']",
+        "study_type": "Genomics",
+        "study_title": "Clinical and molecular characteristics of early-onset vs average-onset esophagogastric cancer",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=egc_msk_2023",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_37699004_4",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Requires filtering patients with 'average onset' from clinical data",
+          "Requires merging clinical sample and mutation data on sample/patient IDs",
+          "Requires mapping mutation types to four categories (missense, inframe indel, truncating, splice)",
+          "Requires grouping and summarizing per patient and gene"
+        ],
+        "reason": "The task requires a multi-step workflow: filtering patients, merging tables, mapping mutation types, and summarizing results. However, the workflow is relatively standard for this type of data integration and does not show strong evidence of major branching or ambiguous method choice."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Output must be a table with specific columns: PATIENT_ID, Hugo_Symbol, Missense, Inframe_InDel, Truncating, Splice",
+          "Binary encoding required: '1' means altered, '0' means wildtype",
+          "Test cases assert column values and sums (e.g., mutations[\"Missense\"].sum() == 4104)"
+        ],
+        "reason": "There is clear artifact realization load: the output table must have a specific schema and binary encoding, and test cases enforce correctness. However, the format and parameterization are not unusually strict or complex."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Requires mapping variant classifications to four mutation categories",
+          "Requires merging/joining on sample and patient IDs"
+        ],
+        "reason": "Some minor semantic alignment is needed (mapping variant types, joining tables), but there is no evidence of major ambiguity, contradiction, or schema inconsistency. The task is well-specified."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided"
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience in the payload."
+      }
+    },
+    "overall_summary": "This task involves a moderately complex multi-step data integration and transformation workflow, with clear requirements for output schema and correctness checks. There is some minor semantic mapping and data joining, but no major ambiguity or repair load. No evidence of experience transfer is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3031,
+        "completion_tokens": 604,
+        "total_tokens": 3635
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Requires filtering patients with 'average onset' from clinical data",
+            "Requires merging clinical sample and mutation data on sample/patient IDs",
+            "Requires mapping mutation types to four categories (missense, inframe indel, truncating, splice)",
+            "Requires grouping and summarizing per patient and gene"
+          ],
+          "reason": "The task requires a multi-step workflow: filtering patients, merging tables, mapping mutation types, and summarizing results. However, the workflow is relatively standard for this type of data integration and does not show strong evidence of major branching or ambiguous method choice.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Output must be a table with specific columns: PATIENT_ID, Hugo_Symbol, Missense, Inframe_InDel, Truncating, Splice",
+            "Binary encoding required: '1' means altered, '0' means wildtype",
+            "Test cases assert column values and sums (e.g., mutations[\"Missense\"].sum() == 4104)"
+          ],
+          "reason": "There is clear artifact realization load: the output table must have a specific schema and binary encoding, and test cases enforce correctness. However, the format and parameterization are not unusually strict or complex.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Requires mapping variant classifications to four mutation categories",
+            "Requires merging/joining on sample and patient IDs"
+          ],
+          "reason": "Some minor semantic alignment is needed (mapping variant types, joining tables), but there is no evidence of major ambiguity, contradiction, or schema inconsistency. The task is well-specified.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided"
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderately complex multi-step data integration and transformation workflow, with clear requirements for output schema and correctness checks. There is some minor semantic mapping and data joining, but no major ambiguity or repair load. No evidence of experience transfer is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:48:20.138251+00:00"
+  }
+}

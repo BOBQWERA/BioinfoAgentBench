@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-22-q4",
+      "question": "What is the Pearson correlation coefficient between gene length and mean expression (across samples) for protein-coding genes in CD14 immune cells?",
+      "data": [],
+      "answer": "(0.015,0.025)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-22-q4",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.035,0.045)",
+          "(0.045,0.055)",
+          "(0.025,0.035)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-22-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Pearson correlation coefficient between gene length and mean expression (across samples) for protein-coding genes in CD14 immune cells"
+        ],
+        "reason": "The question requires combining two gene-level properties (length and mean expression), which implies at least a two-step process: (1) compute mean expression per gene across samples, (2) obtain gene length, (3) restrict to protein-coding genes in CD14 immune cells, and (4) compute correlation. However, the workflow is standard and there is no explicit evidence of branching or multiple defensible methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Pearson correlation coefficient",
+          "range_verifier",
+          "answer: (0.015,0.025)"
+        ],
+        "reason": "The output is a single numeric value (correlation coefficient) with a required range, and the evaluation uses a range verifier. There is some parameterization in the sense that the answer must fall within a specific range, but there is no evidence of multiple output types or strict format constraints beyond the numeric range."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or data repair cues"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation issues. The question is clear about what is being correlated and the subset of genes to use. No schema alignment or repair is indicated."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-property correlation calculation with a clear, single-output requirement and a range-based verifier. There is minor workflow structuring and parameterization load, but no evidence of branching, repair, or transfer. The task is straightforward with only weak planning and action complexity.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2227,
+        "completion_tokens": 567,
+        "total_tokens": 2794
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Pearson correlation coefficient between gene length and mean expression (across samples) for protein-coding genes in CD14 immune cells"
+          ],
+          "reason": "The question requires combining two gene-level properties (length and mean expression), which implies at least a two-step process: (1) compute mean expression per gene across samples, (2) obtain gene length, (3) restrict to protein-coding genes in CD14 immune cells, and (4) compute correlation. However, the workflow is standard and there is no explicit evidence of branching or multiple defensible methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Pearson correlation coefficient",
+            "range_verifier",
+            "answer: (0.015,0.025)"
+          ],
+          "reason": "The output is a single numeric value (correlation coefficient) with a required range, and the evaluation uses a range verifier. There is some parameterization in the sense that the answer must fall within a specific range, but there is no evidence of multiple output types or strict format constraints beyond the numeric range.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or data repair cues"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation issues. The question is clear about what is being correlated and the subset of genes to use. No schema alignment or repair is indicated.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-property correlation calculation with a clear, single-output requirement and a range-based verifier. There is minor workflow structuring and parameterization load, but no evidence of branching, repair, or transfer. The task is straightforward with only weak planning and action complexity.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:58:18.329036+00:00"
+  }
+}

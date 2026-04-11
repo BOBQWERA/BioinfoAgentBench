@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-10-q3",
+      "question": "In which patient volume group (number of patients seen) do healthcare workers show statistically significant differences (p<0.05) in COVID-19 severity between BCG vaccination and placebo groups based on chi-square analysis?",
+      "data": [],
+      "answer": "1-50",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-10-q3",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "51-100",
+          ">100",
+          "1-100"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-10-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "chi-square analysis required",
+          "must compare COVID-19 severity between BCG and placebo groups within patient volume groups"
+        ],
+        "reason": "There is a minor workflow structuring load: the question requires grouping by patient volume, then comparing severity between two groups using chi-square analysis. However, the method is specified (chi-square), and there is no evidence of major branching or multiple defensible methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "explicit p<0.05 threshold",
+          "output is a single group label (e.g., '1-50')"
+        ],
+        "reason": "There is a minor artifact realization and parameterization load: the answer must be determined based on a statistical threshold (p<0.05), but the output is a single string label, and there are no explicit format or multi-artifact requirements."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "no data provided",
+          "no evidence of ambiguity or schema mismatch"
+        ],
+        "reason": "There is almost no reflection/repair load. The question is clearly worded, and there is no evidence of semantic ambiguity or data representation issues. The absence of data does not introduce repair requirements for the question as posed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "no prior trajectory or experience text present"
+        ],
+        "reason": "No transfer or evolution load is present, as there is no prior experience or trajectory provided."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow structuring and parameterization load due to the need to group by patient volume and apply a chi-square test with a specified significance threshold. The output is a single group label, and there are no explicit data repair or transfer requirements. No evidence of high planning, artifact, or repair complexity is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2224,
+        "completion_tokens": 545,
+        "total_tokens": 2769
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "chi-square analysis required",
+            "must compare COVID-19 severity between BCG and placebo groups within patient volume groups"
+          ],
+          "reason": "There is a minor workflow structuring load: the question requires grouping by patient volume, then comparing severity between two groups using chi-square analysis. However, the method is specified (chi-square), and there is no evidence of major branching or multiple defensible methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "explicit p<0.05 threshold",
+            "output is a single group label (e.g., '1-50')"
+          ],
+          "reason": "There is a minor artifact realization and parameterization load: the answer must be determined based on a statistical threshold (p<0.05), but the output is a single string label, and there are no explicit format or multi-artifact requirements.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "no data provided",
+            "no evidence of ambiguity or schema mismatch"
+          ],
+          "reason": "There is almost no reflection/repair load. The question is clearly worded, and there is no evidence of semantic ambiguity or data representation issues. The absence of data does not introduce repair requirements for the question as posed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "no prior trajectory or experience text present"
+          ],
+          "reason": "No transfer or evolution load is present, as there is no prior experience or trajectory provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow structuring and parameterization load due to the need to group by patient volume and apply a chi-square test with a specified significance threshold. The output is a single group label, and there are no explicit data repair or transfer requirements. No evidence of high planning, artifact, or repair complexity is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:45:16.990878+00:00"
+  }
+}

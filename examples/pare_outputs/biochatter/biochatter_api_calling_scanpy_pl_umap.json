@@ -1,0 +1,123 @@
+{
+  "question": {
+    "benchmark": "biochatter",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biochatter_api_calling_scanpy_pl_umap",
+      "question": "plot a umap colored by number of n_genes_by_counts.\n\n[template_input]\n{\"prompt\": {\"abbreviations\": \"umap plt with n_genes_by_counts as colors.\", \"general_question\": \"How can I plot a umap with n_genes_by_counts as colors?\", \"help_request\": \"Can you help me with plotting a umap with n_genes_by_counts as colors?\", \"specific\": \"plot a umap colored by number of n_genes_by_counts.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.pl.umap\\\\(\", \"adata=adata\", \"n_genes_by_counts\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:pl:umap",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biochatter_api_calling_scanpy_pl_umap",
+    "benchmark": "biochatter",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Single-step request: 'plot a umap colored by number of n_genes_by_counts.'",
+          "No explicit or implicit multi-stage workflow or branching method choice."
+        ],
+        "reason": "The task is a direct plotting request with no evidence of workflow decomposition or method branching. The user asks for a standard UMAP plot colored by a specific variable, which is a single API call in Scanpy."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Requires correct API usage: 'sc.pl.umap(adata=adata, color=\"n_genes_by_counts\")'",
+          "Output is a plot (figure), a single artifact type."
+        ],
+        "reason": "There is a minor artifact realization load in producing a correctly colored UMAP plot, but only one output type (figure) is required and no strict format or parameterization constraints are specified."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of semantic ambiguity or data/schema repair required.",
+          "No mention of missing fields, contradictory constraints, or representational inconsistency."
+        ],
+        "reason": "The task is clearly defined and does not require clarification or data repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This is a straightforward API usage task: plotting a UMAP colored by a specific variable in Scanpy. There is minimal planning or branching, minor artifact realization load, and no evidence of semantic or data repair or experience transfer.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2280,
+        "completion_tokens": 486,
+        "total_tokens": 2766
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Single-step request: 'plot a umap colored by number of n_genes_by_counts.'",
+            "No explicit or implicit multi-stage workflow or branching method choice."
+          ],
+          "reason": "The task is a direct plotting request with no evidence of workflow decomposition or method branching. The user asks for a standard UMAP plot colored by a specific variable, which is a single API call in Scanpy.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Requires correct API usage: 'sc.pl.umap(adata=adata, color=\"n_genes_by_counts\")'",
+            "Output is a plot (figure), a single artifact type."
+          ],
+          "reason": "There is a minor artifact realization load in producing a correctly colored UMAP plot, but only one output type (figure) is required and no strict format or parameterization constraints are specified.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of semantic ambiguity or data/schema repair required.",
+            "No mention of missing fields, contradictory constraints, or representational inconsistency."
+          ],
+          "reason": "The task is clearly defined and does not require clarification or data repair.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward API usage task: plotting a UMAP colored by a specific variable in Scanpy. There is minimal planning or branching, minor artifact realization load, and no evidence of semantic or data repair or experience transfer.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T10:39:17.932455+00:00"
+  }
+}

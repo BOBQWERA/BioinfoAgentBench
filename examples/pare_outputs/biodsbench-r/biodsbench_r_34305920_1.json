@@ -1,0 +1,148 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_34305920_1",
+      "question": "##Question##\nFilter the data to include only cancer types labeled from 0 to 13 using the 'expression_data_merged' data frame. Save the output named \"expression_data_filtered\". Create a boxplot to show the expression of the gene 'CD161' across these cancer types. Use 'ggplot2' for plotting, add jittered points to the boxplot, label samples with high expression, and adjust the plot for better readability. Display the plot using the variable name 'p'.\n\n##Task##\n1.Filter the data to include only cancer types labeled from 0 to 13.\n2.Create a boxplot to show the expression of the gene CD161 across the selected cancer types from 0 to 13.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/Pan_cancer_mRNA.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/Pan_cancer_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Filter the data to include only cancer types labeled from 0 to 13\\nexpression_data_filtered <- expression_data_merged %>% filter(Label >= 0 & Label <= 13)\\n\\n# Plot boxplot for CD161 expression across all cancer types from 0 to 13\\ngene_of_interest <- \\\"CD161\\\"\\n\\np <- ggplot(expression_data_filtered, aes(x = factor(Label), y = .data[[gene_of_interest]])) +\\n  geom_boxplot(outlier.colour = \\\"red\\\", outlier.shape = 16, outlier.size = 2, notch = FALSE) +\\n  geom_jitter(shape = 16, position = position_jitter(0.2), alpha = 0.6) +\\n  labs(title = sprintf(\\\"Expression of %s Across Selected Cancer Types\\\", gene_of_interest),\\n       x = \\\"Cancer Type\\\",\\n       y = sprintf(\\\"Expression of %s\\\", gene_of_interest)) +\\n  theme_minimal() +\\n  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +\\n  geom_text_repel(aes(label = ifelse(.data[[gene_of_interest]] > quantile(.data[[gene_of_interest]], 0.75), Sample, \\\")), \\n                  size = 3, box.padding = 0.5)\\n\\n# Print the plot\\nprint(p)\", \"test_cases\": \"nrow(expression_data_filtered) == 3887\\n\\nncol(expression_data_filtered) == 3219\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "34305920_1",
+        "study_id": "34305920",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis']",
+        "study_type": "Pan-Cancer",
+        "study_title": "A Pan-Cancer Analysis of CD162, a Potential New Immune Checkpoint",
+        "dataset_url": "CMOB/Pan-cancer",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_34305920_1",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Task requires: (1) filter data to include only cancer types labeled 0 to 13; (2) create a boxplot for CD161 expression across these types.",
+          "Intermediate artifact: 'expression_data_filtered' is created before plotting.",
+          "No explicit method branching or multiple defensible approaches are described."
+        ],
+        "reason": "There is a clear two-step workflow: filtering then plotting, which requires basic workflow structuring (P1=2). However, there is no evidence of significant method branching or multiple reasonable approaches that would affect correctness (P2=1)."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Requires creation of a filtered data frame ('expression_data_filtered') and a plot object ('p').",
+          "Plot must include boxplot, jittered points, sample labeling for high expression, and readability adjustments.",
+          "Explicit output variable names and plot features are specified.",
+          "Test cases check row and column counts of the filtered data frame."
+        ],
+        "reason": "There is moderate artifact realization load: two output types (data frame and plot), with explicit requirements for plot features and variable names. There is some parameterization (e.g., labeling high expression samples, adjusting plot readability), but no strict thresholds or highly rigid format constraints (A1=2, A2=2)."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of ambiguous semantics or data schema mismatch.",
+          "Input files are specified and the required columns/fields are implied to be present.",
+          "No explicit need for semantic or representational repair."
+        ],
+        "reason": "There is almost no evidence of semantic or data repair load. The task is clearly defined and the data structure is assumed to be compatible with the operations described."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a basic two-step workflow (filtering then plotting) with moderate artifact realization and explicit output requirements, but minimal planning branching, semantic repair, or transfer load. The main complexity comes from realizing the required outputs with the specified features, not from ambiguity or workflow branching.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2837,
+        "completion_tokens": 623,
+        "total_tokens": 3460
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Task requires: (1) filter data to include only cancer types labeled 0 to 13; (2) create a boxplot for CD161 expression across these types.",
+            "Intermediate artifact: 'expression_data_filtered' is created before plotting.",
+            "No explicit method branching or multiple defensible approaches are described."
+          ],
+          "reason": "There is a clear two-step workflow: filtering then plotting, which requires basic workflow structuring (P1=2). However, there is no evidence of significant method branching or multiple reasonable approaches that would affect correctness (P2=1).",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Requires creation of a filtered data frame ('expression_data_filtered') and a plot object ('p').",
+            "Plot must include boxplot, jittered points, sample labeling for high expression, and readability adjustments.",
+            "Explicit output variable names and plot features are specified.",
+            "Test cases check row and column counts of the filtered data frame."
+          ],
+          "reason": "There is moderate artifact realization load: two output types (data frame and plot), with explicit requirements for plot features and variable names. There is some parameterization (e.g., labeling high expression samples, adjusting plot readability), but no strict thresholds or highly rigid format constraints (A1=2, A2=2).",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of ambiguous semantics or data schema mismatch.",
+            "Input files are specified and the required columns/fields are implied to be present.",
+            "No explicit need for semantic or representational repair."
+          ],
+          "reason": "There is almost no evidence of semantic or data repair load. The task is clearly defined and the data structure is assumed to be compatible with the operations described.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a basic two-step workflow (filtering then plotting) with moderate artifact realization and explicit output requirements, but minimal planning branching, semantic repair, or transfer load. The main complexity comes from realizing the required outputs with the specified features, not from ambiguity or workflow branching.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:59:11.497653+00:00"
+  }
+}

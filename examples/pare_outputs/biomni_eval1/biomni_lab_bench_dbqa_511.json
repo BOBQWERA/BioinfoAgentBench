@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "biomni_eval1",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomni_lab_bench_dbqa_511",
+      "question": "The following is a multiple choice question about biology.\nPlease answer by responding with the letter of the correct answer.\n\nQuestion: Which of the following human genes encodes a protein that is predicted to interact with the viral protein Variola virus hypothetical protein (gene: N1L) according to the P-HIPSter database? \nOptions:\nA.IL17B\nB.Insufficient information to answer the question.\nC.OR2A12\nD.LHCGR\nE.BAG3\n\nYou MUST include the letter of the correct answer within the following tags:\n[ANSWER] and [/ANSWER]. For example, '[ANSWER]<answer>[/ANSWER]',\nwhere <answer> is the correct letter. Always answer in exactly this format\nof a single letter between the two tags, even if you are unsure.\nWe require this because we use automatic parsing.\n            ",
+      "data": [],
+      "answer": "E",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "Biomni",
+        "source_dataset": "biomni/Eval1",
+        "task_name": "lab_bench_dbqa",
+        "task_instance_id": 511,
+        "split": "val",
+        "global_instance_id": 288
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomni_lab_bench_dbqa_511",
+    "benchmark": "biomni_eval1",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Single-step question: 'Which of the following human genes encodes a protein that is predicted to interact with the viral protein Variola virus hypothetical protein (gene: N1L) according to the P-HIPSter database?'",
+          "No explicit or implicit multi-stage workflow or dependency chain.",
+          "No evidence of multiple reasonable methods or branching decisions; answer is a single letter choice."
+        ],
+        "reason": "The task is a direct multiple-choice lookup with no explicit workflow structuring or method branching required. The only trace of planning is the need to map the question to a database lookup, but this is minimal."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Explicit output format constraint: 'You MUST include the letter of the correct answer within the following tags: [ANSWER] and [/ANSWER].'",
+          "Single output type (letter in tags), no heterogeneous artifacts.",
+          "Strict format required for automatic parsing."
+        ],
+        "reason": "There is a minor artifact realization load due to the strict output format requirement, but only a single artifact type is needed and no parameterization or thresholding is involved."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Question is clearly worded and unambiguous.",
+          "No evidence of missing fields, schema mismatch, or representational inconsistency.",
+          "No need for semantic or data repair."
+        ],
+        "reason": "There is no indication of ambiguity or data/representation issues. The only trace is the need to interpret the database reference, but this is routine and does not require repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This is a direct multiple-choice biology question requiring a lookup or recall from the P-HIPSter database. The main complexity is a minor output format constraint for automatic parsing. There is minimal planning, action, or reflection load, and no evolution/transfer context.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2333,
+        "completion_tokens": 574,
+        "total_tokens": 2907
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Single-step question: 'Which of the following human genes encodes a protein that is predicted to interact with the viral protein Variola virus hypothetical protein (gene: N1L) according to the P-HIPSter database?'",
+            "No explicit or implicit multi-stage workflow or dependency chain.",
+            "No evidence of multiple reasonable methods or branching decisions; answer is a single letter choice."
+          ],
+          "reason": "The task is a direct multiple-choice lookup with no explicit workflow structuring or method branching required. The only trace of planning is the need to map the question to a database lookup, but this is minimal.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Explicit output format constraint: 'You MUST include the letter of the correct answer within the following tags: [ANSWER] and [/ANSWER].'",
+            "Single output type (letter in tags), no heterogeneous artifacts.",
+            "Strict format required for automatic parsing."
+          ],
+          "reason": "There is a minor artifact realization load due to the strict output format requirement, but only a single artifact type is needed and no parameterization or thresholding is involved.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Question is clearly worded and unambiguous.",
+            "No evidence of missing fields, schema mismatch, or representational inconsistency.",
+            "No need for semantic or data repair."
+          ],
+          "reason": "There is no indication of ambiguity or data/representation issues. The only trace is the need to interpret the database reference, but this is routine and does not require repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct multiple-choice biology question requiring a lookup or recall from the P-HIPSter database. The main complexity is a minor output format constraint for automatic parsing. There is minimal planning, action, or reflection load, and no evolution/transfer context.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:43:13.655039+00:00"
+  }
+}

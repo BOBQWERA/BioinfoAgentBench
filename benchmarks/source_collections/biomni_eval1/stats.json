@@ -1,0 +1,21 @@
+{
+  "sheet_name": "Biomni_Eval1",
+  "total": 433,
+  "pare_y": 22,
+  "pare_n": 411,
+  "filtered_count": 22,
+  "tasks": {
+    "gwas_variant_prioritization": 1,
+    "screen_gene_retrieval": 1,
+    "lab_bench_seqqa": 9,
+    "patient_gene_detection": 1,
+    "gwas_causal_gene_pharmaprojects": 1,
+    "rare_disease_diagnosis": 1,
+    "crispr_delivery": 1,
+    "lab_bench_dbqa": 6,
+    "gwas_causal_gene_opentargets": 1
+  },
+  "splits": {
+    "val": 22
+  }
+}

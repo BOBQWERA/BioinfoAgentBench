@@ -1,0 +1,211 @@
+{
+  "benchmark": "biomed_aqa_e2_upgrade_top5_std",
+  "schema_version": "1.0.0",
+  "count": 5,
+  "records": [
+    {
+      "id": "biomed_aqa_37",
+      "question": "[De-identified Prior Trajectory]\n1) Load expression table and group table, then run differential analysis with explicit contrast settings.\n2) Check that differential output includes both effect direction and significance fields before continuing.\n3) Filter to a stable candidate gene subset and export a clean intermediate gene list.\n4) If candidate count is too low, adjust thresholds conservatively and rerun filtering.\n5) Continue downstream analysis only with the filtered intermediate list, not the full matrix.\n\n[Transfer Gap Hints]\n- Gap (file_organization_change): source=DEG-only workflow endpoint -> target=DEG output must feed enrichment stage\n- Gap (metric_change): source=differential statistics endpoint -> target=functional enrichment significance endpoint\n- Gap (schema_change): source=DEG table fields only -> target=enrichment-compatible gene list required\n\n[Target Task]\nCurrently, there is an expression profile data {exp_COAD.csv} and corresponding grouping information {group_COAD.csv}. Please use the DEG tool to calculate differential genes and use the KOBAS_enrichment tool to perform gene set functional enrichment analysis on the differential genes.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0037/files/exp_COAD.csv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0037/files/group_COAD.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"DEG_COAD.csv\", \"path\": \"downloaded_files\\\\index_0037\\\\milestone\\\\DEG_COAD.csv\"}, {\"name\": \"KEGG.tsv\", \"path\": \"downloaded_files\\\\index_0037\\\\milestone\\\\KEGG.tsv\"}, {\"name\": \"GO.tsv\", \"path\": \"downloaded_files\\\\index_0037\\\\milestone\\\\GO.tsv\"}], \"milestones\": [\"Generate differential genes\", \"Generate functional enrichment results\"], \"steps\": [\"Calculate differential genes\", \"Gene Set Functional Enrichment Analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "DEG & enrichment",
+        "task": "RNA",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.01,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps_per_record']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 61,
+              "workflow_memory_Index": 219,
+              "task_abbr": "DEG",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Calculate differentially expressed genes from gene expression data and grouping information.\n    - **Tool**: deg\n    - **Input**: \n        - exp_file: \"exp_COAD.csv\" (gene expression profile data file)\n        - group_file: \"group_COAD.csv\" (grouping information file)\n    - **Output**: \"DEG.csv\" (file containing the set of genes significantly differentially expressed under the two experimental conditions)\n    - **Description**: The DEG tool will analyze the gene expression data and the corresponding grouping information to identify and extract the differentially expressed genes between the specified groups.\n]"
+            },
+            "original_question": "Currently, there is an expression profile data {exp_COAD.csv} and corresponding grouping information {group_COAD.csv}. Please use the DEG tool to calculate differential genes and use the KOBAS_enrichment tool to perform gene set functional enrichment analysis on the differential genes."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_131",
+      "question": "[De-identified Prior Trajectory]\n1) Split tabular dataset into train/test before any learned preprocessing.\n2) Select informative features on training data only and apply identical mapping to test data.\n3) Fit a supervised model and evaluate on held-out data.\n4) If train quality is high but test degrades, check leakage and overfitting controls first.\n5) Lock preprocessing artifacts so training and evaluation use identical feature transformations.\n\n[Transfer Gap Hints]\n- Gap (metric_change): source=classification metrics -> target=mean-squared-error regression metric\n- Gap (subtype_assumption_change): source=discrete class prediction -> target=continuous target prediction\n- Gap (constraint_change): source=classifier optimization -> target=linear-regression optimization with selected features\n\n[Target Task]\nI have a regression dataset {{diabetes.csv}}, the \"Target\" column of the dataset corresponds to the results. First, the dataset needs to be divided into training and testing sets, and feature selection should be performed to select several features that are highly correlated with the label column. Use linear regression for training and test on the testing set using mean squared error for evaluation.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0131/files/diabetes.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\test.csv\"}, {\"name\": \"train_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\train_feature_selected.csv\"}, {\"name\": \"test_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\test_feature_selected.csv\"}, {\"name\": \"linear_regression_predictions.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\linear_regression_predictions.csv\"}], \"milestones\": [\"Generate the training set train.csv and the test set test.csv files.\", \"Generate the result file feature_selected.csv after feature selection.\", \"Generate the test result file for linear regression, such as linear_regression_predictions.csv.\", \"MSE value: 0.17573731529078207\"], \"steps\": [\"Split the dataset to generate train.csv and test.csv files.\", \"Feature selection, generate the file after feature selection.\", \"Train using linear regression, test on the test set, and generate the result file on the test set.\", \"Mean Squared Error (MSE) value\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Regression",
+        "task_abbr": "Regression",
+        "task": "Regression",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.17,
+        "milestone_count": 4,
+        "step_count": 4,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps_per_record']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 115,
+              "workflow_memory_Index": 243,
+              "task_abbr": "Classfication",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"diabetes.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a testing set, maintaining the \"Target\" column as the label.\n\n2. **Goal**: Perform feature selection based on correlation with the label column.\n    - **Tool**: featureselect\n    - **Input**: train_csv_file, test_csv_file, \"Target\", n (number of features to select)\n    - **Output**: train_result_file, test_result_file\n    - **Description**: This tool will select the top n features correlated with the \"Target\" column from the training set and filter the test set accordingly.\n\n3. **Goal**: Build classifiers using the training set and predict on the test set.\n    - **Tool**: logistic\n    - **Input**: train_result_file, test_result_file, \"Target\"\n    - **Output**: logistic_predictions_file\n    - **Description**: This tool will train a Logistic Regression classifier on the training set and predict the labels for the test set.\n\n4. **Goal**: B"
+            },
+            "original_question": "I have a regression dataset {{diabetes.csv}}, the \"Target\" column of the dataset corresponds to the results. First, the dataset needs to be divided into training and testing sets, and feature selection should be performed to select several features that are highly correlated with the label column. Use linear regression for training and test on the testing set using mean squared error for evaluation."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_121",
+      "question": "[De-identified Prior Trajectory]\n1) Partition data into train/test and standardize features using training statistics.\n2) Fit a linear discriminative classifier and inspect class separation behavior on validation/test.\n3) Check confusion behavior and class balance sensitivity before finalizing.\n4) If separation is weak, revisit feature scaling and class-distribution handling.\n5) Keep inference transformations identical to training-time transformations.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=projection-based discriminant boundary -> target=probability-based logistic decision boundary\n- Gap (constraint_change): source=discriminant-model assumptions -> target=log-odds linear model assumptions\n- Gap (metric_change): source=source-side confusion-focused checks -> target=target-side logistic probability/threshold handling\n\n[Target Task]\nI have a dataset {breast_cancer.csv}, and the \"Target\" column is the corresponding classification label. Please use logistic regression to classify the data.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0121/files/breast_cancer.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0121\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0121\\\\milestone\\\\test.csv\"}, {\"name\": \"logistic_predictions.csv\", \"path\": \"downloaded_files\\\\index_0121\\\\milestone\\\\logistic_predictions.csv\"}], \"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the result file for logistic regression predictions.\"], \"steps\": [\"Divide the dataset\", \"Train and predict using logistic regression\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "逻辑回归",
+        "task": "Classification",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.07,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps_per_record']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 128,
+              "workflow_memory_Index": 125,
+              "task_abbr": "线性判别分析",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"lung_cancer.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a test set based on the default ratio of 0.8-0.2.\n\n2. **Goal**: Classify the test set using linear discriminant analysis.\n    - **Tool**: lda\n    - **Input**: train_csv_file, test_csv_file, \"Target\"\n    - **Output**: result_csv_file\n    - **Description**: This tool will train the LDA model on the training set and predict the classifications for the test set, adding a \"Predicted\" column to the output file.\n\n3. **Goal**: Check the number of unique values in the 'Target' column.\n    - **Tool**: None (Custom Implementation)\n    - **Input**: result_csv_file\n    - **Output**: unique_classes\n    - **Description**: This step will determine the number of unique classes in the 'Target' column of the result file.\n\n4. **Goal**: Calculate the evaluation metrics for the LDA predictions if applicable.\n    - **Tool**: calculate_classify_metrics\n    "
+            },
+            "original_question": "I have a dataset {breast_cancer.csv}, and the \"Target\" column is the corresponding classification label. Please use logistic regression to classify the data."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_140",
+      "question": "[De-identified Prior Trajectory]\n1) Prepare supervised tabular data, split train/test, and keep target column isolated from features.\n2) Train a non-linear ensemble baseline and assess held-out predictive behavior.\n3) Inspect feature contribution patterns and stability across train/test.\n4) If high-dimensional correlation exists among predictors, switch to a dimension-reduction-aware modeling route.\n5) Re-evaluate with the adapted model while keeping identical train/test partitions.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=tree-ensemble non-linear learner -> target=latent-component linear regression learner\n- Gap (constraint_change): source=feature-importance style interpretation -> target=component-selection and latent-space constraints\n- Gap (metric_change): source=ensemble-oriented tuning behavior -> target=component-count tuning behavior\n\n[Target Task]\n{I have a dataset {liver_disorders.csv}, the \"Target\" column is the predicted result, please use partial least squares for regression training on this dataset.}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0140/files/liver_disorders.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0140\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0140\\\\milestone\\\\test.csv\"}, {\"name\": \"predictions.csv\", \"path\": \"downloaded_files\\\\index_0140\\\\milestone\\\\predictions.csv\"}], \"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the result file of the regression algorithm's predictions on the test set.\"], \"steps\": [\"Divide the dataset\", \"Use partial least squares regression for regression training.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Regression",
+        "task_abbr": "部分最小平方",
+        "task": "Regression",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.26,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps_per_record']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 126,
+              "workflow_memory_Index": 123,
+              "task_abbr": "随机森林",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"heart_disease.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will take the original dataset and split it into a training set and a test set based on the \"Target\" column.\n\n2. **Goal**: Train a random forest classifier on the training set and predict on the test set.\n    - **Tool**: randomforest\n    - **Input**: train_csv_file, test_csv_file, \"Target\"\n    - **Output**: result_csv_file\n    - **Description**: This tool will use the training set to train a random forest model and then make predictions on the test set, outputting the results in a new CSV file with a \"Predicted\" column.\n]"
+            },
+            "original_question": "{I have a dataset {liver_disorders.csv}, the \"Target\" column is the predicted result, please use partial least squares for regression training on this dataset.}"
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_164",
+      "question": "[De-identified Prior Trajectory]\n1) Start from a numeric feature table and run a structure-discovery routine after basic scaling checks.\n2) Inspect whether neighborhood/cluster structure is stable under parameter changes.\n3) Export low-dimensional or grouped representation for downstream visualization/inspection.\n4) If the structure is unstable, revisit scaling and neighborhood settings before final output.\n5) Keep random-state/parameter records so the representation is reproducible.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=hierarchical distance-tree structure -> target=nonlinear neighborhood embedding structure\n- Gap (metric_change): source=cluster/distance-tree consistency checks -> target=embedding neighborhood-preservation checks\n- Gap (constraint_change): source=linkage/distance parameter focus -> target=perplexity/embedding parameter focus\n\n[Target Task]\nI have a dataset {heart_disease.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0164/files/heart_disease.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"heart_disease_tsne_result.csv\", \"path\": \"downloaded_files\\\\index_0164\\\\milestone\\\\heart_disease_tsne_result.csv\"}], \"milestones\": [\"Generate the dimensionality reduction result file under this algorithm.\"], \"steps\": [\"Use the t-SNE dimensionality reduction algorithm for analysis (for example, choose the number of reduced dimensions to be 2).\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "t-分布随机邻域嵌入",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.5,
+        "milestone_count": 1,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps_per_record']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 152,
+              "workflow_memory_Index": 146,
+              "task_abbr": "HClust聚类",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the dataset from the file hcluster.tsv and convert it to CSV format for clustering analysis.\n    - **Tool**: None\n    - **Input**: \"hcluster.tsv\"\n    - **Output**: data_csv_file (path to the converted CSV file)\n    - **Description**: Read the hcluster.tsv file, extract the feature columns while skipping the ID column, and save the result as a CSV file.\n\n2. **Goal**: Perform hierarchical clustering analysis on the feature columns.\n    - **Tool**: hierarchical\n    - **Input**: data_csv_file (path to the CSV file containing feature columns), n_clusters (number of clusters to be defined by the user)\n    - **Output**: result_csv_file (path to the clustering result file), silhouette (average silhouette score)\n    - **Description**: Use the hierarchical clustering algorithm directly on the validated feature data to generate clusters and output the results along with a silhouette score for evaluation.\n]"
+            },
+            "original_question": "I have a dataset {heart_disease.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset."
+          }
+        }
+      }
+    }
+  ]
+}

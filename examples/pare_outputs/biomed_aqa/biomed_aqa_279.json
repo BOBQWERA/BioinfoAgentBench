@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_279",
+      "question": "There is a data file called violin.tsv, which has a column named 'Group1' to represent three different sample groups: high, mid, and low, and a column named 'Group2' to represent the two treatment plans corresponding to each group sample: treat1 and treat2. The \"Value\" column contains the corresponding diagnostic values. Please use a violin plot to show the distribution of the \"Value\" column for the two treatment plans represented by the 'Group2' column in the three groups of the 'Group1' column.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0279/files/violin.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"violin_violin.jpg\", \"path\": \"downloaded_files\\\\index_0279\\\\milestone\\\\violin_violin.jpg\"}], \"milestones\": [\"Generate violin plot\", \"The result file for saving the image is in jpg format, which is correct.\"], \"steps\": [\"Draw a violin plot\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Fitting & inference",
+        "task_abbr": "violin plot",
+        "task": "Fitting & inference",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.48,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_279",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "The question requires plotting the distribution of 'Value' for two treatment plans ('Group2') within three groups ('Group1'), implying grouping and faceting.",
+          "Milestones and steps: 'Generate violin plot', 'Draw a violin plot', 'Check whether the file format of the saved image result is correct.'"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must group data by two categorical variables and plot distributions accordingly, which is a standard but not trivial plotting task. No evidence of significant method branching or multiple defensible approaches that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output artifact is a violin plot image in jpg format ('violin_violin.jpg').",
+          "Explicit check for correct file format in milestones/steps."
+        ],
+        "reason": "There is a minor artifact realization load: the output must be a violin plot image in a specific format (jpg), and the file format must be checked. No evidence of multiple heterogeneous outputs or strict parameterization beyond file format."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Column names and groupings are clearly specified in the question.",
+          "No evidence of missing fields, ambiguity, or schema mismatch."
+        ],
+        "reason": "There is almost no repair load: the data columns and groupings are explicitly defined, and the task is well-specified. No need for semantic or representational repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves generating a violin plot grouped by two categorical variables from a TSV file and saving it in a specified image format. The planning and action loads are minor but present due to grouping/faceting and file format requirements. There is almost no reflection or repair needed, and no evolution/transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2448,
+        "completion_tokens": 581,
+        "total_tokens": 3029
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "The question requires plotting the distribution of 'Value' for two treatment plans ('Group2') within three groups ('Group1'), implying grouping and faceting.",
+            "Milestones and steps: 'Generate violin plot', 'Draw a violin plot', 'Check whether the file format of the saved image result is correct.'"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must group data by two categorical variables and plot distributions accordingly, which is a standard but not trivial plotting task. No evidence of significant method branching or multiple defensible approaches that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output artifact is a violin plot image in jpg format ('violin_violin.jpg').",
+            "Explicit check for correct file format in milestones/steps."
+          ],
+          "reason": "There is a minor artifact realization load: the output must be a violin plot image in a specific format (jpg), and the file format must be checked. No evidence of multiple heterogeneous outputs or strict parameterization beyond file format.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Column names and groupings are clearly specified in the question.",
+            "No evidence of missing fields, ambiguity, or schema mismatch."
+          ],
+          "reason": "There is almost no repair load: the data columns and groupings are explicitly defined, and the task is well-specified. No need for semantic or representational repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves generating a violin plot grouped by two categorical variables from a TSV file and saving it in a specified image format. The planning and action loads are minor but present due to grouping/faceting and file format requirements. There is almost no reflection or repair needed, and no evolution/transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:33:48.902820+00:00"
+  }
+}

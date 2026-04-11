@@ -1,0 +1,126 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-56-q1",
+      "question": "How many total amino acids are present in all single-copy ortholog sequences?",
+      "data": [],
+      "answer": "13809",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-56-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "11245",
+          "15623",
+          "12890"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-56-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "How many total amino acids are present in all single-copy ortholog sequences?"
+        ],
+        "reason": "The question requires summing amino acids across all single-copy ortholog sequences, which implies at least two steps: (1) identifying the relevant sequences, and (2) counting/summing amino acids. However, there is no evidence of complex dependency chains or significant method branching, as the method is implied to be direct and standard."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "How many total amino acids are present in all single-copy ortholog sequences?",
+          "\"answer\": \"13809\""
+        ],
+        "reason": "The output is a single integer value, and there is no evidence of heterogeneous artifact types or strict format constraints. The only parameterization is the total count, with no explicit thresholds or verification rules."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "How many total amino acids are present in all single-copy ortholog sequences?"
+        ],
+        "reason": "There is a minor need to clarify what constitutes a 'single-copy ortholog sequence,' but this is a standard term and does not introduce major ambiguity or require repair. No evidence of data/schema inconsistency."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This is a straightforward counting question requiring summing amino acids across a defined set of sequences. There is minor workflow structuring and a trace of semantic clarification, but no evidence of complex branching, strict artifact realization, repair, or transfer. The task is simple and direct.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2195,
+        "completion_tokens": 523,
+        "total_tokens": 2718
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "How many total amino acids are present in all single-copy ortholog sequences?"
+          ],
+          "reason": "The question requires summing amino acids across all single-copy ortholog sequences, which implies at least two steps: (1) identifying the relevant sequences, and (2) counting/summing amino acids. However, there is no evidence of complex dependency chains or significant method branching, as the method is implied to be direct and standard.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "How many total amino acids are present in all single-copy ortholog sequences?",
+            "\"answer\": \"13809\""
+          ],
+          "reason": "The output is a single integer value, and there is no evidence of heterogeneous artifact types or strict format constraints. The only parameterization is the total count, with no explicit thresholds or verification rules.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "How many total amino acids are present in all single-copy ortholog sequences?"
+          ],
+          "reason": "There is a minor need to clarify what constitutes a 'single-copy ortholog sequence,' but this is a standard term and does not introduce major ambiguity or require repair. No evidence of data/schema inconsistency.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward counting question requiring summing amino acids across a defined set of sequences. There is minor workflow structuring and a trace of semantic clarification, but no evidence of complex branching, strict artifact realization, repair, or transfer. The task is simple and direct.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:32:24.626032+00:00"
+  }
+}

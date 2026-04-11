@@ -1,0 +1,155 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_e1_upgrade_top5_2_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_152",
+      "question": "[Abstracted Experience Guidance]\n- Principle 1: Standardize feature scales before distance-based clustering, because unscaled features dominate distance structure.\n- Principle 2: Validate clustering stability under nearby parameter settings before accepting cluster assignments.\n- Decision rationale: Interpretable clusters require reproducibility, not one-shot partition quality.\n- Switch condition: If cluster membership changes markedly under small parameter shifts, revisit preprocessing/parameterization; otherwise proceed with reporting.\n- Caution: A typical failure mode is over-interpreting tiny unstable clusters produced by noisy dimensions.\n\n[Target Task]\nI have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use HClust for clustering analysis.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0152/files/hcluster.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"hcluster.csv\", \"path\": \"downloaded_files\\\\index_0152\\\\milestone\\\\hcluster.csv\"}, {\"name\": \"hierarchical_output.csv\", \"path\": \"downloaded_files\\\\index_0152\\\\milestone\\\\hierarchical_output.csv\"}], \"milestones\": [\"Generate hcluster.csv file\", \"Generate the result file for HClust clustering\"], \"steps\": [\"Convert the TSV file to CSV format.\", \"Clustering prediction using the HClust algorithm\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Clustering",
+        "task_abbr": "HClust聚类",
+        "task": "Clustering",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.38,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E1",
+          "selection_basis": "['targets_not_overlap_existing_r1_r2_e1_e2_sets', 'targets_are_tsv_or_csv_only', 'source_target_same_family']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 151,
+              "workflow_memory_Index": 145,
+              "task_abbr": "K均值聚类",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the dataset from the file hcluster.tsv and convert it to CSV format for clustering analysis.\n    - **Tool**: None\n    - **Input**: \"hcluster.tsv\"\n    - **Output**: data_csv_file (path to the converted CSV file)\n    - **Description**: Read the hcluster.tsv file, extract the feature columns while skipping the ID column, and save the result as a CSV file.\n\n2. **Goal**: Perform Kmeans clustering analysis on the extracted feature data.\n    - **Tool**: kmeans\n    - **Input**: data_csv_file (path to the CSV file containing feature columns), n_clusters (the desired number of clusters)\n    - **Output**: result_csv_file (a CSV file with an additional \"Cluster\" column) and silhouette (a float representing the silhouette score)\n    - **Description**: Use the Kmeans clustering algorithm to analyze the feature data and output the clustering results along with a silhouette score to evaluate the clustering quality.\n]"
+            },
+            "original_question": "I have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use HClust for clustering analysis."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_152",
+    "benchmark": "biomed_aqa_e1_upgrade_top5_2_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Principle 1: Standardize feature scales before distance-based clustering",
+          "Principle 2: Validate clustering stability under nearby parameter settings before accepting cluster assignments",
+          "Switch condition: If cluster membership changes markedly under small parameter shifts, revisit preprocessing/parameterization; otherwise proceed with reporting",
+          "Milestones: [\"Generate hcluster.csv file\", \"Generate the result file for HClust clustering\"]",
+          "Steps: [\"Convert the TSV file to CSV format.\", \"Clustering prediction using the HClust algorithm\"]"
+        ],
+        "reason": "The task requires decomposing the workflow into at least two steps (conversion and clustering), and the experience guidance introduces a need to consider preprocessing (scaling) and parameter sensitivity checks. However, the method (HClust) is specified, and while parameter validation is suggested, there is no explicit evidence of multiple materially different methods or branching that would change correctness. Thus, the planning load is moderate."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone files: [\"hcluster.csv\", \"hierarchical_output.csv\"]",
+          "Steps: [\"Convert the TSV file to CSV format.\", \"Clustering prediction using the HClust algorithm\"]"
+        ],
+        "reason": "There are two output artifact types (converted CSV and clustering result), but both are standard and there is no explicit evidence of strict format constraints, parameterization, or verification checkpoints. The action load is weak to moderate."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The input file format and column structure are clearly specified: first column is ID, others are features"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation inconsistency. The only minor potential for repair is the need to skip the ID column, which is explicitly stated. No schema mismatch or ambiguity is present."
+      },
+      "E": {
+        "score": 4,
+        "evidence": [
+          "[Abstracted Experience Guidance] block provides generalizable principles and rationale",
+          "Principle 1 and 2, decision rationale, switch condition, and caution are all experience-based guidance that must be abstracted and applied to the new task"
+        ],
+        "reason": "The payload contains explicit prior experience in the form of general principles, rationale, and switch conditions that must be abstracted and transferred to the current task. The agent cannot simply copy steps; it must interpret and apply the guidance to a new clustering context (HClust instead of KMeans). This makes evolution a major difficulty driver."
+      }
+    },
+    "overall_summary": "This task involves moderate planning load due to the need to structure a multi-step workflow and incorporate experience-based preprocessing and validation steps. The action load is weak to moderate, as the required artifacts are standard and not tightly specified. Reflection load is minimal, with clear input structure and no ambiguity. Evolution load is high, as the agent must abstract and transfer general clustering principles and rationale from prior experience to a new clustering method and context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2919,
+        "completion_tokens": 782,
+        "total_tokens": 3701
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Principle 1: Standardize feature scales before distance-based clustering",
+            "Principle 2: Validate clustering stability under nearby parameter settings before accepting cluster assignments",
+            "Switch condition: If cluster membership changes markedly under small parameter shifts, revisit preprocessing/parameterization; otherwise proceed with reporting",
+            "Milestones: [\"Generate hcluster.csv file\", \"Generate the result file for HClust clustering\"]",
+            "Steps: [\"Convert the TSV file to CSV format.\", \"Clustering prediction using the HClust algorithm\"]"
+          ],
+          "reason": "The task requires decomposing the workflow into at least two steps (conversion and clustering), and the experience guidance introduces a need to consider preprocessing (scaling) and parameter sensitivity checks. However, the method (HClust) is specified, and while parameter validation is suggested, there is no explicit evidence of multiple materially different methods or branching that would change correctness. Thus, the planning load is moderate.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone files: [\"hcluster.csv\", \"hierarchical_output.csv\"]",
+            "Steps: [\"Convert the TSV file to CSV format.\", \"Clustering prediction using the HClust algorithm\"]"
+          ],
+          "reason": "There are two output artifact types (converted CSV and clustering result), but both are standard and there is no explicit evidence of strict format constraints, parameterization, or verification checkpoints. The action load is weak to moderate.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The input file format and column structure are clearly specified: first column is ID, others are features"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation inconsistency. The only minor potential for repair is the need to skip the ID column, which is explicitly stated. No schema mismatch or ambiguity is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 4,
+          "evidence": [
+            "[Abstracted Experience Guidance] block provides generalizable principles and rationale",
+            "Principle 1 and 2, decision rationale, switch condition, and caution are all experience-based guidance that must be abstracted and applied to the new task"
+          ],
+          "reason": "The payload contains explicit prior experience in the form of general principles, rationale, and switch conditions that must be abstracted and transferred to the current task. The agent cannot simply copy steps; it must interpret and apply the guidance to a new clustering context (HClust instead of KMeans). This makes evolution a major difficulty driver.",
+          "subdimension_breakdown": {
+            "E1": 4,
+            "E2": 4
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate planning load due to the need to structure a multi-step workflow and incorporate experience-based preprocessing and validation steps. The action load is weak to moderate, as the required artifacts are standard and not tightly specified. Reflection load is minimal, with clear input structure and no ambiguity. Evolution load is high, as the agent must abstract and transfer general clustering principles and rationale from prior experience to a new clustering method and context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-09T03:56:55.743686+00:00"
+  }
+}

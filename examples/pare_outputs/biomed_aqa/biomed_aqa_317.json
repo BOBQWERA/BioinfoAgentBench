@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_317",
+      "question": "There is an existing dataset volcano.tsv, where the \"Symbol\" column represents genes, \"logFC\" is log2(Fold Change), and the \"P.Value\" column is the p-value. With p<0.05 and a cutoff value of log2FC set to 2, the genes are divided into three groups: significantly upregulated, significantly downregulated, and no significant difference. A volcano plot will be drawn for the three groups.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0317/files/volcano.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"volcano_volcano.jpg\", \"path\": \"downloaded_files\\\\index_0317\\\\milestone\\\\volcano_volcano.jpg\"}], \"milestones\": [\"Generate a volcano map\", \"The result file for saving the image is in jpg format, which is correct.\"], \"steps\": [\"Draw a volcano map\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Other",
+        "task_abbr": "volcano plot",
+        "task": "Other",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.86,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_317",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "genes are divided into three groups: significantly upregulated, significantly downregulated, and no significant difference",
+          "With p<0.05 and a cutoff value of log2FC set to 2",
+          "A volcano plot will be drawn for the three groups"
+        ],
+        "reason": "The task requires decomposing the workflow into at least two steps: (1) filtering and classifying genes based on explicit thresholds for p-value and log2FC, and (2) generating a volcano plot colored/grouped by these classifications. The method for grouping is specified, so branching is limited, but the dependency chain is clear."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "volcano.tsv input file",
+          "milestone_files: volcano_volcano.jpg",
+          "The result file for saving the image is in jpg format, which is correct.",
+          "Check whether the file format of the saved image result is correct."
+        ],
+        "reason": "There are two artifact types: a processed/filtered classification (implicit, for plotting) and a volcano plot image in a specified format (jpg). There is explicit format verification for the output image. However, there are no highly strict schema or parameterization requirements beyond the stated thresholds."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "volcano.tsv column names and meanings are explicitly described",
+          "Thresholds for p-value and log2FC are explicitly given"
+        ],
+        "reason": "The semantics and data representation are clearly defined, with no evidence of ambiguity or need for repair. There is only a trace load due to the need to map column names to their described meanings, but this is minimal."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a standard two-stage workflow: classifying genes based on explicit thresholds and generating a volcano plot in a specified format. The planning and action loads are moderate due to explicit grouping and output requirements, but there is little ambiguity or need for repair, and no transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2425,
+        "completion_tokens": 628,
+        "total_tokens": 3053
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "genes are divided into three groups: significantly upregulated, significantly downregulated, and no significant difference",
+            "With p<0.05 and a cutoff value of log2FC set to 2",
+            "A volcano plot will be drawn for the three groups"
+          ],
+          "reason": "The task requires decomposing the workflow into at least two steps: (1) filtering and classifying genes based on explicit thresholds for p-value and log2FC, and (2) generating a volcano plot colored/grouped by these classifications. The method for grouping is specified, so branching is limited, but the dependency chain is clear.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "volcano.tsv input file",
+            "milestone_files: volcano_volcano.jpg",
+            "The result file for saving the image is in jpg format, which is correct.",
+            "Check whether the file format of the saved image result is correct."
+          ],
+          "reason": "There are two artifact types: a processed/filtered classification (implicit, for plotting) and a volcano plot image in a specified format (jpg). There is explicit format verification for the output image. However, there are no highly strict schema or parameterization requirements beyond the stated thresholds.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "volcano.tsv column names and meanings are explicitly described",
+            "Thresholds for p-value and log2FC are explicitly given"
+          ],
+          "reason": "The semantics and data representation are clearly defined, with no evidence of ambiguity or need for repair. There is only a trace load due to the need to map column names to their described meanings, but this is minimal.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-stage workflow: classifying genes based on explicit thresholds and generating a volcano plot in a specified format. The planning and action loads are moderate due to explicit grouping and output requirements, but there is little ambiguity or need for repair, and no transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:37:32.840898+00:00"
+  }
+}

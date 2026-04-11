@@ -1,0 +1,156 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_32437664_8",
+      "question": "For each patient, get the indicator for their PD-L1 CPS score: >10 -> 2, 1-10 -> 1, others -> 0. Save the output as `cps` with columns:\n- PATIENT_ID\n- PD_L1_CPS_Indicator",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_sv.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\n\\n# Load the data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\n\\n# Define a function to categorize PD-L1 CPS score\\ndef categorize_cps_score(cps_score):\\n    if cps_score > 10:\\n        return 2\\n    elif 1 <= cps_score <= 10:\\n        return 1\\n    else:\\n        return 0\\n\\n# Apply the function to the 'HIGHEST_CPS_SCORE_AT_BASELINE' column\\ndata_clinical_patient['PD_L1_CPS_Indicator'] = data_clinical_patient['HIGHEST_CPS_SCORE_AT_BASELINE'].apply(categorize_cps_score)\\n\\n# Display the first few rows to verify the new column\\ncps = data_clinical_patient[['PATIENT_ID', 'PD_L1_CPS_Indicator']]\", \"test_cases\": \"assert len(set(cps.columns.tolist()) - set([\\\"PATIENT_ID\\\", \\\"PD_L1_CPS_Indicator\\\"])) == 0\\n\\nassert cps[\\\"PD_L1_CPS_Indicator\\\"].value_counts().to_dict() == {0: 23, 1: 12, 2: 2}\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "32437664_8",
+        "study_id": "32437664",
+        "question_id": "8",
+        "analysis_types": "['Clinical Feature Engineering', 'Data Integration & Transformation']",
+        "study_type": "Genomics",
+        "study_title": "First-line pembrolizumab and trastuzumab in HER2-positive oesophageal, gastric, or gastro-oesophageal junction cancer: an open-label, single-arm, phase 2 trial",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=egc_trap_msk_2020",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_32437664_8",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "For each patient, get the indicator for their PD-L1 CPS score: >10 -> 2, 1-10 -> 1, others -> 0.",
+          "Save the output as `cps` with columns: PATIENT_ID, PD_L1_CPS_Indicator",
+          "Multiple input files listed, but only one (data_clinical_patient.csv) is used in the reference answer"
+        ],
+        "reason": "There is a minor workflow structuring load in identifying which input file contains the relevant PD-L1 CPS score and mapping the score to the indicator according to the specified rules. However, there is no evidence of significant branching or multiple valid methods; the mapping is direct and the relevant file is clear from the context."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Save the output as `cps` with columns: PATIENT_ID, PD_L1_CPS_Indicator",
+          "Explicit mapping rules: >10 -> 2, 1-10 -> 1, others -> 0",
+          "Test cases assert output column names and value counts"
+        ],
+        "reason": "There is a minor artifact realization load due to the requirement to produce a specific output table with named columns and to apply explicit mapping rules. The test cases add some format and value constraints, but the overall output structure is simple and the parameterization is not highly strict."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or schema mismatch in the question or data references",
+          "Reference answer directly uses HIGHEST_CPS_SCORE_AT_BASELINE from data_clinical_patient.csv"
+        ],
+        "reason": "There is almost no need for semantic or data repair; the mapping is direct and the relevant field is unambiguous. The only trace load is in identifying the correct column, but this is minimal."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a simple mapping of a clinical score to an indicator variable for each patient, with minor workflow structuring and artifact realization load due to explicit mapping and output requirements. There is minimal need for semantic or data repair, and no transfer or evolution load.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2788,
+        "completion_tokens": 637,
+        "total_tokens": 3425
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "For each patient, get the indicator for their PD-L1 CPS score: >10 -> 2, 1-10 -> 1, others -> 0.",
+            "Save the output as `cps` with columns: PATIENT_ID, PD_L1_CPS_Indicator",
+            "Multiple input files listed, but only one (data_clinical_patient.csv) is used in the reference answer"
+          ],
+          "reason": "There is a minor workflow structuring load in identifying which input file contains the relevant PD-L1 CPS score and mapping the score to the indicator according to the specified rules. However, there is no evidence of significant branching or multiple valid methods; the mapping is direct and the relevant file is clear from the context.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Save the output as `cps` with columns: PATIENT_ID, PD_L1_CPS_Indicator",
+            "Explicit mapping rules: >10 -> 2, 1-10 -> 1, others -> 0",
+            "Test cases assert output column names and value counts"
+          ],
+          "reason": "There is a minor artifact realization load due to the requirement to produce a specific output table with named columns and to apply explicit mapping rules. The test cases add some format and value constraints, but the overall output structure is simple and the parameterization is not highly strict.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or schema mismatch in the question or data references",
+            "Reference answer directly uses HIGHEST_CPS_SCORE_AT_BASELINE from data_clinical_patient.csv"
+          ],
+          "reason": "There is almost no need for semantic or data repair; the mapping is direct and the relevant field is unambiguous. The only trace load is in identifying the correct column, but this is minimal.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a simple mapping of a clinical score to an indicator variable for each patient, with minor workflow structuring and artifact realization load due to explicit mapping and output requirements. There is minimal need for semantic or data repair, and no transfer or evolution load.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T10:50:23.189369+00:00"
+  }
+}

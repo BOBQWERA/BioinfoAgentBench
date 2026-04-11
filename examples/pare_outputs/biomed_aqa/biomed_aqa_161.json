@@ -1,0 +1,137 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_161",
+      "question": "I have a dataset {breast_cancer.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform correspondence analysis and dimensionality reduction on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0161/files/breast_cancer.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"breast_cancer_ca_result.csv\", \"path\": \"downloaded_files\\\\index_0161\\\\milestone\\\\breast_cancer_ca_result.csv\"}], \"milestones\": [\"Generate the result file after analyzing the algorithm.\"], \"steps\": [\"Analyze the dataset using correspondence analysis for dimensionality reduction (choosing to reduce to 2 principal components).\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "对应分析",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.47,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_161",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'perform correspondence analysis and dimensionality reduction on this dataset.'",
+          "Answer: 'Analyze the dataset using correspondence analysis for dimensionality reduction (choosing to reduce to 2 principal components).'"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires applying correspondence analysis for dimensionality reduction, which is a two-stage process (analysis and reduction). However, the method is specified (correspondence analysis), and the reduction target (2 components) is given, so branching is minimal."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone file: 'breast_cancer_ca_result.csv'",
+          "Output: 'Generate the result file after analyzing the algorithm.'",
+          "Step: 'choosing to reduce to 2 principal components.'"
+        ],
+        "reason": "There is a weak artifact realization load: the output is a single result CSV file, and the reduction to 2 components is specified. No strict format or parameterization constraints are stated beyond this."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Question specifies: 'Target' column is the target, others are features.",
+          "No evidence of missing/ambiguous fields or schema mismatch."
+        ],
+        "reason": "There is trace evidence for reflection: the question clarifies which column is the target and which are features, and there is no indication of ambiguity or data repair need."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present."
+        ],
+        "reason": "No evidence of experience assimilation or transfer; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow structuring and artifact realization load due to the requirement to perform correspondence analysis for dimensionality reduction and output a result file. The method and output are specified, minimizing branching and parameterization complexity. There is no evidence of semantic or data repair, and no transfer or evolution context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2371,
+        "completion_tokens": 554,
+        "total_tokens": 2925
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'perform correspondence analysis and dimensionality reduction on this dataset.'",
+            "Answer: 'Analyze the dataset using correspondence analysis for dimensionality reduction (choosing to reduce to 2 principal components).'"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires applying correspondence analysis for dimensionality reduction, which is a two-stage process (analysis and reduction). However, the method is specified (correspondence analysis), and the reduction target (2 components) is given, so branching is minimal.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone file: 'breast_cancer_ca_result.csv'",
+            "Output: 'Generate the result file after analyzing the algorithm.'",
+            "Step: 'choosing to reduce to 2 principal components.'"
+          ],
+          "reason": "There is a weak artifact realization load: the output is a single result CSV file, and the reduction to 2 components is specified. No strict format or parameterization constraints are stated beyond this.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Question specifies: 'Target' column is the target, others are features.",
+            "No evidence of missing/ambiguous fields or schema mismatch."
+          ],
+          "reason": "There is trace evidence for reflection: the question clarifies which column is the target and which are features, and there is no indication of ambiguity or data repair need.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present."
+          ],
+          "reason": "No evidence of experience assimilation or transfer; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow structuring and artifact realization load due to the requirement to perform correspondence analysis for dimensionality reduction and output a result file. The method and output are specified, minimizing branching and parameterization complexity. There is no evidence of semantic or data repair, and no transfer or evolution context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:20:45.864780+00:00"
+  }
+}

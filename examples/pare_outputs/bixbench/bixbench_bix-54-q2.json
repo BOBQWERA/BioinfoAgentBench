@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-54-q2",
+      "question": "What is the R-squared value for a cubic model fitted to predict swarming area with frequency of ΔrhlI to total population?",
+      "data": [],
+      "answer": "(0.58,0.59)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-54-q2",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.35,0.36)",
+          "(0.80,0.81)",
+          "(0.78,0.79)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-54-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Fit a cubic model to predict swarming area with frequency of ΔrhlI to total population"
+        ],
+        "reason": "The question requires fitting a cubic model, which implies at least a two-step process: model fitting and R-squared calculation. However, the workflow is standard and does not require explicit decomposition into a complex dependency graph. There is no evidence of multiple reasonable methods or branching decisions that would materially affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "R-squared value for a cubic model",
+          "eval_mode: range_verifier"
+        ],
+        "reason": "The output is a single numeric value (R-squared) with a specified range, and the evaluation mode is a range verifier. There is some parameterization load in ensuring the correct model degree and output format, but there is no evidence of multiple artifact types or strict format constraints beyond the numeric range."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No ambiguity in question wording"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clear, and no data is present to require schema alignment or repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves fitting a cubic model and reporting the R-squared value, which is a standard modeling workflow with minor planning and parameterization load. There is no evidence of branching, repair, or transfer requirements. The main complexity comes from ensuring the correct model degree and outputting the R-squared value within the specified range.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2227,
+        "completion_tokens": 533,
+        "total_tokens": 2760
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Fit a cubic model to predict swarming area with frequency of ΔrhlI to total population"
+          ],
+          "reason": "The question requires fitting a cubic model, which implies at least a two-step process: model fitting and R-squared calculation. However, the workflow is standard and does not require explicit decomposition into a complex dependency graph. There is no evidence of multiple reasonable methods or branching decisions that would materially affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "R-squared value for a cubic model",
+            "eval_mode: range_verifier"
+          ],
+          "reason": "The output is a single numeric value (R-squared) with a specified range, and the evaluation mode is a range verifier. There is some parameterization load in ensuring the correct model degree and output format, but there is no evidence of multiple artifact types or strict format constraints beyond the numeric range.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No ambiguity in question wording"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clear, and no data is present to require schema alignment or repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves fitting a cubic model and reporting the R-squared value, which is a standard modeling workflow with minor planning and parameterization load. There is no evidence of branching, repair, or transfer requirements. The main complexity comes from ensuring the correct model degree and outputting the R-squared value within the specified range.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:30:29.197992+00:00"
+  }
+}

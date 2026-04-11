@@ -1,0 +1,147 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_211",
+      "question": "{There are three existing data tables. {feature_infor1.tsv} is a data table containing the abundance of microbial species, with samples as columns and species as rows. {sample_info1.tsv} is a data table containing microbial grouping information, with the column name Group representing the grouping information. {tax_info1.tsv} is a data table containing microbial taxonomic information. Please perform a differential abundance analysis of microbes based on the grouping information in Group.}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0211/files/feature_infor1.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0211/files/sample_info1.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0211/files/tax_info1.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"out_lefse.tsv\", \"path\": \"downloaded_files\\\\index_0211\\\\milestone\\\\out_lefse.tsv\"}], \"milestones\": [\"Generate a file containing the difference results.\"], \"steps\": [\"Conduct lefse differential analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Inferential statistics",
+        "task_abbr": "LEfSe",
+        "task": "Inferential statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 41.16,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_211",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "\"There are three existing data tables...feature_infor1.tsv...sample_info1.tsv...tax_info1.tsv\"",
+          "\"Please perform a differential abundance analysis of microbes based on the grouping information in Group.\"",
+          "\"Conduct lefse differential analysis\""
+        ],
+        "reason": "The task requires integrating three data tables (abundance, sample grouping, taxonomy) and performing a differential abundance analysis based on grouping. While the method (LEfSe) is specified in the answer, the question itself does not specify the method, so the solver must infer or select an appropriate method. The workflow involves at least two stages: data integration/alignment and statistical analysis. However, there is no explicit evidence of major branching (multiple equally valid methods) or complex dependency graphs beyond standard multi-table integration and analysis."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"out_lefse.tsv\"...}]",
+          "\"Generate a file containing the difference results.\""
+        ],
+        "reason": "The output is a single result file (out_lefse.tsv) containing differential analysis results. There is no explicit schema or format constraint beyond being a result table, and only one output type is required. No explicit parameterization or strict verification rules are stated."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "\"feature_infor1.tsv is a data table containing the abundance of microbial species, with samples as columns and species as rows.\"",
+          "\"sample_info1.tsv is a data table containing microbial grouping information, with the column name Group representing the grouping information.\"",
+          "\"tax_info1.tsv is a data table containing microbial taxonomic information.\""
+        ],
+        "reason": "There is some minor representational alignment required: matching sample IDs across abundance and grouping tables, and possibly mapping species IDs to taxonomy. However, there is no evidence of ambiguity, contradiction, or missing fields that would require major semantic or data repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task involves integrating three related data tables and performing a differential abundance analysis based on sample grouping. The planning load is moderate due to the need to align data and select an appropriate analysis method (though the answer suggests LEfSe, the question itself is open). Action and reflection loads are minor to moderate, mainly due to single output requirements and minor data alignment. There is no evolution/transfer load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2471,
+        "completion_tokens": 713,
+        "total_tokens": 3184
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "\"There are three existing data tables...feature_infor1.tsv...sample_info1.tsv...tax_info1.tsv\"",
+            "\"Please perform a differential abundance analysis of microbes based on the grouping information in Group.\"",
+            "\"Conduct lefse differential analysis\""
+          ],
+          "reason": "The task requires integrating three data tables (abundance, sample grouping, taxonomy) and performing a differential abundance analysis based on grouping. While the method (LEfSe) is specified in the answer, the question itself does not specify the method, so the solver must infer or select an appropriate method. The workflow involves at least two stages: data integration/alignment and statistical analysis. However, there is no explicit evidence of major branching (multiple equally valid methods) or complex dependency graphs beyond standard multi-table integration and analysis.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"out_lefse.tsv\"...}]",
+            "\"Generate a file containing the difference results.\""
+          ],
+          "reason": "The output is a single result file (out_lefse.tsv) containing differential analysis results. There is no explicit schema or format constraint beyond being a result table, and only one output type is required. No explicit parameterization or strict verification rules are stated.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "\"feature_infor1.tsv is a data table containing the abundance of microbial species, with samples as columns and species as rows.\"",
+            "\"sample_info1.tsv is a data table containing microbial grouping information, with the column name Group representing the grouping information.\"",
+            "\"tax_info1.tsv is a data table containing microbial taxonomic information.\""
+          ],
+          "reason": "There is some minor representational alignment required: matching sample IDs across abundance and grouping tables, and possibly mapping species IDs to taxonomy. However, there is no evidence of ambiguity, contradiction, or missing fields that would require major semantic or data repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves integrating three related data tables and performing a differential abundance analysis based on sample grouping. The planning load is moderate due to the need to align data and select an appropriate analysis method (though the answer suggests LEfSe, the question itself is open). Action and reflection loads are minor to moderate, mainly due to single output requirements and minor data alignment. There is no evolution/transfer load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:27:28.842418+00:00"
+  }
+}

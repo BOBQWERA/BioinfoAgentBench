@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-22-q3",
+      "question": "Among CD8 cells, what is the Pearson correlation coefficient between gene length and gene expression?",
+      "data": [],
+      "answer": "(0.03,0.05)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-22-q3",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.15,0.25)",
+          "(0.01,0.02)",
+          "(0.06,0.08)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-22-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Among CD8 cells, what is the Pearson correlation coefficient between gene length and gene expression?"
+        ],
+        "reason": "The question requires identifying CD8 cells, extracting gene expression and gene length, and computing a Pearson correlation. This implies a basic multi-step workflow (P1=2), but there is no evidence of significant method branching or multiple defensible approaches (P2=1)."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Pearson correlation coefficient between gene length and gene expression",
+          "answer is a numeric range (0.03,0.05)",
+          "eval_mode: range_verifier"
+        ],
+        "reason": "The output is a numeric value (or range) with a specific format, and the use of a range verifier suggests some parameter sensitivity (A2=2). However, only one output type is required and there is no evidence of strict multi-artifact or complex format constraints (A1=1)."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or schema inconsistency in question or metadata"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clear and well-posed, and no data is provided that would require schema alignment or repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or prior experience context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a basic multi-step workflow (identifying CD8 cells, extracting gene-level data, and computing a Pearson correlation), but does not show evidence of significant method branching, complex artifact realization, or semantic/data repair. There is no transfer or evolution context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2217,
+        "completion_tokens": 516,
+        "total_tokens": 2733
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Among CD8 cells, what is the Pearson correlation coefficient between gene length and gene expression?"
+          ],
+          "reason": "The question requires identifying CD8 cells, extracting gene expression and gene length, and computing a Pearson correlation. This implies a basic multi-step workflow (P1=2), but there is no evidence of significant method branching or multiple defensible approaches (P2=1).",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Pearson correlation coefficient between gene length and gene expression",
+            "answer is a numeric range (0.03,0.05)",
+            "eval_mode: range_verifier"
+          ],
+          "reason": "The output is a numeric value (or range) with a specific format, and the use of a range verifier suggests some parameter sensitivity (A2=2). However, only one output type is required and there is no evidence of strict multi-artifact or complex format constraints (A1=1).",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or schema inconsistency in question or metadata"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clear and well-posed, and no data is provided that would require schema alignment or repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or prior experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a basic multi-step workflow (identifying CD8 cells, extracting gene-level data, and computing a Pearson correlation), but does not show evidence of significant method branching, complex artifact realization, or semantic/data repair. There is no transfer or evolution context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:58:03.166357+00:00"
+  }
+}

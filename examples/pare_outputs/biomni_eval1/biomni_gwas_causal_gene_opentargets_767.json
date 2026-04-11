@@ -1,0 +1,124 @@
+{
+  "question": {
+    "benchmark": "biomni_eval1",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomni_gwas_causal_gene_opentargets_767",
+      "question": "Your task is to identify likely causal genes within a locus for a given GWAS phenotype. From the list, provide only the likely causal gene (matching one of the given genes). \nIdentify the causal gene.\nGWAS phenotype: Type 2 diabetes (type II diabetes mellitus)\nGenes in locus: {ACADS},{ANAPC5},{C12orf43},{CABP1},{CAMKK2},{COQ5},{ENSG00000288623},{HNF1A},{KDM2B},{MLEC},{OASL},{P2RX4},{P2RX7},{POP5},{RNF10},{RNF34},{SPPL3},{UNC119B}\n",
+      "data": [],
+      "answer": "HNF1A",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "Biomni",
+        "source_dataset": "biomni/Eval1",
+        "task_name": "gwas_causal_gene_opentargets",
+        "task_instance_id": 767,
+        "split": "val",
+        "global_instance_id": 333
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomni_gwas_causal_gene_opentargets_767",
+    "benchmark": "biomni_eval1",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Task requires identifying a likely causal gene from a list for a GWAS phenotype.",
+          "No explicit workflow steps or method specified; requires mapping phenotype to gene list and selecting one."
+        ],
+        "reason": "There is a minor workflow structuring load (P1) as the task requires mapping a phenotype to a gene list and selecting the most likely causal gene, but there is no explicit evidence of complex dependency chains or branching decision points (P2). The method is unspecified, but the task is to select one gene from a provided list, which is a standard operation."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Output is a single gene name from the provided list.",
+          "No explicit format, parameterization, or verification constraints stated."
+        ],
+        "reason": "Artifact realization load (A1) is minimal as only a single gene name is required. There are no explicit parameterization or specification tightness requirements (A2)."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Phenotype and gene list are clearly specified.",
+          "No evidence of ambiguity, missing fields, or representational inconsistency."
+        ],
+        "reason": "There is no need for semantic or data repair (R1, R2) as the task is clearly defined and the input is structured."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves selecting a likely causal gene for a GWAS phenotype from a provided list. The planning load is minor due to the need to map phenotype to gene, but there is no evidence of complex workflow structuring or branching. Action and reflection loads are minimal, as the output is a single gene name with no strict format or ambiguity. There is no evolution load as no transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2303,
+        "completion_tokens": 569,
+        "total_tokens": 2872
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Task requires identifying a likely causal gene from a list for a GWAS phenotype.",
+            "No explicit workflow steps or method specified; requires mapping phenotype to gene list and selecting one."
+          ],
+          "reason": "There is a minor workflow structuring load (P1) as the task requires mapping a phenotype to a gene list and selecting the most likely causal gene, but there is no explicit evidence of complex dependency chains or branching decision points (P2). The method is unspecified, but the task is to select one gene from a provided list, which is a standard operation.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Output is a single gene name from the provided list.",
+            "No explicit format, parameterization, or verification constraints stated."
+          ],
+          "reason": "Artifact realization load (A1) is minimal as only a single gene name is required. There are no explicit parameterization or specification tightness requirements (A2).",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Phenotype and gene list are clearly specified.",
+            "No evidence of ambiguity, missing fields, or representational inconsistency."
+          ],
+          "reason": "There is no need for semantic or data repair (R1, R2) as the task is clearly defined and the input is structured.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves selecting a likely causal gene for a GWAS phenotype from a provided list. The planning load is minor due to the need to map phenotype to gene, but there is no evidence of complex workflow structuring or branching. Action and reflection loads are minimal, as the output is a single gene name with no strict format or ambiguity. There is no evolution load as no transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:43:59.860787+00:00"
+  }
+}

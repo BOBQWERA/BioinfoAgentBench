@@ -1,0 +1,129 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_3c44bd92-e02a-4829-9156-b1df56be9174",
+      "question": "Which of the following human genes is located at chr10q22 according to Ensembl Release 110? ",
+      "data": [],
+      "answer": "RNU6-673P",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "DbQA",
+        "task_name": "gene_location_task",
+        "tag": "dbqa",
+        "version": "1.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "ENSG00000285630",
+          "SLC9A3P3",
+          "DUX4L10"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_3c44bd92-e02a-4829-9156-b1df56be9174",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Which of the following human genes is located at chr10q22 according to Ensembl Release 110?",
+          "distractors: [ENSG00000285630, SLC9A3P3, DUX4L10]"
+        ],
+        "reason": "The task is a direct lookup: select the correct gene from a list based on a specified chromosomal location and Ensembl release. There is no evidence of a multi-stage workflow or branching decision; the only step is to check each candidate against the database. No dependency-constrained step graph or method branching is required."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Which of the following human genes is located at chr10q22 according to Ensembl Release 110?",
+          "answer: RNU6-673P"
+        ],
+        "reason": "The output is a single gene name selected from a list. There is no evidence of heterogeneous artifact types, strict format constraints, or parameterization/thresholds. The answer is a single value, and no explicit verification or formatting rules are stated."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of ambiguous wording, missing fields, or data/schema inconsistency."
+        ],
+        "reason": "The question is clearly worded and unambiguous. No semantic or representational repair is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; this is a standalone lookup task."
+      }
+    },
+    "overall_summary": "This is a straightforward database lookup question requiring the selection of a gene based on chromosomal location from a list of options. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2235,
+        "completion_tokens": 528,
+        "total_tokens": 2763
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Which of the following human genes is located at chr10q22 according to Ensembl Release 110?",
+            "distractors: [ENSG00000285630, SLC9A3P3, DUX4L10]"
+          ],
+          "reason": "The task is a direct lookup: select the correct gene from a list based on a specified chromosomal location and Ensembl release. There is no evidence of a multi-stage workflow or branching decision; the only step is to check each candidate against the database. No dependency-constrained step graph or method branching is required.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Which of the following human genes is located at chr10q22 according to Ensembl Release 110?",
+            "answer: RNU6-673P"
+          ],
+          "reason": "The output is a single gene name selected from a list. There is no evidence of heterogeneous artifact types, strict format constraints, or parameterization/thresholds. The answer is a single value, and no explicit verification or formatting rules are stated.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of ambiguous wording, missing fields, or data/schema inconsistency."
+          ],
+          "reason": "The question is clearly worded and unambiguous. No semantic or representational repair is required.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; this is a standalone lookup task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward database lookup question requiring the selection of a gene based on chromosomal location from a list of options. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:40:18.707380+00:00"
+  }
+}

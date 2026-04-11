@@ -1,0 +1,151 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_e2_upgrade_top5_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_164",
+      "question": "[De-identified Prior Trajectory]\n1) Start from a numeric feature table and run a structure-discovery routine after basic scaling checks.\n2) Inspect whether neighborhood/cluster structure is stable under parameter changes.\n3) Export low-dimensional or grouped representation for downstream visualization/inspection.\n4) If the structure is unstable, revisit scaling and neighborhood settings before final output.\n5) Keep random-state/parameter records so the representation is reproducible.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=hierarchical distance-tree structure -> target=nonlinear neighborhood embedding structure\n- Gap (metric_change): source=cluster/distance-tree consistency checks -> target=embedding neighborhood-preservation checks\n- Gap (constraint_change): source=linkage/distance parameter focus -> target=perplexity/embedding parameter focus\n\n[Target Task]\nI have a dataset {heart_disease.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0164/files/heart_disease.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"heart_disease_tsne_result.csv\", \"path\": \"downloaded_files\\\\index_0164\\\\milestone\\\\heart_disease_tsne_result.csv\"}], \"milestones\": [\"Generate the dimensionality reduction result file under this algorithm.\"], \"steps\": [\"Use the t-SNE dimensionality reduction algorithm for analysis (for example, choose the number of reduced dimensions to be 2).\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "t-分布随机邻域嵌入",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.5,
+        "milestone_count": 1,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps_per_record']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 152,
+              "workflow_memory_Index": 146,
+              "task_abbr": "HClust聚类",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the dataset from the file hcluster.tsv and convert it to CSV format for clustering analysis.\n    - **Tool**: None\n    - **Input**: \"hcluster.tsv\"\n    - **Output**: data_csv_file (path to the converted CSV file)\n    - **Description**: Read the hcluster.tsv file, extract the feature columns while skipping the ID column, and save the result as a CSV file.\n\n2. **Goal**: Perform hierarchical clustering analysis on the feature columns.\n    - **Tool**: hierarchical\n    - **Input**: data_csv_file (path to the CSV file containing feature columns), n_clusters (number of clusters to be defined by the user)\n    - **Output**: result_csv_file (path to the clustering result file), silhouette (average silhouette score)\n    - **Description**: Use the hierarchical clustering algorithm directly on the validated feature data to generate clusters and output the results along with a silhouette score for evaluation.\n]"
+            },
+            "original_question": "I have a dataset {heart_disease.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_164",
+    "benchmark": "biomed_aqa_e2_upgrade_top5_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset.\"",
+          "Prior trajectory includes: scaling checks, structure-discovery routine, parameter stability inspection, revisiting settings if unstable"
+        ],
+        "reason": "The task requires applying t-SNE for dimensionality reduction, which is a standard, mostly linear workflow (load data, select features, run t-SNE, export result). The prior trajectory mentions some multi-step logic (scaling, stability checks, parameter revisiting), but the target task only explicitly requests t-SNE application. There is minor workflow structuring load (P1) due to implied preprocessing and parameter selection, but no strong evidence of branching (P2), as the method is specified and the output is clear."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"heart_disease_tsne_result.csv\" as output file",
+          "\"Use the t-SNE dimensionality reduction algorithm for analysis (for example, choose the number of reduced dimensions to be 2).\""
+        ],
+        "reason": "The action load is weak to moderate: the output is a single CSV file with t-SNE results, and there is a minor parameterization aspect (number of dimensions, e.g., 2). There is no evidence of strict format constraints, multiple output types, or explicit verification checkpoints. Parameterization is present but not tightly specified."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"the 'Target' column is the target column, and the other columns are feature columns\""
+        ],
+        "reason": "There is minimal reflection/repair load. The column roles are clearly defined, and there is no evidence of schema mismatch, ambiguity, or need for semantic clarification. No contradictory or missing fields are present."
+      },
+      "E": {
+        "score": 4,
+        "evidence": [
+          "\"De-identified Prior Trajectory\" with hierarchical clustering workflow",
+          "\"Transfer Gap Hints\" specifying changes in structure, metric, and constraints",
+          "\"source=hierarchical distance-tree structure -> target=nonlinear neighborhood embedding structure\""
+        ],
+        "reason": "There is explicit prior trajectory and transfer context: the prior workflow is for hierarchical clustering, while the target task is t-SNE embedding. The transfer gaps require the agent to abstract and adapt principles (e.g., from distance-tree to neighborhood embedding, from linkage/distance to perplexity/embedding parameters). This makes experience assimilation and strategy transfer a major difficulty driver."
+      }
+    },
+    "overall_summary": "The task is a standard t-SNE dimensionality reduction with a single output file and minor parameterization, resulting in low to moderate planning and action load. There is minimal need for semantic or data repair. However, the presence of a detailed prior trajectory and explicit transfer gaps (from hierarchical clustering to t-SNE embedding) makes experience assimilation and strategy transfer the dominant challenge.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2978,
+        "completion_tokens": 753,
+        "total_tokens": 3731
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset.\"",
+            "Prior trajectory includes: scaling checks, structure-discovery routine, parameter stability inspection, revisiting settings if unstable"
+          ],
+          "reason": "The task requires applying t-SNE for dimensionality reduction, which is a standard, mostly linear workflow (load data, select features, run t-SNE, export result). The prior trajectory mentions some multi-step logic (scaling, stability checks, parameter revisiting), but the target task only explicitly requests t-SNE application. There is minor workflow structuring load (P1) due to implied preprocessing and parameter selection, but no strong evidence of branching (P2), as the method is specified and the output is clear.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"heart_disease_tsne_result.csv\" as output file",
+            "\"Use the t-SNE dimensionality reduction algorithm for analysis (for example, choose the number of reduced dimensions to be 2).\""
+          ],
+          "reason": "The action load is weak to moderate: the output is a single CSV file with t-SNE results, and there is a minor parameterization aspect (number of dimensions, e.g., 2). There is no evidence of strict format constraints, multiple output types, or explicit verification checkpoints. Parameterization is present but not tightly specified.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"the 'Target' column is the target column, and the other columns are feature columns\""
+          ],
+          "reason": "There is minimal reflection/repair load. The column roles are clearly defined, and there is no evidence of schema mismatch, ambiguity, or need for semantic clarification. No contradictory or missing fields are present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 4,
+          "evidence": [
+            "\"De-identified Prior Trajectory\" with hierarchical clustering workflow",
+            "\"Transfer Gap Hints\" specifying changes in structure, metric, and constraints",
+            "\"source=hierarchical distance-tree structure -> target=nonlinear neighborhood embedding structure\""
+          ],
+          "reason": "There is explicit prior trajectory and transfer context: the prior workflow is for hierarchical clustering, while the target task is t-SNE embedding. The transfer gaps require the agent to abstract and adapt principles (e.g., from distance-tree to neighborhood embedding, from linkage/distance to perplexity/embedding parameters). This makes experience assimilation and strategy transfer a major difficulty driver.",
+          "subdimension_breakdown": {
+            "E1": 4,
+            "E2": 4
+          }
+        }
+      },
+      "overall_summary": "The task is a standard t-SNE dimensionality reduction with a single output file and minor parameterization, resulting in low to moderate planning and action load. There is minimal need for semantic or data repair. However, the presence of a detailed prior trajectory and explicit transfer gaps (from hierarchical clustering to t-SNE embedding) makes experience assimilation and strategy transfer the dominant challenge.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-08T20:03:27.865069+00:00"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "sheet_name": "Labbench",
+  "total": 0,
+  "pare_y": 21,
+  "pare_n": 0,
+  "filtered_count": 21,
+  "categories": {
+    "LitQA2": 1,
+    "DbQA": 8,
+    "FigQA": 1,
+    "TableQA": 1,
+    "SeqQA": 7,
+    "ProtocolQA": 1,
+    "SuppQA": 1,
+    "CloningScenarios": 1
+  }
+}

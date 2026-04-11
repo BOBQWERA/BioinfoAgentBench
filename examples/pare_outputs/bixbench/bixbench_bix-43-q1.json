@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-43-q1",
+      "question": "When comparing CBD/cisplatin combination treatment to the DMSO control, which cellular process shows the lowest adjusted p-value in an enrichment analysis using the gseapy package and the GO_Biological_Process_2021 as the gene set library?",
+      "data": [],
+      "answer": "Negative regulation of epithelial cell proliferation",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-43-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Fatty acid metabolism",
+          "mRNA processing",
+          "Immune system response"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-43-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "enrichment analysis using the gseapy package",
+          "GO_Biological_Process_2021 as the gene set library",
+          "comparing CBD/cisplatin combination treatment to the DMSO control"
+        ],
+        "reason": "The task requires structuring a workflow: differential expression analysis between two conditions, followed by enrichment analysis using a specified package and gene set library. The workflow is multi-stage but follows a standard pipeline with no explicit evidence of major branching or multiple materially different methods. The method (gseapy, GO_Biological_Process_2021) is specified, reducing branching load."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "shows the lowest adjusted p-value",
+          "enrichment analysis using the gseapy package"
+        ],
+        "reason": "The output is a single process name (lowest adjusted p-value), and the use of 'adjusted p-value' implies some parameterization, but there are no explicit format constraints, strict thresholds, or multiple output types. The artifact realization is simple and the specification is not especially tight."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or data/schema repair required"
+        ],
+        "reason": "The question is clearly worded, with all necessary semantic fields specified (comparison, method, gene set library, output criterion). There is no evidence of ambiguity or representational inconsistency. No data is provided, so no schema repair is possible or needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-stage workflow (differential analysis followed by enrichment analysis) with specified tools and libraries, resulting in moderate planning load but low branching. Artifact realization and parameterization are minor, as the output is a single process name with no strict format or multi-artifact requirements. There is no evidence of semantic or data repair needs, and no transfer/experience context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2240,
+        "completion_tokens": 601,
+        "total_tokens": 2841
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "enrichment analysis using the gseapy package",
+            "GO_Biological_Process_2021 as the gene set library",
+            "comparing CBD/cisplatin combination treatment to the DMSO control"
+          ],
+          "reason": "The task requires structuring a workflow: differential expression analysis between two conditions, followed by enrichment analysis using a specified package and gene set library. The workflow is multi-stage but follows a standard pipeline with no explicit evidence of major branching or multiple materially different methods. The method (gseapy, GO_Biological_Process_2021) is specified, reducing branching load.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "shows the lowest adjusted p-value",
+            "enrichment analysis using the gseapy package"
+          ],
+          "reason": "The output is a single process name (lowest adjusted p-value), and the use of 'adjusted p-value' implies some parameterization, but there are no explicit format constraints, strict thresholds, or multiple output types. The artifact realization is simple and the specification is not especially tight.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or data/schema repair required"
+          ],
+          "reason": "The question is clearly worded, with all necessary semantic fields specified (comparison, method, gene set library, output criterion). There is no evidence of ambiguity or representational inconsistency. No data is provided, so no schema repair is possible or needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-stage workflow (differential analysis followed by enrichment analysis) with specified tools and libraries, resulting in moderate planning load but low branching. Artifact realization and parameterization are minor, as the output is a single process name with no strict format or multi-artifact requirements. There is no evidence of semantic or data repair needs, and no transfer/experience context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:19:34.539779+00:00"
+  }
+}

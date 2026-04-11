@@ -1,0 +1,126 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-28-q5",
+      "question": "What is the average of median long branch scores for fungal genes?",
+      "data": [],
+      "answer": "-26.9",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-28-q5",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "-20.3",
+          "-33.1",
+          "-14.7"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-28-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the average of median long branch scores for fungal genes?"
+        ],
+        "reason": "The question requires two sequential aggregation steps: (1) compute the median long branch score for each fungal gene, and (2) compute the average of those medians. This is a simple dependency chain but does not require complex workflow structuring or branching. No evidence of multiple reasonable methods or branching decisions."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the average of median long branch scores for fungal genes?",
+          "answer: '-26.9'"
+        ],
+        "reason": "The output is a single numeric value (the average of medians), with no explicit format or parameterization constraints. No evidence of multiple artifact types or strict format/threshold requirements. The action is limited to producing a single value after two aggregation steps."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What is the average of median long branch scores for fungal genes?"
+        ],
+        "reason": "The question is clear and unambiguous in its intent. There is no evidence of semantic ambiguity or data/representation inconsistency. The only minor load is the need to identify 'fungal genes' and 'long branch scores', but this is routine and not a repair burden."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a simple two-step aggregation (median per gene, then average across genes) with no evidence of complex workflow structuring, branching, or repair. Output requirements are minimal and there is no transfer context. The main load is the need to perform two sequential aggregations, but all other dimensions are low.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2197,
+        "completion_tokens": 529,
+        "total_tokens": 2726
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the average of median long branch scores for fungal genes?"
+          ],
+          "reason": "The question requires two sequential aggregation steps: (1) compute the median long branch score for each fungal gene, and (2) compute the average of those medians. This is a simple dependency chain but does not require complex workflow structuring or branching. No evidence of multiple reasonable methods or branching decisions.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the average of median long branch scores for fungal genes?",
+            "answer: '-26.9'"
+          ],
+          "reason": "The output is a single numeric value (the average of medians), with no explicit format or parameterization constraints. No evidence of multiple artifact types or strict format/threshold requirements. The action is limited to producing a single value after two aggregation steps.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What is the average of median long branch scores for fungal genes?"
+          ],
+          "reason": "The question is clear and unambiguous in its intent. There is no evidence of semantic ambiguity or data/representation inconsistency. The only minor load is the need to identify 'fungal genes' and 'long branch scores', but this is routine and not a repair burden.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a simple two-step aggregation (median per gene, then average across genes) with no evidence of complex workflow structuring, branching, or repair. Output requirements are minimal and there is no transfer context. The main load is the need to perform two sequential aggregations, but all other dimensions are low.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:02:56.030405+00:00"
+  }
+}

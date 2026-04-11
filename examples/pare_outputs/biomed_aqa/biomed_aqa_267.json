@@ -1,0 +1,133 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_267",
+      "question": "There is a data file venn.tsv, where each column represents a dataset. Please use a Venn diagram to show the intersection relationships between the datasets.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0267/files/venn.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"out_venn.png\", \"path\": \"downloaded_files\\\\index_0267\\\\milestone\\\\out_venn.png\"}], \"milestones\": [\"Generate Venn diagram\", \"The file format of the saved image is correct.\"], \"steps\": [\"Draw a Venn diagram\", \"Check whether the result file for saving the image is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Upset",
+        "task_abbr": "venn",
+        "task": "Upset",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.36,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_267",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "venn.tsv, where each column represents a dataset",
+          "Please use a Venn diagram to show the intersection relationships between the datasets.",
+          "\"steps\": [\"Draw a Venn diagram\", \"Check whether the result file for saving the image is correct.\"]"
+        ],
+        "reason": "The task requires reading a tabular file and generating a Venn diagram, which implies a two-step workflow (data parsing, then visualization). However, the workflow is linear and standard for this type of visualization, with no explicit evidence of branching or multiple valid methods that would affect correctness. The planning load is weak but present due to the need to structure the workflow."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"out_venn.png\", ...}]",
+          "\"milestones\": [\"Generate Venn diagram\", \"The file format of the saved image is correct.\"]",
+          "\"steps\": [\"Draw a Venn diagram\", \"Check whether the result file for saving the image is correct.\"]"
+        ],
+        "reason": "There is a requirement to produce a specific output file (out_venn.png) in a correct image format, and to check that the file is saved correctly. However, only one output artifact is required and there are no explicit parameterization or strict format constraints beyond file type. Thus, the artifact realization and parameterization load is weak."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "venn.tsv, where each column represents a dataset"
+        ],
+        "reason": "There is a minor need to interpret the columns as datasets, but the file structure is described clearly. No evidence of schema mismatch, ambiguity, or need for semantic or data repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [],
+        "reason": "No prior trajectory, experience, or transfer context is present in the payload."
+      }
+    },
+    "overall_summary": "This task involves reading a clearly described tabular file and generating a Venn diagram as a single output image. The workflow is linear and standard, with weak planning and artifact realization load. There is minimal need for semantic or data repair, and no evidence of experience transfer requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2359,
+        "completion_tokens": 623,
+        "total_tokens": 2982
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "venn.tsv, where each column represents a dataset",
+            "Please use a Venn diagram to show the intersection relationships between the datasets.",
+            "\"steps\": [\"Draw a Venn diagram\", \"Check whether the result file for saving the image is correct.\"]"
+          ],
+          "reason": "The task requires reading a tabular file and generating a Venn diagram, which implies a two-step workflow (data parsing, then visualization). However, the workflow is linear and standard for this type of visualization, with no explicit evidence of branching or multiple valid methods that would affect correctness. The planning load is weak but present due to the need to structure the workflow.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"out_venn.png\", ...}]",
+            "\"milestones\": [\"Generate Venn diagram\", \"The file format of the saved image is correct.\"]",
+            "\"steps\": [\"Draw a Venn diagram\", \"Check whether the result file for saving the image is correct.\"]"
+          ],
+          "reason": "There is a requirement to produce a specific output file (out_venn.png) in a correct image format, and to check that the file is saved correctly. However, only one output artifact is required and there are no explicit parameterization or strict format constraints beyond file type. Thus, the artifact realization and parameterization load is weak.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "venn.tsv, where each column represents a dataset"
+          ],
+          "reason": "There is a minor need to interpret the columns as datasets, but the file structure is described clearly. No evidence of schema mismatch, ambiguity, or need for semantic or data repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [],
+          "reason": "No prior trajectory, experience, or transfer context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves reading a clearly described tabular file and generating a Venn diagram as a single output image. The workflow is linear and standard, with weak planning and artifact realization load. There is minimal need for semantic or data repair, and no evidence of experience transfer requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:33:02.374583+00:00"
+  }
+}

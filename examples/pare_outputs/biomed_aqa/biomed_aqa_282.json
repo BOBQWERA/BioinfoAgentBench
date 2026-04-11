@@ -1,0 +1,139 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_282",
+      "question": "There are 2 existing data analysis files, diffusion_matrix.tsv is the data matrix, and diffusion_group.tsv is the sample grouping information. Please use a nonlinear dimensionality reduction algorithm to draw the diffusion map.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0282/files/diffusion_matrix.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0282/files/diffusion_group.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"diffusion_map.png\", \"path\": \"downloaded_files\\\\index_0282\\\\milestone\\\\diffusion_map.png\"}], \"milestones\": [\"Generate diffusion map\", \"The content of the diffusion diagram is correct.\"], \"steps\": [\"Draw diffusion diagram\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Fitting & inference",
+        "task_abbr": "diffusion map",
+        "task": "Fitting & inference",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.51,
+        "milestone_count": 2,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_282",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"Please use a nonlinear dimensionality reduction algorithm to draw the diffusion map.\"",
+          "Two input files: diffusion_matrix.tsv (data matrix), diffusion_group.tsv (sample grouping information)"
+        ],
+        "reason": "The task requires applying a nonlinear dimensionality reduction algorithm (diffusion map) to a data matrix, with sample grouping information provided. While the workflow is not fully specified, the standard approach is implied and there is no explicit evidence of complex dependency chains or major branching. The method (diffusion map) is specified, so method branching is limited. However, the need to integrate two files and select/parameterize the algorithm gives a minor planning load."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"diffusion_map.png\" as required output",
+          "\"diffusion_matrix.tsv\" and \"diffusion_group.tsv\" as inputs",
+          "\"The content of the diffusion diagram is correct.\""
+        ],
+        "reason": "The main artifact is a diffusion map image (diffusion_map.png), generated from the provided data. There is only one output type (image), and the format is standard. There is no explicit evidence of strict parameterization, thresholds, or format constraints beyond the file type. The action load is minor, mainly due to the need to process two input files and generate a correct plot."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"diffusion_matrix.tsv is the data matrix, and diffusion_group.tsv is the sample grouping information.\""
+        ],
+        "reason": "The input files are described clearly, and there is no evidence of schema mismatch, ambiguity, or need for semantic repair. The task is well-defined, with only a trace possibility that the grouping file might require minor alignment, but this is not explicit."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task involves generating a diffusion map from a data matrix and sample grouping file using a specified nonlinear dimensionality reduction algorithm. The planning and action loads are minor due to the need to integrate two files and produce a correct plot, but there is no evidence of complex branching, strict parameterization, or repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2390,
+        "completion_tokens": 657,
+        "total_tokens": 3047
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"Please use a nonlinear dimensionality reduction algorithm to draw the diffusion map.\"",
+            "Two input files: diffusion_matrix.tsv (data matrix), diffusion_group.tsv (sample grouping information)"
+          ],
+          "reason": "The task requires applying a nonlinear dimensionality reduction algorithm (diffusion map) to a data matrix, with sample grouping information provided. While the workflow is not fully specified, the standard approach is implied and there is no explicit evidence of complex dependency chains or major branching. The method (diffusion map) is specified, so method branching is limited. However, the need to integrate two files and select/parameterize the algorithm gives a minor planning load.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"diffusion_map.png\" as required output",
+            "\"diffusion_matrix.tsv\" and \"diffusion_group.tsv\" as inputs",
+            "\"The content of the diffusion diagram is correct.\""
+          ],
+          "reason": "The main artifact is a diffusion map image (diffusion_map.png), generated from the provided data. There is only one output type (image), and the format is standard. There is no explicit evidence of strict parameterization, thresholds, or format constraints beyond the file type. The action load is minor, mainly due to the need to process two input files and generate a correct plot.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"diffusion_matrix.tsv is the data matrix, and diffusion_group.tsv is the sample grouping information.\""
+          ],
+          "reason": "The input files are described clearly, and there is no evidence of schema mismatch, ambiguity, or need for semantic repair. The task is well-defined, with only a trace possibility that the grouping file might require minor alignment, but this is not explicit.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves generating a diffusion map from a data matrix and sample grouping file using a specified nonlinear dimensionality reduction algorithm. The planning and action loads are minor due to the need to integrate two files and produce a correct plot, but there is no evidence of complex branching, strict parameterization, or repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:34:04.607142+00:00"
+  }
+}

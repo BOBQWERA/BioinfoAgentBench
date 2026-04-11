@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-51-q5",
+      "question": "Using a logistic regression model, what is the p-value for evaluating the null hypothesis that BMI is not associated with treatment response?",
+      "data": [],
+      "answer": "(0.085,0.087)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-51-q5",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.0024,0.0026)",
+          "(0.9587,0.9589)",
+          "(0.1363,0.1365)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-51-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"Using a logistic regression model\"",
+          "\"p-value for evaluating the null hypothesis that BMI is not associated with treatment response\""
+        ],
+        "reason": "The task requires mapping the abstract goal (testing BMI association with response) to a logistic regression workflow, which involves identifying dependent and independent variables and specifying the null hypothesis. However, the method is specified (logistic regression), and there is no evidence of multiple branching methods or complex workflow structuring beyond this standard step."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"p-value\"",
+          "\"range_verifier\" in metadata",
+          "\"mcq\" task_type"
+        ],
+        "reason": "The output is a p-value (numeric), and the answer is verified within a specified range. There is some format constraint due to the range verifier, but only a single artifact type (p-value) is required, and no strict schema or multi-artifact output is indicated."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"BMI\" and \"treatment response\" are not further defined",
+          "No data provided"
+        ],
+        "reason": "There is a trace of possible ambiguity due to lack of data and undefined variable encoding, but the question is otherwise semantically clear and does not require repair for logical definability."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "No evidence of transfer or prior experience context."
+      }
+    },
+    "overall_summary": "This task involves a standard application of logistic regression to test the association between BMI and treatment response, with a single p-value output verified within a range. There is minor planning and action load due to mapping the hypothesis to the model and the range-based verification, but no evidence of complex branching, strict artifact requirements, or semantic/data repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2230,
+        "completion_tokens": 555,
+        "total_tokens": 2785
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"Using a logistic regression model\"",
+            "\"p-value for evaluating the null hypothesis that BMI is not associated with treatment response\""
+          ],
+          "reason": "The task requires mapping the abstract goal (testing BMI association with response) to a logistic regression workflow, which involves identifying dependent and independent variables and specifying the null hypothesis. However, the method is specified (logistic regression), and there is no evidence of multiple branching methods or complex workflow structuring beyond this standard step.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"p-value\"",
+            "\"range_verifier\" in metadata",
+            "\"mcq\" task_type"
+          ],
+          "reason": "The output is a p-value (numeric), and the answer is verified within a specified range. There is some format constraint due to the range verifier, but only a single artifact type (p-value) is required, and no strict schema or multi-artifact output is indicated.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"BMI\" and \"treatment response\" are not further defined",
+            "No data provided"
+          ],
+          "reason": "There is a trace of possible ambiguity due to lack of data and undefined variable encoding, but the question is otherwise semantically clear and does not require repair for logical definability.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "No evidence of transfer or prior experience context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard application of logistic regression to test the association between BMI and treatment response, with a single p-value output verified within a range. There is minor planning and action load due to mapping the hypothesis to the model and the range-based verification, but no evidence of complex branching, strict artifact requirements, or semantic/data repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:26:05.268792+00:00"
+  }
+}

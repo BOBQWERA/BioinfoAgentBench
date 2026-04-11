@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_222",
+      "question": "There is a data file boxplot.tsv, the \"Age_Group\" column is different age groupings, and \"Age\" is the age. Please use kruskal.test to analyze whether there are differences in \"WBC\" among the age groups.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0222/files/fisher.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [], \"milestones\": [\"p-value: 4.192e-08\", \"There are significant differences.\"], \"steps\": [\"Conduct a kruskal.test analysis\", \"Determine whether there are differences based on the results.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Inferential statistics",
+        "task_abbr": "kruskal.test",
+        "task": "Inferential statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 41.27,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_222",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Please use kruskal.test to analyze whether there are differences in \"WBC\" among the age groups.",
+          "boxplot.tsv, the \"Age_Group\" column is different age groupings, and \"Age\" is the age."
+        ],
+        "reason": "The task requires identifying the correct columns and applying a specified statistical test (kruskal.test) to determine differences in WBC among age groups. The workflow is essentially single-stage (data selection and test), with no explicit branching or dependency-constrained step graph. There is a minor planning load in mapping the columns to the test, but no evidence of multiple reasonable methods or branching decisions."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "milestones: [\"p-value: 4.192e-08\", \"There are significant differences.\"]",
+          "steps: [\"Conduct a kruskal.test analysis\", \"Determine whether there are differences based on the results.\"]"
+        ],
+        "reason": "The action load is minor: the output is a p-value and a significance statement, both standard for such a test. There is no evidence of strict format constraints, multiple output types, or explicit parameterization/thresholds beyond the default significance interpretation. The artifact realization is straightforward."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The question specifies the relevant columns and test.",
+          "No evidence of missing or ambiguous semantics or data schema issues."
+        ],
+        "reason": "There is little to no repair load. The columns and test are clearly specified, and there is no indication of ambiguity or representational inconsistency. The only minor load is mapping the column names to the test input, which is routine."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This is a straightforward inferential statistics task requiring application of a specified test (kruskal.test) to a given dataset. The planning and action loads are minor, with no evidence of branching, strict output constraints, or repair needs. There is no transfer or evolution load.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2351,
+        "completion_tokens": 627,
+        "total_tokens": 2978
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Please use kruskal.test to analyze whether there are differences in \"WBC\" among the age groups.",
+            "boxplot.tsv, the \"Age_Group\" column is different age groupings, and \"Age\" is the age."
+          ],
+          "reason": "The task requires identifying the correct columns and applying a specified statistical test (kruskal.test) to determine differences in WBC among age groups. The workflow is essentially single-stage (data selection and test), with no explicit branching or dependency-constrained step graph. There is a minor planning load in mapping the columns to the test, but no evidence of multiple reasonable methods or branching decisions.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "milestones: [\"p-value: 4.192e-08\", \"There are significant differences.\"]",
+            "steps: [\"Conduct a kruskal.test analysis\", \"Determine whether there are differences based on the results.\"]"
+          ],
+          "reason": "The action load is minor: the output is a p-value and a significance statement, both standard for such a test. There is no evidence of strict format constraints, multiple output types, or explicit parameterization/thresholds beyond the default significance interpretation. The artifact realization is straightforward.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The question specifies the relevant columns and test.",
+            "No evidence of missing or ambiguous semantics or data schema issues."
+          ],
+          "reason": "There is little to no repair load. The columns and test are clearly specified, and there is no indication of ambiguity or representational inconsistency. The only minor load is mapping the column names to the test input, which is routine.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward inferential statistics task requiring application of a specified test (kruskal.test) to a given dataset. The planning and action loads are minor, with no evidence of branching, strict output constraints, or repair needs. There is no transfer or evolution load.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:28:32.193634+00:00"
+  }
+}

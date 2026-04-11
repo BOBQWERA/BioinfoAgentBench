@@ -1,0 +1,136 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-32-q4",
+      "question": "What two cellular process pathways show consistent enrichment using KEGG over-representation analysis (adjusted p-value < 0.05) across all three quorum sensing mutant strains (97, 98, 99), relative to wildtype (strain 1) when looking at the significant downregulated genes (p<0.05 and lfc<-1.5)?",
+      "data": [],
+      "answer": "Biosynthesis of secondary metabolites, nitrogen cycle",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-32-q4",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Fatty acid metabolism, two-component system",
+          "Two-component system, ribosome",
+          "Sulfur metabolism, phenazine biosynthesis"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-32-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "requires comparison across three mutant strains (97, 98, 99) relative to wildtype (strain 1)",
+          "must identify significant downregulated genes (p<0.05 and lfc<-1.5) per strain",
+          "requires KEGG over-representation analysis for each strain",
+          "must find pathways consistently enriched across all three mutants"
+        ],
+        "reason": "The task requires a multi-stage workflow: (1) identify significant downregulated genes per mutant, (2) perform KEGG over-representation analysis per mutant, (3) compare results to find pathways consistently enriched across all mutants. However, the workflow is standard for this type of analysis and does not show explicit evidence of major branching or multiple materially different methods."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "explicit thresholds: p<0.05 and lfc<-1.5 for gene selection",
+          "adjusted p-value < 0.05 for pathway enrichment",
+          "final output is a set of pathway names (two required), not just a single value"
+        ],
+        "reason": "There are explicit parameter thresholds for both gene selection and pathway enrichment, and the output is a set of pathway names, requiring correct filtering and aggregation. However, there is no evidence of highly heterogeneous artifact types or strict format constraints beyond standard output."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "strain IDs (97, 98, 99, 1) are referenced but not further described",
+          "no explicit data or schema inconsistencies mentioned"
+        ],
+        "reason": "There is minor potential for ambiguity in mapping strain IDs to conditions, but the question is otherwise semantically clear and does not require major repair or data alignment."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "no prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-step workflow for pathway enrichment analysis across multiple mutant strains, with explicit thresholds for gene and pathway selection. The planning and action loads are moderate due to the need for multi-stage filtering and aggregation, but there is no evidence of major branching, strict artifact heterogeneity, or semantic/data repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2277,
+        "completion_tokens": 629,
+        "total_tokens": 2906
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "requires comparison across three mutant strains (97, 98, 99) relative to wildtype (strain 1)",
+            "must identify significant downregulated genes (p<0.05 and lfc<-1.5) per strain",
+            "requires KEGG over-representation analysis for each strain",
+            "must find pathways consistently enriched across all three mutants"
+          ],
+          "reason": "The task requires a multi-stage workflow: (1) identify significant downregulated genes per mutant, (2) perform KEGG over-representation analysis per mutant, (3) compare results to find pathways consistently enriched across all mutants. However, the workflow is standard for this type of analysis and does not show explicit evidence of major branching or multiple materially different methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "explicit thresholds: p<0.05 and lfc<-1.5 for gene selection",
+            "adjusted p-value < 0.05 for pathway enrichment",
+            "final output is a set of pathway names (two required), not just a single value"
+          ],
+          "reason": "There are explicit parameter thresholds for both gene selection and pathway enrichment, and the output is a set of pathway names, requiring correct filtering and aggregation. However, there is no evidence of highly heterogeneous artifact types or strict format constraints beyond standard output.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "strain IDs (97, 98, 99, 1) are referenced but not further described",
+            "no explicit data or schema inconsistencies mentioned"
+          ],
+          "reason": "There is minor potential for ambiguity in mapping strain IDs to conditions, but the question is otherwise semantically clear and does not require major repair or data alignment.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "no prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-step workflow for pathway enrichment analysis across multiple mutant strains, with explicit thresholds for gene and pathway selection. The planning and action loads are moderate due to the need for multi-stage filtering and aggregation, but there is no evidence of major branching, strict artifact heterogeneity, or semantic/data repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:08:50.234790+00:00"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-10-q1",
+      "question": "What is the odds ratio of higher COVID-19 severity (encoded in the column AESEV) associated with BCG vaccination in a multivariable ordinal logistic regression model that includes patient interaction frequency variables as covariates?",
+      "data": [],
+      "answer": "(1.50,1.54)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-10-q1",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.66,0.70)",
+          "(0.95,1.05)",
+          "(1.24,1.28)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-10-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "multivariable ordinal logistic regression model that includes patient interaction frequency variables as covariates",
+          "odds ratio of higher COVID-19 severity (encoded in the column AESEV) associated with BCG vaccination"
+        ],
+        "reason": "The question requires structuring a workflow to fit a multivariable ordinal logistic regression with specific covariates and extract an odds ratio for a particular variable. The need to identify the outcome (AESEV), the exposure (BCG vaccination), and the covariates (patient interaction frequency variables) implies a multi-step process. However, there is no explicit evidence of major method branching or multiple defensible approaches that would materially affect correctness, so P2 remains moderate."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "odds ratio ... in a multivariable ordinal logistic regression model",
+          "range_verifier",
+          "answer: (1.50,1.54)"
+        ],
+        "reason": "The task requires producing a specific numeric output (odds ratio) from a regression model, with the answer expected as a range and evaluated by a range_verifier. This indicates moderate artifact realization and parameterization load, as the output must be precise and fit a specific format, but there are no explicit strict thresholds or multiple heterogeneous outputs."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "AESEV (column encoding severity)",
+          "no data provided"
+        ],
+        "reason": "There is a minor need to clarify that AESEV encodes severity, but the question is otherwise semantically clear and does not require major repair. No evidence of data schema mismatch or representational inconsistency is present, especially since no data is provided."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "no prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or prior experience context in the payload."
+      }
+    },
+    "overall_summary": "This task involves moderate planning and action load due to the need to structure and fit a multivariable ordinal logistic regression and extract a specific odds ratio, with some parameterization and output format requirements. There is only minimal reflection load and no evolution load, as there is no transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2244,
+        "completion_tokens": 605,
+        "total_tokens": 2849
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "multivariable ordinal logistic regression model that includes patient interaction frequency variables as covariates",
+            "odds ratio of higher COVID-19 severity (encoded in the column AESEV) associated with BCG vaccination"
+          ],
+          "reason": "The question requires structuring a workflow to fit a multivariable ordinal logistic regression with specific covariates and extract an odds ratio for a particular variable. The need to identify the outcome (AESEV), the exposure (BCG vaccination), and the covariates (patient interaction frequency variables) implies a multi-step process. However, there is no explicit evidence of major method branching or multiple defensible approaches that would materially affect correctness, so P2 remains moderate.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "odds ratio ... in a multivariable ordinal logistic regression model",
+            "range_verifier",
+            "answer: (1.50,1.54)"
+          ],
+          "reason": "The task requires producing a specific numeric output (odds ratio) from a regression model, with the answer expected as a range and evaluated by a range_verifier. This indicates moderate artifact realization and parameterization load, as the output must be precise and fit a specific format, but there are no explicit strict thresholds or multiple heterogeneous outputs.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "AESEV (column encoding severity)",
+            "no data provided"
+          ],
+          "reason": "There is a minor need to clarify that AESEV encodes severity, but the question is otherwise semantically clear and does not require major repair. No evidence of data schema mismatch or representational inconsistency is present, especially since no data is provided.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "no prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or prior experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate planning and action load due to the need to structure and fit a multivariable ordinal logistic regression and extract a specific odds ratio, with some parameterization and output format requirements. There is only minimal reflection load and no evolution load, as there is no transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:44:45.481543+00:00"
+  }
+}

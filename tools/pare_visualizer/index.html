@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PARE Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <main class="app">
+      <section class="hero">
+        <p class="eyebrow">PARE Analytics</p>
+        <h1>PARE Scoring Radar Studio</h1>
+        <p class="subtitle">
+          A static viewer for comparing PARE score profiles, filtering by benchmark, and
+          drilling into single-record evidence.
+        </p>
+      </section>
+
+      <section class="panel controls">
+        <div class="control">
+          <label for="benchSelect">Benchmark</label>
+          <select id="benchSelect"></select>
+        </div>
+        <div class="control grow">
+          <label for="searchInput">Search Records (ID / text)</label>
+          <input id="searchInput" type="text" placeholder="Type a keyword..." />
+        </div>
+        <div class="control">
+          <label>&nbsp;</label>
+          <button id="clearSelectionBtn" class="ghost-btn">Clear Selection</button>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="panel left-col">
+          <div class="section-title-row">
+            <h2>Record List</h2>
+            <span id="recordCountTag" class="tag">0 records</span>
+          </div>
+          <div id="questionList" class="question-list"></div>
+        </div>
+
+        <div class="right-col">
+          <div class="panel">
+            <div class="section-title-row">
+              <h2>Overlay Radar</h2>
+              <span id="selectedCountTag" class="tag">0 selected</span>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="overlayRadar"></canvas>
+            </div>
+          </div>
+
+          <div class="panel bench-stats">
+            <div class="section-title-row">
+              <h2>Benchmark Mean Profile</h2>
+              <span id="benchStatsTag" class="tag">-</span>
+            </div>
+            <div class="chart-wrap bench-chart">
+              <canvas id="benchRadar"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel detail-panel">
+        <div class="section-title-row">
+          <h2>Record Details</h2>
+          <span class="tag">Focused view</span>
+        </div>
+        <div id="detailCards" class="detail-cards"></div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>

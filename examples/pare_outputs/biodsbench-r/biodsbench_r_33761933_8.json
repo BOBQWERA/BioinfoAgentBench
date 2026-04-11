@@ -1,0 +1,152 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_33761933_8",
+      "question": "##Question##\nMerge the 'DEGAll' data with 'hg' by 'Gene' to prepare the data for Gene Set Enrichment Analysis (GSEA). Assign log fold changes to 'GSEA_input' with gene IDs as names, sort 'GSEA_input' in descending order, and perform the GSEA analysis using 'gseKEGG'. Plot the curves for the top 5 results using the 'gseaplot2' function from the 'enrichplot' package.\n\n##Task##\n1. Merge the data for GSEA analysis.\n2. GSEA analysis with 'gseKEGG'.\n3. Plot the top-5 result",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/KIRC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_KIRC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"#Merge the data for GSEA analysis\\ncolnames(hg) <- c(\\\"Gene\\\", \\\"ENTREZID\\\")\\ninfo_merge <- merge(DEGAll,hg,by='Gene')\\nGSEA_input <- info_merge$logFC\\nnames(GSEA_input) = info_merge$ENTREZID\\nGSEA_input = sort(GSEA_input, decreasing = TRUE)\\n\\n#GSEA analysis with 'gseKEGG'\\nGSEA_KEGG <- gseKEGG(GSEA_input, organism = 'hsa', pvalueCutoff = 1)\\n\\n#Plot the result\\ngseaplot2(GSEA_KEGG,geneSetID = 1:5, pvalue_table = T)\", \"test_cases\": \"!is.null(GSEA_KEGG)\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33761933_8",
+        "study_id": "33761933",
+        "question_id": "8",
+        "analysis_types": "['Data Integration & Transformation']",
+        "study_type": "Integrative",
+        "study_title": "Multi-omics analysis of tumor angiogenesis characteristics and potential epigenetic regulation mechanisms in renal clear cell carcinoma",
+        "dataset_url": "CMOB/KIRC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_33761933_8",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Merge the 'DEGAll' data with 'hg' by 'Gene' to prepare the data for Gene Set Enrichment Analysis (GSEA).",
+          "Assign log fold changes to 'GSEA_input' with gene IDs as names, sort 'GSEA_input' in descending order, and perform the GSEA analysis using 'gseKEGG'.",
+          "Plot the curves for the top 5 results using the 'gseaplot2' function from the 'enrichplot' package.",
+          "1. Merge the data for GSEA analysis.",
+          "2. GSEA analysis with 'gseKEGG'.",
+          "3. Plot the top-5 result"
+        ],
+        "reason": "The task requires a multi-step workflow: merging data, preparing input for GSEA, running GSEA, and plotting results. Each step depends on the previous, forming a dependency-constrained step graph. However, the methods and order are specified, and there is no explicit evidence of major branching or multiple reasonable methods that would affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Assign log fold changes to 'GSEA_input' with gene IDs as names, sort 'GSEA_input' in descending order",
+          "perform the GSEA analysis using 'gseKEGG'",
+          "Plot the curves for the top 5 results using the 'gseaplot2' function from the 'enrichplot' package.",
+          "Explicit output: GSEA_KEGG object, plots for top 5 results"
+        ],
+        "reason": "There are multiple output artifacts: a named vector for GSEA input, a GSEA result object, and plots. The outputs have some structure (named vector, sorted order, top-N selection), but the specification is not extremely tight (e.g., no explicit format or strict schema)."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Merge the 'DEGAll' data with 'hg' by 'Gene'",
+          "colnames(hg) <- c(\"Gene\", \"ENTREZID\")"
+        ],
+        "reason": "There is a minor need to ensure column names match for merging, but this is directly specified in the answer and does not require significant repair or clarification. No evidence of semantic ambiguity or representational inconsistency beyond this."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-step workflow for GSEA analysis in R, including data merging, input preparation, running the analysis, and plotting results. The planning and action loads are moderate due to the explicit multi-stage process and multiple output artifacts, but there is little evidence of major branching, strict parameterization, or repair needs. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2652,
+        "completion_tokens": 781,
+        "total_tokens": 3433
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Merge the 'DEGAll' data with 'hg' by 'Gene' to prepare the data for Gene Set Enrichment Analysis (GSEA).",
+            "Assign log fold changes to 'GSEA_input' with gene IDs as names, sort 'GSEA_input' in descending order, and perform the GSEA analysis using 'gseKEGG'.",
+            "Plot the curves for the top 5 results using the 'gseaplot2' function from the 'enrichplot' package.",
+            "1. Merge the data for GSEA analysis.",
+            "2. GSEA analysis with 'gseKEGG'.",
+            "3. Plot the top-5 result"
+          ],
+          "reason": "The task requires a multi-step workflow: merging data, preparing input for GSEA, running GSEA, and plotting results. Each step depends on the previous, forming a dependency-constrained step graph. However, the methods and order are specified, and there is no explicit evidence of major branching or multiple reasonable methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Assign log fold changes to 'GSEA_input' with gene IDs as names, sort 'GSEA_input' in descending order",
+            "perform the GSEA analysis using 'gseKEGG'",
+            "Plot the curves for the top 5 results using the 'gseaplot2' function from the 'enrichplot' package.",
+            "Explicit output: GSEA_KEGG object, plots for top 5 results"
+          ],
+          "reason": "There are multiple output artifacts: a named vector for GSEA input, a GSEA result object, and plots. The outputs have some structure (named vector, sorted order, top-N selection), but the specification is not extremely tight (e.g., no explicit format or strict schema).",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Merge the 'DEGAll' data with 'hg' by 'Gene'",
+            "colnames(hg) <- c(\"Gene\", \"ENTREZID\")"
+          ],
+          "reason": "There is a minor need to ensure column names match for merging, but this is directly specified in the answer and does not require significant repair or clarification. No evidence of semantic ambiguity or representational inconsistency beyond this.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-step workflow for GSEA analysis in R, including data merging, input preparation, running the analysis, and plotting results. The planning and action loads are moderate due to the explicit multi-stage process and multiple output artifacts, but there is little evidence of major branching, strict parameterization, or repair needs. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:00:14.947236+00:00"
+  }
+}

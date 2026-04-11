@@ -1,0 +1,148 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_33176622_4",
+      "question": "##Question##\nUse the 'ggplot2' package to visualize Gene Ontology (GO) enrichment analysis results (stored as variable 'go') for genes showing significant differential expression between patient groups 0 and 1. Apply color gradients (based on p.adjust) and facet grids to distinguish and organize GO categories. Ensure that the plot includes a point size that reflects the GeneRatio and use the theme settings to adjust the text size. If no enriched GO terms are found, print a message indicating this.\n\n##Task##\n1. Conduct GO enrichment analysis (enrichGO()) using Entrez IDs of significant genes. Results be a variable named \"go\".\n2. Generate a ggplot2 dot plot to visualize enriched GO terms, where GeneRatio represents the proportion of genes in the category, and Description provides GO term descriptions.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\nlibrary(org.Hs.eg.db)\\nlibrary(pathview)\\nlibrary(clusterProfiler)\\n# Load necessary libraries\\nlibrary(ggplot2)\\nlibrary(ggrepel)\\n\\n# Perform GO enrichment analysis using enrichGO()\\ngo <- enrichGO(hg$ENTREZID,\\n               OrgDb = org.Hs.eg.db, \\n               ont='ALL',\\n               pAdjustMethod = 'BH',\\n               pvalueCutoff = 0.1, \\n               qvalueCutoff = 0.1,\\n               keyType = 'ENTREZID')\\n\\n# Plot enriched GO terms using ggplot2 and dotplot\\nif (!is.null(go) && !is.na(go) && nrow(go) > 0) {\\n  ggplot(go, split = \\\"ONTOLOGY\\\", showCategory = 5) +\\n    geom_point(aes(x = GeneRatio,\\n                   y = Description,\\n                   color = p.adjust,\\n                   size = GeneRatio)) +\\n    scale_color_gradient(low = \\\"#1763a3\\\", high = \\\"#800000\\\") +\\n    facet_grid(ONTOLOGY ~ ., scale = \\\"free\\\") +\\n    theme_bw(base_size = 18) +   # Set plot theme\\n    theme(text = element_text(size = 17))  # Adjust text size\\n} else {\\n  print(\\\"No enrichment GO terms found!\\\")\\n}\", \"test_cases\": \"!is.null(go)\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33176622_4",
+        "study_id": "33176622",
+        "question_id": "4",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Enrichment & Pathway Analysis', 'Clinical Feature Engineering']",
+        "study_type": "Biomarkers",
+        "study_title": "Transcriptomics and Prognosis Analysis to Identify Critical Biomarkers in Invasive Breast Carcinoma",
+        "dataset_url": "CMOB/GS-BRCA",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_33176622_4",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Conduct GO enrichment analysis (enrichGO()) using Entrez IDs of significant genes.",
+          "Generate a ggplot2 dot plot to visualize enriched GO terms, where GeneRatio represents the proportion of genes in the category, and Description provides GO term descriptions.",
+          "Apply color gradients (based on p.adjust) and facet grids to distinguish and organize GO categories.",
+          "If no enriched GO terms are found, print a message indicating this."
+        ],
+        "reason": "There is a clear multi-step workflow: differential expression results must be used to select significant genes, which are then mapped to Entrez IDs for GO enrichment (enrichGO), and the results are visualized with ggplot2 using multiple plot features (color, size, facet). The workflow is not a single direct statement and requires chaining of steps. However, the method for each step is specified (enrichGO, ggplot2), and there is no explicit evidence of major branching or multiple defensible methods that would affect correctness. The main planning load is in structuring the workflow, not in method choice."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Generate a ggplot2 dot plot to visualize enriched GO terms, where GeneRatio represents the proportion of genes in the category, and Description provides GO term descriptions.",
+          "Apply color gradients (based on p.adjust) and facet grids to distinguish and organize GO categories.",
+          "Ensure that the plot includes a point size that reflects the GeneRatio and use the theme settings to adjust the text size.",
+          "If no enriched GO terms are found, print a message indicating this."
+        ],
+        "reason": "The action load is moderate: the output is a customized ggplot2 plot with multiple mapped aesthetics (color, size, facet), and explicit requirements for theme/text size and conditional messaging if no results are found. There is some format and parameterization specificity (e.g., color gradient based on p.adjust, point size by GeneRatio, facet by GO category), but not to the level of strict schema or tight numeric thresholds. The output is a single plot (plus a message in a special case), so artifact heterogeneity is moderate."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Use Entrez IDs of significant genes.",
+          "Results be a variable named \"go\"."
+        ],
+        "reason": "There is minor representational repair implied: the user must ensure that significant genes are mapped to Entrez IDs (which may require conversion from gene symbols or other IDs), and the enrichment results must be in a variable named 'go'. However, there is no explicit evidence of major ambiguity, missing fields, or schema mismatch. The semantics of 'significant genes' and 'GO enrichment' are standard and do not require major clarification."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience text, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload. The task is standalone."
+      }
+    },
+    "overall_summary": "This task requires a moderate level of planning and action: the workflow involves chaining differential expression, ID mapping, GO enrichment, and customized visualization with ggplot2, including conditional messaging. The action load is moderate due to multiple plot features and explicit output requirements. There is minor representational repair for ID mapping, but no major ambiguity or schema mismatch. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2863,
+        "completion_tokens": 876,
+        "total_tokens": 3739
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Conduct GO enrichment analysis (enrichGO()) using Entrez IDs of significant genes.",
+            "Generate a ggplot2 dot plot to visualize enriched GO terms, where GeneRatio represents the proportion of genes in the category, and Description provides GO term descriptions.",
+            "Apply color gradients (based on p.adjust) and facet grids to distinguish and organize GO categories.",
+            "If no enriched GO terms are found, print a message indicating this."
+          ],
+          "reason": "There is a clear multi-step workflow: differential expression results must be used to select significant genes, which are then mapped to Entrez IDs for GO enrichment (enrichGO), and the results are visualized with ggplot2 using multiple plot features (color, size, facet). The workflow is not a single direct statement and requires chaining of steps. However, the method for each step is specified (enrichGO, ggplot2), and there is no explicit evidence of major branching or multiple defensible methods that would affect correctness. The main planning load is in structuring the workflow, not in method choice.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Generate a ggplot2 dot plot to visualize enriched GO terms, where GeneRatio represents the proportion of genes in the category, and Description provides GO term descriptions.",
+            "Apply color gradients (based on p.adjust) and facet grids to distinguish and organize GO categories.",
+            "Ensure that the plot includes a point size that reflects the GeneRatio and use the theme settings to adjust the text size.",
+            "If no enriched GO terms are found, print a message indicating this."
+          ],
+          "reason": "The action load is moderate: the output is a customized ggplot2 plot with multiple mapped aesthetics (color, size, facet), and explicit requirements for theme/text size and conditional messaging if no results are found. There is some format and parameterization specificity (e.g., color gradient based on p.adjust, point size by GeneRatio, facet by GO category), but not to the level of strict schema or tight numeric thresholds. The output is a single plot (plus a message in a special case), so artifact heterogeneity is moderate.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Use Entrez IDs of significant genes.",
+            "Results be a variable named \"go\"."
+          ],
+          "reason": "There is minor representational repair implied: the user must ensure that significant genes are mapped to Entrez IDs (which may require conversion from gene symbols or other IDs), and the enrichment results must be in a variable named 'go'. However, there is no explicit evidence of major ambiguity, missing fields, or schema mismatch. The semantics of 'significant genes' and 'GO enrichment' are standard and do not require major clarification.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience text, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a moderate level of planning and action: the workflow involves chaining differential expression, ID mapping, GO enrichment, and customized visualization with ggplot2, including conditional messaging. The action load is moderate due to multiple plot features and explicit output requirements. There is minor representational repair for ID mapping, but no major ambiguity or schema mismatch. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:58:42.552439+00:00"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_be9beb22-6594-4f70-a6e8-55759fb557d5",
+      "question": "Which of the following genes is associated with achromatopsia according to DisGeNet but not according to OMIM?",
+      "data": [],
+      "answer": "NBAS",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "DbQA",
+        "task_name": "dga_task",
+        "tag": "dbqa",
+        "version": "1.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "CNGA3",
+          "PDE6H",
+          "CNGB3"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_be9beb22-6594-4f70-a6e8-55759fb557d5",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Which of the following genes is associated with achromatopsia according to DisGeNet but not according to OMIM?"
+        ],
+        "reason": "The question requires comparing gene-disease associations across two databases (DisGeNet and OMIM) for a specific disease (achromatopsia). This implies a two-step workflow: (1) retrieve genes associated with achromatopsia from each database, (2) identify genes present in one but not the other. However, the workflow is straightforward and does not require complex branching or multiple dependency-constrained steps."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Which of the following genes is associated with achromatopsia according to DisGeNet but not according to OMIM?",
+          "answer: NBAS",
+          "distractors: CNGA3, PDE6H, CNGB3"
+        ],
+        "reason": "The output is a single gene name selected from a list, with no evidence of heterogeneous artifact types or strict format constraints. There is some parameterization in that the answer must be correct with respect to the two databases, but no explicit thresholds or verification rules are stated."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Which of the following genes is associated with achromatopsia according to DisGeNet but not according to OMIM?"
+        ],
+        "reason": "There is a minor need to clarify that the association must be present in DisGeNet and absent in OMIM, but the question is otherwise clear and does not require semantic or data repair. No evidence of schema mismatch or ambiguity."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience text, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; this is a standalone question."
+      }
+    },
+    "overall_summary": "This is a straightforward database comparison question requiring retrieval and set difference between two gene lists for a specific disease. The planning and action loads are minor to weak, with no evidence of complex branching, artifact heterogeneity, or strict parameterization. Reflection load is minimal, and there is no evolution/transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2226,
+        "completion_tokens": 621,
+        "total_tokens": 2847
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Which of the following genes is associated with achromatopsia according to DisGeNet but not according to OMIM?"
+          ],
+          "reason": "The question requires comparing gene-disease associations across two databases (DisGeNet and OMIM) for a specific disease (achromatopsia). This implies a two-step workflow: (1) retrieve genes associated with achromatopsia from each database, (2) identify genes present in one but not the other. However, the workflow is straightforward and does not require complex branching or multiple dependency-constrained steps.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Which of the following genes is associated with achromatopsia according to DisGeNet but not according to OMIM?",
+            "answer: NBAS",
+            "distractors: CNGA3, PDE6H, CNGB3"
+          ],
+          "reason": "The output is a single gene name selected from a list, with no evidence of heterogeneous artifact types or strict format constraints. There is some parameterization in that the answer must be correct with respect to the two databases, but no explicit thresholds or verification rules are stated.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Which of the following genes is associated with achromatopsia according to DisGeNet but not according to OMIM?"
+          ],
+          "reason": "There is a minor need to clarify that the association must be present in DisGeNet and absent in OMIM, but the question is otherwise clear and does not require semantic or data repair. No evidence of schema mismatch or ambiguity.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience text, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; this is a standalone question.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward database comparison question requiring retrieval and set difference between two gene lists for a specific disease. The planning and action loads are minor to weak, with no evidence of complex branching, artifact heterogeneity, or strict parameterization. Reflection load is minimal, and there is no evolution/transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:40:03.002338+00:00"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_157",
+      "question": "I have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use AGNES for clustering analysis.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0157/files/hcluster.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"hcluster.csv\", \"path\": \"downloaded_files\\\\index_0157\\\\milestone\\\\hcluster.csv\"}, {\"name\": \"hierarchical_output.csv\", \"path\": \"downloaded_files\\\\index_0157\\\\milestone\\\\hierarchical_output.csv\"}], \"milestones\": [\"Generate a CSV format file\", \"Generate the prediction result file of the algorithm on the dataset.\"], \"steps\": [\"Convert data from TSV format to CSV format\", \"Train and test on this dataset using the AGNES algorithm.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Clustering",
+        "task_abbr": "AGNES聚类",
+        "task": "Clustering",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.43,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_157",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "steps: [\"Convert data from TSV format to CSV format\", \"Train and test on this dataset using the AGNES algorithm.\"]",
+          "milestones: [\"Generate a CSV format file\", \"Generate the prediction result file of the algorithm on the dataset.\"]"
+        ],
+        "reason": "There is a clear two-step workflow: data format conversion followed by clustering analysis. The steps are sequential and dependency-constrained, but the workflow is simple and canonical for clustering tasks. No evidence of significant method branching or multiple reasonable approaches affecting correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: [{\"name\": \"hcluster.csv\"}, {\"name\": \"hierarchical_output.csv\"}]",
+          "steps: [\"Convert data from TSV format to CSV format\", \"Train and test on this dataset using the AGNES algorithm.\"]"
+        ],
+        "reason": "Two distinct output files are required: one for the converted data and one for the clustering result. The outputs are of different types (data conversion and algorithm output), and the file formats (CSV) are specified. However, there is no evidence of strict parameterization, thresholds, or tight verification constraints."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The question specifies the ID column and feature columns.",
+          "No evidence of missing fields, ambiguity, or schema mismatch."
+        ],
+        "reason": "The data structure is described clearly enough for direct use. No evidence of semantic ambiguity or representational inconsistency requiring repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a straightforward two-step workflow: converting a TSV file to CSV and performing AGNES clustering, with two output files required. The planning and action loads are moderate due to the sequential steps and multiple output artifacts, but there is little evidence of branching, tight parameterization, or repair needs. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2397,
+        "completion_tokens": 605,
+        "total_tokens": 3002
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "steps: [\"Convert data from TSV format to CSV format\", \"Train and test on this dataset using the AGNES algorithm.\"]",
+            "milestones: [\"Generate a CSV format file\", \"Generate the prediction result file of the algorithm on the dataset.\"]"
+          ],
+          "reason": "There is a clear two-step workflow: data format conversion followed by clustering analysis. The steps are sequential and dependency-constrained, but the workflow is simple and canonical for clustering tasks. No evidence of significant method branching or multiple reasonable approaches affecting correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: [{\"name\": \"hcluster.csv\"}, {\"name\": \"hierarchical_output.csv\"}]",
+            "steps: [\"Convert data from TSV format to CSV format\", \"Train and test on this dataset using the AGNES algorithm.\"]"
+          ],
+          "reason": "Two distinct output files are required: one for the converted data and one for the clustering result. The outputs are of different types (data conversion and algorithm output), and the file formats (CSV) are specified. However, there is no evidence of strict parameterization, thresholds, or tight verification constraints.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The question specifies the ID column and feature columns.",
+            "No evidence of missing fields, ambiguity, or schema mismatch."
+          ],
+          "reason": "The data structure is described clearly enough for direct use. No evidence of semantic ambiguity or representational inconsistency requiring repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward two-step workflow: converting a TSV file to CSV and performing AGNES clustering, with two output files required. The planning and action loads are moderate due to the sequential steps and multiple output artifacts, but there is little evidence of branching, tight parameterization, or repair needs. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:19:44.612626+00:00"
+  }
+}

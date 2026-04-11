@@ -1,0 +1,146 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_37091789_3",
+      "question": "##Question##\nUse the 'pheatmap' package to draw a heatmap visualizing the differential gene expression between patient groups labeled as 0 and 1. Use the expression data (named as variable 'selected_expression_data_matrix') and include annotations (named as variable 'annotation_row') to display up-regulated genes in red and down-regulated genes in blue. Do not show gene names on the heatmap.\n\n##Task##\n1. Creates a dataframe named `DEGAll` based on 'results' with log2 fold changes, p-values.\n2. Filter DEGs based on pValue and FoldChange.\n3. Filter the expression data for the selected genes.\n4. Filter the expression data to include only valid labels (0 and 1)\n5. Draw the heatmap",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LGG_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LGG_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(pheatmap)\\n\\n# Create a DEGAll data frame with necessary columns\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue\\n  )\\n\\n# Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\\nselected_genes <- DEGAll %>%\\n  filter(pValue < 0.05 & abs(log2FoldChange) > 0.5) %>%\\n  dplyr::select(Gene)\\n\\n# Filter the expression data for the selected genes\\nselected_expression_data <- expression_data_t %>%\\n  dplyr::select(Sample, one_of(selected_genes$Gene))\\n\\n# Add labels to the expression data\\nselected_expression_data <- selected_expression_data %>%\\n  mutate(Label = expression_data_merged$Label[match(selected_expression_data$Sample, expression_data_merged$Sample)])\\n\\n# Set row names to Sample and remove Sample column\\nrownames(selected_expression_data) <- selected_expression_data$Sample\\nselected_expression_data <- selected_expression_data %>%\\n  dplyr::select(-Sample)\\n\\n# Filter to include only valid labels (0 and 1)\\nselected_expression_data <- selected_expression_data %>%\\n  filter(Label %in% c(0, 1))\\n\\n# Order the data by Label\\nselected_expression_data <- selected_expression_data[order(selected_expression_data$Label),]\\n\\n# Ensure all values are finite\\nselected_expression_data_matrix <- as.matrix(selected_expression_data[, -ncol(selected_expression_data)])\\nselected_expression_data_matrix[!is.finite(selected_expression_data_matrix)] <- NA\\nselected_expression_data_matrix <- selected_expression_data_matrix[rowSums(is.na(selected_expression_data_matrix)) == 0, ]\\n\\n# Check annotation_row\\nannotation_row <- data.frame(Label = selected_expression_data$Label)\\nrownames(annotation_row) <- rownames(selected_expression_data)\\n\\n#Heatmap plot\\npheatmap(\\n  selected_expression_data_matrix,\\n  cluster_rows = TRUE,\\n  cluster_cols = TRUE,\\n  annotation_row = annotation_row,\\n  show_rownames = FALSE,\\n  show_colnames = FALSE,\\n  color = colorRampPalette(c(\\\"blue\\\", \\\"white\\\", \\\"red\\\"))(50),\\n  main = \\\"Heatmap of DEGs\\\")\", \"test_cases\": \"ncol(DEGAll) == 7\\n\\nncol(labels) == 2\\n\\nncol(results) == 5\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "37091789_3",
+        "study_id": "37091789",
+        "question_id": "3",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Integrative",
+        "study_title": "The integrative analysis based on super-enhancer related genes for predicting different subtypes and prognosis of patient with lower-grade glioma",
+        "dataset_url": "CMOB/GS-LGG",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_37091789_3",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Task requires: (1) create DEGAll from 'results', (2) filter DEGs by pValue and FoldChange, (3) filter expression data for selected genes, (4) filter for valid labels, (5) draw heatmap",
+          "No explicit step list or tool list; workflow must be inferred from abstract instructions",
+          "Filtering criteria (pValue, FoldChange) are specified, but method for filtering and order of steps must be planned"
+        ],
+        "reason": "There is a clear multi-step workflow that must be inferred and executed in order, with dependencies between steps (e.g., filtering DEGs before filtering expression data). However, the methods are mostly standard and there is little evidence of major branching or multiple materially different valid routes."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Requires creation of multiple artifacts: DEGAll dataframe, filtered gene list, filtered expression matrix, annotation_row, and a heatmap plot",
+          "Explicit output constraints: up-regulated genes in red, down-regulated in blue, do not show gene names",
+          "Test cases specify column counts for DEGAll, labels, and results"
+        ],
+        "reason": "There is moderate artifact realization load due to multiple output types (dataframes, matrix, plot) and explicit requirements for color mapping and display options. Parameterization is present but not extremely tight; some format constraints are specified via test cases."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "No evidence of ambiguous or contradictory semantics",
+          "No explicit schema mismatch or data repair required",
+          "Some minor potential for needing to align variable names (e.g., 'results', 'expression_data_t', 'expression_data_merged'), but not strongly indicated"
+        ],
+        "reason": "There is weak evidence for reflection load: the task is mostly well-specified, but minor alignment of variable names or dataframes may be needed. No major semantic or representational repair is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience text, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a moderately complex multi-step workflow for differential gene expression visualization, requiring the user to infer and execute a sequence of data filtering and plotting steps with explicit output constraints. The planning and action loads are moderate due to the need to structure the workflow and realize multiple artifacts with some parameterization. Reflection load is weak, with only minor potential for variable alignment. There is no evolution load as no transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3118,
+        "completion_tokens": 715,
+        "total_tokens": 3833
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Task requires: (1) create DEGAll from 'results', (2) filter DEGs by pValue and FoldChange, (3) filter expression data for selected genes, (4) filter for valid labels, (5) draw heatmap",
+            "No explicit step list or tool list; workflow must be inferred from abstract instructions",
+            "Filtering criteria (pValue, FoldChange) are specified, but method for filtering and order of steps must be planned"
+          ],
+          "reason": "There is a clear multi-step workflow that must be inferred and executed in order, with dependencies between steps (e.g., filtering DEGs before filtering expression data). However, the methods are mostly standard and there is little evidence of major branching or multiple materially different valid routes.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Requires creation of multiple artifacts: DEGAll dataframe, filtered gene list, filtered expression matrix, annotation_row, and a heatmap plot",
+            "Explicit output constraints: up-regulated genes in red, down-regulated in blue, do not show gene names",
+            "Test cases specify column counts for DEGAll, labels, and results"
+          ],
+          "reason": "There is moderate artifact realization load due to multiple output types (dataframes, matrix, plot) and explicit requirements for color mapping and display options. Parameterization is present but not extremely tight; some format constraints are specified via test cases.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "No evidence of ambiguous or contradictory semantics",
+            "No explicit schema mismatch or data repair required",
+            "Some minor potential for needing to align variable names (e.g., 'results', 'expression_data_t', 'expression_data_merged'), but not strongly indicated"
+          ],
+          "reason": "There is weak evidence for reflection load: the task is mostly well-specified, but minor alignment of variable names or dataframes may be needed. No major semantic or representational repair is required.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience text, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderately complex multi-step workflow for differential gene expression visualization, requiring the user to infer and execute a sequence of data filtering and plotting steps with explicit output constraints. The planning and action loads are moderate due to the need to structure the workflow and realize multiple artifacts with some parameterization. Reflection load is weak, with only minor potential for variable alignment. There is no evolution load as no transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:55:12.508857+00:00"
+  }
+}

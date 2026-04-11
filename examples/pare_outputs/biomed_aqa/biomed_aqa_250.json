@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_250",
+      "question": "There is a data table {kobas_KEGG.tsv} that contains information on gene KEGG enrichment results. The column named P-Value represents the p value, the column named Term indicates the patient's survival event status, the column named Input number is the number of input genes, and the column named Background number is the number of background genes. Please use the tool enrichment2bubble to create a bubble chart based on this information.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0250/files/kobas_KEGG.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"out_bubble.pdf\", \"path\": \"downloaded_files\\\\index_0250\\\\milestone\\\\out_bubble.pdf\"}], \"milestones\": [\"Generate bubble chart\", \"The result file for saving the image is in PDF format and is correct.\"], \"steps\": [\"Draw a bubble chart\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Basic plot",
+        "task_abbr": "Bubble plot",
+        "task": "Basic plot",
+        "question_type": "clear",
+        "dataset": "Rep3",
+        "split": "train",
+        "order": 51.19,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_250",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Please use the tool enrichment2bubble to create a bubble chart based on this information.",
+          "There is a data table {kobas_KEGG.tsv} that contains information on gene KEGG enrichment results."
+        ],
+        "reason": "The task requires using a specific tool (enrichment2bubble) to generate a bubble chart from a provided TSV file. The workflow is essentially linear: input file -> tool -> output chart. There is no evidence of branching decisions or multiple reasonable methods, as the tool is specified and the output is a standard plot. However, the need to map specific columns to the tool's expected input and ensure correct usage of the tool adds a minor workflow structuring load."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "The result file for saving the image is in PDF format and is correct.",
+          "Draw a bubble chart",
+          "Check whether the file format of the saved image result is correct."
+        ],
+        "reason": "The action load is minor: the output is a single PDF file (out_bubble.pdf) containing a bubble chart. There is a requirement to check the file format, but no explicit parameterization, thresholding, or strict schema constraints are mentioned. The artifact realization is straightforward, with only one output type and minimal format rigidity."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The column named Term indicates the patient's survival event status"
+        ],
+        "reason": "There is a slight potential for ambiguity in mapping the 'Term' column to the expected input for the bubble chart, as 'Term' is described as indicating survival event status, which may not be the standard enrichment term. However, the rest of the columns are clearly described, and there is no evidence of schema mismatch or major ambiguity requiring repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text is present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task is a straightforward application of a specified tool to generate a bubble chart from a provided TSV file. The planning and action loads are minor, with no evidence of branching or strict parameterization. There is a trace of potential ambiguity in column mapping, but no significant need for semantic or data repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2421,
+        "completion_tokens": 658,
+        "total_tokens": 3079
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Please use the tool enrichment2bubble to create a bubble chart based on this information.",
+            "There is a data table {kobas_KEGG.tsv} that contains information on gene KEGG enrichment results."
+          ],
+          "reason": "The task requires using a specific tool (enrichment2bubble) to generate a bubble chart from a provided TSV file. The workflow is essentially linear: input file -> tool -> output chart. There is no evidence of branching decisions or multiple reasonable methods, as the tool is specified and the output is a standard plot. However, the need to map specific columns to the tool's expected input and ensure correct usage of the tool adds a minor workflow structuring load.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "The result file for saving the image is in PDF format and is correct.",
+            "Draw a bubble chart",
+            "Check whether the file format of the saved image result is correct."
+          ],
+          "reason": "The action load is minor: the output is a single PDF file (out_bubble.pdf) containing a bubble chart. There is a requirement to check the file format, but no explicit parameterization, thresholding, or strict schema constraints are mentioned. The artifact realization is straightforward, with only one output type and minimal format rigidity.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The column named Term indicates the patient's survival event status"
+          ],
+          "reason": "There is a slight potential for ambiguity in mapping the 'Term' column to the expected input for the bubble chart, as 'Term' is described as indicating survival event status, which may not be the standard enrichment term. However, the rest of the columns are clearly described, and there is no evidence of schema mismatch or major ambiguity requiring repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text is present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is a straightforward application of a specified tool to generate a bubble chart from a provided TSV file. The planning and action loads are minor, with no evidence of branching or strict parameterization. There is a trace of potential ambiguity in column mapping, but no significant need for semantic or data repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:31:46.401976+00:00"
+  }
+}

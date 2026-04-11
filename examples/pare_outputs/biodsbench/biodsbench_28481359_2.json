@@ -1,0 +1,148 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_28481359_2",
+      "question": "Given clinical outcome data `df_diag`, determine the distribution of different cancer types. The output should be a DataFrame with the following three columns:\n\n- `Term`: The name of the cancer type.\n- `# of Count`: The count of occurrences for each cancer type.\n- `Frequency (%)`: The percentage representation of each cancer type within the dataset.\n\nThe first row to the last should be the most frequent terms to the least.\n\nWrite the code to compute this distribution and create the DataFrame, name it as `output_df`.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/diagnosis_outcome_sub.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/gene_expression_rna_sub.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/gene_mutation_dna_sub.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\nimport os\\ndata_dir = \\\"./workdir\\\"\\ndf_diag = pd.read_csv(os.path.join(data_dir, \\\"diagnosis_outcome_sub.csv\\\"))\\ndf_diag[\\\"cancer type abbreviation\\\"]\\ndef get_value_counts(df, col):\\n    \\\"\\\"\\\"Get the value counts and frequency of variables under a specified column.\\n    The data under column `col` should be categorical.\\n\\n    Args:\\n        df: pd.DataFrame\\n        col: the column name\\n    \\\"\\\"\\\"\\n    value_counts = df[col].value_counts()\\n    frequency_percent = df[col].value_counts(normalize=True) * 100\\n    summary_df = pd.DataFrame({\\n        'Term': value_counts.index,\\n        '# of Counts': value_counts.values,\\n        'Frequency (%)': frequency_percent.values\\n    })\\n    return summary_df\\noutput_df = get_value_counts(df_diag, 'cancer type abbreviation')\", \"test_cases\": \"assert len(output_df) == 33\\n\\nassert len(output_df.columns.tolist()) == 3\\n\\nassert output_df.iloc[4][\\\"Term\\\"] == \\\"HNSC\\\"\\n\\nassert output_df.iloc[5][\\\"# of Counts\\\"] == 57\\n\\nassert round(output_df.iloc[6][\\\"Frequency (%)\\\"],2) == 4.75\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "28481359_2",
+        "study_id": "28481359",
+        "question_id": "2",
+        "analysis_types": "['Clinical Feature Engineering', 'Descriptive Statistics']",
+        "study_type": "Pan-Cancer",
+        "study_title": "Mutational landscape of metastatic cancer revealed from prospective clinical sequencing of 10,000 patients",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=msk_impact_2018",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_28481359_2",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "The question requires computing counts and frequencies for each cancer type and sorting the results.",
+          "Output must be a DataFrame with three specific columns and sorted by frequency."
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires grouping, counting, calculating percentages, and sorting, which is a standard multi-step aggregation. However, there is no evidence of branching decision load, as the method is straightforward and the required output is fully specified."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Output DataFrame must have three columns: 'Term', '# of Count', 'Frequency (%)'.",
+          "Column order and names are explicitly specified.",
+          "Rows must be sorted from most frequent to least.",
+          "Test cases check for exact values, column count, and rounding."
+        ],
+        "reason": "There is a moderate artifact realization and parameterization load: the output format is strictly specified, including column names, order, and value rounding. Test cases enforce correctness on structure and values, including rounding to two decimals."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The column to use ('cancer type abbreviation') is referenced in the answer, but not explicitly in the question.",
+          "No evidence of data schema mismatch or ambiguity in the input."
+        ],
+        "reason": "There is a trace need for semantic repair: the question does not explicitly state the column name for cancer type, but the answer assumes 'cancer type abbreviation'. However, this is a minor ambiguity and does not prevent the task from being logically defined or verifiable."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-step aggregation and formatting workflow with moderate output specification and correctness constraints. There is a minor ambiguity regarding the column name for cancer type, but no evidence of branching, repair, or transfer load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2818,
+        "completion_tokens": 572,
+        "total_tokens": 3390
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "The question requires computing counts and frequencies for each cancer type and sorting the results.",
+            "Output must be a DataFrame with three specific columns and sorted by frequency."
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires grouping, counting, calculating percentages, and sorting, which is a standard multi-step aggregation. However, there is no evidence of branching decision load, as the method is straightforward and the required output is fully specified.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Output DataFrame must have three columns: 'Term', '# of Count', 'Frequency (%)'.",
+            "Column order and names are explicitly specified.",
+            "Rows must be sorted from most frequent to least.",
+            "Test cases check for exact values, column count, and rounding."
+          ],
+          "reason": "There is a moderate artifact realization and parameterization load: the output format is strictly specified, including column names, order, and value rounding. Test cases enforce correctness on structure and values, including rounding to two decimals.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The column to use ('cancer type abbreviation') is referenced in the answer, but not explicitly in the question.",
+            "No evidence of data schema mismatch or ambiguity in the input."
+          ],
+          "reason": "There is a trace need for semantic repair: the question does not explicitly state the column name for cancer type, but the answer assumes 'cancer type abbreviation'. However, this is a minor ambiguity and does not prevent the task from being logically defined or verifiable.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-step aggregation and formatting workflow with moderate output specification and correctness constraints. There is a minor ambiguity regarding the column name for cancer type, but no evidence of branching, repair, or transfer load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:45:43.950901+00:00"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_27959731_2",
+      "question": "How many patients are with TP53 mutatations? Save the answer in variable `n`.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\ndf_mutation = pd.read_csv(\\\"/workdir/data_mutations.csv\\\")\\ndf_sample = pd.read_csv(\\\"/workdir/data_clinical_sample.csv\\\")\\nsample_ids = df_mutation[df_mutation[\\\"Hugo_Symbol\\\"] == \\\"TP53\\\"][\\\"Tumor_Sample_Barcode\\\"]\\nn = df_sample.set_index(\\\"SAMPLE_ID\\\").loc[sample_ids][\\\"PATIENT_ID\\\"].nunique()\", \"test_cases\": \"assert n == 20\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "27959731_2",
+        "study_id": "27959731",
+        "question_id": "2",
+        "analysis_types": "['Descriptive Statistics']",
+        "study_type": "Molecular",
+        "study_title": "TP53 and Decitabine in Acute Myeloid Leukemia and Myelodysplastic Syndromes",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=mnm_washu_2016",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_27959731_2",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Three input files: data_clinical_patient.csv, data_clinical_sample.csv, data_mutations.csv",
+          "Requires joining mutation data to sample and then to patient to count unique patients with TP53 mutations"
+        ],
+        "reason": "There is a minor workflow structuring load due to the need to join across multiple files to map mutations to patients, but the method is standard and there is no evidence of significant branching or multiple defensible methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a single integer variable n",
+          "No explicit format or threshold constraints beyond saving the answer in variable n"
+        ],
+        "reason": "Artifact realization is minimal (single variable), and there are no explicit parameterization or format constraints. The only requirement is to save the answer in a variable."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of ambiguous semantics or data schema mismatch in the question or answer",
+          "Standard file types and field names are implied"
+        ],
+        "reason": "There is no indication of semantic ambiguity or data repair needs. The task is straightforward with standard file inputs and clear mapping."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided"
+        ],
+        "reason": "No transfer or evolution context is present in the payload."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow structuring load due to the need to join across three files to map mutations to patients, but the method is standard and there is no evidence of significant branching, ambiguity, or strict output constraints. No transfer or evolution context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2513,
+        "completion_tokens": 507,
+        "total_tokens": 3020
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Three input files: data_clinical_patient.csv, data_clinical_sample.csv, data_mutations.csv",
+            "Requires joining mutation data to sample and then to patient to count unique patients with TP53 mutations"
+          ],
+          "reason": "There is a minor workflow structuring load due to the need to join across multiple files to map mutations to patients, but the method is standard and there is no evidence of significant branching or multiple defensible methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a single integer variable n",
+            "No explicit format or threshold constraints beyond saving the answer in variable n"
+          ],
+          "reason": "Artifact realization is minimal (single variable), and there are no explicit parameterization or format constraints. The only requirement is to save the answer in a variable.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of ambiguous semantics or data schema mismatch in the question or answer",
+            "Standard file types and field names are implied"
+          ],
+          "reason": "There is no indication of semantic ambiguity or data repair needs. The task is straightforward with standard file inputs and clear mapping.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided"
+          ],
+          "reason": "No transfer or evolution context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow structuring load due to the need to join across three files to map mutations to patients, but the method is standard and there is no evidence of significant branching, ambiguity, or strict output constraints. No transfer or evolution context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:44:37.653846+00:00"
+  }
+}

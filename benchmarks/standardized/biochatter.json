@@ -1,0 +1,161 @@
+{
+  "benchmark": "biochatter",
+  "schema_version": "1.0.0",
+  "count": 11,
+  "records": [
+    {
+      "id": "biochatter_api_calling_scanpy_tl_leiden",
+      "question": "Perform Leiden clustering on the data with resolution 0.5.\n\n[template_input]\n{\"prompt\": {\"explicit_variable_names\": \"Perform Leiden clustering on the data with resolution 0.5.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.tl.leiden\\\\(\", \"resolution=0.5\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:tl:leiden",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_scanpy_tl_umap",
+      "question": "Calculate UMAP embedding with minimum distance 0.3 and spread 1.0.\n\n[template_input]\n{\"prompt\": {\"explicit_variable_names\": \"Calculate UMAP embedding with minimum distance 0.3 and spread 1.0.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.tl.umap\\\\(\", \"min_dist=0.3\", \"spread=1.0\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:tl:umap",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_scanpy_pl_scatter",
+      "question": "Make a scatter plot with axis being n_genes_by_counts vs total_counts.\n\n[template_input]\n{\"prompt\": {\"abbreviations\": \"scatter plt with x-axis = n_genes_by_counts and y-axis = total_counts.\", \"general_question\": \"How can I make a scatter plot with n_genes_by_counts and total_counts?\", \"help_request\": \"Can you help me with making a scatter plot with n_genes_by_counts and total_counts?\", \"specific\": \"Make a scatter plot with axis being n_genes_by_counts vs total_counts.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.pl.scatter\\\\(\", \"adata=adata\", \"n_genes_by_counts\", \"total_counts\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:pl:scatter",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_scanpy_pl_pca",
+      "question": "plot the PCA embedding colored by n_genes_by_counts and total_counts\n\n[template_input]\n{\"prompt\": {\"abbreviations\": \"plt the PC emb with n_genes_by_counts and total_counts as colors.\", \"general_question\": \"How can I plot the PCA embedding with n_genes_by_counts and total_counts as colors?\", \"help_request\": \"Can you help me with plotting the PCA embedding with n_genes_by_counts and total_counts as colors?\", \"specific\": \"plot the PCA embedding colored by n_genes_by_counts and total_counts\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.pl.pca\\\\(\", \"adata=adata\", \"n_genes_by_counts\", \"total_counts\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:pl:pca",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_scanpy_pl_tsne",
+      "question": "plot a tsne colored by n_genes_by_counts.\n\n[template_input]\n{\"prompt\": {\"abbreviations\": \"tsne plt with n_genes_by_counts as colors.\", \"general_question\": \"How can I plot a tsne with n_genes_by_counts as colors?\", \"help_request\": \"Can you help me with plotting a tsne with n_genes_by_counts as colors?\", \"specific\": \"plot a tsne colored by n_genes_by_counts.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.pl.tsne\\\\(\", \"adata=adata\", \"n_genes_by_counts\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:pl:tsne",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_scanpy_pl_umap",
+      "question": "plot a umap colored by number of n_genes_by_counts.\n\n[template_input]\n{\"prompt\": {\"abbreviations\": \"umap plt with n_genes_by_counts as colors.\", \"general_question\": \"How can I plot a umap with n_genes_by_counts as colors?\", \"help_request\": \"Can you help me with plotting a umap with n_genes_by_counts as colors?\", \"specific\": \"plot a umap colored by number of n_genes_by_counts.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.pl.umap\\\\(\", \"adata=adata\", \"n_genes_by_counts\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:pl:umap",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_scanpy_pl_draw_graph",
+      "question": "plot a force-directed graph colored by n_genes_by_counts.\n\n[template_input]\n{\"prompt\": {\"abbreviations\": \"force-directed plt with n_genes_by_counts as colors.\", \"general_question\": \"How can I plot a force-directed graph with n_genes_by_counts as colors?\", \"help_request\": \"Can you help me with plotting a force-directed graph with n_genes_by_counts as colors?\", \"specific\": \"plot a force-directed graph colored by n_genes_by_counts.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.pl.draw_graph\\\\(\", \"adata=adata\", \"n_genes_by_counts\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:pl:draw_graph",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_scanpy_pl_spatial",
+      "question": "plot a the spatial data colored by n_genes_by_counts.\n\n[template_input]\n{\"prompt\": {\"abbreviations\": \"spatial data plt with n_genes_by_counts as colors.\", \"general_question\": \"How can I plot the spatial data with n_genes_by_counts as colors?\", \"help_request\": \"Can you help me with plotting the spatial data with n_genes_by_counts as colors?\", \"specific\": \"plot a the spatial data colored by n_genes_by_counts.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.pl.spatial\\\\(\", \"adata=adata\", \"n_genes_by_counts\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:pl:spatial",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_anndata_read_h5ad",
+      "question": "Use AnnData to load the file test.h5ad into an AnnData object.\n\n[template_input]\n{\"prompt\": {\"abbreviation\": \"Read test.h5ad with AnnData.\", \"explicit_variable_names\": \"Use AnnData to load the file test.h5ad into an AnnData object.\", \"general\": \"Open an H5AD file and load it as an AnnData object.\", \"help_request\": \"How do I read test.h5ad into an AnnData object?\", \"specific\": \"Load test.h5ad using AnnData.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"anndata.io.read_h5ad\\\\(\", \"filename=test.h5ad\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "anndata:read:h5ad",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_anndata_concat_var",
+      "question": "Concatenate adata1 and adata2 into a single AnnData object along the column axis with an inner join.\n\n[template_input]\n{\"prompt\": {\"abbreviation\": \"Merge columns of adata1 and adata2 with AnnData.\", \"explicit_variable_names\": \"Concatenate adata1 and adata2 into a single AnnData object along the column axis with an inner join.\", \"general\": \"Combine two AnnData objects along the variable axis with an inner join.\", \"help_request\": \"How do I concatenate adata1 and adata2 along columns?\", \"specific\": \"Join adata1 and adata2 by columns using AnnData with an inner join.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"anndata.concat\\\\(\", \"\\\\[adata1, adata2\\\\]\", \", axis='var', join='inner'\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "anndata:concat:var",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    },
+    {
+      "id": "biochatter_api_calling_anndata_map",
+      "question": "Replace the values in the cell_type column of the obs attribute in adata. Replace type1 with new_type1, type2 with new_type2, and type3 with new_type3.\n\n[template_input]\n{\"prompt\": {\"explicit_variable_names\": \"Replace the values in the cell_type column of the obs attribute in adata. Replace type1 with new_type1, type2 with new_type2, and type3 with new_type3.\", \"help_request\": \"How do I remap cell_type values to replace type1 with new_type1, type2 with new_type2, and type3 with new_type3. ?\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"adata.obs\", \"\\\\[\\\"cell_type\\\"\\\\]\", \"\\\\.map\\\\(\", \"\\\\{\\\\s*\\\"type1\\\": \\\"new_type1\\\"\", \"\\\\s*\\\"type2\\\": \\\"new_type2\\\"\", \"\\\\s*\\\"type3\\\": \\\"new_type3\\\"\", \"\\\\s*\\\\}\\\\)\", \"\\\\.copy\\\\(\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "anndata:map",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    }
+  ]
+}

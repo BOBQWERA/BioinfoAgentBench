@@ -1,0 +1,144 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_33176622_3",
+      "question": "##Question##\nFilter genes in the data frame (named as variable 'DEGAll') based on p-value (PValue < 0.05) and absolute log2 fold change (abs(log2FoldChange) > 0.5). Use the 'clusterProfiler' package to map gene names from 'SYMBOL' to 'ENTREZID' using the bitr() function, referencing the genome data 'org.Hs.eg.db'. Save the selected genes in a data frame (named as variable 'selected_genes').\n\n##Task##\n1. Creates a dataframe named \"DEGAll\" based on \"results\" with log2 fold changes and p-values.\n2.  Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\n3. Perform gene ID conversion with bitr() to get Entrez IDs",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n\\nlibrary(org.Hs.eg.db)\\nlibrary(pathview)\\nlibrary(clusterProfiler)\\n# Load necessary libraries\\nlibrary(clusterProfiler)\\nlibrary(org.Hs.eg.db)\\n\\n# Create a DEGAll data frame with necessary columns for GO enrichment\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue\\n  )\\n\\n# Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\\nselected_genes <- DEGAll %>%\\n  filter(pValue < 0.05 & abs(log2FoldChange) > 0.5) %>%\\n  dplyr::select(Gene)\\n\\n# Perform gene ID conversion with bitr() to get Entrez IDs\\nhg<-bitr(selected_genes$Gene,fromType=\\\"SYMBOL\\\",toType=c(\\\"ENTREZID\\\"),OrgDb=\\\"org.Hs.eg.db\\\")\", \"test_cases\": \"ncol(DEGAll) == 7\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33176622_3",
+        "study_id": "33176622",
+        "question_id": "3",
+        "analysis_types": "['Enrichment & Pathway Analysis', 'Descriptive Statistics']",
+        "study_type": "Biomarkers",
+        "study_title": "Transcriptomics and Prognosis Analysis to Identify Critical Biomarkers in Invasive Breast Carcinoma",
+        "dataset_url": "CMOB/GS-BRCA",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_33176622_3",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Task requires: (1) creating DEGAll from results, (2) filtering by pValue and log2FoldChange, (3) mapping gene IDs using bitr()",
+          "No explicit step list; workflow must be inferred from instructions",
+          "Multiple intermediate/final artifact types: DEGAll, selected_genes, mapped gene IDs"
+        ],
+        "reason": "There is a clear multi-step workflow (create, filter, map), and the steps must be sequenced correctly, but the method for each is standard and there is no explicit evidence of major branching or multiple materially different valid methods."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Requires creation of at least two data frames: DEGAll and selected_genes",
+          "Explicit filter thresholds: pValue < 0.05, abs(log2FoldChange) > 0.5",
+          "Explicit use of bitr() for gene ID mapping with specified fromType/toType/OrgDb"
+        ],
+        "reason": "There is moderate artifact realization load due to multiple output data frames and explicit parameterization (filter thresholds, mapping types), but no evidence of highly heterogeneous outputs or strict format verifiers."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of ambiguous semantics or data schema mismatch",
+          "Input files are referenced but not described as needing repair or alignment"
+        ],
+        "reason": "There is almost no evidence of semantic or representational repair required; the task is clearly specified and the data is assumed to be in usable form."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-step workflow: creating a data frame, filtering by explicit thresholds, and mapping gene IDs using a specified function. The planning and action loads are moderate due to the need to infer workflow structure and apply explicit parameterization, but there is little evidence of ambiguity, repair, or transfer requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2782,
+        "completion_tokens": 601,
+        "total_tokens": 3383
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Task requires: (1) creating DEGAll from results, (2) filtering by pValue and log2FoldChange, (3) mapping gene IDs using bitr()",
+            "No explicit step list; workflow must be inferred from instructions",
+            "Multiple intermediate/final artifact types: DEGAll, selected_genes, mapped gene IDs"
+          ],
+          "reason": "There is a clear multi-step workflow (create, filter, map), and the steps must be sequenced correctly, but the method for each is standard and there is no explicit evidence of major branching or multiple materially different valid methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Requires creation of at least two data frames: DEGAll and selected_genes",
+            "Explicit filter thresholds: pValue < 0.05, abs(log2FoldChange) > 0.5",
+            "Explicit use of bitr() for gene ID mapping with specified fromType/toType/OrgDb"
+          ],
+          "reason": "There is moderate artifact realization load due to multiple output data frames and explicit parameterization (filter thresholds, mapping types), but no evidence of highly heterogeneous outputs or strict format verifiers.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of ambiguous semantics or data schema mismatch",
+            "Input files are referenced but not described as needing repair or alignment"
+          ],
+          "reason": "There is almost no evidence of semantic or representational repair required; the task is clearly specified and the data is assumed to be in usable form.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-step workflow: creating a data frame, filtering by explicit thresholds, and mapping gene IDs using a specified function. The planning and action loads are moderate due to the need to infer workflow structure and apply explicit parameterization, but there is little evidence of ambiguity, repair, or transfer requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:53:32.032934+00:00"
+  }
+}

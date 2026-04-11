@@ -1,0 +1,131 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_1b0eaf02-0861-40b6-89bf-a267c9c8c206",
+      "question": " Which criterion for ‘a gap is spanned‘ was defined for allosomes?",
+      "data": [],
+      "answer": "0.5 × S ≤ L ≤ 1.5 × S",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "SuppQA",
+        "task_name": "suppqa",
+        "tag": "suppqa",
+        "version": "1.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "0.8 × S ≤ L ≤ 1.2 × S",
+          "0.5 × S ≤ L ≤ 1.2 × S",
+          "0.8 × S ≤ L ≤ 1.5 × S"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_1b0eaf02-0861-40b6-89bf-a267c9c8c206",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Question: Which criterion for ‘a gap is spanned‘ was defined for allosomes?",
+          "Answer and distractors are all single mathematical inequalities."
+        ],
+        "reason": "The task is a direct retrieval or recognition of a specific criterion (inequality) for a defined biological context. There is no evidence of a multi-stage workflow or dependency-constrained step graph (P1). There is a trace of branching (P2) in that multiple distractors exist, but the method is direct selection/recall, not requiring planning or method choice."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Answer is a single mathematical inequality.",
+          "No explicit format, parameter, or output structure constraints."
+        ],
+        "reason": "The artifact is a single, simple criterion (inequality). No evidence of multiple output types, format strictness, or parameterization burden. No explicit verification or thresholding rules."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "Question is unambiguous and refers to a specific criterion.",
+          "No evidence of missing fields, ambiguity, or data/schema repair needs."
+        ],
+        "reason": "No semantic or representational repair is required; the question is clear and the answer is directly specified."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present."
+        ],
+        "reason": "No evidence of experience assimilation or transfer; this is a standalone factual recall task."
+      }
+    },
+    "overall_summary": "This is a direct factual recall or recognition task requiring selection of a specific mathematical criterion for a biological context. There is minimal planning or artifact realization load, and no evidence of semantic/data repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2263,
+        "completion_tokens": 502,
+        "total_tokens": 2765
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Question: Which criterion for ‘a gap is spanned‘ was defined for allosomes?",
+            "Answer and distractors are all single mathematical inequalities."
+          ],
+          "reason": "The task is a direct retrieval or recognition of a specific criterion (inequality) for a defined biological context. There is no evidence of a multi-stage workflow or dependency-constrained step graph (P1). There is a trace of branching (P2) in that multiple distractors exist, but the method is direct selection/recall, not requiring planning or method choice.",
+          "subdimension_breakdown": {
+            "P1": 0,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Answer is a single mathematical inequality.",
+            "No explicit format, parameter, or output structure constraints."
+          ],
+          "reason": "The artifact is a single, simple criterion (inequality). No evidence of multiple output types, format strictness, or parameterization burden. No explicit verification or thresholding rules.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "Question is unambiguous and refers to a specific criterion.",
+            "No evidence of missing fields, ambiguity, or data/schema repair needs."
+          ],
+          "reason": "No semantic or representational repair is required; the question is clear and the answer is directly specified.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present."
+          ],
+          "reason": "No evidence of experience assimilation or transfer; this is a standalone factual recall task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct factual recall or recognition task requiring selection of a specific mathematical criterion for a biological context. There is minimal planning or artifact realization load, and no evidence of semantic/data repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:44:57.075115+00:00"
+  }
+}

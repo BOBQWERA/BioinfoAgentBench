@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-4-q4",
+      "question": "What is the standard deviation of animal DVMC (Degree of Violation of Molecular Clock) values across all trees?",
+      "data": [],
+      "answer": "0.30",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-4-q4",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.15",
+          "0.28",
+          "0.56"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-4-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "What is the standard deviation of animal DVMC (Degree of Violation of Molecular Clock) values across all trees?"
+        ],
+        "reason": "The question asks for a single summary statistic (standard deviation) over a defined set (animal DVMC values across all trees). There is only a trace of planning load, as the workflow is direct: extract values and compute standard deviation. No evidence of branching or multi-stage workflow."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the standard deviation of animal DVMC (Degree of Violation of Molecular Clock) values across all trees?",
+          "\"answer\": \"0.30\"",
+          "\"distractors\": [\"0.15\", \"0.28\", \"0.56\"]"
+        ],
+        "reason": "There is a minor artifact realization load: the output is a single numeric value, but the answer must be precise enough to distinguish among close distractors (e.g., 0.28 vs 0.30). No explicit format or rounding rules are stated, but the MCQ context implies some sensitivity to output precision."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No data or schema ambiguity is present; the question is clear and unambiguous."
+        ],
+        "reason": "No evidence of semantic or representational repair is required. The question is well-posed and does not require clarification or data/schema fixing."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or transfer is present."
+      }
+    },
+    "overall_summary": "This is a direct, single-step MCQ asking for a summary statistic (standard deviation) over a defined set. There is minimal planning or artifact realization load, and no evidence of semantic repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2207,
+        "completion_tokens": 535,
+        "total_tokens": 2742
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "What is the standard deviation of animal DVMC (Degree of Violation of Molecular Clock) values across all trees?"
+          ],
+          "reason": "The question asks for a single summary statistic (standard deviation) over a defined set (animal DVMC values across all trees). There is only a trace of planning load, as the workflow is direct: extract values and compute standard deviation. No evidence of branching or multi-stage workflow.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the standard deviation of animal DVMC (Degree of Violation of Molecular Clock) values across all trees?",
+            "\"answer\": \"0.30\"",
+            "\"distractors\": [\"0.15\", \"0.28\", \"0.56\"]"
+          ],
+          "reason": "There is a minor artifact realization load: the output is a single numeric value, but the answer must be precise enough to distinguish among close distractors (e.g., 0.28 vs 0.30). No explicit format or rounding rules are stated, but the MCQ context implies some sensitivity to output precision.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No data or schema ambiguity is present; the question is clear and unambiguous."
+          ],
+          "reason": "No evidence of semantic or representational repair is required. The question is well-posed and does not require clarification or data/schema fixing.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or transfer is present.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct, single-step MCQ asking for a summary statistic (standard deviation) over a defined set. There is minimal planning or artifact realization load, and no evidence of semantic repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:16:42.904393+00:00"
+  }
+}

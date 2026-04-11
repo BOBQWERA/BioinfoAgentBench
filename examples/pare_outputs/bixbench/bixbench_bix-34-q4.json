@@ -1,0 +1,122 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-34-q4",
+      "question": "What is the difference between the highest and lowest mean patristic distances among animal genes?",
+      "data": [],
+      "answer": "1.94",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-34-q4",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "1.12",
+          "2.67",
+          "3.38"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-34-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the difference between the highest and lowest mean patristic distances among animal genes?"
+        ],
+        "reason": "The question requires identifying the highest and lowest mean patristic distances (implying at least two steps: find all means, then compute their max and min, then take the difference). However, there is no evidence of branching decisions or multiple reasonable methods; the workflow is straightforward and canonical for this type of summary statistic."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "answer: '1.94'",
+          "What is the difference between the highest and lowest mean patristic distances among animal genes?"
+        ],
+        "reason": "The output is a single numeric value, with no explicit format or parameterization constraints. There is no evidence of multiple artifact types or strict output specification, but the answer must be computed from a set of means, so there is a minor artifact realization load."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What is the difference between the highest and lowest mean patristic distances among animal genes?"
+        ],
+        "reason": "The question is clear and unambiguous, with no evidence of semantic or data repair required. There is a trace load in that the definition of 'mean patristic distance' could, in principle, be interpreted in different ways, but the context does not suggest ambiguity or representational inconsistency."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [],
+        "reason": "No prior trajectory, experience, or transfer context is present in the payload."
+      }
+    },
+    "overall_summary": "This task involves a straightforward calculation of the difference between the highest and lowest mean patristic distances among animal genes. The planning and action loads are minor, reflecting the need to extract and compare summary statistics, but there is no evidence of branching, strict output specification, or repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2202,
+        "completion_tokens": 558,
+        "total_tokens": 2760
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the difference between the highest and lowest mean patristic distances among animal genes?"
+          ],
+          "reason": "The question requires identifying the highest and lowest mean patristic distances (implying at least two steps: find all means, then compute their max and min, then take the difference). However, there is no evidence of branching decisions or multiple reasonable methods; the workflow is straightforward and canonical for this type of summary statistic.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "answer: '1.94'",
+            "What is the difference between the highest and lowest mean patristic distances among animal genes?"
+          ],
+          "reason": "The output is a single numeric value, with no explicit format or parameterization constraints. There is no evidence of multiple artifact types or strict output specification, but the answer must be computed from a set of means, so there is a minor artifact realization load.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What is the difference between the highest and lowest mean patristic distances among animal genes?"
+          ],
+          "reason": "The question is clear and unambiguous, with no evidence of semantic or data repair required. There is a trace load in that the definition of 'mean patristic distance' could, in principle, be interpreted in different ways, but the context does not suggest ambiguity or representational inconsistency.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [],
+          "reason": "No prior trajectory, experience, or transfer context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward calculation of the difference between the highest and lowest mean patristic distances among animal genes. The planning and action loads are minor, reflecting the need to extract and compare summary statistics, but there is no evidence of branching, strict output specification, or repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:10:28.535945+00:00"
+  }
+}

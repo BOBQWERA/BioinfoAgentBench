@@ -1,0 +1,138 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-5-q4",
+      "question": "Which is the most enriched process in the ASXL1-mutated fibroblasts?",
+      "data": [],
+      "answer": "Potassium ion transmembrane transport",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-5-q4",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Muscle contraction",
+          "Axon guidance",
+          "Dendrite self-avoidance"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-5-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Which is the most enriched process in the ASXL1-mutated fibroblasts?",
+          "No explicit workflow or method specified",
+          "Task type: mcq"
+        ],
+        "reason": "The question requires identifying the most enriched process, which implies at least a two-step reasoning: (1) understanding what 'enriched process' means in this context (likely gene set enrichment or similar), and (2) selecting the correct answer from options. However, the MCQ format and lack of explicit workflow or branching evidence keep the planning load low to moderate. There is no evidence of multiple materially different methods or dependency-constrained step graphs."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Task type: mcq",
+          "No explicit output format or artifact constraints",
+          "No explicit parameterization or threshold"
+        ],
+        "reason": "The action load is minimal because the task is to select one answer from a list (MCQ), with no evidence of multiple artifact types, format strictness, or parameterization. No explicit verification or output realization burden is present."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No explicit ambiguity or contradiction in question wording",
+          "No schema or representation issues indicated"
+        ],
+        "reason": "There is no evidence of semantic or data repair required. The question is clear and unambiguous in its intent, and there are no data or schema issues to resolve."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided",
+          "No transfer context"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a low-complexity MCQ task asking for the most enriched process in a specific biological context. There is minor planning load due to the need to interpret 'enriched process' and select among options, but no evidence of workflow branching, artifact realization, semantic repair, or transfer. All dimensions are low, with E absent.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2209,
+        "completion_tokens": 592,
+        "total_tokens": 2801
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Which is the most enriched process in the ASXL1-mutated fibroblasts?",
+            "No explicit workflow or method specified",
+            "Task type: mcq"
+          ],
+          "reason": "The question requires identifying the most enriched process, which implies at least a two-step reasoning: (1) understanding what 'enriched process' means in this context (likely gene set enrichment or similar), and (2) selecting the correct answer from options. However, the MCQ format and lack of explicit workflow or branching evidence keep the planning load low to moderate. There is no evidence of multiple materially different methods or dependency-constrained step graphs.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Task type: mcq",
+            "No explicit output format or artifact constraints",
+            "No explicit parameterization or threshold"
+          ],
+          "reason": "The action load is minimal because the task is to select one answer from a list (MCQ), with no evidence of multiple artifact types, format strictness, or parameterization. No explicit verification or output realization burden is present.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No explicit ambiguity or contradiction in question wording",
+            "No schema or representation issues indicated"
+          ],
+          "reason": "There is no evidence of semantic or data repair required. The question is clear and unambiguous in its intent, and there are no data or schema issues to resolve.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided",
+            "No transfer context"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a low-complexity MCQ task asking for the most enriched process in a specific biological context. There is minor planning load due to the need to interpret 'enriched process' and select among options, but no evidence of workflow branching, artifact realization, semantic repair, or transfer. All dimensions are low, with E absent.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:24:45.438726+00:00"
+  }
+}

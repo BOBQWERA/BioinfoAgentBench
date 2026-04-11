@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-29-q1",
+      "question": "What is the odds ratio of BCG vaccination on COVID-19 severity when controlling for prior medical history count and patients interaction frequency and interaction between terms, predicted by an ordinal regression model?",
+      "data": [],
+      "answer": "(1.62,1.65)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-29-q1",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.73,0.75)",
+          "(0.9,1.1)",
+          "(0.2,0.25)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-29-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "controlling for prior medical history count and patients interaction frequency and interaction between terms",
+          "predicted by an ordinal regression model"
+        ],
+        "reason": "The question requires structuring a workflow to fit an ordinal regression model with multiple covariates and interaction terms, which implies a multi-step process (data preparation, model fitting, extracting odds ratio). However, the method (ordinal regression) is specified and there is no explicit evidence of major branching or multiple defensible methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "odds ratio",
+          "range_verifier",
+          "answer format: (1.62,1.65)"
+        ],
+        "reason": "The output is a numeric odds ratio in a specified range, with a format constraint (tuple). The presence of a range_verifier suggests some output checking, but there is no evidence of multiple heterogeneous artifact types or strict multi-format requirements."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No explicit ambiguity or schema mismatch"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/schema repair needs. The question is clear in its requirements, and no data is present to require representational repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task requires structuring a multi-covariate ordinal regression analysis with interaction terms, which induces moderate planning load. The output is a single odds ratio in a specified format, with some parameterization and verification, but no evidence of high artifact or specification complexity. There is minimal reflection or repair load, and no transfer/evolution context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2236,
+        "completion_tokens": 541,
+        "total_tokens": 2777
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "controlling for prior medical history count and patients interaction frequency and interaction between terms",
+            "predicted by an ordinal regression model"
+          ],
+          "reason": "The question requires structuring a workflow to fit an ordinal regression model with multiple covariates and interaction terms, which implies a multi-step process (data preparation, model fitting, extracting odds ratio). However, the method (ordinal regression) is specified and there is no explicit evidence of major branching or multiple defensible methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "odds ratio",
+            "range_verifier",
+            "answer format: (1.62,1.65)"
+          ],
+          "reason": "The output is a numeric odds ratio in a specified range, with a format constraint (tuple). The presence of a range_verifier suggests some output checking, but there is no evidence of multiple heterogeneous artifact types or strict multi-format requirements.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No explicit ambiguity or schema mismatch"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/schema repair needs. The question is clear in its requirements, and no data is present to require representational repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires structuring a multi-covariate ordinal regression analysis with interaction terms, which induces moderate planning load. The output is a single odds ratio in a specified format, with some parameterization and verification, but no evidence of high artifact or specification complexity. There is minimal reflection or repair load, and no transfer/evolution context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:03:25.999942+00:00"
+  }
+}

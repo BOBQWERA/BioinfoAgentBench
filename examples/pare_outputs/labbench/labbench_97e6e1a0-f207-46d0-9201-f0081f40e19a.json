@@ -1,0 +1,127 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_97e6e1a0-f207-46d0-9201-f0081f40e19a",
+      "question": "What is the percent GC of the DNA sequence ACCAAGTTACAATGGGAATTTTTACTCCAGATAACTAAACACCACTACCAATGCCGCCTACCCTCTTGGCCCCCAAGTGGTAAAAGACTCCCGCCTTGCTTTGTTGCGGCTTCTCCTCCTCCTTTGTATGCTCTGACGTGCCCGATTAGGTTCTATGAGGGATTATGCTTCGGTCGTAGTGTGAGCTTTGATCATTGCCGCAAGACGACCGAAGTCGTCATTACCAATACGACATCAAATTTCGTATTGTTTTAAGAACACTACACGGGGCGCCCGGTCCTCATCGCACAGACTCTCTACGACCCTGTGACATGCTTATTACTGTGACGGGGAGATGGGTAACCCCTCACTTAACAGCTCTTAAGGCAGGGG? Round to the nearest integer.",
+      "data": [],
+      "answer": "49",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "SeqQA",
+        "task_name": "Prop-seq-gcpercent",
+        "tag": "seqqa",
+        "version": "1.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "48",
+          "50",
+          "24"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_97e6e1a0-f207-46d0-9201-f0081f40e19a",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Question: What is the percent GC of the DNA sequence ...? Round to the nearest integer."
+        ],
+        "reason": "The task is a direct calculation of GC content from a single DNA sequence. There is no evidence of a multi-stage workflow or branching decision; the only minor planning is recognizing the need to count G and C bases and compute a percentage, which is a trivial decomposition."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output must be rounded to the nearest integer.",
+          "Single integer output required."
+        ],
+        "reason": "The action load is minor but present due to the explicit requirement to round the result to the nearest integer, which introduces a small parameterization/format constraint. Only one output type (integer) is required."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No ambiguity or data repair required; sequence is provided directly and question is clear."
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation inconsistency. The sequence is given in a standard format and the question is unambiguous."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present."
+        ],
+        "reason": "No experience or transfer context is provided or required."
+      }
+    },
+    "overall_summary": "This is a straightforward calculation task: compute the percent GC content of a provided DNA sequence and round to the nearest integer. There is minimal planning or action load, with only a trace of workflow structuring (counting bases and computing a percentage) and a minor format constraint (rounding). No repair or transfer is required.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2406,
+        "completion_tokens": 502,
+        "total_tokens": 2908
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Question: What is the percent GC of the DNA sequence ...? Round to the nearest integer."
+          ],
+          "reason": "The task is a direct calculation of GC content from a single DNA sequence. There is no evidence of a multi-stage workflow or branching decision; the only minor planning is recognizing the need to count G and C bases and compute a percentage, which is a trivial decomposition.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output must be rounded to the nearest integer.",
+            "Single integer output required."
+          ],
+          "reason": "The action load is minor but present due to the explicit requirement to round the result to the nearest integer, which introduces a small parameterization/format constraint. Only one output type (integer) is required.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No ambiguity or data repair required; sequence is provided directly and question is clear."
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation inconsistency. The sequence is given in a standard format and the question is unambiguous.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present."
+          ],
+          "reason": "No experience or transfer context is provided or required.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward calculation task: compute the percent GC content of a provided DNA sequence and round to the nearest integer. There is minimal planning or action load, with only a trace of workflow structuring (counting bases and computing a percentage) and a minor format constraint (rounding). No repair or transfer is required.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:43:56.988299+00:00"
+  }
+}

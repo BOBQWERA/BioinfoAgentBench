@@ -1,0 +1,121 @@
+{
+  "question": {
+    "benchmark": "biochatter",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biochatter_api_calling_anndata_concat_var",
+      "question": "Concatenate adata1 and adata2 into a single AnnData object along the column axis with an inner join.\n\n[template_input]\n{\"prompt\": {\"abbreviation\": \"Merge columns of adata1 and adata2 with AnnData.\", \"explicit_variable_names\": \"Concatenate adata1 and adata2 into a single AnnData object along the column axis with an inner join.\", \"general\": \"Combine two AnnData objects along the variable axis with an inner join.\", \"help_request\": \"How do I concatenate adata1 and adata2 along columns?\", \"specific\": \"Join adata1 and adata2 by columns using AnnData with an inner join.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"anndata.concat\\\\(\", \"\\\\[adata1, adata2\\\\]\", \", axis='var', join='inner'\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "anndata:concat:var",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biochatter_api_calling_anndata_concat_var",
+    "benchmark": "biochatter",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Concatenate adata1 and adata2 into a single AnnData object along the column axis with an inner join.",
+          "Join adata1 and adata2 by columns using AnnData with an inner join."
+        ],
+        "reason": "There is a minor workflow structuring load in that the user must recognize the need to concatenate along the variable (column) axis and specify the join type. However, the task is direct and does not require decomposition into multiple steps or present multiple reasonable methods that would materially affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "axis='var', join='inner'",
+          "Concatenate adata1 and adata2"
+        ],
+        "reason": "There is a weak artifact realization and parameterization load: the user must specify the axis and join type, but there is only one output (the concatenated AnnData object) and the format is standard. No strict format or multi-artifact output is required."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of ambiguous or inconsistent schema in the prompt or data."
+        ],
+        "reason": "There is almost no need for semantic or representational repair; the task is clearly worded and the required operation is unambiguous."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This is a direct API usage task requiring the user to concatenate two AnnData objects along the variable axis with an inner join. There is minor planning and parameterization load due to the need to specify axis and join type, but no significant branching, artifact complexity, or repair. No transfer or evolution load is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2327,
+        "completion_tokens": 542,
+        "total_tokens": 2869
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Concatenate adata1 and adata2 into a single AnnData object along the column axis with an inner join.",
+            "Join adata1 and adata2 by columns using AnnData with an inner join."
+          ],
+          "reason": "There is a minor workflow structuring load in that the user must recognize the need to concatenate along the variable (column) axis and specify the join type. However, the task is direct and does not require decomposition into multiple steps or present multiple reasonable methods that would materially affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "axis='var', join='inner'",
+            "Concatenate adata1 and adata2"
+          ],
+          "reason": "There is a weak artifact realization and parameterization load: the user must specify the axis and join type, but there is only one output (the concatenated AnnData object) and the format is standard. No strict format or multi-artifact output is required.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of ambiguous or inconsistent schema in the prompt or data."
+          ],
+          "reason": "There is almost no need for semantic or representational repair; the task is clearly worded and the required operation is unambiguous.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct API usage task requiring the user to concatenate two AnnData objects along the variable axis with an inner join. There is minor planning and parameterization load due to the need to specify axis and join type, but no significant branching, artifact complexity, or repair. No transfer or evolution load is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T10:40:19.157322+00:00"
+  }
+}

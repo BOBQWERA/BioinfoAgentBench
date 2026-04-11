@@ -1,0 +1,133 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_74",
+      "question": "{The following is the chip expression data of one sample from the human embryonic stem cell dataset GSE16919 {GSM424314.CEL.gz}, with the corresponding probe number being {GPL571}. Please convert the CEL file into a gene expression profile.}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0074/files/GSM424314.CEL.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"matrix.txt\", \"path\": \"downloaded_files\\\\index_0074\\\\milestone\\\\matrix.txt\"}], \"milestones\": [\"Generate the file matrix.txt\"], \"steps\": [\"Using the celtoexp tool to convert chip data into gene expression profiles.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "MicroArray",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.38,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_74",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Please convert the CEL file into a gene expression profile.",
+          "Using the celtoexp tool to convert chip data into gene expression profiles."
+        ],
+        "reason": "The task requires converting a CEL file to a gene expression profile, which is a standard single-step workflow with a clear input and output. There is no explicit evidence of branching or multiple methods, but the need to map from probe-level data (CEL) to gene-level expression implies a minor workflow structuring load."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Generate the file matrix.txt",
+          "\"milestone_files\": [{\"name\": \"matrix.txt\", ...}]"
+        ],
+        "reason": "The output is a single file (matrix.txt) representing the gene expression profile. There is no evidence of multiple heterogeneous outputs or strict format/parameter constraints, but the need to produce a specific output file type gives a minor artifact realization load."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "probe number being {GPL571}"
+        ],
+        "reason": "There is a faint need to map probe IDs to gene expression, but the platform is specified (GPL571), and there is no evidence of ambiguity or schema inconsistency. No explicit repair or clarification is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This task is a standard single-step conversion from a CEL file to a gene expression matrix, with minor workflow structuring and artifact realization load. There is minimal need for semantic or data repair, and no transfer or evolution load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2363,
+        "completion_tokens": 524,
+        "total_tokens": 2887
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Please convert the CEL file into a gene expression profile.",
+            "Using the celtoexp tool to convert chip data into gene expression profiles."
+          ],
+          "reason": "The task requires converting a CEL file to a gene expression profile, which is a standard single-step workflow with a clear input and output. There is no explicit evidence of branching or multiple methods, but the need to map from probe-level data (CEL) to gene-level expression implies a minor workflow structuring load.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Generate the file matrix.txt",
+            "\"milestone_files\": [{\"name\": \"matrix.txt\", ...}]"
+          ],
+          "reason": "The output is a single file (matrix.txt) representing the gene expression profile. There is no evidence of multiple heterogeneous outputs or strict format/parameter constraints, but the need to produce a specific output file type gives a minor artifact realization load.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "probe number being {GPL571}"
+          ],
+          "reason": "There is a faint need to map probe IDs to gene expression, but the platform is specified (GPL571), and there is no evidence of ambiguity or schema inconsistency. No explicit repair or clarification is required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is a standard single-step conversion from a CEL file to a gene expression matrix, with minor workflow structuring and artifact realization load. There is minimal need for semantic or data repair, and no transfer or evolution load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:07:30.532278+00:00"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "benchmark_count": 16,
+  "record_count": 526,
+  "benchmarks": [
+    {
+      "benchmark": "autoba",
+      "count": 10,
+      "with_file_references": 10
+    },
+    {
+      "benchmark": "biochatter",
+      "count": 11,
+      "with_file_references": 11
+    },
+    {
+      "benchmark": "biodsbench-r",
+      "count": 26,
+      "with_file_references": 26
+    },
+    {
+      "benchmark": "biodsbench",
+      "count": 47,
+      "with_file_references": 47
+    },
+    {
+      "benchmark": "biomed_aqa",
+      "count": 144,
+      "with_file_references": 144
+    },
+    {
+      "benchmark": "biomed_aqa_e1_upgrade_top5_2_std",
+      "count": 5,
+      "with_file_references": 5
+    },
+    {
+      "benchmark": "biomed_aqa_e1_upgrade_top5_std",
+      "count": 5,
+      "with_file_references": 5
+    },
+    {
+      "benchmark": "biomed_aqa_e2_upgrade_top5_2_std",
+      "count": 5,
+      "with_file_references": 5
+    },
+    {
+      "benchmark": "biomed_aqa_e2_upgrade_top5_std",
+      "count": 5,
+      "with_file_references": 5
+    },
+    {
+      "benchmark": "biomed_aqa_r1_upgrade_top5_2_std",
+      "count": 5,
+      "with_file_references": 5
+    },
+    {
+      "benchmark": "biomed_aqa_r1_upgrade_top5_std",
+      "count": 5,
+      "with_file_references": 5
+    },
+    {
+      "benchmark": "biomed_aqa_r2_upgrade_top5_2_std",
+      "count": 5,
+      "with_file_references": 5
+    },
+    {
+      "benchmark": "biomed_aqa_r2_upgrade_top5_std",
+      "count": 5,
+      "with_file_references": 5
+    },
+    {
+      "benchmark": "biomni_eval1",
+      "count": 22,
+      "with_file_references": 0
+    },
+    {
+      "benchmark": "bixbench",
+      "count": 205,
+      "with_file_references": 0
+    },
+    {
+      "benchmark": "labbench",
+      "count": 21,
+      "with_file_references": 1
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-52-q3",
+      "question": "Use a chi-square test to evaluate if the distribution of filtered age-related CpG sites (>90% or <10% methylation) is uniform across the Zebra Finch genome. What is the chi-square statisti?",
+      "data": [],
+      "answer": "(48,50)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-52-q3",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(42,44)",
+          "(55,57)",
+          "(32,34)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-52-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Use a chi-square test to evaluate if the distribution of filtered age-related CpG sites (>90% or <10% methylation) is uniform across the Zebra Finch genome.",
+          "filtered age-related CpG sites (>90% or <10% methylation)"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires filtering CpG sites based on methylation thresholds and then applying a chi-square test for uniformity. However, the method is specified (chi-square test), and there is no evidence of significant branching or multiple defensible methods. The dependency chain is simple (filter then test), so P1 is weak and P2 is absent."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the chi-square statisti?",
+          "range_verifier",
+          "mcq"
+        ],
+        "reason": "The output is a single chi-square statistic (numeric), with the answer expected to fall within a specified range (range_verifier). There is some parameterization load due to the need to filter by methylation percentage, but the output format is simple (numeric, MCQ). No evidence of multiple artifact types or strict format constraints."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No input data provided",
+          "No schema or representation issues mentioned"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clear, and no data is provided that would require schema alignment or repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no transfer or experience context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a simple workflow: filtering CpG sites by methylation percentage and applying a chi-square test for uniformity. The planning and action loads are weak due to the straightforward, specified method and simple output. There is no evidence of semantic or data repair, and no transfer/experience context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2226,
+        "completion_tokens": 565,
+        "total_tokens": 2791
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Use a chi-square test to evaluate if the distribution of filtered age-related CpG sites (>90% or <10% methylation) is uniform across the Zebra Finch genome.",
+            "filtered age-related CpG sites (>90% or <10% methylation)"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires filtering CpG sites based on methylation thresholds and then applying a chi-square test for uniformity. However, the method is specified (chi-square test), and there is no evidence of significant branching or multiple defensible methods. The dependency chain is simple (filter then test), so P1 is weak and P2 is absent.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the chi-square statisti?",
+            "range_verifier",
+            "mcq"
+          ],
+          "reason": "The output is a single chi-square statistic (numeric), with the answer expected to fall within a specified range (range_verifier). There is some parameterization load due to the need to filter by methylation percentage, but the output format is simple (numeric, MCQ). No evidence of multiple artifact types or strict format constraints.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No input data provided",
+            "No schema or representation issues mentioned"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clear, and no data is provided that would require schema alignment or repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no transfer or experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a simple workflow: filtering CpG sites by methylation percentage and applying a chi-square test for uniformity. The planning and action loads are weak due to the straightforward, specified method and simple output. There is no evidence of semantic or data repair, and no transfer/experience context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:27:23.616325+00:00"
+  }
+}

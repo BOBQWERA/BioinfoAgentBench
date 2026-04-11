@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-57-q1",
+      "question": "What is the percentage of gap characters relative to total alignment positions across all alignments after aligning with MAFFT with the 'auto' parameter?",
+      "data": [],
+      "answer": "4.8",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-57-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "3.2",
+          "6.1",
+          "5.5"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-57-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "aligning with MAFFT with the 'auto' parameter",
+          "percentage of gap characters relative to total alignment positions across all alignments"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires running a sequence alignment (with a specified tool and parameter) and then calculating a summary statistic (gap percentage) across all alignments. However, the method is mostly specified (MAFFT, 'auto'), and there is no evidence of branching decisions or multiple defensible methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "percentage of gap characters relative to total alignment positions",
+          "after aligning with MAFFT"
+        ],
+        "reason": "There is a weak artifact realization load: the output is a single numeric value (percentage), and the only explicit format constraint is that it is a percentage. No strict schema, multiple output types, or explicit parameterization/thresholds are specified beyond the MAFFT 'auto' parameter."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "percentage of gap characters relative to total alignment positions"
+        ],
+        "reason": "There is a trace need to clarify what constitutes a 'gap character' and 'total alignment positions', but these are standard terms in sequence alignment and do not introduce ambiguity or require repair. No evidence of data or schema inconsistency."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload"
+        ],
+        "reason": "No evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow (run MAFFT with a specified parameter, then compute a simple summary statistic), with low planning and artifact realization load. There is little to no ambiguity or need for repair, and no transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2212,
+        "completion_tokens": 545,
+        "total_tokens": 2757
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "aligning with MAFFT with the 'auto' parameter",
+            "percentage of gap characters relative to total alignment positions across all alignments"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires running a sequence alignment (with a specified tool and parameter) and then calculating a summary statistic (gap percentage) across all alignments. However, the method is mostly specified (MAFFT, 'auto'), and there is no evidence of branching decisions or multiple defensible methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "percentage of gap characters relative to total alignment positions",
+            "after aligning with MAFFT"
+          ],
+          "reason": "There is a weak artifact realization load: the output is a single numeric value (percentage), and the only explicit format constraint is that it is a percentage. No strict schema, multiple output types, or explicit parameterization/thresholds are specified beyond the MAFFT 'auto' parameter.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "percentage of gap characters relative to total alignment positions"
+          ],
+          "reason": "There is a trace need to clarify what constitutes a 'gap character' and 'total alignment positions', but these are standard terms in sequence alignment and do not introduce ambiguity or require repair. No evidence of data or schema inconsistency.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload"
+          ],
+          "reason": "No evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow (run MAFFT with a specified parameter, then compute a simple summary statistic), with low planning and artifact realization load. There is little to no ambiguity or need for repair, and no transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:32:39.139535+00:00"
+  }
+}

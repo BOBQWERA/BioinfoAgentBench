@@ -1,0 +1,166 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_r2_upgrade_top5_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_311",
+      "question": "There is an existing file deviation.tsv. Perform z-score on mpg, sort descending, split high/low by 0, and draw a deviation plot with name on y-axis and normalized mpg on x-axis. Before computation, repair representation issues: mpg may include mixed decimal formats and name may have duplicate variants caused by casing/spaces. Normalize representation and resolve duplicates before z-scoring.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0311/files/deviation.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"deviation_plot.png\", \"path\": \"downloaded_files\\\\index_0311\\\\milestone\\\\deviation_plot.png\"}], \"milestones\": [\"Generate deviation plot\", \"The result file for saving the image is in png format, which is correct.\"], \"steps\": [\"Draw deviation plot\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Other",
+        "task_abbr": "Deviation plot",
+        "task": "Other",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.8,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_r1_selection', 'must_have_workflow_memory_reference_index', 'prefer_r2_repair_obvious_tasks', 'targets_are_tsv_or_csv_only']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Numeric token normalization + duplicate name representation.",
+              "intent": "Increase R2 via representation/schema/quality repairs required before computation."
+            },
+            "data_repair_methods": [
+              "Normalize mpg by converting comma-decimal to dot-decimal, then parse to float.",
+              "Canonicalize name via trim + lowercase for duplicate detection.",
+              "For duplicated canonical names, keep the first row with valid mpg and discard others."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 311,
+              "workflow_memory_Index": 89,
+              "task_abbr": "Deviation plot",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps:\n\n1. **Goal**: Load the data from the file \"deviation.tsv\" and extract the relevant columns \"name\" and \"mpg\".\n    - **Tool**: None (Python code)\n    - **Input**: \"deviation.tsv\"\n    - **Output**: (names, mpg_values) (list of strings, list of floats)\n    - **Description**: Read the contents of the deviation.tsv file and parse the \"name\" and \"mpg\" columns into separate lists.\n\n2. **Goal**: Calculate the z-scores for the extracted \"mpg\" values.\n    - **Tool**: None (Python code)\n    - **Input**: mpg_values (list of floats)\n    - **Output**: z_scores (list of floats)\n    - **Description**: Implement the z-score formula to normalize the \"mpg\" values, resulting in a list of z-scores.\n\n3. **Goal**: Sort the z-scores in descending order and associate them with the corresponding \"name\" values.\n    - **Tool**: None (Python code)\n    - **Input**: z_scores, names (list of floats, list of strings)\n    - **Output**: sorted_z_scores (list of floats), sorted_names (list of strings)\n    - **Description**: Sort the z-scores and their corresponding names based on the z-scores in descending order.\n\n4. **Goal**: Divide the sorte"
+            },
+            "original_question": "{There is an existing data file deviation.tsv. First, perform z-score on the mpg column data and sort the results in descending order. Divide the data into high/low groups with 0 as the boundary value. Use the \"name\" column as the y-axis label and the normalized and sorted \"mpg\" as the x-axis to create a deviation plot.}"
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_311",
+    "benchmark": "biomed_aqa_r2_upgrade_top5_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Perform z-score on mpg, sort descending, split high/low by 0, and draw a deviation plot",
+          "repair representation issues: mpg may include mixed decimal formats and name may have duplicate variants caused by casing/spaces",
+          "Normalize representation and resolve duplicates before z-scoring"
+        ],
+        "reason": "The task requires a multi-stage workflow: data repair (normalization and deduplication), z-score computation, sorting, splitting, and plotting. The workflow is dependency-constrained (repair must precede computation), but the method for each step is mostly specified or canonical. There is no strong evidence of major method branching (P2), as the repair and computation steps are described with clear intent and canonical approaches."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "draw a deviation plot with name on y-axis and normalized mpg on x-axis",
+          "deviation_plot.png",
+          "Perform z-score on mpg, sort descending, split high/low by 0"
+        ],
+        "reason": "The task requires producing a plot (PNG) with specific axes and normalized data, and involves intermediate artifacts (normalized/sorted/split data). Output format (PNG) is specified, and the plot structure is described, but there is no evidence of strict schema or parameterization beyond standard plotting and z-score conventions."
+      },
+      "R": {
+        "score": 5,
+        "evidence": [
+          "repair representation issues: mpg may include mixed decimal formats and name may have duplicate variants caused by casing/spaces",
+          "Normalize representation and resolve duplicates before z-scoring",
+          "\"representation_problem\": \"Numeric token normalization + duplicate name representation.\"",
+          "\"data_repair_methods\": [\"Normalize mpg by converting comma-decimal to dot-decimal, then parse to float.\", \"Canonicalize name via trim + lowercase for duplicate detection.\", \"For duplicated canonical names, keep the first row with valid mpg and discard others.\"]"
+        ],
+        "reason": "The central difficulty is explicit: the task cannot be computed correctly without repairing both numeric and string representation issues. Both R1 (problem semantics repair) and R2 (data/representation repair) are major drivers, as the payload directly states that the data is not in a computable form until these repairs are made."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No explicit prior trajectory or transfer context in the payload"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The workflow reference is a canonical step list, not a prior run or experience text requiring abstraction or mapping."
+      }
+    },
+    "overall_summary": "This task is dominated by the need for explicit data and representation repair before computation (R), as the payload directly states that both numeric and string fields are inconsistent and must be normalized and deduplicated. The planning and action loads are moderate due to the multi-stage workflow and the need to produce a specific plot, but there is no strong evidence of method branching or strict parameterization. There is no transfer/experience load.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3051,
+        "completion_tokens": 790,
+        "total_tokens": 3841
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Perform z-score on mpg, sort descending, split high/low by 0, and draw a deviation plot",
+            "repair representation issues: mpg may include mixed decimal formats and name may have duplicate variants caused by casing/spaces",
+            "Normalize representation and resolve duplicates before z-scoring"
+          ],
+          "reason": "The task requires a multi-stage workflow: data repair (normalization and deduplication), z-score computation, sorting, splitting, and plotting. The workflow is dependency-constrained (repair must precede computation), but the method for each step is mostly specified or canonical. There is no strong evidence of major method branching (P2), as the repair and computation steps are described with clear intent and canonical approaches.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "draw a deviation plot with name on y-axis and normalized mpg on x-axis",
+            "deviation_plot.png",
+            "Perform z-score on mpg, sort descending, split high/low by 0"
+          ],
+          "reason": "The task requires producing a plot (PNG) with specific axes and normalized data, and involves intermediate artifacts (normalized/sorted/split data). Output format (PNG) is specified, and the plot structure is described, but there is no evidence of strict schema or parameterization beyond standard plotting and z-score conventions.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 5,
+          "evidence": [
+            "repair representation issues: mpg may include mixed decimal formats and name may have duplicate variants caused by casing/spaces",
+            "Normalize representation and resolve duplicates before z-scoring",
+            "\"representation_problem\": \"Numeric token normalization + duplicate name representation.\"",
+            "\"data_repair_methods\": [\"Normalize mpg by converting comma-decimal to dot-decimal, then parse to float.\", \"Canonicalize name via trim + lowercase for duplicate detection.\", \"For duplicated canonical names, keep the first row with valid mpg and discard others.\"]"
+          ],
+          "reason": "The central difficulty is explicit: the task cannot be computed correctly without repairing both numeric and string representation issues. Both R1 (problem semantics repair) and R2 (data/representation repair) are major drivers, as the payload directly states that the data is not in a computable form until these repairs are made.",
+          "subdimension_breakdown": {
+            "R1": 4,
+            "R2": 5
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No explicit prior trajectory or transfer context in the payload"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The workflow reference is a canonical step list, not a prior run or experience text requiring abstraction or mapping.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is dominated by the need for explicit data and representation repair before computation (R), as the payload directly states that both numeric and string fields are inconsistent and must be normalized and deduplicated. The planning and action loads are moderate due to the multi-stage workflow and the need to produce a specific plot, but there is no strong evidence of method branching or strict parameterization. There is no transfer/experience load.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-08T19:58:39.413071+00:00"
+  }
+}

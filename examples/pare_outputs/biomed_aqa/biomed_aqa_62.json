@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_62",
+      "question": "{Expression profile data {exp_COAD.csv}, corresponding grouping information {group_COAD.csv}, calculate the differential genes between groups}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0062/files/exp_COAD.csv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0062/files/group_COAD.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"DEG_COAD.csv\", \"path\": \"downloaded_files\\\\index_0062\\\\milestone\\\\DEG_COAD.csv\"}], \"milestones\": [\"Generate differential genes\"], \"steps\": [\"Calculate differential genes\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "DEG",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.26,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_62",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Input: exp_COAD.csv (expression profile data)",
+          "Input: group_COAD.csv (corresponding grouping information)",
+          "Instruction: calculate the differential genes between groups"
+        ],
+        "reason": "There is a minor workflow structuring load as the task requires integrating expression data with group information to perform differential gene analysis, which is not a single direct computation. However, the workflow is standard and there is no explicit evidence of method branching or multiple defensible approaches required by the payload."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output: DEG_COAD.csv",
+          "Milestone: Generate differential genes"
+        ],
+        "reason": "There is a weak artifact realization load as the output is a single file (DEG_COAD.csv) and the format or strictness is not specified. No explicit parameterization or threshold requirements are given."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or schema mismatch in the payload",
+          "Inputs are structured files (csv) with clear roles"
+        ],
+        "reason": "There is only trace evidence for reflection load: the task is clearly worded and the data types are specified. No evidence of semantic ambiguity or data repair is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided"
+        ],
+        "reason": "No transfer or evolution context is present in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard differential gene expression analysis using provided expression and group data, with a single output file required. There is minor workflow structuring and artifact realization load, but no evidence of significant branching, strict parameterization, semantic ambiguity, or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2358,
+        "completion_tokens": 522,
+        "total_tokens": 2880
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Input: exp_COAD.csv (expression profile data)",
+            "Input: group_COAD.csv (corresponding grouping information)",
+            "Instruction: calculate the differential genes between groups"
+          ],
+          "reason": "There is a minor workflow structuring load as the task requires integrating expression data with group information to perform differential gene analysis, which is not a single direct computation. However, the workflow is standard and there is no explicit evidence of method branching or multiple defensible approaches required by the payload.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output: DEG_COAD.csv",
+            "Milestone: Generate differential genes"
+          ],
+          "reason": "There is a weak artifact realization load as the output is a single file (DEG_COAD.csv) and the format or strictness is not specified. No explicit parameterization or threshold requirements are given.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or schema mismatch in the payload",
+            "Inputs are structured files (csv) with clear roles"
+          ],
+          "reason": "There is only trace evidence for reflection load: the task is clearly worded and the data types are specified. No evidence of semantic ambiguity or data repair is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided"
+          ],
+          "reason": "No transfer or evolution context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard differential gene expression analysis using provided expression and group data, with a single output file required. There is minor workflow structuring and artifact realization load, but no evidence of significant branching, strict parameterization, semantic ambiguity, or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:06:23.428353+00:00"
+  }
+}

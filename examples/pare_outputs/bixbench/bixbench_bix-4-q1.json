@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-4-q1",
+      "question": "What percentage of fungal genes have DVMC values below 0.3 using PhyKIT's DVMC function?",
+      "data": [],
+      "answer": "57%",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-4-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "28%",
+          "45%",
+          "79%"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-4-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What percentage of fungal genes have DVMC values below 0.3 using PhyKIT's DVMC function?"
+        ],
+        "reason": "The question requires applying a specific function (PhyKIT's DVMC) to a set of genes and then calculating the percentage below a threshold. This implies a two-step process: (1) compute DVMC for each gene, (2) count and calculate the percentage below 0.3. However, the workflow is straightforward and canonical for this type of summary statistic, with no evidence of branching or multiple valid methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What percentage of fungal genes have DVMC values below 0.3",
+          "using PhyKIT's DVMC function?",
+          "\"57%\""
+        ],
+        "reason": "The output is a single percentage value, with no evidence of multiple artifact types or strict format constraints. The only parameterization is the threshold (0.3), which is explicitly stated, but there are no further explicit verification or format requirements."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "using PhyKIT's DVMC function"
+        ],
+        "reason": "The question is clear and specifies the function and threshold. There is no evidence of semantic ambiguity or data/representation repair needs. The only minor load is the implicit assumption that the user knows what 'DVMC' means in this context, but this is not enough for a higher score."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward application of a specified function to a gene set, followed by a simple threshold-based summary. There is minor planning and parameterization load due to the two-step process and explicit threshold, but no evidence of branching, artifact heterogeneity, semantic ambiguity, or transfer context.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2199,
+        "completion_tokens": 582,
+        "total_tokens": 2781
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What percentage of fungal genes have DVMC values below 0.3 using PhyKIT's DVMC function?"
+          ],
+          "reason": "The question requires applying a specific function (PhyKIT's DVMC) to a set of genes and then calculating the percentage below a threshold. This implies a two-step process: (1) compute DVMC for each gene, (2) count and calculate the percentage below 0.3. However, the workflow is straightforward and canonical for this type of summary statistic, with no evidence of branching or multiple valid methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What percentage of fungal genes have DVMC values below 0.3",
+            "using PhyKIT's DVMC function?",
+            "\"57%\""
+          ],
+          "reason": "The output is a single percentage value, with no evidence of multiple artifact types or strict format constraints. The only parameterization is the threshold (0.3), which is explicitly stated, but there are no further explicit verification or format requirements.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "using PhyKIT's DVMC function"
+          ],
+          "reason": "The question is clear and specifies the function and threshold. There is no evidence of semantic ambiguity or data/representation repair needs. The only minor load is the implicit assumption that the user knows what 'DVMC' means in this context, but this is not enough for a higher score.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward application of a specified function to a gene set, followed by a simple threshold-based summary. There is minor planning and parameterization load due to the two-step process and explicit threshold, but no evidence of branching, artifact heterogeneity, semantic ambiguity, or transfer context.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:15:56.198281+00:00"
+  }
+}

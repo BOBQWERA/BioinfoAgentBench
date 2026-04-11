@@ -1,0 +1,150 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_25303977_3",
+      "question": "for the top 10 most frequent mutated genes, and for each gene, get the number of patients who have mutated gene. Save the results in a DataFrame `mutated_genes`. The dataframe has three columns: `Hugo_Symbol` which is the gene name and `Count`, which is the patient number, and `Ratio`, which is the ratio of the patient in this group.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\n\\n# Load the data\\ndata_mutations = pd.read_csv(\\\"/workdir/data_mutations.csv\\\")\\n\\n# Get the top 10 most frequent mutated genes\\ntop_genes = data_mutations['Hugo_Symbol'].value_counts().head(10).index.tolist()\\n\\n# Filter the data for the top 10 genes\\nfiltered_data = data_mutations[data_mutations['Hugo_Symbol'].isin(top_genes)]\\n\\n# Count the number of patients with each mutated gene\\nmutated_genes_count = filtered_data.groupby('Hugo_Symbol')['Tumor_Sample_Barcode'].nunique().reset_index()\\nmutated_genes_count.columns = ['Hugo_Symbol', 'Count']\\n\\n# Calculate the ratio of patients with each mutated gene\\ntotal_patients = data_mutations['Tumor_Sample_Barcode'].nunique()\\nmutated_genes_count['Ratio'] = mutated_genes_count['Count'] / total_patients\\n\\n# Save the results in a DataFrame\\nmutated_genes = mutated_genes_count\\n\\n# Display the DataFrame\\nprint(mutated_genes)\", \"test_cases\": \"assert len(set(mutated_genes[\\\"Hugo_Symbol\\\"].unique().tolist()) - set(['CSMD1',\\n 'CSMD3',\\n 'FUT9',\\n 'LRP1B',\\n 'MUC16',\\n 'MUC4',\\n 'PCLO',\\n 'RYR2', 'XIRP2',\\n 'TTN',\\n])) == 0\\n\\nassert abs(mutated_genes[\\\"Ratio\\\"].sum() - 8.564102564102564) < 1e-8\\n\\n\\nassert abs(mutated_genes[\\\"Count\\\"].sum() - 334) == 0\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "25303977_3",
+        "study_id": "25303977",
+        "question_id": "3",
+        "analysis_types": "['Descriptive Statistics']",
+        "study_type": "Genomics",
+        "study_title": "Mutational landscape of aggressive cutaneous squamous cell carcinoma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=cscc_hgsc_bcm_2014",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_25303977_3",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "for the top 10 most frequent mutated genes, and for each gene, get the number of patients who have mutated gene",
+          "Save the results in a DataFrame `mutated_genes`. The dataframe has three columns: `Hugo_Symbol` which is the gene name and `Count`, which is the patient number, and `Ratio`, which is the ratio of the patient in this group.",
+          "Three input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires extracting the top 10 genes by mutation frequency, counting unique patients per gene, and calculating a ratio. However, the method is direct and canonical, with no evidence of significant branching or multiple defensible methods. The use of three input files could suggest possible cross-file dependencies, but the reference answer only uses one, so no complex dependency graph is required."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Save the results in a DataFrame `mutated_genes`. The dataframe has three columns: `Hugo_Symbol`, `Count`, `Ratio`",
+          "assert len(set(mutated_genes[\"Hugo_Symbol\"].unique().tolist()) - set([...])) == 0",
+          "assert abs(mutated_genes[\"Ratio\"].sum() - 8.564102564102564) < 1e-8",
+          "assert abs(mutated_genes[\"Count\"].sum() - 334) == 0"
+        ],
+        "reason": "There is moderate artifact realization load: the output must be a DataFrame with a specific schema and three columns, and there are explicit test cases verifying both content and numeric precision. The presence of strict assertions on output values and column names increases the action load, but the output is a single DataFrame, so artifact heterogeneity is limited."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Three input files listed, but only one is used in the reference answer",
+          "No explicit ambiguity or schema mismatch described"
+        ],
+        "reason": "There is a trace of possible representational ambiguity due to the presence of three input files, but the reference answer only uses one, and there is no evidence of semantic or data repair being required. No contradictory or missing fields are indicated."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task."
+      }
+    },
+    "overall_summary": "The task involves a standard multi-step data summarization and output formatting workflow with moderate action load due to explicit output schema and test assertions. Planning and repair loads are low to moderate, with no evidence of branching or ambiguity requiring major repair. No evolution/transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2868,
+        "completion_tokens": 754,
+        "total_tokens": 3622
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "for the top 10 most frequent mutated genes, and for each gene, get the number of patients who have mutated gene",
+            "Save the results in a DataFrame `mutated_genes`. The dataframe has three columns: `Hugo_Symbol` which is the gene name and `Count`, which is the patient number, and `Ratio`, which is the ratio of the patient in this group.",
+            "Three input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires extracting the top 10 genes by mutation frequency, counting unique patients per gene, and calculating a ratio. However, the method is direct and canonical, with no evidence of significant branching or multiple defensible methods. The use of three input files could suggest possible cross-file dependencies, but the reference answer only uses one, so no complex dependency graph is required.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Save the results in a DataFrame `mutated_genes`. The dataframe has three columns: `Hugo_Symbol`, `Count`, `Ratio`",
+            "assert len(set(mutated_genes[\"Hugo_Symbol\"].unique().tolist()) - set([...])) == 0",
+            "assert abs(mutated_genes[\"Ratio\"].sum() - 8.564102564102564) < 1e-8",
+            "assert abs(mutated_genes[\"Count\"].sum() - 334) == 0"
+          ],
+          "reason": "There is moderate artifact realization load: the output must be a DataFrame with a specific schema and three columns, and there are explicit test cases verifying both content and numeric precision. The presence of strict assertions on output values and column names increases the action load, but the output is a single DataFrame, so artifact heterogeneity is limited.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Three input files listed, but only one is used in the reference answer",
+            "No explicit ambiguity or schema mismatch described"
+          ],
+          "reason": "There is a trace of possible representational ambiguity due to the presence of three input files, but the reference answer only uses one, and there is no evidence of semantic or data repair being required. No contradictory or missing fields are indicated.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "The task involves a standard multi-step data summarization and output formatting workflow with moderate action load due to explicit output schema and test assertions. Planning and repair loads are low to moderate, with no evidence of branching or ambiguity requiring major repair. No evolution/transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:44:05.016836+00:00"
+  }
+}

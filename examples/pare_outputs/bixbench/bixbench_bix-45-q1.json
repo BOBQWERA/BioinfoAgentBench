@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-45-q1",
+      "question": "What is the p-value from a Mann-Whitney U test comparing RCV scores between animal and fungal orthologs using PhyKIT's rcv function?",
+      "data": [],
+      "answer": "7.6968e-54",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-45-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "3.1415e-9",
+          "1.2345e-12",
+          "9.8765e-23"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-45-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question requires performing a Mann-Whitney U test comparing RCV scores between animal and fungal orthologs",
+          "Mentions use of PhyKIT's rcv function, implying at least two steps: compute RCV scores, then perform statistical test"
+        ],
+        "reason": "There is minor workflow structuring load: the task requires at least two steps (RCV calculation, then statistical test), but the workflow is standard and there is no evidence of significant branching or multiple valid methods. No explicit evidence of branching decision load."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a single p-value",
+          "No explicit format or parameterization constraints stated",
+          "No mention of strict thresholds, rounding, or schema"
+        ],
+        "reason": "Artifact realization is minimal (single numeric output), and there are no explicit parameterization or format constraints. The action load is weak."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No evidence of ambiguity or need for semantic or data repair"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/schema inconsistency. The question is clear and well-posed, so reflection load is trace."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "No transfer or evolution context is present in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-step workflow (RCV calculation, then Mann-Whitney U test) with minimal branching or ambiguity. The output is a single p-value with no explicit format or parameterization constraints. There is no evidence of semantic or data repair needs, and no transfer/experience context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2233,
+        "completion_tokens": 511,
+        "total_tokens": 2744
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question requires performing a Mann-Whitney U test comparing RCV scores between animal and fungal orthologs",
+            "Mentions use of PhyKIT's rcv function, implying at least two steps: compute RCV scores, then perform statistical test"
+          ],
+          "reason": "There is minor workflow structuring load: the task requires at least two steps (RCV calculation, then statistical test), but the workflow is standard and there is no evidence of significant branching or multiple valid methods. No explicit evidence of branching decision load.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a single p-value",
+            "No explicit format or parameterization constraints stated",
+            "No mention of strict thresholds, rounding, or schema"
+          ],
+          "reason": "Artifact realization is minimal (single numeric output), and there are no explicit parameterization or format constraints. The action load is weak.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No evidence of ambiguity or need for semantic or data repair"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/schema inconsistency. The question is clear and well-posed, so reflection load is trace.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "No transfer or evolution context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-step workflow (RCV calculation, then Mann-Whitney U test) with minimal branching or ambiguity. The output is a single p-value with no explicit format or parameterization constraints. There is no evidence of semantic or data repair needs, and no transfer/experience context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:20:53.542133+00:00"
+  }
+}

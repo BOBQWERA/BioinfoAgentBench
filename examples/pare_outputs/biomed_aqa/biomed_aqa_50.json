@@ -1,0 +1,133 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_50",
+      "question": "Perform gene set functional enrichment on the gene list {TGF_signaling.csv}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0050/files/TGF_signaling.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"KEGG.tsv\", \"path\": \"downloaded_files\\\\index_0050\\\\milestone\\\\KEGG.tsv\"}, {\"name\": \"GO.tsv\", \"path\": \"downloaded_files\\\\index_0050\\\\milestone\\\\GO.tsv\"}], \"milestones\": [\"Generate functional enrichment result file\"], \"steps\": [\"Gene set functional enrichment\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "KOBAS",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.14,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_50",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Perform gene set functional enrichment on the gene list {TGF_signaling.csv}",
+          "milestone_files: KEGG.tsv, GO.tsv"
+        ],
+        "reason": "The task requires performing gene set enrichment, which typically involves mapping genes to pathways or ontology terms and generating enrichment results. The presence of two output files (KEGG.tsv, GO.tsv) implies at least two enrichment analyses, but the workflow is standard and does not require explicit branching or complex dependency planning. No evidence of multiple reasonable methods or branching decisions that would materially affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: KEGG.tsv, GO.tsv",
+          "Explicit output file types and names"
+        ],
+        "reason": "There are two explicit output files (KEGG.tsv, GO.tsv), indicating heterogeneous artifact realization. The output format is specified (TSV), but there are no explicit parameterization or strict threshold requirements in the payload. The action load is moderate due to the need to generate multiple, format-specific outputs."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or schema mismatch in question or data reference"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation issues. The gene list is provided as a CSV file, and the outputs are clearly specified. No repair or clarification is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience transfer context present"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard gene set enrichment workflow with two explicit output files (KEGG and GO enrichment results). The planning load is weak to moderate due to the need to generate two types of enrichment results, but there is no evidence of complex branching or method ambiguity. The action load is moderate due to the requirement for multiple, format-specific outputs. There is minimal reflection or repair load, and no evolution/transfer load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2344,
+        "completion_tokens": 586,
+        "total_tokens": 2930
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Perform gene set functional enrichment on the gene list {TGF_signaling.csv}",
+            "milestone_files: KEGG.tsv, GO.tsv"
+          ],
+          "reason": "The task requires performing gene set enrichment, which typically involves mapping genes to pathways or ontology terms and generating enrichment results. The presence of two output files (KEGG.tsv, GO.tsv) implies at least two enrichment analyses, but the workflow is standard and does not require explicit branching or complex dependency planning. No evidence of multiple reasonable methods or branching decisions that would materially affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: KEGG.tsv, GO.tsv",
+            "Explicit output file types and names"
+          ],
+          "reason": "There are two explicit output files (KEGG.tsv, GO.tsv), indicating heterogeneous artifact realization. The output format is specified (TSV), but there are no explicit parameterization or strict threshold requirements in the payload. The action load is moderate due to the need to generate multiple, format-specific outputs.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or schema mismatch in question or data reference"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation issues. The gene list is provided as a CSV file, and the outputs are clearly specified. No repair or clarification is required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience transfer context present"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard gene set enrichment workflow with two explicit output files (KEGG and GO enrichment results). The planning load is weak to moderate due to the need to generate two types of enrichment results, but there is no evidence of complex branching or method ambiguity. The action load is moderate due to the requirement for multiple, format-specific outputs. There is minimal reflection or repair load, and no evolution/transfer load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:05:20.408220+00:00"
+  }
+}

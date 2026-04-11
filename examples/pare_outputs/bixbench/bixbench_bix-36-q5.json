@@ -1,0 +1,136 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-36-q5",
+      "question": "What is the shape of the distribution of log2 fold changes across all cell type comparisons (excluding PBMCs)?",
+      "data": [],
+      "answer": "Normal",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-36-q5",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Bimodal",
+          "Uniform",
+          "Skewed"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-36-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "What is the shape of the distribution of log2 fold changes across all cell type comparisons (excluding PBMCs)?",
+          "mcq",
+          "No explicit workflow or method branching described"
+        ],
+        "reason": "The question asks for the shape of a distribution, which may require the respondent to consider or infer the distribution from data or prior knowledge, but there is no explicit evidence of a multi-step workflow or branching decision. The exclusion of PBMCs is a minor filter, not a major planning load."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "mcq",
+          "eval_mode: str_verifier",
+          "No explicit artifact or format constraints beyond selecting one option"
+        ],
+        "reason": "The action required is to select one of several provided options (Normal, Bimodal, Uniform, Skewed). There is no evidence of multiple artifact types, format strictness, or parameterization burden."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "Question is clear and unambiguous in its intent",
+          "No evidence of schema mismatch or ambiguity"
+        ],
+        "reason": "There is no evidence of semantic or representational ambiguity that would require repair. The question is direct and the answer space is well-defined."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided"
+        ],
+        "reason": "There is no evidence of transfer or reuse of prior experience; this is a standalone MCQ."
+      }
+    },
+    "overall_summary": "This is a straightforward multiple-choice question asking for the shape of a distribution, with no explicit workflow, branching, artifact, or repair complexity. There is no transfer or evolution context. All dimensions are at trace or absent levels.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2203,
+        "completion_tokens": 535,
+        "total_tokens": 2738
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "What is the shape of the distribution of log2 fold changes across all cell type comparisons (excluding PBMCs)?",
+            "mcq",
+            "No explicit workflow or method branching described"
+          ],
+          "reason": "The question asks for the shape of a distribution, which may require the respondent to consider or infer the distribution from data or prior knowledge, but there is no explicit evidence of a multi-step workflow or branching decision. The exclusion of PBMCs is a minor filter, not a major planning load.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "mcq",
+            "eval_mode: str_verifier",
+            "No explicit artifact or format constraints beyond selecting one option"
+          ],
+          "reason": "The action required is to select one of several provided options (Normal, Bimodal, Uniform, Skewed). There is no evidence of multiple artifact types, format strictness, or parameterization burden.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "Question is clear and unambiguous in its intent",
+            "No evidence of schema mismatch or ambiguity"
+          ],
+          "reason": "There is no evidence of semantic or representational ambiguity that would require repair. The question is direct and the answer space is well-defined.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided"
+          ],
+          "reason": "There is no evidence of transfer or reuse of prior experience; this is a standalone MCQ.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward multiple-choice question asking for the shape of a distribution, with no explicit workflow, branching, artifact, or repair complexity. There is no transfer or evolution context. All dimensions are at trace or absent levels.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:13:02.275896+00:00"
+  }
+}

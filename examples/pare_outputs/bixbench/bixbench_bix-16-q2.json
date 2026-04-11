@@ -1,0 +1,136 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-16-q2",
+      "question": "What is the skewness characteristic of the gene expression (log2(TPM+1)) distribution across all cell lines in the dataset?",
+      "data": [],
+      "answer": "Right-skewed with a long tail",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-16-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Symmetrical with no skew",
+          "Left-skewed with a long tail",
+          "Bimodal with no clear skew"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-16-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Question: 'What is the skewness characteristic of the gene expression (log2(TPM+1)) distribution across all cell lines in the dataset?'",
+          "No explicit workflow decomposition or dependency chain required; the question is direct.",
+          "No evidence of multiple reasonable methods or branching decisions affecting correctness."
+        ],
+        "reason": "The task is a direct query about the skewness of a specified distribution. There is no explicit or implied need for workflow structuring or method branching; the method for assessing skewness is standard and not open to multiple materially different approaches in the context provided."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Answer is a categorical description ('Right-skewed with a long tail').",
+          "No explicit format, parameter, or threshold constraints.",
+          "No mention of output files, figures, or strict schema."
+        ],
+        "reason": "The action required is to select or state a categorical property (skewness type) with no explicit artifact realization or parameterization burden. There is no evidence of multiple output types or strict specification."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The question is semantically clear: it asks for the skewness characteristic of a well-defined transformation.",
+          "No evidence of ambiguity, missing fields, or representational inconsistency.",
+          "No data or schema repair required (data is not provided)."
+        ],
+        "reason": "There is no need for semantic or data repair; the question is direct and unambiguous in its intent. The absence of data means no representational repair is possible or required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This is a direct, well-specified multiple-choice question about the skewness of a gene expression distribution. There is minimal planning, action, or reflection load, and no evidence of experience transfer requirements. The task is straightforward with no explicit complexity drivers.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2227,
+        "completion_tokens": 580,
+        "total_tokens": 2807
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Question: 'What is the skewness characteristic of the gene expression (log2(TPM+1)) distribution across all cell lines in the dataset?'",
+            "No explicit workflow decomposition or dependency chain required; the question is direct.",
+            "No evidence of multiple reasonable methods or branching decisions affecting correctness."
+          ],
+          "reason": "The task is a direct query about the skewness of a specified distribution. There is no explicit or implied need for workflow structuring or method branching; the method for assessing skewness is standard and not open to multiple materially different approaches in the context provided.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Answer is a categorical description ('Right-skewed with a long tail').",
+            "No explicit format, parameter, or threshold constraints.",
+            "No mention of output files, figures, or strict schema."
+          ],
+          "reason": "The action required is to select or state a categorical property (skewness type) with no explicit artifact realization or parameterization burden. There is no evidence of multiple output types or strict specification.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The question is semantically clear: it asks for the skewness characteristic of a well-defined transformation.",
+            "No evidence of ambiguity, missing fields, or representational inconsistency.",
+            "No data or schema repair required (data is not provided)."
+          ],
+          "reason": "There is no need for semantic or data repair; the question is direct and unambiguous in its intent. The absence of data means no representational repair is possible or required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct, well-specified multiple-choice question about the skewness of a gene expression distribution. There is minimal planning, action, or reflection load, and no evidence of experience transfer requirements. The task is straightforward with no explicit complexity drivers.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:51:45.526793+00:00"
+  }
+}

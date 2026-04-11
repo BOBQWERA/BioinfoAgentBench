@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-41-q3",
+      "question": "What is the raw difference in mean circularity between Strain 98 and Strain 1?",
+      "data": [],
+      "answer": "(0.42,0.43)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-41-q3",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.53,0.54)",
+          "(0.62,0.63)",
+          "(0.72,0.73)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-41-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Question: 'What is the raw difference in mean circularity between Strain 98 and Strain 1?'",
+          "No explicit workflow or dependency chain; direct comparison between two groups"
+        ],
+        "reason": "The task is a direct comparison of means between two specified strains. There is no evidence of a multi-stage workflow or branching decisions; the method is implied to be a simple subtraction of means. No ambiguity or multiple defensible methods are indicated."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Answer format is a numeric range: '(0.42,0.43)'",
+          "eval_mode: 'range_verifier'"
+        ],
+        "reason": "There is a minor artifact realization load due to the requirement to produce a numeric answer within a specified range, and the use of a range verifier implies some format/threshold sensitivity. However, only a single output type is required and no complex formatting or multiple artifacts are involved."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No data provided",
+          "No evidence of semantic ambiguity or data repair required"
+        ],
+        "reason": "There is no evidence of semantic ambiguity, missing fields, or data/representation repair needs. The question is clear and the required computation is well-defined."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no transfer or evolution context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward direct comparison task with minimal planning and artifact realization load. There is no evidence of semantic or data repair, nor any transfer/evolution context. The only minor complexity comes from the requirement to produce a numeric answer within a specified range.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2219,
+        "completion_tokens": 507,
+        "total_tokens": 2726
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Question: 'What is the raw difference in mean circularity between Strain 98 and Strain 1?'",
+            "No explicit workflow or dependency chain; direct comparison between two groups"
+          ],
+          "reason": "The task is a direct comparison of means between two specified strains. There is no evidence of a multi-stage workflow or branching decisions; the method is implied to be a simple subtraction of means. No ambiguity or multiple defensible methods are indicated.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Answer format is a numeric range: '(0.42,0.43)'",
+            "eval_mode: 'range_verifier'"
+          ],
+          "reason": "There is a minor artifact realization load due to the requirement to produce a numeric answer within a specified range, and the use of a range verifier implies some format/threshold sensitivity. However, only a single output type is required and no complex formatting or multiple artifacts are involved.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No data provided",
+            "No evidence of semantic ambiguity or data repair required"
+          ],
+          "reason": "There is no evidence of semantic ambiguity, missing fields, or data/representation repair needs. The question is clear and the required computation is well-defined.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no transfer or evolution context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward direct comparison task with minimal planning and artifact realization load. There is no evidence of semantic or data repair, nor any transfer/evolution context. The only minor complexity comes from the requirement to produce a numeric answer within a specified range.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:18:04.408800+00:00"
+  }
+}

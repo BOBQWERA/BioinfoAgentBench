@@ -1,0 +1,150 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_32211396_1",
+      "question": "##Question##\nUse the 'tidyr' and 'dplyr' packages, transform the merged expression data (named as variable 'expression_data_merged') into a long format (named as variable 'expression_long') suitable for analysis. Calculate the differential miRNA expression between patient groups labeled as 1 and 2. For each gene, compute the mean expression levels for both groups, the log2 fold change (named as variable 'log2FoldChange'), and the p-value of the difference in expression (named as variable 'pValue') using a t-test. Ensure genes with NA log2FoldChange values are filtered out from the final results. \nSave the final results in a data frame named 'results', which has columns:\n- Gene: gene names\n- mean_expr_1: mean expression values for group 1\n- mean_expr_2: mean expression values for group 2\n- log2FoldChange: log2 fold change values\n- pValue: p-values\n\n##Task##\n1. Gather miRNA expression data into long format\n2. Calculates the log2 fold change and p-values for each miRNA between two groups.\n3. Creates a dataframe with log2 fold changes, p-values, and colors for significant miRNAs.\n4. Filter out miRNAs with N/A log2FoldChange.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_miRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\n\\n# Gather data into long format\\nexpression_long <- gather(expression_data_merged, miRNA, Expression, -Sample, -Label)\\n\\n# Calculate log2 fold changes and p-values for each miRNA\\nresults <- expression_long %>%\\n  group_by(miRNA) %>%\\n  summarize(\\n    mean_expr_1 = mean(Expression[Label == 1], na.rm = TRUE),\\n    mean_expr_0 = mean(Expression[Label == 2], na.rm = TRUE),\\n    log2FoldChange = ifelse(mean_expr_0 != 0, log2(mean_expr_1 / mean_expr_0), NA),\\n    pValue = t.test(Expression[Label == 1], Expression[Label == 2])$p.value\\n  )\\n\\n# Filter out miRNAs with NA log2FoldChange\\nresults <- results %>%\\n  filter(!is.na(log2FoldChange))\", \"test_cases\": \"ncol(results) == 5\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "32211396_1",
+        "study_id": "32211396",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Therapeutics",
+        "study_title": "MicroRNAs Associated With Colon Cancer: New Potential Prognostic Markers and Targets for Therapy",
+        "dataset_url": "CMOB/GS-COAD",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_32211396_1",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Transform the merged expression data ... into a long format",
+          "Calculate the differential miRNA expression between patient groups labeled as 1 and 2",
+          "For each gene, compute the mean expression levels for both groups, the log2 fold change ... and the p-value ... using a t-test",
+          "Filter out miRNAs with N/A log2FoldChange"
+        ],
+        "reason": "The task requires a multi-step workflow: data reshaping, group-wise summary statistics, statistical testing, calculation of log2 fold change, and filtering. The steps are sequential and dependency-constrained, but the methods (e.g., t-test, log2 fold change) are specified and standard for this context. There is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness, so P2 remains low."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Save the final results in a data frame named 'results', which has columns: Gene, mean_expr_1, mean_expr_2, log2FoldChange, pValue",
+          "Filter out miRNAs with N/A log2FoldChange",
+          "Calculate ... log2 fold change (named as variable 'log2FoldChange'), and the p-value ... (named as variable 'pValue')"
+        ],
+        "reason": "There is a moderate artifact realization load: the output must be a data frame with a specific schema and column names, and filtering is required for NA values. The calculation of log2 fold change and p-value is explicit, but parameterization (e.g., t-test settings, NA handling) is not highly specified beyond the NA filter. No strict format verifiers or edge-case rules are present."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of missing or ambiguous semantic fields",
+          "No explicit schema mismatch or data repair required"
+        ],
+        "reason": "The task is clearly worded with explicit variable names and output schema. There is no evidence of ambiguity, contradiction, or representational inconsistency. Routine data reshaping is required, but this does not constitute repair under the rubric."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-step workflow for differential expression analysis: data reshaping, group-wise summary statistics, statistical testing, and filtering. The planning and action loads are moderate due to the sequential steps and explicit output schema, but there is no evidence of major method branching, strict parameterization, or semantic/data repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2891,
+        "completion_tokens": 738,
+        "total_tokens": 3629
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Transform the merged expression data ... into a long format",
+            "Calculate the differential miRNA expression between patient groups labeled as 1 and 2",
+            "For each gene, compute the mean expression levels for both groups, the log2 fold change ... and the p-value ... using a t-test",
+            "Filter out miRNAs with N/A log2FoldChange"
+          ],
+          "reason": "The task requires a multi-step workflow: data reshaping, group-wise summary statistics, statistical testing, calculation of log2 fold change, and filtering. The steps are sequential and dependency-constrained, but the methods (e.g., t-test, log2 fold change) are specified and standard for this context. There is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness, so P2 remains low.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Save the final results in a data frame named 'results', which has columns: Gene, mean_expr_1, mean_expr_2, log2FoldChange, pValue",
+            "Filter out miRNAs with N/A log2FoldChange",
+            "Calculate ... log2 fold change (named as variable 'log2FoldChange'), and the p-value ... (named as variable 'pValue')"
+          ],
+          "reason": "There is a moderate artifact realization load: the output must be a data frame with a specific schema and column names, and filtering is required for NA values. The calculation of log2 fold change and p-value is explicit, but parameterization (e.g., t-test settings, NA handling) is not highly specified beyond the NA filter. No strict format verifiers or edge-case rules are present.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of missing or ambiguous semantic fields",
+            "No explicit schema mismatch or data repair required"
+          ],
+          "reason": "The task is clearly worded with explicit variable names and output schema. There is no evidence of ambiguity, contradiction, or representational inconsistency. Routine data reshaping is required, but this does not constitute repair under the rubric.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-step workflow for differential expression analysis: data reshaping, group-wise summary statistics, statistical testing, and filtering. The planning and action loads are moderate due to the sequential steps and explicit output schema, but there is no evidence of major method branching, strict parameterization, or semantic/data repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:55:26.895618+00:00"
+  }
+}

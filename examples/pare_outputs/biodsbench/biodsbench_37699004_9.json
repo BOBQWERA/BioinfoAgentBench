@@ -1,0 +1,162 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_37699004_9",
+      "question": "Get the ratio of patients with metastatic in the average onset and early onset groups, respectively. Make $\\chi^2$-contingency statistical test for the difference of these two groups. Save the resulting pvalue as `pvalue`. Save the average metastatic ratios as \n- average_onset_ratio\n- early_onset_ratio",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_sv.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\nfrom scipy.stats import chi2_contingency\\n\\n# Load the data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\n\\n# Calculate the ratio of patients with metastatic in the average onset and early onset groups\\naverage_onset_metastatic = data_clinical_patient[(data_clinical_patient['AGE_CATEGORY'] == 'Average Onset') & (data_clinical_patient['MET_NONMET_STATUS'] == 'Metastatic')].shape[0]\\naverage_onset_total = data_clinical_patient[data_clinical_patient['AGE_CATEGORY'] == 'Average Onset'].shape[0]\\nearly_onset_metastatic = data_clinical_patient[(data_clinical_patient['AGE_CATEGORY'] == 'Early Onset') & (data_clinical_patient['MET_NONMET_STATUS'] == 'Metastatic')].shape[0]\\nearly_onset_total = data_clinical_patient[data_clinical_patient['AGE_CATEGORY'] == 'Early Onset'].shape[0]\\n\\naverage_onset_ratio = average_onset_metastatic / average_onset_total\\nearly_onset_ratio = early_onset_metastatic / early_onset_total\\n\\n# Create a contingency table\\ncontingency_table = [\\n    [average_onset_metastatic, average_onset_total - average_onset_metastatic],\\n    [early_onset_metastatic, early_onset_total - early_onset_metastatic]\\n]\\n\\n# Perform the chi-squared test\\nchi2, pvalue, _, _ = chi2_contingency(contingency_table)\\n\\n# Save the p-value\\nwith open(\\\"pvalue.txt\\\", \\\"w\\\") as f:\\n    f.write(str(pvalue))\\n\\n# Print the ratios and p-value\\nprint(f\\\"Average Onset Metastatic Ratio: {average_onset_ratio}\\\")\\nprint(f\\\"Early Onset Metastatic Ratio: {early_onset_ratio}\\\")\\nprint(f\\\"P-value: {pvalue}\\\")\\n\", \"test_cases\": \"assert abs(pvalue - 0.4327762758711231) < 1e-8\\n\\nassert abs(average_onset_ratio - 0.5623229461756374) < 1e-8\\n\\nassert abs(early_onset_ratio - 0.5969387755102041) < 1e-8\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "37699004_9",
+        "study_id": "37699004",
+        "question_id": "9",
+        "analysis_types": "['Descriptive Statistics']",
+        "study_type": "Genomics",
+        "study_title": "Clinical and molecular characteristics of early-onset vs average-onset esophagogastric cancer",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=egc_msk_2023",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_37699004_9",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Get the ratio of patients with metastatic in the average onset and early onset groups, respectively.",
+          "Make $\\chi^2$-contingency statistical test for the difference of these two groups.",
+          "Save the resulting pvalue as `pvalue`. Save the average metastatic ratios as average_onset_ratio, early_onset_ratio.",
+          "Multiple input files, but only data_clinical_patient.csv is used for the main computation."
+        ],
+        "reason": "The task requires decomposing the workflow into at least two dependent steps: (1) compute metastatic ratios for two groups, (2) construct a contingency table and perform a chi-squared test. The method for grouping and ratio calculation is implied but not ambiguous, as the field names are standard and the grouping is explicit. There is no evidence of major method branching or multiple defensible approaches that would affect correctness, as the grouping and statistical test are both specified."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Save the resulting pvalue as `pvalue`.",
+          "Save the average metastatic ratios as average_onset_ratio, early_onset_ratio.",
+          "assert abs(pvalue - 0.4327762758711231) < 1e-8",
+          "assert abs(average_onset_ratio - 0.5623229461756374) < 1e-8",
+          "assert abs(early_onset_ratio - 0.5969387755102041) < 1e-8"
+        ],
+        "reason": "There are three explicit output artifacts (pvalue, average_onset_ratio, early_onset_ratio), each with strict numeric precision requirements (1e-8). The outputs are simple (floats), but the tightness of the specification and the need to match exact values for verification increases the action load to moderate. There is no evidence of complex format constraints or multi-type artifact heterogeneity beyond these three outputs."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Group names and field names are explicit: 'AGE_CATEGORY', 'MET_NONMET_STATUS', 'Average Onset', 'Early Onset', 'Metastatic'.",
+          "No evidence of missing or inconsistent schema in the data files as per the answer code."
+        ],
+        "reason": "There is little evidence of semantic or representational ambiguity. The groupings and field names are explicit, and the answer code uses them directly. There is no indication of missing fields, schema mismatch, or need for repair. The only trace load is the implicit mapping from question wording to field names, but this is minimal."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task requires moderate planning and action load due to the need to compute group-specific ratios and perform a chi-squared test, with strict output verification. There is minimal reflection load, as the schema and semantics are explicit. No evolution load is present, as there is no transfer or prior trajectory context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3042,
+        "completion_tokens": 826,
+        "total_tokens": 3868
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Get the ratio of patients with metastatic in the average onset and early onset groups, respectively.",
+            "Make $\\chi^2$-contingency statistical test for the difference of these two groups.",
+            "Save the resulting pvalue as `pvalue`. Save the average metastatic ratios as average_onset_ratio, early_onset_ratio.",
+            "Multiple input files, but only data_clinical_patient.csv is used for the main computation."
+          ],
+          "reason": "The task requires decomposing the workflow into at least two dependent steps: (1) compute metastatic ratios for two groups, (2) construct a contingency table and perform a chi-squared test. The method for grouping and ratio calculation is implied but not ambiguous, as the field names are standard and the grouping is explicit. There is no evidence of major method branching or multiple defensible approaches that would affect correctness, as the grouping and statistical test are both specified.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Save the resulting pvalue as `pvalue`.",
+            "Save the average metastatic ratios as average_onset_ratio, early_onset_ratio.",
+            "assert abs(pvalue - 0.4327762758711231) < 1e-8",
+            "assert abs(average_onset_ratio - 0.5623229461756374) < 1e-8",
+            "assert abs(early_onset_ratio - 0.5969387755102041) < 1e-8"
+          ],
+          "reason": "There are three explicit output artifacts (pvalue, average_onset_ratio, early_onset_ratio), each with strict numeric precision requirements (1e-8). The outputs are simple (floats), but the tightness of the specification and the need to match exact values for verification increases the action load to moderate. There is no evidence of complex format constraints or multi-type artifact heterogeneity beyond these three outputs.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Group names and field names are explicit: 'AGE_CATEGORY', 'MET_NONMET_STATUS', 'Average Onset', 'Early Onset', 'Metastatic'.",
+            "No evidence of missing or inconsistent schema in the data files as per the answer code."
+          ],
+          "reason": "There is little evidence of semantic or representational ambiguity. The groupings and field names are explicit, and the answer code uses them directly. There is no indication of missing fields, schema mismatch, or need for repair. The only trace load is the implicit mapping from question wording to field names, but this is minimal.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires moderate planning and action load due to the need to compute group-specific ratios and perform a chi-squared test, with strict output verification. There is minimal reflection load, as the schema and semantics are explicit. No evolution load is present, as there is no transfer or prior trajectory context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:42:09.976893+00:00"
+  }
+}

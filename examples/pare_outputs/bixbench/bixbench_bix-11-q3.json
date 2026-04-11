@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-11-q3",
+      "question": "What is the maximum treeness value among animal genes?",
+      "data": [],
+      "answer": "0.1126",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-11-q3",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.0884",
+          "0.1345",
+          "0.1562"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-11-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Question: 'What is the maximum treeness value among animal genes?'",
+          "No explicit workflow or dependency chain described",
+          "No evidence of multiple reasonable methods or branching"
+        ],
+        "reason": "The task is a direct query for a maximum value within a specified subset ('animal genes'). There is a trace of planning in needing to filter for 'animal genes' before finding the maximum, but no evidence of a complex workflow or method branching."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Answer is a single numeric value: '0.1126'",
+          "No explicit format or parameterization constraints",
+          "Implied need to extract a value from a data subset"
+        ],
+        "reason": "The action load is weak: the output is a single number, but it must be computed from a subset ('animal genes'), implying a minor artifact realization step. No evidence of strict format or parameterization requirements."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided; question is clear and unambiguous",
+          "No evidence of schema mismatch or semantic ambiguity"
+        ],
+        "reason": "There is almost no reflection load. The question is well-posed and does not require semantic or data repair. The only trace is the need to interpret 'animal genes' as a subset, but this is not ambiguous."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present"
+        ],
+        "reason": "No evidence of experience assimilation or transfer; this is a standalone task."
+      }
+    },
+    "overall_summary": "This is a straightforward data query task: filter for 'animal genes' and find the maximum treeness value. There is minimal planning and action load, with only trace evidence for planning (filter then max) and weak action load (single numeric output from a subset). No repair or evolution load is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2199,
+        "completion_tokens": 541,
+        "total_tokens": 2740
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Question: 'What is the maximum treeness value among animal genes?'",
+            "No explicit workflow or dependency chain described",
+            "No evidence of multiple reasonable methods or branching"
+          ],
+          "reason": "The task is a direct query for a maximum value within a specified subset ('animal genes'). There is a trace of planning in needing to filter for 'animal genes' before finding the maximum, but no evidence of a complex workflow or method branching.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Answer is a single numeric value: '0.1126'",
+            "No explicit format or parameterization constraints",
+            "Implied need to extract a value from a data subset"
+          ],
+          "reason": "The action load is weak: the output is a single number, but it must be computed from a subset ('animal genes'), implying a minor artifact realization step. No evidence of strict format or parameterization requirements.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided; question is clear and unambiguous",
+            "No evidence of schema mismatch or semantic ambiguity"
+          ],
+          "reason": "There is almost no reflection load. The question is well-posed and does not require semantic or data repair. The only trace is the need to interpret 'animal genes' as a subset, but this is not ambiguous.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present"
+          ],
+          "reason": "No evidence of experience assimilation or transfer; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward data query task: filter for 'animal genes' and find the maximum treeness value. There is minimal planning and action load, with only trace evidence for planning (filter then max) and weak action load (single numeric output from a subset). No repair or evolution load is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:47:06.487317+00:00"
+  }
+}

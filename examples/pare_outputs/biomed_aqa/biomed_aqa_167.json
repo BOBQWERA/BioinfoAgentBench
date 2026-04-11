@@ -1,0 +1,139 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_167",
+      "question": "I have a dataset {lung_cancer.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform isometric mapping dimensionality reduction on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0167/files/lung_cancer.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"lung_cancer_isomap_result.csv\", \"path\": \"downloaded_files\\\\index_0167\\\\milestone\\\\lung_cancer_isomap_result.csv\"}], \"milestones\": [\"The result file after analyzing with the Isomap algorithm\"], \"steps\": [\"Use isometric mapping (Isomap) for dimensionality reduction to analyze the dataset. (For example, choose 5 for the neighbor parameter and 2 for the reduced dimensions.)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "等距映射",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.53,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_167",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'perform isometric mapping dimensionality reduction on this dataset'",
+          "Answer: 'Use isometric mapping (Isomap) for dimensionality reduction to analyze the dataset. (For example, choose 5 for the neighbor parameter and 2 for the reduced dimensions.)'",
+          "Input: CSV file with target and feature columns"
+        ],
+        "reason": "The task requires applying Isomap dimensionality reduction to a dataset, which is a standard single-step workflow once the method is specified. There is a minor planning load in identifying the feature columns (all except 'Target') and specifying parameters (neighbors, dimensions), but the method is directly stated and there is no evidence of branching or complex workflow structuring."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone file: 'lung_cancer_isomap_result.csv'",
+          "Output: result file after analyzing with the Isomap algorithm",
+          "Parameter example: 'choose 5 for the neighbor parameter and 2 for the reduced dimensions'"
+        ],
+        "reason": "There is a single output artifact (CSV file) and an explicit example of parameter values, but the specification is not strict (parameters are given as an example, not a requirement). Output format is implied to be a CSV, but no schema or strict verification is described."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Dataset: CSV with 'Target' column and feature columns",
+          "No mention of missing/ambiguous fields or schema issues"
+        ],
+        "reason": "There is minimal evidence of semantic or representational ambiguity. The target and feature columns are clearly defined, and there is no indication of data repair or schema alignment needs."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves applying a specified dimensionality reduction method (Isomap) to a labeled dataset and outputting the result as a CSV file. The planning and action loads are minor to moderate due to the need to select features and parameters, but the workflow is standard and well-specified. There is little to no evidence of semantic or representational repair, and no transfer or evolution context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2388,
+        "completion_tokens": 647,
+        "total_tokens": 3035
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'perform isometric mapping dimensionality reduction on this dataset'",
+            "Answer: 'Use isometric mapping (Isomap) for dimensionality reduction to analyze the dataset. (For example, choose 5 for the neighbor parameter and 2 for the reduced dimensions.)'",
+            "Input: CSV file with target and feature columns"
+          ],
+          "reason": "The task requires applying Isomap dimensionality reduction to a dataset, which is a standard single-step workflow once the method is specified. There is a minor planning load in identifying the feature columns (all except 'Target') and specifying parameters (neighbors, dimensions), but the method is directly stated and there is no evidence of branching or complex workflow structuring.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone file: 'lung_cancer_isomap_result.csv'",
+            "Output: result file after analyzing with the Isomap algorithm",
+            "Parameter example: 'choose 5 for the neighbor parameter and 2 for the reduced dimensions'"
+          ],
+          "reason": "There is a single output artifact (CSV file) and an explicit example of parameter values, but the specification is not strict (parameters are given as an example, not a requirement). Output format is implied to be a CSV, but no schema or strict verification is described.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Dataset: CSV with 'Target' column and feature columns",
+            "No mention of missing/ambiguous fields or schema issues"
+          ],
+          "reason": "There is minimal evidence of semantic or representational ambiguity. The target and feature columns are clearly defined, and there is no indication of data repair or schema alignment needs.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves applying a specified dimensionality reduction method (Isomap) to a labeled dataset and outputting the result as a CSV file. The planning and action loads are minor to moderate due to the need to select features and parameters, but the workflow is standard and well-specified. There is little to no evidence of semantic or representational repair, and no transfer or evolution context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:22:21.584107+00:00"
+  }
+}

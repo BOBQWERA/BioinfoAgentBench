@@ -1,0 +1,133 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_e3b5a4af-41d9-48db-becf-29a08d0ad28e",
+      "question": "Acinetobacter lwoffii has been evolved in the lab to be resistant to which of these antibiotics?",
+      "data": [],
+      "answer": "ciproflaxin",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "LitQA2",
+        "task_name": "litqa",
+        "tag": "litqa",
+        "version": "1.1-dev",
+        "sources": [
+          "https://doi.org/10.1128/msphere.00109-24"
+        ],
+        "is_opensource": true,
+        "distractors": [
+          "meropenem",
+          "gentamicin",
+          "ampicillin"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_e3b5a4af-41d9-48db-becf-29a08d0ad28e",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Question: 'Acinetobacter lwoffii has been evolved in the lab to be resistant to which of these antibiotics?'",
+          "Multiple-choice format with distractors"
+        ],
+        "reason": "The task is a direct multiple-choice question with a single correct answer. There is no evidence of a multi-stage workflow or dependency-constrained step graph (P1). There is a minimal branching decision in selecting among distractors, but this is inherent to all multiple-choice questions and does not materially affect correctness beyond picking the correct answer (P2)."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Single-answer selection from a list of options",
+          "No explicit format or parameter constraints"
+        ],
+        "reason": "The action required is to select one answer from a provided list. There is only one artifact type (the answer), and no explicit format, parameterization, or verification constraints are specified."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No ambiguity or missing semantic fields in the question",
+          "No data or schema to repair"
+        ],
+        "reason": "The question is clearly worded and unambiguous, with no evidence of semantic or representational repair needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided"
+        ],
+        "reason": "There is no evidence of transfer or reuse of prior experience; the task is standalone."
+      }
+    },
+    "overall_summary": "This is a straightforward multiple-choice question requiring the selection of a single correct answer from a list. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2248,
+        "completion_tokens": 488,
+        "total_tokens": 2736
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Question: 'Acinetobacter lwoffii has been evolved in the lab to be resistant to which of these antibiotics?'",
+            "Multiple-choice format with distractors"
+          ],
+          "reason": "The task is a direct multiple-choice question with a single correct answer. There is no evidence of a multi-stage workflow or dependency-constrained step graph (P1). There is a minimal branching decision in selecting among distractors, but this is inherent to all multiple-choice questions and does not materially affect correctness beyond picking the correct answer (P2).",
+          "subdimension_breakdown": {
+            "P1": 0,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Single-answer selection from a list of options",
+            "No explicit format or parameter constraints"
+          ],
+          "reason": "The action required is to select one answer from a provided list. There is only one artifact type (the answer), and no explicit format, parameterization, or verification constraints are specified.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No ambiguity or missing semantic fields in the question",
+            "No data or schema to repair"
+          ],
+          "reason": "The question is clearly worded and unambiguous, with no evidence of semantic or representational repair needed.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided"
+          ],
+          "reason": "There is no evidence of transfer or reuse of prior experience; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward multiple-choice question requiring the selection of a single correct answer from a list. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:39:45.571903+00:00"
+  }
+}

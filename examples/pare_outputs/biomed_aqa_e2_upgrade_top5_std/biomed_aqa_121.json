@@ -1,0 +1,161 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_e2_upgrade_top5_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_121",
+      "question": "[De-identified Prior Trajectory]\n1) Partition data into train/test and standardize features using training statistics.\n2) Fit a linear discriminative classifier and inspect class separation behavior on validation/test.\n3) Check confusion behavior and class balance sensitivity before finalizing.\n4) If separation is weak, revisit feature scaling and class-distribution handling.\n5) Keep inference transformations identical to training-time transformations.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=projection-based discriminant boundary -> target=probability-based logistic decision boundary\n- Gap (constraint_change): source=discriminant-model assumptions -> target=log-odds linear model assumptions\n- Gap (metric_change): source=source-side confusion-focused checks -> target=target-side logistic probability/threshold handling\n\n[Target Task]\nI have a dataset {breast_cancer.csv}, and the \"Target\" column is the corresponding classification label. Please use logistic regression to classify the data.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0121/files/breast_cancer.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0121\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0121\\\\milestone\\\\test.csv\"}, {\"name\": \"logistic_predictions.csv\", \"path\": \"downloaded_files\\\\index_0121\\\\milestone\\\\logistic_predictions.csv\"}], \"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the result file for logistic regression predictions.\"], \"steps\": [\"Divide the dataset\", \"Train and predict using logistic regression\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "逻辑回归",
+        "task": "Classification",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.07,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps_per_record']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 128,
+              "workflow_memory_Index": 125,
+              "task_abbr": "线性判别分析",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"lung_cancer.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a test set based on the default ratio of 0.8-0.2.\n\n2. **Goal**: Classify the test set using linear discriminant analysis.\n    - **Tool**: lda\n    - **Input**: train_csv_file, test_csv_file, \"Target\"\n    - **Output**: result_csv_file\n    - **Description**: This tool will train the LDA model on the training set and predict the classifications for the test set, adding a \"Predicted\" column to the output file.\n\n3. **Goal**: Check the number of unique values in the 'Target' column.\n    - **Tool**: None (Custom Implementation)\n    - **Input**: result_csv_file\n    - **Output**: unique_classes\n    - **Description**: This step will determine the number of unique classes in the 'Target' column of the result file.\n\n4. **Goal**: Calculate the evaluation metrics for the LDA predictions if applicable.\n    - **Tool**: calculate_classify_metrics\n    "
+            },
+            "original_question": "I have a dataset {breast_cancer.csv}, and the \"Target\" column is the corresponding classification label. Please use logistic regression to classify the data."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_121",
+    "benchmark": "biomed_aqa_e2_upgrade_top5_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "\"De-identified Prior Trajectory\" lists a multi-step process: partition, standardize, fit classifier, inspect separation, check confusion, possibly revisit scaling/class balance, ensure inference transformation consistency",
+          "Target task requires using logistic regression (method specified), but prior trajectory and transfer gap hints indicate a change in model type and evaluation focus",
+          "Milestone files: train.csv, test.csv, logistic_predictions.csv (implies at least two stages: split and predict)"
+        ],
+        "reason": "There is a clear multi-stage workflow (partition, train, predict), and the transfer context requires mapping from a prior LDA-based workflow to a logistic regression workflow. However, the method for the target is specified (logistic regression), so branching is limited. The main planning load is in structuring the workflow and mapping prior steps to the new model, not in choosing among fundamentally different methods."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Milestone files: train.csv, test.csv, logistic_predictions.csv (>=2 artifact types)",
+          "Explicit output file names and types required",
+          "Action steps: \"Divide the dataset\", \"Train and predict using logistic regression\"",
+          "No explicit parameter/threshold/format strictness beyond standard CSV"
+        ],
+        "reason": "There is moderate artifact realization load due to multiple required output files (train/test splits and prediction results), but no evidence of strict parameterization or format constraints beyond standard CSV. No explicit verification checkpoints or tight parameter rules are stated."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "\"Target\" column is specified as the label",
+          "No evidence of missing/ambiguous fields or schema mismatch",
+          "No explicit need for semantic or data repair, but transfer gap hints suggest some mapping of evaluation focus (confusion vs. probability/threshold handling)"
+        ],
+        "reason": "There is weak evidence for reflection load: the transfer gap hints suggest a change in evaluation focus (from confusion matrix to probability/threshold handling), which may require some clarification or mapping, but the target task itself is clearly specified and the data schema is explicit."
+      },
+      "E": {
+        "score": 4,
+        "evidence": [
+          "\"De-identified Prior Trajectory\" provides a stepwise workflow for a related but different model (LDA)",
+          "\"Transfer Gap Hints\" explicitly enumerate changes in model type, assumptions, and evaluation metric",
+          "Payload requires mapping prior experience (projection-based discriminant boundary, confusion checks) to new context (logistic regression, probability/threshold handling)"
+        ],
+        "reason": "There is high evolution load: the agent must abstract principles from a prior LDA-based workflow and adapt them to a logistic regression context, accounting for explicit changes in model assumptions and evaluation metrics. This is a major difficulty driver, as direct reuse of prior steps is not possible due to the transfer gaps."
+      }
+    },
+    "overall_summary": "This task involves moderate planning and action load due to a multi-stage workflow and multiple required output files, but the method is specified and artifact requirements are standard. There is weak reflection load, as the data and semantics are mostly clear, though transfer gap hints suggest some mapping of evaluation focus. The central difficulty driver is evolution: the agent must transfer and adapt a prior LDA-based workflow to a logistic regression context, explicitly handling changes in model type, assumptions, and evaluation metrics.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3065,
+        "completion_tokens": 857,
+        "total_tokens": 3922
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "\"De-identified Prior Trajectory\" lists a multi-step process: partition, standardize, fit classifier, inspect separation, check confusion, possibly revisit scaling/class balance, ensure inference transformation consistency",
+            "Target task requires using logistic regression (method specified), but prior trajectory and transfer gap hints indicate a change in model type and evaluation focus",
+            "Milestone files: train.csv, test.csv, logistic_predictions.csv (implies at least two stages: split and predict)"
+          ],
+          "reason": "There is a clear multi-stage workflow (partition, train, predict), and the transfer context requires mapping from a prior LDA-based workflow to a logistic regression workflow. However, the method for the target is specified (logistic regression), so branching is limited. The main planning load is in structuring the workflow and mapping prior steps to the new model, not in choosing among fundamentally different methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Milestone files: train.csv, test.csv, logistic_predictions.csv (>=2 artifact types)",
+            "Explicit output file names and types required",
+            "Action steps: \"Divide the dataset\", \"Train and predict using logistic regression\"",
+            "No explicit parameter/threshold/format strictness beyond standard CSV"
+          ],
+          "reason": "There is moderate artifact realization load due to multiple required output files (train/test splits and prediction results), but no evidence of strict parameterization or format constraints beyond standard CSV. No explicit verification checkpoints or tight parameter rules are stated.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "\"Target\" column is specified as the label",
+            "No evidence of missing/ambiguous fields or schema mismatch",
+            "No explicit need for semantic or data repair, but transfer gap hints suggest some mapping of evaluation focus (confusion vs. probability/threshold handling)"
+          ],
+          "reason": "There is weak evidence for reflection load: the transfer gap hints suggest a change in evaluation focus (from confusion matrix to probability/threshold handling), which may require some clarification or mapping, but the target task itself is clearly specified and the data schema is explicit.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 4,
+          "evidence": [
+            "\"De-identified Prior Trajectory\" provides a stepwise workflow for a related but different model (LDA)",
+            "\"Transfer Gap Hints\" explicitly enumerate changes in model type, assumptions, and evaluation metric",
+            "Payload requires mapping prior experience (projection-based discriminant boundary, confusion checks) to new context (logistic regression, probability/threshold handling)"
+          ],
+          "reason": "There is high evolution load: the agent must abstract principles from a prior LDA-based workflow and adapt them to a logistic regression context, accounting for explicit changes in model assumptions and evaluation metrics. This is a major difficulty driver, as direct reuse of prior steps is not possible due to the transfer gaps.",
+          "subdimension_breakdown": {
+            "E1": 4,
+            "E2": 4
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate planning and action load due to a multi-stage workflow and multiple required output files, but the method is specified and artifact requirements are standard. There is weak reflection load, as the data and semantics are mostly clear, though transfer gap hints suggest some mapping of evaluation focus. The central difficulty driver is evolution: the agent must transfer and adapt a prior LDA-based workflow to a logistic regression context, explicitly handling changes in model type, assumptions, and evaluation metrics.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-08T20:02:46.534950+00:00"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-41-q4",
+      "question": "Using Dunnett's test to compare co-culture groups to Strain 1, at the significance threshold of 0.05, how many different co-culture ratios demonstrate significant differences from Strain 1 in both area and circularity measurements?",
+      "data": [],
+      "answer": "4",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-41-q4",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "5",
+          "6",
+          "7"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-41-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Using Dunnett's test to compare co-culture groups to Strain 1",
+          "how many different co-culture ratios demonstrate significant differences from Strain 1 in both area and circularity measurements?"
+        ],
+        "reason": "The question requires structuring a workflow: (1) apply Dunnett's test to compare multiple co-culture groups to a control (Strain 1), (2) do this for two separate measurements (area and circularity), and (3) determine which ratios are significant in both. This induces a dependency-constrained step graph (P1). However, the method (Dunnett's test) and threshold (0.05) are specified, and there is no explicit evidence of multiple reasonable methods or branching decisions (P2)."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "at the significance threshold of 0.05",
+          "how many different co-culture ratios demonstrate significant differences from Strain 1 in both area and circularity measurements?",
+          "eval_mode: str_verifier"
+        ],
+        "reason": "The output is a single integer (count of ratios), so artifact realization is simple (A1=1). There is some explicit parameterization (significance threshold 0.05, both measurements must be significant), but no evidence of strict format or multiple output types (A2=2)."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No evidence of ambiguity or schema mismatch"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clearly worded and the required comparison is explicit. No data is provided, so no schema alignment or repair is possible or required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or prior experience context in the payload."
+      }
+    },
+    "overall_summary": "This task requires moderate planning to structure the workflow for applying Dunnett's test across two measurements and aggregating results, but the method and threshold are specified, limiting branching. Action load is low to moderate due to a simple output and explicit threshold. There is minimal reflection or repair needed, and no evolution/transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2225,
+        "completion_tokens": 622,
+        "total_tokens": 2847
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Using Dunnett's test to compare co-culture groups to Strain 1",
+            "how many different co-culture ratios demonstrate significant differences from Strain 1 in both area and circularity measurements?"
+          ],
+          "reason": "The question requires structuring a workflow: (1) apply Dunnett's test to compare multiple co-culture groups to a control (Strain 1), (2) do this for two separate measurements (area and circularity), and (3) determine which ratios are significant in both. This induces a dependency-constrained step graph (P1). However, the method (Dunnett's test) and threshold (0.05) are specified, and there is no explicit evidence of multiple reasonable methods or branching decisions (P2).",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "at the significance threshold of 0.05",
+            "how many different co-culture ratios demonstrate significant differences from Strain 1 in both area and circularity measurements?",
+            "eval_mode: str_verifier"
+          ],
+          "reason": "The output is a single integer (count of ratios), so artifact realization is simple (A1=1). There is some explicit parameterization (significance threshold 0.05, both measurements must be significant), but no evidence of strict format or multiple output types (A2=2).",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No evidence of ambiguity or schema mismatch"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clearly worded and the required comparison is explicit. No data is provided, so no schema alignment or repair is possible or required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or prior experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires moderate planning to structure the workflow for applying Dunnett's test across two measurements and aggregating results, but the method and threshold are specified, limiting branching. Action load is low to moderate due to a simple output and explicit threshold. There is minimal reflection or repair needed, and no evolution/transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:18:22.598541+00:00"
+  }
+}

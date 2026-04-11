@@ -1,0 +1,150 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_28985567_8",
+      "question": "get the pvalue of the two groups' survival via logrank test. Save the results as `pvalue`.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_log2_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"from lifelines import KaplanMeierFitter, statistics\\n# Perform the logrank test\\nresults = statistics.logrank_test(\\n    durations_A=low_ipi_patients['OS_MONTHS'], \\n    durations_B=high_ipi_patients['OS_MONTHS'], \\n)\\npvalue = results.p_value\", \"test_cases\": \"assert abs(pvalue - 0.06021120828730412) <= 1e-8\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "28985567_8",
+        "study_id": "28985567",
+        "question_id": "8",
+        "analysis_types": "['Survival Outcome Analysis', 'Descriptive Statistics']",
+        "study_type": "Therapeutics",
+        "study_title": "Genetic and Functional Drivers of Diffuse Large B Cell Lymphoma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=dlbcl_duke_2017",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_28985567_8",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Four input files: data_mutations.csv, data_log2_cna.csv, data_clinical_sample.csv, data_clinical_patient.csv",
+          "Question: 'get the pvalue of the two groups' survival via logrank test'",
+          "No explicit group definition or step list; group construction is implied"
+        ],
+        "reason": "The task requires inferring a workflow to define two groups for survival analysis using multiple input files, but does not specify the grouping method or dependency chain explicitly. There is moderate workflow structuring load due to the need to extract and align relevant data from several files and construct the groups before applying the logrank test. However, there is no strong evidence of multiple materially different methods (branching) since the logrank test is specified and the answer implies a canonical approach."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output: Save the results as `pvalue`",
+          "Test case: assert abs(pvalue - 0.06021120828730412) <= 1e-8"
+        ],
+        "reason": "The output is a single scalar value (pvalue) with a strict numeric tolerance, but there is only one output type and no evidence of complex artifact realization or multiple output formats. The parameterization is tight due to the strict assertion, but there are no explicit format or schema constraints beyond this."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Group definition is not explicit in the question",
+          "Multiple input files may require alignment to construct groups"
+        ],
+        "reason": "There is some minor semantic ambiguity regarding how the two groups are defined, and the need to align data from multiple files may require limited schema or representation repair. However, there is no evidence of major ambiguity, contradiction, or missing fields that would make the task undefined."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present in the payload"
+        ],
+        "reason": "There is no evidence of transfer or reuse of prior experience; the task is standalone."
+      }
+    },
+    "overall_summary": "This task involves moderate planning load due to the need to infer a workflow for constructing two groups from multiple input files before performing a logrank test. The action and reflection loads are minor to moderate, mainly due to strict output checking and some ambiguity in group definition and data alignment. There is no evolution load as no transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2515,
+        "completion_tokens": 668,
+        "total_tokens": 3183
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Four input files: data_mutations.csv, data_log2_cna.csv, data_clinical_sample.csv, data_clinical_patient.csv",
+            "Question: 'get the pvalue of the two groups' survival via logrank test'",
+            "No explicit group definition or step list; group construction is implied"
+          ],
+          "reason": "The task requires inferring a workflow to define two groups for survival analysis using multiple input files, but does not specify the grouping method or dependency chain explicitly. There is moderate workflow structuring load due to the need to extract and align relevant data from several files and construct the groups before applying the logrank test. However, there is no strong evidence of multiple materially different methods (branching) since the logrank test is specified and the answer implies a canonical approach.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output: Save the results as `pvalue`",
+            "Test case: assert abs(pvalue - 0.06021120828730412) <= 1e-8"
+          ],
+          "reason": "The output is a single scalar value (pvalue) with a strict numeric tolerance, but there is only one output type and no evidence of complex artifact realization or multiple output formats. The parameterization is tight due to the strict assertion, but there are no explicit format or schema constraints beyond this.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Group definition is not explicit in the question",
+            "Multiple input files may require alignment to construct groups"
+          ],
+          "reason": "There is some minor semantic ambiguity regarding how the two groups are defined, and the need to align data from multiple files may require limited schema or representation repair. However, there is no evidence of major ambiguity, contradiction, or missing fields that would make the task undefined.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present in the payload"
+          ],
+          "reason": "There is no evidence of transfer or reuse of prior experience; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate planning load due to the need to infer a workflow for constructing two groups from multiple input files before performing a logrank test. The action and reflection loads are minor to moderate, mainly due to strict output checking and some ambiguity in group definition and data alignment. There is no evolution load as no transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:41:06.473689+00:00"
+  }
+}

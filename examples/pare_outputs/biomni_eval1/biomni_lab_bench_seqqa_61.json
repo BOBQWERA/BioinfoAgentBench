@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "biomni_eval1",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomni_lab_bench_seqqa_61",
+      "question": "The following is a multiple choice question about biology.\nPlease answer by responding with the letter of the correct answer.\n\nQuestion: What is the AA sequence of the longest ORF in the DNA sequence 'GCTACACATAGGAGCTGCGCGTTGCAGCATCCCAGGACTTATCGATATGAATAGAATCGACTTGCTGCGTAATCAAAGAATCGGTGAGATGCCAATGGTCCACCGATTGATCGTATCCTTATACCTCCGTGCCCGCTCATCGATCCCATATAGCTCACATAGGAGATCGGGTGGTAGGTACAGCTCGGTTATTACGCCGCACGCGTGGAGATTCTCATACTCAATAACGCAACCTCTTACTCTCATACTTGAGACCATAATACGACATTCTTTGGTGTTGTCCACTGCTGAAGCTGAAAGGGCCCTCGCGACTGCGGAAAAACGCGAGTGGGGAACTACTCCCTGGTCCACGTTCAGACGACGTCGTCTGCTTAGGTAGTATTAGTTAGTGGAGTTGCGATGAAGTACGCGGTGGAGGTTCCTTAAGATGAGAGCTCCTAGTCTGGAATGAAGAGGGTCGCTAATCCCTCCGTTACCGTATTTTCTGGAAGGCTTCTTGGTCTACGTTGCGAGGTCAAGGCAAGCGATCTGACCCATATAGCTGGATTCTTCTAAGAATCTAAAATCGGCCGCTATCAGCTGCTCGTGGGGGATATTGGTATCGAGAAGTCACACTAGGATCTGCCATTGGCTGAGCCCGATTGCGTTGTCGATACGGTCGTACAACTCTACGGCTACATAGATATTGATTCAGGAGTTAAATTGTATGATACTCCGGTGAGCGAAAGTAGGGCCGATGATATCTGTGCAACAACGAGGAAGGACTATATGCGTACGTATTTAGGTAATGCGTAACCCGATTTATGGTGAGAACTCTAGACCGTCCCCGTGCTCGAAGGCAGGCTGAAAATAAATGTTCCGTACGGTAACGGGAGGAGTTGCTCGTTCTCGCCCCACATTTTGGGAATGTAGCAAATCGTATTGTGAGGTTGCGAACTGCAGAAAACGGTATGAAAGAACAAAACAGGCGCGCAAAGTATTAACTAGGCCGGGCCAGCAACGAACGAGAGTCTGATGCACTCCCGTCCCGACTGTAATCTTCACTTTTTACTCACATACAGTGGCATCTCTGCGACGCACCATTGAATGCAATTGAGCATCCGTACTTGAAAACCTATGCCCCTGGAAGTTCCATCGAACGGACTGTAAACCCGACGAAGAATACGTCCGAGATCTATTGTTCCTTCGGTGGCTTTTATGCGTTCCAACTGAGAGAACCGAGATGGTCGATCTAATGGACTTCGGGTGACGCTTGCCAGTTCTGCTGCATCGTCTCGGTAGACTACTAAAAAGAACGCCTGTAACGTCGAAAGCCATTCTCAATTCACGGACCCTGTCGGTGAGTTAGTTTGACACGCGGACGCGTATGACCAGTTCGTCTCTCACACTTCCTCCAATGTTAGCAAACACGCTAAAAAACAGTGACTTTAACTTTTTCATACCGCAAAGATTGTGTTGTGCGCTTCGCTGCGATTTAACGTGGCACCTGCAGCGTGTCATATCAATTATCGCCTGATATCGTAGCGTGGGGCCCACTCTGTGATTTCTGCCGGTAACTTGGACGATCGATTAAACATTTGCCTGATTGAATTATACCCTGCACAACCGCGTATGCGAGTGGATTGGTGTAAGCCGTTAATATCGTTCGCACGCCAGTATCGGTCGTAAGCCAACTTTCTTGGAATGGCTCACACGACTTAAGGACCTCGATCTTATAAATGATGATCGAAATATCAAGGAGTCTATCTCTGCAAATTCACAACAGCGACGAATTTGGCTTCTTAGTCTCTCAGTGCGCTTGGTGACACTCCGAATGCCAATTAGCCCCAACCATCGTAGGCCCGGACGACACTGTCGGCATGTCAAATAATCGGTGAGTCAAGTACGCGTACCGAAACACACCATTCTAAGTGGAGGGGACTCTGCTGCTTGTCACAAGTGTGAAATATTTAGCAATATACCTTAAAATGTGCGATAAGTTTTCACGCCCACTAGGAAAACTGGACTTGACAACGCGACAGCAGCCCAGCCGTCGGAACGTCTTTGCTACACAACACCGTGCCGAAAGTTATGGAATACACCCTTGCGTAGCCATCGATAGATACTACCGATAGGAGATCCAGGAATAGGGCTATAAAGGTCCGAAGAGCGCATGCTCGCAAAGTAAAGCGAAAAACCGGGGCCATCGTCTATACGCAGGGAGAGGTGCCACAATCCGCCAGGATTTAGGTAATGCACCGTATAATGCGATCCACCCATTGCCACGTAAGACGTTTGTAATGCAGTCTTTTCCCTTATCTTTAGCACATTGCCAGTTGCGTTAACTTGTCTTAACTTGTTGGCTAGGATCACTAGGAGAGATCCTTAGAACATCTATGTGCCGATCGTTCATCTTTAACCTCCCAGAATACAGGACATGCTTACTATTTGAGTCAGGTACATCCCGTAACAGGGAAATATTCGCCCTATGAGACGGCTCCGGAAGCGTAACGTCCTGAGTGCCGGCCATGTTGCCTTTTGCAGGAAAAAAGTTAACATGACTCGTCTGTT'?\nOptions:\nA.MNRIDLLRNGRIGEMPMVHRLIVSLYLRARSSIPYSSHRRSGGRYSSVITPHAWRFSYSITQPLTLILETIIRHSLVLSTAEAERALATAEKREWGTTPWSTFRRRRLLR*\nB.MNRIDLLRNQRIGEMPMVHRLIVSLYLRSRSSIPYSSHRRSGGRYSSVITPHAWRFSYSITQPLTLILETIIRHSLVLSTAEAERALATAEKREWGTTPWSTFRRRRLLR*\nC.MNRIDLLRNQRIGEMPMVHRLIVSLYLRARSSIPYSSHRRSGGRYSSVITPHAWRFSYSITQPLTLILETIIRHSLVLSTAEAERALATAEKREWGTTPWSTFRRRRLLR*\nD.MNRIDLLRNQRIGEMPMVHRLIVSLYLRARSSIPYSSHRRSGGRYSSVITPHAWRFLYSITQPLTLILETIIRHSLVLSTAEAERALATAEKREWGTTPWSTFRRRRLLR*\nE.Insufficient information to answer the question.\nF.ATGAATAGAATCGACTTGCTGCGTAATCAAAGAATCGGTGAGATGCCAATGGTCCACCGATTGATCGTATCCTTATACCTCCGTGCCCGCTCATCGATCCCATATAGCTCACATAGGAGATCGGGTGGTAGGTACAGCTCGGTTATTACGCCGCACGCGTGGAGATTCTCATACTCAATAACGCAACCTCTTACTCTCATACTTGAGACCATAATACGACATTCTTTGGTGTTGTCCACTGCTGAAGCTGAAAGGGCCCTCGCGACTGCGGAAAAACGCGAGTGGGGAACTACTCCCTGGTCCACGTTCAGACGACGTCGTCTGCTTAGGTAG\n\nYou MUST include the letter of the correct answer within the following tags:\n[ANSWER] and [/ANSWER]. For example, '[ANSWER]<answer>[/ANSWER]',\nwhere <answer> is the correct letter. Always answer in exactly this format\nof a single letter between the two tags, even if you are unsure.\nWe require this because we use automatic parsing.\n            ",
+      "data": [],
+      "answer": "C",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "Biomni",
+        "source_dataset": "biomni/Eval1",
+        "task_name": "lab_bench_seqqa",
+        "task_instance_id": 61,
+        "split": "val",
+        "global_instance_id": 108
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomni_lab_bench_seqqa_61",
+    "benchmark": "biomni_eval1",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "What is the AA sequence of the longest ORF in the DNA sequence ...",
+          "Options: ... (multiple plausible AA sequences, one is correct)",
+          "No explicit workflow or method specified for ORF finding or translation"
+        ],
+        "reason": "The task requires identifying the longest open reading frame (ORF) from a long DNA sequence and translating it to an amino acid sequence, which is not a single direct statement but a multi-step process (ORF detection, translation). However, there is no explicit evidence of major method branching or multiple defensible workflows that would change correctness, so P2 remains moderate."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a single letter (A-F) between [ANSWER] tags",
+          "Options include both amino acid sequences and a raw DNA sequence",
+          "No explicit format or parameterization constraints beyond answer format"
+        ],
+        "reason": "The action required is to select the correct letter corresponding to the correct amino acid sequence, with strict output formatting ([ANSWER] tags). However, there is only one output type and no explicit parameterization or verification checkpoints, so artifact and spec tightness loads are minor."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "DNA sequence is provided in a single string",
+          "No evidence of missing fields, ambiguity, or schema mismatch",
+          "Options are clearly defined"
+        ],
+        "reason": "There is no evidence of semantic or representational ambiguity that would require repair. The question is clear, and the data is structured for direct use."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task requires moderate planning to decompose the process of finding and translating the longest ORF from a DNA sequence, but does not show evidence of high method branching or ambiguity. Action load is minor, as the output is a single formatted letter. There is no need for semantic or data repair, and no transfer/experience context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 4035,
+        "completion_tokens": 590,
+        "total_tokens": 4625
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "What is the AA sequence of the longest ORF in the DNA sequence ...",
+            "Options: ... (multiple plausible AA sequences, one is correct)",
+            "No explicit workflow or method specified for ORF finding or translation"
+          ],
+          "reason": "The task requires identifying the longest open reading frame (ORF) from a long DNA sequence and translating it to an amino acid sequence, which is not a single direct statement but a multi-step process (ORF detection, translation). However, there is no explicit evidence of major method branching or multiple defensible workflows that would change correctness, so P2 remains moderate.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a single letter (A-F) between [ANSWER] tags",
+            "Options include both amino acid sequences and a raw DNA sequence",
+            "No explicit format or parameterization constraints beyond answer format"
+          ],
+          "reason": "The action required is to select the correct letter corresponding to the correct amino acid sequence, with strict output formatting ([ANSWER] tags). However, there is only one output type and no explicit parameterization or verification checkpoints, so artifact and spec tightness loads are minor.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "DNA sequence is provided in a single string",
+            "No evidence of missing fields, ambiguity, or schema mismatch",
+            "Options are clearly defined"
+          ],
+          "reason": "There is no evidence of semantic or representational ambiguity that would require repair. The question is clear, and the data is structured for direct use.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires moderate planning to decompose the process of finding and translating the longest ORF from a DNA sequence, but does not show evidence of high method branching or ambiguity. Action load is minor, as the output is a single formatted letter. There is no need for semantic or data repair, and no transfer/experience context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:40:24.185665+00:00"
+  }
+}

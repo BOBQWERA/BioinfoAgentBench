@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_166",
+      "question": "I have a dataset {lung_cancer.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform random projection dimensionality reduction on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0166/files/lung_cancer.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"lung_cancer_rp_result.csv\", \"path\": \"downloaded_files\\\\index_0166\\\\milestone\\\\lung_cancer_rp_result.csv\"}], \"milestones\": [\"Generate the result file after analyzing the algorithm.\"], \"steps\": [\"Use sparse random projection for dimensionality reduction to analyze the dataset (for example, selecting the reduced dimensionality to be 2).\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "随机投影",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.52,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_166",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'perform random projection dimensionality reduction on this dataset.'",
+          "Target column specified; features are all other columns.",
+          "Answer: 'Use sparse random projection for dimensionality reduction to analyze the dataset (for example, selecting the reduced dimensionality to be 2).' (method and dimension are suggested, not strictly specified)"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must separate features from the target and apply random projection. The method (random projection) is specified, but the reduced dimensionality is only suggested ('for example, ... 2'), leaving some choice. However, the overall workflow is standard and linear, with no evidence of complex branching or multiple dependency-constrained steps."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone file: 'lung_cancer_rp_result.csv'",
+          "Output is a single result file after dimensionality reduction.",
+          "No explicit format or schema constraints beyond standard CSV."
+        ],
+        "reason": "There is a minor artifact realization load: the output is a single CSV file with the results of dimensionality reduction. No explicit parameterization or strict format requirements are given, and only one output type is required."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Target column is clearly specified.",
+          "No evidence of missing fields, schema mismatch, or ambiguity.",
+          "No need for semantic or data repair is indicated."
+        ],
+        "reason": "The task is clearly defined with no ambiguity or representational inconsistency. There is no evidence of the need for repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a standard application of random projection dimensionality reduction to a dataset with a clearly specified target column. There is minor planning and artifact realization load due to the need to select features, apply the method, and output a result file, but no evidence of complex branching, strict parameterization, or repair. No transfer or evolution load is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2374,
+        "completion_tokens": 619,
+        "total_tokens": 2993
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'perform random projection dimensionality reduction on this dataset.'",
+            "Target column specified; features are all other columns.",
+            "Answer: 'Use sparse random projection for dimensionality reduction to analyze the dataset (for example, selecting the reduced dimensionality to be 2).' (method and dimension are suggested, not strictly specified)"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must separate features from the target and apply random projection. The method (random projection) is specified, but the reduced dimensionality is only suggested ('for example, ... 2'), leaving some choice. However, the overall workflow is standard and linear, with no evidence of complex branching or multiple dependency-constrained steps.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone file: 'lung_cancer_rp_result.csv'",
+            "Output is a single result file after dimensionality reduction.",
+            "No explicit format or schema constraints beyond standard CSV."
+          ],
+          "reason": "There is a minor artifact realization load: the output is a single CSV file with the results of dimensionality reduction. No explicit parameterization or strict format requirements are given, and only one output type is required.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Target column is clearly specified.",
+            "No evidence of missing fields, schema mismatch, or ambiguity.",
+            "No need for semantic or data repair is indicated."
+          ],
+          "reason": "The task is clearly defined with no ambiguity or representational inconsistency. There is no evidence of the need for repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard application of random projection dimensionality reduction to a dataset with a clearly specified target column. There is minor planning and artifact realization load due to the need to select features, apply the method, and output a result file, but no evidence of complex branching, strict parameterization, or repair. No transfer or evolution load is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:22:06.326661+00:00"
+  }
+}

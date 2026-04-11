@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-12-q2",
+      "question": "What is the median percentage of parsimony informative sites across fungal gene alignments?",
+      "data": [],
+      "answer": "3.5%",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-12-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "1.2%",
+          "4.9%",
+          "5.2%"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-12-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'What is the median percentage of parsimony informative sites across fungal gene alignments?'",
+          "Requires aggregation (median) over a set of alignments"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires computing the percentage of parsimony informative sites for each alignment and then aggregating via the median. However, there is no evidence of branching decision load, as the method for calculating parsimony informative sites and the aggregation (median) are standard and unambiguous in this context."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a single percentage value (e.g., '3.5%')",
+          "No explicit format or parameterization constraints stated"
+        ],
+        "reason": "The artifact realization load is low: only a single numeric output is required. There is no evidence of strict format or parameterization requirements (e.g., decimal places, rounding, or thresholds)."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of ambiguous semantics or data representation issues",
+          "No input data or schema provided"
+        ],
+        "reason": "There is almost no reflection load. The question is clear and does not require semantic or data repair. The absence of input data means no representational repair is possible or needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone question."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow structuring load due to the need to compute and aggregate statistics across multiple alignments, but there is no evidence of branching, strict artifact requirements, semantic ambiguity, or transfer context. The overall complexity is low to moderate, with the main load being the aggregation step.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2201,
+        "completion_tokens": 535,
+        "total_tokens": 2736
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'What is the median percentage of parsimony informative sites across fungal gene alignments?'",
+            "Requires aggregation (median) over a set of alignments"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires computing the percentage of parsimony informative sites for each alignment and then aggregating via the median. However, there is no evidence of branching decision load, as the method for calculating parsimony informative sites and the aggregation (median) are standard and unambiguous in this context.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a single percentage value (e.g., '3.5%')",
+            "No explicit format or parameterization constraints stated"
+          ],
+          "reason": "The artifact realization load is low: only a single numeric output is required. There is no evidence of strict format or parameterization requirements (e.g., decimal places, rounding, or thresholds).",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of ambiguous semantics or data representation issues",
+            "No input data or schema provided"
+          ],
+          "reason": "There is almost no reflection load. The question is clear and does not require semantic or data repair. The absence of input data means no representational repair is possible or needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone question.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow structuring load due to the need to compute and aggregate statistics across multiple alignments, but there is no evidence of branching, strict artifact requirements, semantic ambiguity, or transfer context. The overall complexity is low to moderate, with the main load being the aggregation step.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:48:05.595735+00:00"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_7f2f3bfb-a13f-4808-97b1-af1f1cfd62ed",
+      "question": "Which of the following genes is a computationally predicted human gene target of the miRNA LET_7G_5P according to miRDB v6.0? ",
+      "data": [],
+      "answer": "RANBP2",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "DbQA",
+        "task_name": "mirna_targets_task",
+        "tag": "dbqa",
+        "version": "1.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "CYSRT1",
+          "FARP1",
+          "NR4A2"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_7f2f3bfb-a13f-4808-97b1-af1f1cfd62ed",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Which of the following genes is a computationally predicted human gene target of the miRNA LET_7G_5P according to miRDB v6.0?",
+          "Distractors provided: CYSRT1, FARP1, NR4A2"
+        ],
+        "reason": "The task is a direct database lookup with a single correct answer among provided options. There is no evidence of a multi-stage workflow or branching decision load; the only planning required is to query the correct database version for the specified miRNA and match to the gene list."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Answer is a single gene name: RANBP2",
+          "No explicit format or parameter constraints stated"
+        ],
+        "reason": "The output is a single gene name selected from a short list. There are no heterogeneous artifacts, format constraints, or parameterization requirements."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of ambiguous wording or data schema issues",
+          "Question is specific about database version and miRNA"
+        ],
+        "reason": "There is no ambiguity or representational inconsistency; the question is precise and requires no repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "No evidence of experience transfer or prior run; this is a standalone database lookup question."
+      }
+    },
+    "overall_summary": "This is a straightforward database lookup question with a single correct answer among distractors. There is minimal planning or action load, and no evidence of semantic or representational repair or experience transfer.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2244,
+        "completion_tokens": 483,
+        "total_tokens": 2727
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Which of the following genes is a computationally predicted human gene target of the miRNA LET_7G_5P according to miRDB v6.0?",
+            "Distractors provided: CYSRT1, FARP1, NR4A2"
+          ],
+          "reason": "The task is a direct database lookup with a single correct answer among provided options. There is no evidence of a multi-stage workflow or branching decision load; the only planning required is to query the correct database version for the specified miRNA and match to the gene list.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Answer is a single gene name: RANBP2",
+            "No explicit format or parameter constraints stated"
+          ],
+          "reason": "The output is a single gene name selected from a short list. There are no heterogeneous artifacts, format constraints, or parameterization requirements.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of ambiguous wording or data schema issues",
+            "Question is specific about database version and miRNA"
+          ],
+          "reason": "There is no ambiguity or representational inconsistency; the question is precise and requires no repair.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "No evidence of experience transfer or prior run; this is a standalone database lookup question.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward database lookup question with a single correct answer among distractors. There is minimal planning or action load, and no evidence of semantic or representational repair or experience transfer.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:40:34.247429+00:00"
+  }
+}

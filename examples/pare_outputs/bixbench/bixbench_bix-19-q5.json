@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-19-q5",
+      "question": "What minimum sample size per group would be required to detect a statistically significant difference in NeuN counts between KD and CTRL groups, given the observed effect size and desired power of 0.8?",
+      "data": [],
+      "answer": "337 samples",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-19-q5",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "16 samples",
+          "167 samples",
+          "674 samples"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-19-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What minimum sample size per group would be required to detect a statistically significant difference in NeuN counts between KD and CTRL groups, given the observed effect size and desired power of 0.8?"
+        ],
+        "reason": "The question requires the solver to plan a workflow for sample size calculation, which typically involves identifying the correct statistical test, using the observed effect size, and applying the desired power. However, the method is standard and there is no explicit evidence of multiple branching methods or dependency-constrained step graphs beyond the basic calculation."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What minimum sample size per group would be required...",
+          "given the observed effect size and desired power of 0.8?",
+          "answer: 337 samples"
+        ],
+        "reason": "The output is a single numeric value (sample size), and while the calculation is sensitive to the effect size and power, there are no explicit format constraints or multiple artifact types. The parameterization is present (effect size, power), but the specification is not unusually tight or complex."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "given the observed effect size and desired power of 0.8"
+        ],
+        "reason": "There is a trace of possible ambiguity if the effect size or other parameters are not fully specified, but the question as stated is clear and does not require semantic or data repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This is a standard sample size calculation question with moderate planning and parameterization load due to the need to use effect size and power, but no evidence of complex branching, artifact heterogeneity, or repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2219,
+        "completion_tokens": 557,
+        "total_tokens": 2776
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What minimum sample size per group would be required to detect a statistically significant difference in NeuN counts between KD and CTRL groups, given the observed effect size and desired power of 0.8?"
+          ],
+          "reason": "The question requires the solver to plan a workflow for sample size calculation, which typically involves identifying the correct statistical test, using the observed effect size, and applying the desired power. However, the method is standard and there is no explicit evidence of multiple branching methods or dependency-constrained step graphs beyond the basic calculation.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What minimum sample size per group would be required...",
+            "given the observed effect size and desired power of 0.8?",
+            "answer: 337 samples"
+          ],
+          "reason": "The output is a single numeric value (sample size), and while the calculation is sensitive to the effect size and power, there are no explicit format constraints or multiple artifact types. The parameterization is present (effect size, power), but the specification is not unusually tight or complex.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "given the observed effect size and desired power of 0.8"
+          ],
+          "reason": "There is a trace of possible ambiguity if the effect size or other parameters are not fully specified, but the question as stated is clear and does not require semantic or data repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a standard sample size calculation question with moderate planning and parameterization load due to the need to use effect size and power, but no evidence of complex branching, artifact heterogeneity, or repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:55:17.291967+00:00"
+  }
+}

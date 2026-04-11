@@ -1,0 +1,133 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_140",
+      "question": "{I have a dataset {liver_disorders.csv}, the \"Target\" column is the predicted result, please use partial least squares for regression training on this dataset.}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0140/files/liver_disorders.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0140\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0140\\\\milestone\\\\test.csv\"}, {\"name\": \"predictions.csv\", \"path\": \"downloaded_files\\\\index_0140\\\\milestone\\\\predictions.csv\"}], \"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the result file of the regression algorithm's predictions on the test set.\"], \"steps\": [\"Divide the dataset\", \"Use partial least squares regression for regression training.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Regression",
+        "task_abbr": "部分最小平方",
+        "task": "Regression",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.26,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_140",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"steps\": [\"Divide the dataset\", \"Use partial least squares regression for regression training.\"]",
+          "\"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the result file of the regression algorithm's predictions on the test set.\"]"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires splitting the dataset and then training a regression model, which is a two-step dependency chain. However, the steps are explicitly listed and standard, with no evidence of branching or multiple reasonable methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"train.csv\"...}, {\"name\": \"test.csv\"...}, {\"name\": \"predictions.csv\"...}]"
+        ],
+        "reason": "There are three output files (train.csv, test.csv, predictions.csv), indicating some artifact realization load. However, the formats and parameterization requirements are not specified as strict, and there are no explicit thresholds or verification constraints."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "\"question_type\": \"clear\"",
+          "No evidence of missing fields, ambiguity, or schema inconsistency in the question or data description."
+        ],
+        "reason": "The task is clearly defined, with no indication of semantic ambiguity or data/representation repair requirements."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience or transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a standard two-step regression workflow (data split, model training/prediction) with minor planning and artifact realization load. There is no evidence of semantic or data repair, nor any transfer/experience assimilation requirements.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2419,
+        "completion_tokens": 549,
+        "total_tokens": 2968
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"steps\": [\"Divide the dataset\", \"Use partial least squares regression for regression training.\"]",
+            "\"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the result file of the regression algorithm's predictions on the test set.\"]"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires splitting the dataset and then training a regression model, which is a two-step dependency chain. However, the steps are explicitly listed and standard, with no evidence of branching or multiple reasonable methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"train.csv\"...}, {\"name\": \"test.csv\"...}, {\"name\": \"predictions.csv\"...}]"
+          ],
+          "reason": "There are three output files (train.csv, test.csv, predictions.csv), indicating some artifact realization load. However, the formats and parameterization requirements are not specified as strict, and there are no explicit thresholds or verification constraints.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "\"question_type\": \"clear\"",
+            "No evidence of missing fields, ambiguity, or schema inconsistency in the question or data description."
+          ],
+          "reason": "The task is clearly defined, with no indication of semantic ambiguity or data/representation repair requirements.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience or transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-step regression workflow (data split, model training/prediction) with minor planning and artifact realization load. There is no evidence of semantic or data repair, nor any transfer/experience assimilation requirements.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:16:21.579856+00:00"
+  }
+}

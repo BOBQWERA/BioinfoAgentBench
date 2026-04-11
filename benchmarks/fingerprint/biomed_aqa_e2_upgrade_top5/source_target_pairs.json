@@ -1,0 +1,52 @@
+[
+  {
+    "source_question_id": "biomed_aqa_61",
+    "target_question_id": "biomed_aqa_37",
+    "source_task_abbr": "DEG",
+    "target_task_abbr": "DEG & enrichment",
+    "workflow_memory_index": 61,
+    "target_input_suffixes": [
+      ".csv"
+    ]
+  },
+  {
+    "source_question_id": "biomed_aqa_115",
+    "target_question_id": "biomed_aqa_131",
+    "source_task_abbr": "Classfication",
+    "target_task_abbr": "Regression",
+    "workflow_memory_index": 115,
+    "target_input_suffixes": [
+      ".csv"
+    ]
+  },
+  {
+    "source_question_id": "biomed_aqa_128",
+    "target_question_id": "biomed_aqa_121",
+    "source_task_abbr": "线性判别分析",
+    "target_task_abbr": "逻辑回归",
+    "workflow_memory_index": 128,
+    "target_input_suffixes": [
+      ".csv"
+    ]
+  },
+  {
+    "source_question_id": "biomed_aqa_126",
+    "target_question_id": "biomed_aqa_140",
+    "source_task_abbr": "随机森林",
+    "target_task_abbr": "部分最小平方",
+    "workflow_memory_index": 126,
+    "target_input_suffixes": [
+      ".csv"
+    ]
+  },
+  {
+    "source_question_id": "biomed_aqa_152",
+    "target_question_id": "biomed_aqa_164",
+    "source_task_abbr": "HClust聚类",
+    "target_task_abbr": "t-分布随机邻域嵌入",
+    "workflow_memory_index": 152,
+    "target_input_suffixes": [
+      ".csv"
+    ]
+  }
+]

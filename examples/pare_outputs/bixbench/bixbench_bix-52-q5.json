@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-52-q5",
+      "question": "What is the density of filtered (>90% or <10% methylation) age-related CpG sites (>90% or <10% methylation) on chromosome Z in the Zebra Finch genome?",
+      "data": [],
+      "answer": "(0.9e-7,1.1e-7)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-52-q5",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(6.0e-5, 6.2e-5)",
+          "(0.9e-6,1.1e-6)",
+          "(2.1e-7,2.3e-7)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-52-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question requires filtering CpG sites by methylation (>90% or <10%)",
+          "Requires focus on age-related CpG sites",
+          "Density calculation on chromosome Z in the Zebra Finch genome"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires filtering by methylation threshold, identifying age-related CpG sites, and restricting to chromosome Z, then calculating density. However, there is no explicit evidence of branching decision load (no multiple methods or ambiguous assumptions directly stated)."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a numeric range (e.g., (0.9e-7,1.1e-7))",
+          "Range verifier is specified in metadata",
+          "Filtering thresholds (>90% or <10%) are explicit"
+        ],
+        "reason": "There is weak artifact realization and parameterization load: the output is a numeric range with explicit methylation thresholds, and the answer must fit a specified range. However, there is no evidence of multiple heterogeneous output types or strict format constraints beyond the range."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or schema mismatch in question",
+          "All required fields (chromosome, species, methylation thresholds) are specified"
+        ],
+        "reason": "There is almost no evidence of semantic or representational repair needed. The question is clear and all necessary fields are present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided"
+        ],
+        "reason": "No transfer or evolution context is present in the payload."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow structuring load due to the need to filter CpG sites by methylation and age-relatedness, restrict to chromosome Z, and compute a density. The output is a numeric range with explicit thresholds, but there is no evidence of complex artifact realization or strict format constraints. The question is well-specified with no need for semantic or representational repair, and there is no transfer or evolution context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2264,
+        "completion_tokens": 595,
+        "total_tokens": 2859
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question requires filtering CpG sites by methylation (>90% or <10%)",
+            "Requires focus on age-related CpG sites",
+            "Density calculation on chromosome Z in the Zebra Finch genome"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires filtering by methylation threshold, identifying age-related CpG sites, and restricting to chromosome Z, then calculating density. However, there is no explicit evidence of branching decision load (no multiple methods or ambiguous assumptions directly stated).",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a numeric range (e.g., (0.9e-7,1.1e-7))",
+            "Range verifier is specified in metadata",
+            "Filtering thresholds (>90% or <10%) are explicit"
+          ],
+          "reason": "There is weak artifact realization and parameterization load: the output is a numeric range with explicit methylation thresholds, and the answer must fit a specified range. However, there is no evidence of multiple heterogeneous output types or strict format constraints beyond the range.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or schema mismatch in question",
+            "All required fields (chromosome, species, methylation thresholds) are specified"
+          ],
+          "reason": "There is almost no evidence of semantic or representational repair needed. The question is clear and all necessary fields are present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided"
+          ],
+          "reason": "No transfer or evolution context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow structuring load due to the need to filter CpG sites by methylation and age-relatedness, restrict to chromosome Z, and compute a density. The output is a numeric range with explicit thresholds, but there is no evidence of complex artifact realization or strict format constraints. The question is well-specified with no need for semantic or representational repair, and there is no transfer or evolution context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:27:40.149984+00:00"
+  }
+}

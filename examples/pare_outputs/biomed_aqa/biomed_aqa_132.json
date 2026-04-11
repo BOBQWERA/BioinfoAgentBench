@@ -1,0 +1,139 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_132",
+      "question": "I have a regression dataset {{diabetes.csv}}, and the \"Target\" column of the dataset corresponds to the results. Please use an appropriate algorithm to train and test.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0132/files/diabetes.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0132\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0132\\\\milestone\\\\test.csv\"}, {\"name\": \"train_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0132\\\\milestone\\\\train_feature_selected.csv\"}, {\"name\": \"test_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0132\\\\milestone\\\\test_feature_selected.csv\"}, {\"name\": \"linear_regression_predictions.csv\", \"path\": \"downloaded_files\\\\index_0132\\\\milestone\\\\linear_regression_predictions.csv\"}], \"milestones\": [\"Generate the training set train.csv and the test set test.csv files.\", \"Generate the result file feature_selected.csv after feature selection.\", \"Generate the test result file for linear regression, such as linear_regression_predictions.csv.\", \"MSE value: 0.17573731529078207\"], \"steps\": [\"Split the dataset to generate train.csv and test.csv files.\", \"Feature selection, generate the file after feature selection.\", \"Train using linear regression, test on the test set, and generate the result file on the test set.\", \"Mean Squared Error (MSE) value\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Regression",
+        "task_abbr": "Regression",
+        "task": "Regression",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.18,
+        "milestone_count": 4,
+        "step_count": 4
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_132",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Question: 'Please use an appropriate algorithm to train and test.'",
+          "Milestones/steps: 'Split the dataset', 'Feature selection', 'Train using linear regression', 'MSE value'",
+          "Multiple intermediate/final artifacts: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, linear_regression_predictions.csv"
+        ],
+        "reason": "The task requires structuring a workflow with multiple dependency-constrained steps: data split, feature selection, model training, prediction, and evaluation. However, the method is specified as linear regression in the answer, so branching decision load is limited. There is some minor branching in feature selection method choice, but the answer prescribes linear regression, reducing ambiguity."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Milestone files: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, linear_regression_predictions.csv",
+          "Explicit output: 'MSE value: 0.17573731529078207'",
+          "Steps specify file outputs at each stage"
+        ],
+        "reason": "There are multiple heterogeneous output files (splits, feature-selected files, predictions) and an explicit numeric result (MSE). Output realization requires correct file structure and content, but there is no evidence of strict format constraints or parameterization tightness beyond standard expectations."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of ambiguous semantics or data schema mismatch",
+          "Dataset and target column are clearly specified"
+        ],
+        "reason": "The task is semantically clear and the data representation appears consistent. There is no evidence of ambiguity, contradiction, or need for repair. Only a trace load may exist if minor clarification is needed for feature selection, but this is not explicit."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context in payload"
+        ],
+        "reason": "There is no explicit prior experience or transfer context provided."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-step regression workflow with explicit intermediate and final artifacts, requiring moderate planning and action load. There is little evidence of semantic or representational ambiguity, and no transfer/experience context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2565,
+        "completion_tokens": 627,
+        "total_tokens": 3192
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Question: 'Please use an appropriate algorithm to train and test.'",
+            "Milestones/steps: 'Split the dataset', 'Feature selection', 'Train using linear regression', 'MSE value'",
+            "Multiple intermediate/final artifacts: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, linear_regression_predictions.csv"
+          ],
+          "reason": "The task requires structuring a workflow with multiple dependency-constrained steps: data split, feature selection, model training, prediction, and evaluation. However, the method is specified as linear regression in the answer, so branching decision load is limited. There is some minor branching in feature selection method choice, but the answer prescribes linear regression, reducing ambiguity.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Milestone files: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, linear_regression_predictions.csv",
+            "Explicit output: 'MSE value: 0.17573731529078207'",
+            "Steps specify file outputs at each stage"
+          ],
+          "reason": "There are multiple heterogeneous output files (splits, feature-selected files, predictions) and an explicit numeric result (MSE). Output realization requires correct file structure and content, but there is no evidence of strict format constraints or parameterization tightness beyond standard expectations.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of ambiguous semantics or data schema mismatch",
+            "Dataset and target column are clearly specified"
+          ],
+          "reason": "The task is semantically clear and the data representation appears consistent. There is no evidence of ambiguity, contradiction, or need for repair. Only a trace load may exist if minor clarification is needed for feature selection, but this is not explicit.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context in payload"
+          ],
+          "reason": "There is no explicit prior experience or transfer context provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-step regression workflow with explicit intermediate and final artifacts, requiring moderate planning and action load. There is little evidence of semantic or representational ambiguity, and no transfer/experience context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:15:26.454235+00:00"
+  }
+}

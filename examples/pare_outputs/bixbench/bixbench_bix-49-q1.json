@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-49-q1",
+      "question": "What is the maximum log2 fold change, rounded to 2 decimal points, observed among statistically significant (p<0.05) upregulated genes after differential gene expression analysis with lfc shrinkage (type=apeglm) comparing disease (ASXL1 mutation) vs control?",
+      "data": [],
+      "answer": "4.80",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-49-q1",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "3.82",
+          "2.87",
+          "3.30"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-49-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "differential gene expression analysis with lfc shrinkage (type=apeglm)",
+          "comparing disease (ASXL1 mutation) vs control",
+          "statistically significant (p<0.05) upregulated genes"
+        ],
+        "reason": "The question requires a multi-step workflow: (1) perform DGE analysis with a specific shrinkage method, (2) filter for significant upregulated genes, (3) extract and round the maximum log2 fold change. The workflow is not fully specified in terms of tool or exact steps, but the dependency chain is clear. There is no strong evidence of major method branching (P2), as the method (apeglm) and significance threshold are specified."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "maximum log2 fold change, rounded to 2 decimal points",
+          "statistically significant (p<0.05) upregulated genes",
+          "str_verifier"
+        ],
+        "reason": "The output is a single numeric value with explicit rounding and filtering requirements. The presence of a strict verifier and explicit rounding/thresholds increases the artifact realization and parameterization load, but only one output type is required."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "lfc shrinkage (type=apeglm)",
+          "statistically significant (p<0.05) upregulated genes"
+        ],
+        "reason": "The semantics are mostly clear, but there is some minor potential for ambiguity in defining 'upregulated' (e.g., log2FC>0) and the exact filtering order. No evidence of data/schema repair is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context in payload"
+        ],
+        "reason": "No evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This task requires a standard multi-step DGE workflow with explicit filtering and rounding, but does not show strong evidence of method branching, data repair, or transfer learning. The main complexity lies in chaining the required steps and adhering to strict output specification.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2241,
+        "completion_tokens": 585,
+        "total_tokens": 2826
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "differential gene expression analysis with lfc shrinkage (type=apeglm)",
+            "comparing disease (ASXL1 mutation) vs control",
+            "statistically significant (p<0.05) upregulated genes"
+          ],
+          "reason": "The question requires a multi-step workflow: (1) perform DGE analysis with a specific shrinkage method, (2) filter for significant upregulated genes, (3) extract and round the maximum log2 fold change. The workflow is not fully specified in terms of tool or exact steps, but the dependency chain is clear. There is no strong evidence of major method branching (P2), as the method (apeglm) and significance threshold are specified.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "maximum log2 fold change, rounded to 2 decimal points",
+            "statistically significant (p<0.05) upregulated genes",
+            "str_verifier"
+          ],
+          "reason": "The output is a single numeric value with explicit rounding and filtering requirements. The presence of a strict verifier and explicit rounding/thresholds increases the artifact realization and parameterization load, but only one output type is required.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "lfc shrinkage (type=apeglm)",
+            "statistically significant (p<0.05) upregulated genes"
+          ],
+          "reason": "The semantics are mostly clear, but there is some minor potential for ambiguity in defining 'upregulated' (e.g., log2FC>0) and the exact filtering order. No evidence of data/schema repair is present.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context in payload"
+          ],
+          "reason": "No evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a standard multi-step DGE workflow with explicit filtering and rounding, but does not show strong evidence of method branching, data repair, or transfer learning. The main complexity lies in chaining the required steps and adhering to strict output specification.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:22:59.807500+00:00"
+  }
+}

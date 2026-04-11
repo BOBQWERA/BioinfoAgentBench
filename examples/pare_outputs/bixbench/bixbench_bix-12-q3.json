@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-12-q3",
+      "question": "What is the ratio of the lowest parsimony informative site percentages between fungi and animals?",
+      "data": [],
+      "answer": "4.0",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-12-q3",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.5",
+          "1.0",
+          "3.0"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-12-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'What is the ratio of the lowest parsimony informative site percentages between fungi and animals?'",
+          "Requires identifying lowest percentages for two groups and then computing a ratio"
+        ],
+        "reason": "The task requires decomposing the goal into two steps: (1) identify the lowest parsimony informative site percentage for fungi and for animals, and (2) compute their ratio. However, there is no evidence of branching decision load (no indication of multiple reasonable methods or assumptions that would affect correctness)."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Final answer is a single numeric value ('4.0')",
+          "No explicit format or parameterization constraints"
+        ],
+        "reason": "The action load is minor: the output is a single number, and there are no explicit format or parameterization constraints. There is no evidence of multiple artifact types or strict verification requirements."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided; question wording is clear",
+          "No evidence of ambiguity or representational inconsistency"
+        ],
+        "reason": "There is no evidence of semantic or data repair required. The question is clear and does not require clarification or data schema alignment."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no transfer or evolution context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a simple two-step workflow: identifying the lowest percentages for two groups and computing their ratio. There is no evidence of branching, strict output specification, semantic ambiguity, or transfer context. The complexity is low to moderate, driven mainly by the need to extract and compare two values before computing a ratio.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2202,
+        "completion_tokens": 530,
+        "total_tokens": 2732
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'What is the ratio of the lowest parsimony informative site percentages between fungi and animals?'",
+            "Requires identifying lowest percentages for two groups and then computing a ratio"
+          ],
+          "reason": "The task requires decomposing the goal into two steps: (1) identify the lowest parsimony informative site percentage for fungi and for animals, and (2) compute their ratio. However, there is no evidence of branching decision load (no indication of multiple reasonable methods or assumptions that would affect correctness).",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Final answer is a single numeric value ('4.0')",
+            "No explicit format or parameterization constraints"
+          ],
+          "reason": "The action load is minor: the output is a single number, and there are no explicit format or parameterization constraints. There is no evidence of multiple artifact types or strict verification requirements.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided; question wording is clear",
+            "No evidence of ambiguity or representational inconsistency"
+          ],
+          "reason": "There is no evidence of semantic or data repair required. The question is clear and does not require clarification or data schema alignment.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no transfer or evolution context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a simple two-step workflow: identifying the lowest percentages for two groups and computing their ratio. There is no evidence of branching, strict output specification, semantic ambiguity, or transfer context. The complexity is low to moderate, driven mainly by the need to extract and compare two values before computing a ratio.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:48:20.695285+00:00"
+  }
+}

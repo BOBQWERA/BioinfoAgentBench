@@ -1,0 +1,136 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-46-q4",
+      "question": "What is the log2 fold change value rounded to 2 decimal points for the phenazine pathway gene PA14_35160 in the ΔrhlI mutant?",
+      "data": [],
+      "answer": "-4.10",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-46-q4",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "-2.85",
+          "-1.95",
+          "-0.62"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-46-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Question asks for log2 fold change value for a specific gene in a specific mutant.",
+          "No explicit workflow or dependency chain described.",
+          "No evidence of multiple reasonable methods or branching decisions."
+        ],
+        "reason": "The task is a direct query for a specific value (log2 fold change for a gene in a mutant). There is no explicit or implied need for workflow structuring or method branching; the question is specific and does not require decomposition or major planning."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Requires value rounded to 2 decimal points.",
+          "Eval mode is 'str_verifier', indicating strict output format.",
+          "Output is a single numeric value."
+        ],
+        "reason": "There is a minor artifact realization load due to the requirement for rounding to 2 decimal points and strict string verification, but only a single output type is required and no complex artifact structure is involved."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of semantic ambiguity or data/representation inconsistency.",
+          "Question is specific about gene, pathway, and mutant."
+        ],
+        "reason": "The question is clearly defined and does not require semantic or data repair. No ambiguity or representational issues are present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided.",
+          "No evidence of transfer or abstraction required."
+        ],
+        "reason": "There is no transfer or evolution context in the payload."
+      }
+    },
+    "overall_summary": "This is a direct retrieval task for a specific log2 fold change value, with minor action load due to rounding and strict output verification. There is no evidence of planning, repair, or evolution load beyond minimal levels.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2216,
+        "completion_tokens": 505,
+        "total_tokens": 2721
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Question asks for log2 fold change value for a specific gene in a specific mutant.",
+            "No explicit workflow or dependency chain described.",
+            "No evidence of multiple reasonable methods or branching decisions."
+          ],
+          "reason": "The task is a direct query for a specific value (log2 fold change for a gene in a mutant). There is no explicit or implied need for workflow structuring or method branching; the question is specific and does not require decomposition or major planning.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Requires value rounded to 2 decimal points.",
+            "Eval mode is 'str_verifier', indicating strict output format.",
+            "Output is a single numeric value."
+          ],
+          "reason": "There is a minor artifact realization load due to the requirement for rounding to 2 decimal points and strict string verification, but only a single output type is required and no complex artifact structure is involved.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of semantic ambiguity or data/representation inconsistency.",
+            "Question is specific about gene, pathway, and mutant."
+          ],
+          "reason": "The question is clearly defined and does not require semantic or data repair. No ambiguity or representational issues are present.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided.",
+            "No evidence of transfer or abstraction required."
+          ],
+          "reason": "There is no transfer or evolution context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct retrieval task for a specific log2 fold change value, with minor action load due to rounding and strict output verification. There is no evidence of planning, repair, or evolution load beyond minimal levels.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:22:16.544858+00:00"
+  }
+}

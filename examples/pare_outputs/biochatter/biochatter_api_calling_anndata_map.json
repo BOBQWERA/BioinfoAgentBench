@@ -1,0 +1,121 @@
+{
+  "question": {
+    "benchmark": "biochatter",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biochatter_api_calling_anndata_map",
+      "question": "Replace the values in the cell_type column of the obs attribute in adata. Replace type1 with new_type1, type2 with new_type2, and type3 with new_type3.\n\n[template_input]\n{\"prompt\": {\"explicit_variable_names\": \"Replace the values in the cell_type column of the obs attribute in adata. Replace type1 with new_type1, type2 with new_type2, and type3 with new_type3.\", \"help_request\": \"How do I remap cell_type values to replace type1 with new_type1, type2 with new_type2, and type3 with new_type3. ?\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"adata.obs\", \"\\\\[\\\"cell_type\\\"\\\\]\", \"\\\\.map\\\\(\", \"\\\\{\\\\s*\\\"type1\\\": \\\"new_type1\\\"\", \"\\\\s*\\\"type2\\\": \\\"new_type2\\\"\", \"\\\\s*\\\"type3\\\": \\\"new_type3\\\"\", \"\\\\s*\\\\}\\\\)\", \"\\\\.copy\\\\(\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "anndata:map",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biochatter_api_calling_anndata_map",
+    "benchmark": "biochatter",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Replace the values in the cell_type column of the obs attribute in adata. Replace type1 with new_type1, type2 with new_type2, and type3 with new_type3."
+        ],
+        "reason": "The task is a direct mapping/replacement operation with a single, unambiguous goal. There is no evidence of a dependency-constrained step graph or multiple reasonable methods that would affect correctness. The workflow is a single-stage mapping."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Replace the values in the cell_type column of the obs attribute in adata.",
+          "Replace type1 with new_type1, type2 with new_type2, and type3 with new_type3."
+        ],
+        "reason": "There is a minor artifact realization load: the task requires modifying a specific column in a data structure (adata.obs['cell_type']) and mapping specific values. However, there is no evidence of heterogeneous output types, strict format constraints, or explicit parameterization/thresholds."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of missing or ambiguous semantics.",
+          "No evidence of schema mismatch or data repair requirement."
+        ],
+        "reason": "The task is clearly specified with no ambiguity or need for semantic or representational repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience transfer context present."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward mapping task with a single, direct operation and no evidence of branching, ambiguity, or transfer context. The only minor load is in realizing the mapping in the correct data structure.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2375,
+        "completion_tokens": 506,
+        "total_tokens": 2881
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Replace the values in the cell_type column of the obs attribute in adata. Replace type1 with new_type1, type2 with new_type2, and type3 with new_type3."
+          ],
+          "reason": "The task is a direct mapping/replacement operation with a single, unambiguous goal. There is no evidence of a dependency-constrained step graph or multiple reasonable methods that would affect correctness. The workflow is a single-stage mapping.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Replace the values in the cell_type column of the obs attribute in adata.",
+            "Replace type1 with new_type1, type2 with new_type2, and type3 with new_type3."
+          ],
+          "reason": "There is a minor artifact realization load: the task requires modifying a specific column in a data structure (adata.obs['cell_type']) and mapping specific values. However, there is no evidence of heterogeneous output types, strict format constraints, or explicit parameterization/thresholds.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of missing or ambiguous semantics.",
+            "No evidence of schema mismatch or data repair requirement."
+          ],
+          "reason": "The task is clearly specified with no ambiguity or need for semantic or representational repair.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience transfer context present."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward mapping task with a single, direct operation and no evidence of branching, ambiguity, or transfer context. The only minor load is in realizing the mapping in the correct data structure.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T10:40:33.923584+00:00"
+  }
+}

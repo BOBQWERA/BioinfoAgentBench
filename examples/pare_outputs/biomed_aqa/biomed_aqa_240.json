@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_240",
+      "question": "There is an existing dataset circle_bar.tsv, where \"individual\" is the sample name, the \"group\" column contains grouping information, and \"value\" is the corresponding number. Please use a circular barplot to display the number of each sample in each group.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0240/files/circle_bar.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"circular-barplot.jpg\", \"path\": \"downloaded_files\\\\index_0240\\\\milestone\\\\circular-barplot.jpg\"}], \"milestones\": [\"Generate circular barplot\", \"The result file for saving the image is correct.\"], \"steps\": [\"Draw a circular barplot\", \"Check whether the result file for saving the image is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Basic plot",
+        "task_abbr": "circular barplot",
+        "task": "Basic plot",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.09,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_240",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"Please use a circular barplot to display the number of each sample in each group.\"",
+          "Input file: circle_bar.tsv with columns 'individual', 'group', 'value'",
+          "Milestones: [\"Generate circular barplot\", \"The result file for saving the image is correct.\"]",
+          "Steps: [\"Draw a circular barplot\", \"Check whether the result file for saving the image is correct.\"]"
+        ],
+        "reason": "The task requires reading a TSV file, extracting relevant columns, and generating a specific type of plot (circular barplot). While this is a multi-step process (data loading, plotting, saving), the workflow is linear and standard for basic plotting tasks. There is no explicit evidence of branching decisions or multiple valid methods that would affect correctness. The planning load is weak but present due to the need to structure the workflow into at least two steps."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone file: circular-barplot.jpg",
+          "Explicit output format: image file (jpg)",
+          "Steps: [\"Draw a circular barplot\", \"Check whether the result file for saving the image is correct.\"]"
+        ],
+        "reason": "The action load is weak: the output is a single image file with a specified name and format. There is no evidence of multiple heterogeneous outputs, strict parameterization, or tight specification beyond the file name and type. The main artifact realization is the plot image, and the only parameterization is implicit in the plot type."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Input file columns are explicitly described: 'individual', 'group', 'value'",
+          "No evidence of missing fields, ambiguity, or schema mismatch"
+        ],
+        "reason": "There is trace evidence for reflection: the column names and their meanings are explicitly provided, so no semantic or representational repair is needed. There is no ambiguity or contradiction in the task description or data schema."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This is a basic plotting task requiring reading a well-described TSV file and generating a circular barplot as a single image output. The planning and action loads are weak but present due to the need to structure a simple workflow and produce a specific artifact. There is no evidence of ambiguity, data repair, or transfer/experience assimilation.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2384,
+        "completion_tokens": 702,
+        "total_tokens": 3086
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"Please use a circular barplot to display the number of each sample in each group.\"",
+            "Input file: circle_bar.tsv with columns 'individual', 'group', 'value'",
+            "Milestones: [\"Generate circular barplot\", \"The result file for saving the image is correct.\"]",
+            "Steps: [\"Draw a circular barplot\", \"Check whether the result file for saving the image is correct.\"]"
+          ],
+          "reason": "The task requires reading a TSV file, extracting relevant columns, and generating a specific type of plot (circular barplot). While this is a multi-step process (data loading, plotting, saving), the workflow is linear and standard for basic plotting tasks. There is no explicit evidence of branching decisions or multiple valid methods that would affect correctness. The planning load is weak but present due to the need to structure the workflow into at least two steps.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone file: circular-barplot.jpg",
+            "Explicit output format: image file (jpg)",
+            "Steps: [\"Draw a circular barplot\", \"Check whether the result file for saving the image is correct.\"]"
+          ],
+          "reason": "The action load is weak: the output is a single image file with a specified name and format. There is no evidence of multiple heterogeneous outputs, strict parameterization, or tight specification beyond the file name and type. The main artifact realization is the plot image, and the only parameterization is implicit in the plot type.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Input file columns are explicitly described: 'individual', 'group', 'value'",
+            "No evidence of missing fields, ambiguity, or schema mismatch"
+          ],
+          "reason": "There is trace evidence for reflection: the column names and their meanings are explicitly provided, so no semantic or representational repair is needed. There is no ambiguity or contradiction in the task description or data schema.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a basic plotting task requiring reading a well-described TSV file and generating a circular barplot as a single image output. The planning and action loads are weak but present due to the need to structure a simple workflow and produce a specific artifact. There is no evidence of ambiguity, data repair, or transfer/experience assimilation.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:30:42.891370+00:00"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_156",
+      "question": "I have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use Fanny for cluster analysis.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0156/files/hcluster.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"hcluster.csv\", \"path\": \"downloaded_files\\\\index_0156\\\\milestone\\\\hcluster.csv\"}, {\"name\": \"hcluster_fanny_result.csv\", \"path\": \"downloaded_files\\\\index_0156\\\\milestone\\\\hcluster_fanny_result.csv\"}], \"milestones\": [\"Generate the dataset in CSV format hcluster.csv (optional)\", \"Generate the prediction result file of the algorithm on this dataset, such as hcluster_fanny_result.csv.\"], \"steps\": [\"Convert the TSV format dataset to CSV format (optional)\", \"Train and predict on this dataset using the Fanny algorithm.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Clustering",
+        "task_abbr": "Fanny聚类",
+        "task": "Clustering",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.42,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_156",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Milestones: 'Generate the dataset in CSV format hcluster.csv (optional)', 'Generate the prediction result file of the algorithm on this dataset, such as hcluster_fanny_result.csv.'",
+          "Steps: 'Convert the TSV format dataset to CSV format (optional)', 'Train and predict on this dataset using the Fanny algorithm.'"
+        ],
+        "reason": "There is a minor workflow structuring load due to the need to (optionally) convert file formats before applying the Fanny clustering algorithm, but the steps are explicitly listed and there is no evidence of significant branching or method ambiguity."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone files: 'hcluster.csv', 'hcluster_fanny_result.csv'",
+          "Explicit output file types (CSV format), but only two types and no strict schema or parameterization rules specified."
+        ],
+        "reason": "There is a weak artifact realization load due to the requirement to produce two output files in CSV format, but there are no explicit format constraints, parameterization, or verification rules."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Input file format and columns are clearly described: 'the first column is the ID column, and the other columns are feature columns.'",
+          "No evidence of ambiguity, contradiction, or schema mismatch."
+        ],
+        "reason": "There is almost no need for semantic or representational repair; the input and requirements are clear."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This task involves a simple two-step workflow: (optionally) converting a TSV file to CSV and running Fanny clustering, with two output files required. There is minor planning and artifact realization load, but no significant branching, parameterization, or repair required. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2420,
+        "completion_tokens": 578,
+        "total_tokens": 2998
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Milestones: 'Generate the dataset in CSV format hcluster.csv (optional)', 'Generate the prediction result file of the algorithm on this dataset, such as hcluster_fanny_result.csv.'",
+            "Steps: 'Convert the TSV format dataset to CSV format (optional)', 'Train and predict on this dataset using the Fanny algorithm.'"
+          ],
+          "reason": "There is a minor workflow structuring load due to the need to (optionally) convert file formats before applying the Fanny clustering algorithm, but the steps are explicitly listed and there is no evidence of significant branching or method ambiguity.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone files: 'hcluster.csv', 'hcluster_fanny_result.csv'",
+            "Explicit output file types (CSV format), but only two types and no strict schema or parameterization rules specified."
+          ],
+          "reason": "There is a weak artifact realization load due to the requirement to produce two output files in CSV format, but there are no explicit format constraints, parameterization, or verification rules.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Input file format and columns are clearly described: 'the first column is the ID column, and the other columns are feature columns.'",
+            "No evidence of ambiguity, contradiction, or schema mismatch."
+          ],
+          "reason": "There is almost no need for semantic or representational repair; the input and requirements are clear.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a simple two-step workflow: (optionally) converting a TSV file to CSV and running Fanny clustering, with two output files required. There is minor planning and artifact realization load, but no significant branching, parameterization, or repair required. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:19:28.070915+00:00"
+  }
+}

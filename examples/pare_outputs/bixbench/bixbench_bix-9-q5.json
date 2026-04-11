@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-9-q5",
+      "question": "In which tissue type do bad responders show the highest number of significantly differentially expressed (lfc>0.5 and basemean>10) genes compared to controls?",
+      "data": [],
+      "answer": "Dentate gyrus (brain)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-9-q5",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Baseline blood",
+          "Final blood",
+          "Equal numbers across all tissues"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-9-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Question requires identifying tissue type with highest number of significantly differentially expressed genes (lfc>0.5 and basemean>10) between bad responders and controls",
+          "Requires filtering by two thresholds (lfc>0.5, basemean>10), then counting per tissue, then comparing counts across tissues"
+        ],
+        "reason": "The task requires a multi-step workflow: filtering genes by two criteria, grouping by tissue, counting, and then comparing across tissues to find the maximum. However, the method for differential expression analysis is not specified, but the question is sufficiently concrete that major branching is not required."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Final output is a single tissue type (categorical answer)",
+          "Explicit thresholds for lfc and basemean are given"
+        ],
+        "reason": "The output is a single categorical answer, but the process requires applying explicit thresholds (lfc>0.5, basemean>10) to gene-level data. There is some parameterization load, but artifact realization is minimal since only one answer is required."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Thresholds for lfc and basemean are explicitly stated",
+          "No evidence of ambiguous semantics or data schema issues"
+        ],
+        "reason": "The question is clearly worded with explicit thresholds and no sign of ambiguity or data repair needs. There is only a trace of possible ambiguity in what constitutes a 'significantly differentially expressed' gene, but the thresholds help clarify."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context in payload"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; this is a standalone question."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning load due to the need to filter gene expression data by explicit thresholds, group by tissue, count, and compare across tissues. Action load is low to moderate, as only a single categorical output is required but with explicit parameterization. Reflection and evolution loads are minimal due to clear question wording and absence of transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2222,
+        "completion_tokens": 614,
+        "total_tokens": 2836
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Question requires identifying tissue type with highest number of significantly differentially expressed genes (lfc>0.5 and basemean>10) between bad responders and controls",
+            "Requires filtering by two thresholds (lfc>0.5, basemean>10), then counting per tissue, then comparing counts across tissues"
+          ],
+          "reason": "The task requires a multi-step workflow: filtering genes by two criteria, grouping by tissue, counting, and then comparing across tissues to find the maximum. However, the method for differential expression analysis is not specified, but the question is sufficiently concrete that major branching is not required.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Final output is a single tissue type (categorical answer)",
+            "Explicit thresholds for lfc and basemean are given"
+          ],
+          "reason": "The output is a single categorical answer, but the process requires applying explicit thresholds (lfc>0.5, basemean>10) to gene-level data. There is some parameterization load, but artifact realization is minimal since only one answer is required.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Thresholds for lfc and basemean are explicitly stated",
+            "No evidence of ambiguous semantics or data schema issues"
+          ],
+          "reason": "The question is clearly worded with explicit thresholds and no sign of ambiguity or data repair needs. There is only a trace of possible ambiguity in what constitutes a 'significantly differentially expressed' gene, but the thresholds help clarify.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context in payload"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; this is a standalone question.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning load due to the need to filter gene expression data by explicit thresholds, group by tissue, count, and compare across tissues. Action load is low to moderate, as only a single categorical output is required but with explicit parameterization. Reflection and evolution loads are minimal due to clear question wording and absence of transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:39:26.926475+00:00"
+  }
+}

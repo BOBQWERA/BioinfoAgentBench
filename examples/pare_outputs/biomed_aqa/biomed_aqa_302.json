@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_302",
+      "question": "There is an existing survival-related file surv.tsv, where \"os\" is the survival event, \"os_status\" is the survival time, and \"risk\" is the risk level. Please plot the survival curve based on the risk level.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0302/files/surv.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"surv_surv.pdf\", \"path\": \"downloaded_files\\\\index_0302\\\\milestone\\\\surv_surv.pdf\"}], \"milestones\": [\"Draw survival curves\", \"The content of the survival curve is correct.\"], \"steps\": [\"Draw survival curves\", \"Check if the document is correct\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Surivival",
+        "task_abbr": "survival curve",
+        "task": "Surivival",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.71,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_302",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'plot the survival curve based on the risk level.'",
+          "File surv.tsv with columns: 'os', 'os_status', 'risk'",
+          "Milestones: 'Draw survival curves', 'The content of the survival curve is correct.'"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must map the columns to survival analysis concepts (event, time, group), and the task requires grouping by 'risk' to plot survival curves. However, the method is standard and there is no explicit evidence of multiple branching choices or dependency-constrained step graphs beyond basic mapping and plotting."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output: 'surv_surv.pdf' (figure file)",
+          "Milestones: 'Draw survival curves', 'The content of the survival curve is correct.'"
+        ],
+        "reason": "There is a single output artifact (PDF figure), and the format is implied but not strictly specified. The correctness criterion is that the content of the survival curve is correct, but there are no explicit parameterization or format constraints, nor multiple output types."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Column mapping: 'os' (event), 'os_status' (time), 'risk' (group)"
+        ],
+        "reason": "There is a trace need to clarify the mapping of column names to survival analysis concepts, but the question provides this mapping directly. No evidence of data schema mismatch, ambiguity, or need for repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "No evidence of prior experience, transfer, or strategy abstraction required."
+      }
+    },
+    "overall_summary": "This task involves plotting a survival curve by grouping on a specified risk column, with a single output PDF. The workflow is standard with minor structuring and mapping required, but no significant branching, parameterization, or repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2370,
+        "completion_tokens": 583,
+        "total_tokens": 2953
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'plot the survival curve based on the risk level.'",
+            "File surv.tsv with columns: 'os', 'os_status', 'risk'",
+            "Milestones: 'Draw survival curves', 'The content of the survival curve is correct.'"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must map the columns to survival analysis concepts (event, time, group), and the task requires grouping by 'risk' to plot survival curves. However, the method is standard and there is no explicit evidence of multiple branching choices or dependency-constrained step graphs beyond basic mapping and plotting.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output: 'surv_surv.pdf' (figure file)",
+            "Milestones: 'Draw survival curves', 'The content of the survival curve is correct.'"
+          ],
+          "reason": "There is a single output artifact (PDF figure), and the format is implied but not strictly specified. The correctness criterion is that the content of the survival curve is correct, but there are no explicit parameterization or format constraints, nor multiple output types.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Column mapping: 'os' (event), 'os_status' (time), 'risk' (group)"
+          ],
+          "reason": "There is a trace need to clarify the mapping of column names to survival analysis concepts, but the question provides this mapping directly. No evidence of data schema mismatch, ambiguity, or need for repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "No evidence of prior experience, transfer, or strategy abstraction required.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves plotting a survival curve by grouping on a specified risk column, with a single output PDF. The workflow is standard with minor structuring and mapping required, but no significant branching, parameterization, or repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:35:59.008893+00:00"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-20-q3",
+      "question": "Among samples with a 'Carrier' BLM mutation status, what proportion of somatic CHIP variants (VAF < 0.3) can be classified as benign? The proportion of somatic CHIP variants should be calculated after filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls.",
+      "data": [],
+      "answer": "(0.80, 1.00)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-20-q3",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.60, 0.79)",
+          "(0.40, 0.59)",
+          "(0.20, 0.39)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-20-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Among samples with a 'Carrier' BLM mutation status",
+          "proportion of somatic CHIP variants (VAF < 0.3)",
+          "after filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls"
+        ],
+        "reason": "The question requires a multi-step workflow: (1) select samples by mutation status, (2) filter variants by VAF and genomic region, (3) classify variants as benign, and (4) compute a proportion. The dependency chain is clear, but there is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "proportion of somatic CHIP variants (VAF < 0.3)",
+          "after filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls",
+          "classified as benign",
+          "eval_mode: range_verifier"
+        ],
+        "reason": "There are multiple explicit filtering and classification steps, and the output is a proportion constrained by a range verifier. However, there is no evidence of highly heterogeneous output types or extremely strict format requirements beyond the numeric range."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls",
+          "classified as benign"
+        ],
+        "reason": "Some minor semantic repair may be needed to clarify what counts as 'benign' and to ensure correct region filtering, but there is no evidence of major ambiguity, contradiction, or representational inconsistency."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task requires a moderately complex multi-step workflow involving sample selection, variant filtering, classification, and proportion calculation, with explicit filtering and output constraints. There is some minor need for semantic clarification, but no evidence of major ambiguity or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2269,
+        "completion_tokens": 609,
+        "total_tokens": 2878
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Among samples with a 'Carrier' BLM mutation status",
+            "proportion of somatic CHIP variants (VAF < 0.3)",
+            "after filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls"
+          ],
+          "reason": "The question requires a multi-step workflow: (1) select samples by mutation status, (2) filter variants by VAF and genomic region, (3) classify variants as benign, and (4) compute a proportion. The dependency chain is clear, but there is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "proportion of somatic CHIP variants (VAF < 0.3)",
+            "after filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls",
+            "classified as benign",
+            "eval_mode: range_verifier"
+          ],
+          "reason": "There are multiple explicit filtering and classification steps, and the output is a proportion constrained by a range verifier. However, there is no evidence of highly heterogeneous output types or extremely strict format requirements beyond the numeric range.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls",
+            "classified as benign"
+          ],
+          "reason": "Some minor semantic repair may be needed to clarify what counts as 'benign' and to ensure correct region filtering, but there is no evidence of major ambiguity, contradiction, or representational inconsistency.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a moderately complex multi-step workflow involving sample selection, variant filtering, classification, and proportion calculation, with explicit filtering and output constraints. There is some minor need for semantic clarification, but no evidence of major ambiguity or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:56:43.191443+00:00"
+  }
+}

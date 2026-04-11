@@ -1,0 +1,25 @@
+{
+  "sheet_name": "BioDSBench-R",
+  "total_instances": 165,
+  "pare_y": 26,
+  "pare_n": 139,
+  "filtered_count": 26,
+  "language": "R",
+  "study_types": {
+    "Biomarkers": 9,
+    "Molecular": 7,
+    "Integrative": 5,
+    "Pan-Cancer": 2,
+    "Therapeutics": 2,
+    "Translational": 1
+  },
+  "analysis_types": {
+    "Gene Expression & Differential Analysis": 18,
+    "Descriptive Statistics": 11,
+    "Survival Outcome Analysis": 7,
+    "Data Integration & Transformation": 5,
+    "Enrichment & Pathway Analysis": 2,
+    "Treatment Response Visualization & Quantification": 1,
+    "Clinical Feature Engineering": 1
+  }
+}

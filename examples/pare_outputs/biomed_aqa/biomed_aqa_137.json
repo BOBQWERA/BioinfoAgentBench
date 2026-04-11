@@ -1,0 +1,129 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_137",
+      "question": "I have a dataset {liver_disorders.csv}, the \"Target\" column is the predicted result, please use automatic linear modeling to perform regression training on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0137/files/liver_disorders.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0137\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0137\\\\milestone\\\\test.csv\"}, {\"name\": \"linear_regression_predictions.csv\", \"path\": \"downloaded_files\\\\index_0137\\\\milestone\\\\linear_regression_predictions.csv\"}], \"milestones\": [\"Generate train.csv and test.csv\", \"Generate prediction result files on the test set\"], \"steps\": [\"Divide the dataset\", \"Train and test using automatic linear modeling.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Regression",
+        "task_abbr": "自动线性建模回归",
+        "task": "Regression",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.23,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_137",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"steps\": [\"Divide the dataset\", \"Train and test using automatic linear modeling.\"]",
+          "\"milestones\": [\"Generate train.csv and test.csv\", \"Generate prediction result files on the test set\"]"
+        ],
+        "reason": "There is a clear two-stage workflow: data splitting and model training/prediction. The steps are sequential and dependency-constrained, but the workflow is standard and does not require complex decomposition or branching. No evidence of multiple reasonable methods or branching decisions that would affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"train.csv\"...}, {\"name\": \"test.csv\"...}, {\"name\": \"linear_regression_predictions.csv\"...}]",
+          "\"milestones\": [\"Generate train.csv and test.csv\", \"Generate prediction result files on the test set\"]"
+        ],
+        "reason": "The task requires generating three distinct output files (train.csv, test.csv, linear_regression_predictions.csv), indicating moderate artifact realization load. However, there is no explicit evidence of strict format constraints or parameterization tightness beyond standard file outputs."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"Target\" column is the predicted result"
+        ],
+        "reason": "The question specifies the target column, and there is no evidence of semantic ambiguity or data schema inconsistency. No explicit need for repair, but a trace of possible minor clarification regarding the target column."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [],
+        "reason": "No prior trajectory, experience, or transfer context is present in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-step regression workflow with moderate artifact realization load due to multiple required output files. Planning and reflection loads are low to moderate, with no evidence of branching, ambiguity, or repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2418,
+        "completion_tokens": 560,
+        "total_tokens": 2978
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"steps\": [\"Divide the dataset\", \"Train and test using automatic linear modeling.\"]",
+            "\"milestones\": [\"Generate train.csv and test.csv\", \"Generate prediction result files on the test set\"]"
+          ],
+          "reason": "There is a clear two-stage workflow: data splitting and model training/prediction. The steps are sequential and dependency-constrained, but the workflow is standard and does not require complex decomposition or branching. No evidence of multiple reasonable methods or branching decisions that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"train.csv\"...}, {\"name\": \"test.csv\"...}, {\"name\": \"linear_regression_predictions.csv\"...}]",
+            "\"milestones\": [\"Generate train.csv and test.csv\", \"Generate prediction result files on the test set\"]"
+          ],
+          "reason": "The task requires generating three distinct output files (train.csv, test.csv, linear_regression_predictions.csv), indicating moderate artifact realization load. However, there is no explicit evidence of strict format constraints or parameterization tightness beyond standard file outputs.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"Target\" column is the predicted result"
+          ],
+          "reason": "The question specifies the target column, and there is no evidence of semantic ambiguity or data schema inconsistency. No explicit need for repair, but a trace of possible minor clarification regarding the target column.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [],
+          "reason": "No prior trajectory, experience, or transfer context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-step regression workflow with moderate artifact realization load due to multiple required output files. Planning and reflection loads are low to moderate, with no evidence of branching, ambiguity, or repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:15:38.384811+00:00"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_261",
+      "question": "There is a data file named stacked_bar.tsv, which contains a column called 'days' representing different days, and three columns named 'goods1', 'goods2', and 'goods3', which record the sales data of three types of goods for each day. Please use a stacked bar chart to show the sales percentage of each type of goods for each day.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0261/files/stacked_bar.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"stacked-percentage-bar-stacked.jpg\", \"path\": \"downloaded_files\\\\index_0261\\\\milestone\\\\stacked-percentage-bar-stacked.jpg\"}], \"milestones\": [\"Generate stacked bar chart\", \"The result file for saving the image is correct.\"], \"steps\": [\"Draw a stacked bar chart\", \"Check whether the result file for saving the image is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Upset",
+        "task_abbr": "Percentsge Stacked Bar Chart",
+        "task": "Upset",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.3,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_261",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "The question requires generating a stacked bar chart showing sales percentage for each type of goods per day from a TSV file.",
+          "Milestones: 'Generate stacked bar chart', 'The result file for saving the image is correct.'",
+          "Steps: 'Draw a stacked bar chart', 'Check whether the result file for saving the image is correct.'"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must read the TSV, compute percentages for each goods column per day, and plot a stacked bar chart. However, the workflow is linear and standard for this visualization type, with no evidence of branching decisions or multiple valid methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output artifact: 'stacked-percentage-bar-stacked.jpg' (image file).",
+          "Explicit requirement to show sales percentage for each type of goods for each day.",
+          "Milestone and step specify correct file saving."
+        ],
+        "reason": "There is a minor artifact realization load: the output must be a specific image file with a particular visualization (stacked percentage bar chart). There is some format expectation (image file, correct content), but no strict schema, parameterization, or tight verification constraints are specified."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The data file and column names are explicitly specified.",
+          "No evidence of missing fields, ambiguity, or schema mismatch."
+        ],
+        "reason": "There is almost no repair load. The data structure and semantics are clearly described, and there is no indication of ambiguity or representational inconsistency. The only minor load is the need to compute percentages from raw counts, which is routine and unambiguous."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves reading a TSV file, computing sales percentages, and generating a stacked bar chart image. The workflow is linear and standard, with minor planning and artifact realization load due to the need to compute percentages and produce a specific output file. There is almost no repair or transfer load, as the data and requirements are clearly specified and there is no prior experience context.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2414,
+        "completion_tokens": 650,
+        "total_tokens": 3064
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "The question requires generating a stacked bar chart showing sales percentage for each type of goods per day from a TSV file.",
+            "Milestones: 'Generate stacked bar chart', 'The result file for saving the image is correct.'",
+            "Steps: 'Draw a stacked bar chart', 'Check whether the result file for saving the image is correct.'"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must read the TSV, compute percentages for each goods column per day, and plot a stacked bar chart. However, the workflow is linear and standard for this visualization type, with no evidence of branching decisions or multiple valid methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output artifact: 'stacked-percentage-bar-stacked.jpg' (image file).",
+            "Explicit requirement to show sales percentage for each type of goods for each day.",
+            "Milestone and step specify correct file saving."
+          ],
+          "reason": "There is a minor artifact realization load: the output must be a specific image file with a particular visualization (stacked percentage bar chart). There is some format expectation (image file, correct content), but no strict schema, parameterization, or tight verification constraints are specified.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The data file and column names are explicitly specified.",
+            "No evidence of missing fields, ambiguity, or schema mismatch."
+          ],
+          "reason": "There is almost no repair load. The data structure and semantics are clearly described, and there is no indication of ambiguity or representational inconsistency. The only minor load is the need to compute percentages from raw counts, which is routine and unambiguous.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves reading a TSV file, computing sales percentages, and generating a stacked bar chart image. The workflow is linear and standard, with minor planning and artifact realization load due to the need to compute percentages and produce a specific output file. There is almost no repair or transfer load, as the data and requirements are clearly specified and there is no prior experience context.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:32:33.557158+00:00"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-24-q6",
+      "question": "Using gseapy and GO_Biological_Process_2021, which biological process shows the most significant enrichment among all significant DEGs in CBD-treated CRC cells, compared to DMSO?",
+      "data": [],
+      "answer": "Cellular response to decreased oxygen levels",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-24-q6",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Glycolytic process",
+          "Canonical glycolysis",
+          "Carbohydrate catabolic process"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-24-q6",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Using gseapy and GO_Biological_Process_2021",
+          "among all significant DEGs in CBD-treated CRC cells, compared to DMSO"
+        ],
+        "reason": "The question requires identifying significant DEGs (implying a prior differential expression step) and then performing enrichment analysis using gseapy with a specified gene set library. The workflow is at least two-stage (DEG identification, then enrichment), but the method is standard and there is no explicit evidence of branching or multiple defensible methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "which biological process shows the most significant enrichment",
+          "using gseapy and GO_Biological_Process_2021"
+        ],
+        "reason": "The output is a single biological process name, derived from a standard enrichment analysis. There is some parameterization implied (e.g., significance threshold for DEGs, enrichment ranking), but no explicit format or strict verification constraints are stated. Only one output type is required."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "all significant DEGs",
+          "CBD-treated CRC cells, compared to DMSO"
+        ],
+        "reason": "There is a minor need to clarify what constitutes 'significant DEGs' (e.g., threshold), but this is routine and does not rise to the level of major semantic or representational repair. No evidence of schema mismatch or ambiguity that would prevent computation."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-stage workflow: identifying significant DEGs and performing GO enrichment analysis using gseapy. There is minor planning and action load due to the need to chain these steps and select significance thresholds, but no evidence of major branching, strict output specification, or semantic/data repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2232,
+        "completion_tokens": 591,
+        "total_tokens": 2823
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Using gseapy and GO_Biological_Process_2021",
+            "among all significant DEGs in CBD-treated CRC cells, compared to DMSO"
+          ],
+          "reason": "The question requires identifying significant DEGs (implying a prior differential expression step) and then performing enrichment analysis using gseapy with a specified gene set library. The workflow is at least two-stage (DEG identification, then enrichment), but the method is standard and there is no explicit evidence of branching or multiple defensible methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "which biological process shows the most significant enrichment",
+            "using gseapy and GO_Biological_Process_2021"
+          ],
+          "reason": "The output is a single biological process name, derived from a standard enrichment analysis. There is some parameterization implied (e.g., significance threshold for DEGs, enrichment ranking), but no explicit format or strict verification constraints are stated. Only one output type is required.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "all significant DEGs",
+            "CBD-treated CRC cells, compared to DMSO"
+          ],
+          "reason": "There is a minor need to clarify what constitutes 'significant DEGs' (e.g., threshold), but this is routine and does not rise to the level of major semantic or representational repair. No evidence of schema mismatch or ambiguity that would prevent computation.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-stage workflow: identifying significant DEGs and performing GO enrichment analysis using gseapy. There is minor planning and action load due to the need to chain these steps and select significance thresholds, but no evidence of major branching, strict output specification, or semantic/data repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:59:22.699203+00:00"
+  }
+}

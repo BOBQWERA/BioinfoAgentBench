@@ -1,0 +1,126 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-38-q3",
+      "question": "What percentage of fungal single-copy orthologs have tree lengths exceeding 5.0 using PhyKIT's tree_length function?",
+      "data": [],
+      "answer": "5%",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-38-q3",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "2%",
+          "10%",
+          "15%"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-38-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What percentage of fungal single-copy orthologs have tree lengths exceeding 5.0 using PhyKIT's tree_length function?"
+        ],
+        "reason": "The question requires applying a function (tree_length) to a set of orthologs and then computing a percentage above a threshold. This implies a two-step process: (1) compute tree lengths for each ortholog, (2) calculate the percentage exceeding 5.0. However, the workflow is straightforward and does not require complex branching or multiple methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What percentage of fungal single-copy orthologs have tree lengths exceeding 5.0 using PhyKIT's tree_length function?",
+          "answer: '5%'"
+        ],
+        "reason": "The output is a single percentage value, and the only explicit parameter is the threshold (5.0). There is no evidence of multiple artifact types or strict format constraints beyond reporting a percentage. The parameterization is present but not highly strict or complex."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or data repair cues in the question or metadata."
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation issues. The question is clear and does not require repair, but the lack of explicit data or schema means a trace load is possible if the data were to be provided."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience or transfer context."
+      }
+    },
+    "overall_summary": "This task involves a straightforward two-step workflow: applying a function to a set of orthologs and calculating a percentage above a threshold. There is minor planning and parameterization load, but no evidence of complex branching, strict artifact requirements, or semantic/data repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2202,
+        "completion_tokens": 568,
+        "total_tokens": 2770
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What percentage of fungal single-copy orthologs have tree lengths exceeding 5.0 using PhyKIT's tree_length function?"
+          ],
+          "reason": "The question requires applying a function (tree_length) to a set of orthologs and then computing a percentage above a threshold. This implies a two-step process: (1) compute tree lengths for each ortholog, (2) calculate the percentage exceeding 5.0. However, the workflow is straightforward and does not require complex branching or multiple methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What percentage of fungal single-copy orthologs have tree lengths exceeding 5.0 using PhyKIT's tree_length function?",
+            "answer: '5%'"
+          ],
+          "reason": "The output is a single percentage value, and the only explicit parameter is the threshold (5.0). There is no evidence of multiple artifact types or strict format constraints beyond reporting a percentage. The parameterization is present but not highly strict or complex.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or data repair cues in the question or metadata."
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation issues. The question is clear and does not require repair, but the lack of explicit data or schema means a trace load is possible if the data were to be provided.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward two-step workflow: applying a function to a set of orthologs and calculating a percentage above a threshold. There is minor planning and parameterization load, but no evidence of complex branching, strict artifact requirements, or semantic/data repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:14:55.617852+00:00"
+  }
+}

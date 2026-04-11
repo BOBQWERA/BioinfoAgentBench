@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_151",
+      "question": "I have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use Kmeans for clustering analysis.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0151/files/hcluster.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"hcluster.csv\", \"path\": \"downloaded_files\\\\index_0151\\\\milestone\\\\hcluster.csv\"}, {\"name\": \"kmeans_output.csv\", \"path\": \"downloaded_files\\\\index_0151\\\\milestone\\\\kmeans_output.csv\"}], \"milestones\": [\"Generate hcluster.csv file\", \"Generate Kmeans clustering result file\"], \"steps\": [\"Convert the tsv file into a csv format file.\", \"Generate clustering result files using Kmeans clustering\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Clustering",
+        "task_abbr": "K均值聚类",
+        "task": "Clustering",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.37,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_151",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Milestones: 'Generate hcluster.csv file', 'Generate Kmeans clustering result file'",
+          "Steps: 'Convert the tsv file into a csv format file.', 'Generate clustering result files using Kmeans clustering'",
+          "Question: 'Please use Kmeans for clustering analysis.'"
+        ],
+        "reason": "There is a clear two-step workflow: file format conversion followed by Kmeans clustering. The steps are sequential and dependency-constrained (cannot cluster before conversion), but there is no evidence of significant method branching or multiple reasonable approaches that would affect correctness. The method (Kmeans) is specified, and the workflow is straightforward."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone files: 'hcluster.csv', 'kmeans_output.csv'",
+          "Explicit output types: converted CSV, clustering result CSV"
+        ],
+        "reason": "There are two explicit output files of different types (converted data and clustering results), but both are standard tabular formats and there is no evidence of strict format constraints, parameter sensitivity, or explicit verification rules. The action load is present but not high."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Question specifies: 'the first column is the ID column, and the other columns are feature columns.'"
+        ],
+        "reason": "The question clarifies the data schema, so there is little ambiguity or need for semantic or representational repair. No evidence of missing fields, schema mismatch, or ambiguity."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. This is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a simple two-step workflow: converting a TSV file to CSV and performing Kmeans clustering, with two explicit output files. The planning and action loads are minor to moderate due to the sequential steps and dual output, but there is no evidence of significant branching, strict parameterization, or repair needs. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2392,
+        "completion_tokens": 603,
+        "total_tokens": 2995
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Milestones: 'Generate hcluster.csv file', 'Generate Kmeans clustering result file'",
+            "Steps: 'Convert the tsv file into a csv format file.', 'Generate clustering result files using Kmeans clustering'",
+            "Question: 'Please use Kmeans for clustering analysis.'"
+          ],
+          "reason": "There is a clear two-step workflow: file format conversion followed by Kmeans clustering. The steps are sequential and dependency-constrained (cannot cluster before conversion), but there is no evidence of significant method branching or multiple reasonable approaches that would affect correctness. The method (Kmeans) is specified, and the workflow is straightforward.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone files: 'hcluster.csv', 'kmeans_output.csv'",
+            "Explicit output types: converted CSV, clustering result CSV"
+          ],
+          "reason": "There are two explicit output files of different types (converted data and clustering results), but both are standard tabular formats and there is no evidence of strict format constraints, parameter sensitivity, or explicit verification rules. The action load is present but not high.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Question specifies: 'the first column is the ID column, and the other columns are feature columns.'"
+          ],
+          "reason": "The question clarifies the data schema, so there is little ambiguity or need for semantic or representational repair. No evidence of missing fields, schema mismatch, or ambiguity.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. This is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a simple two-step workflow: converting a TSV file to CSV and performing Kmeans clustering, with two explicit output files. The planning and action loads are minor to moderate due to the sequential steps and dual output, but there is no evidence of significant branching, strict parameterization, or repair needs. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:18:08.581117+00:00"
+  }
+}

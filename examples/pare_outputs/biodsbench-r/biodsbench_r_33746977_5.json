@@ -1,0 +1,148 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_33746977_5",
+      "question": "##Question##\nUse the 'tidyr' and 'dplyr' packages, transform the merged expression data (named as variable 'expression_data_merged') into a long format (named as variable 'expression_long') suitable for analysis. Calculate the differential gene expression between patient groups labeled as 1 and 2. For each gene, compute the mean expression levels for both groups, the log2 fold change (named as variable 'log2FoldChange'), and the p-value of the difference in expression (named as variable 'pValue') using a t-test. Ensure genes with NA log2FoldChange values are filtered out from the final results. \nSave the final results in a data frame named 'results', which has columns:\n- Gene: gene names\n- mean_expr_1: mean expression values for group 1\n- mean_expr_2: mean expression values for group 2\n- log2FoldChange: log2 fold change values\n- pValue: p-values\n\n##Task##\n1. Gather gene expression data into long format\n2. Calculates the log2 fold change and p-values for each gene between two groups.\n3. Creates a dataframe with log2 fold changes, p-values, and colors for significant genes.\n4. Filter out genes with N/A log2FoldChange.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/ACC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_ACC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\n\\n# Gather data into long format\\nexpression_long <- gather(expression_data_merged, Gene, Expression, -Sample, -Label)\\n\\n# Calculate log2 fold changes and p-values for each gene\\nresults <- expression_long %>%\\n  group_by(Gene) %>%\\n  summarize(\\n    mean_expr_1 = mean(Expression[Label == 1], na.rm = TRUE),\\n    mean_expr_0 = mean(Expression[Label == 2], na.rm = TRUE),\\n    log2FoldChange = ifelse(mean_expr_0 != 0, log2(mean_expr_1 / mean_expr_0), NA),\\n    pValue = t.test(Expression[Label == 1], Expression[Label == 2])$p.value\\n  )\\n\\n# Filter out genes with NA log2FoldChange\\nresults <- results %>%\\n  filter(!is.na(log2FoldChange))\", \"test_cases\": \"ncol(results) == 5\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33746977_5",
+        "study_id": "33746977",
+        "question_id": "5",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Molecular",
+        "study_title": "Analysis of m6A-Related Signatures in the Tumor Immune Microenvironment and Identification of Clinical Prognostic Regulators in Adrenocortical Carcinoma",
+        "dataset_url": "CMOB/ACC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_33746977_5",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Task requires: (1) data transformation to long format, (2) group-wise mean calculation, (3) log2 fold change and p-value computation, (4) filtering NA values, (5) assembling final results dataframe.",
+          "No explicit step list or tool list; workflow must be inferred from abstract instructions.",
+          "Multiple intermediate/final artifact types: long-format data, summary statistics, filtered results."
+        ],
+        "reason": "There is a clear multi-stage workflow (data transformation, group-wise statistics, statistical testing, filtering, and result assembly), but the steps are standard and the method is mostly specified. No strong evidence of major branching or multiple defensible methods, but the workflow structuring is not trivial."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Explicit output schema: results dataframe with 5 named columns (Gene, mean_expr_1, mean_expr_2, log2FoldChange, pValue).",
+          "Explicit filtering rule: filter out genes with NA log2FoldChange.",
+          "Explicit calculation: log2 fold change, p-value via t-test.",
+          "No strict format or rounding constraints, but output structure is specified."
+        ],
+        "reason": "There is moderate artifact realization load due to the need to produce a dataframe with a specific schema and to apply explicit filtering. Parameterization is moderate: t-test and log2 fold change are specified, but no strict thresholds or format rigidity beyond column names."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Group labels are specified as 1 and 2, but in the sample code, mean_expr_0 is used for group 2, which could cause minor confusion.",
+          "No evidence of missing columns, schema mismatch, or ambiguous semantics that would make the task undefined.",
+          "No explicit need for data repair or schema alignment beyond standard transformation."
+        ],
+        "reason": "There is minor potential for confusion in group labeling, but the semantics are mostly clear and the data appears to be in a usable state. No major repair or clarification is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This task involves a moderately complex multi-step workflow: transforming data, calculating group-wise statistics, performing statistical tests, filtering, and assembling a results dataframe with a specified schema. The planning and action loads are moderate due to the need to infer workflow steps and adhere to explicit output requirements. There is minor potential for semantic confusion in group labeling, but no major repair is needed. No experience transfer is involved.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2862,
+        "completion_tokens": 725,
+        "total_tokens": 3587
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Task requires: (1) data transformation to long format, (2) group-wise mean calculation, (3) log2 fold change and p-value computation, (4) filtering NA values, (5) assembling final results dataframe.",
+            "No explicit step list or tool list; workflow must be inferred from abstract instructions.",
+            "Multiple intermediate/final artifact types: long-format data, summary statistics, filtered results."
+          ],
+          "reason": "There is a clear multi-stage workflow (data transformation, group-wise statistics, statistical testing, filtering, and result assembly), but the steps are standard and the method is mostly specified. No strong evidence of major branching or multiple defensible methods, but the workflow structuring is not trivial.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Explicit output schema: results dataframe with 5 named columns (Gene, mean_expr_1, mean_expr_2, log2FoldChange, pValue).",
+            "Explicit filtering rule: filter out genes with NA log2FoldChange.",
+            "Explicit calculation: log2 fold change, p-value via t-test.",
+            "No strict format or rounding constraints, but output structure is specified."
+          ],
+          "reason": "There is moderate artifact realization load due to the need to produce a dataframe with a specific schema and to apply explicit filtering. Parameterization is moderate: t-test and log2 fold change are specified, but no strict thresholds or format rigidity beyond column names.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Group labels are specified as 1 and 2, but in the sample code, mean_expr_0 is used for group 2, which could cause minor confusion.",
+            "No evidence of missing columns, schema mismatch, or ambiguous semantics that would make the task undefined.",
+            "No explicit need for data repair or schema alignment beyond standard transformation."
+          ],
+          "reason": "There is minor potential for confusion in group labeling, but the semantics are mostly clear and the data appears to be in a usable state. No major repair or clarification is required.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderately complex multi-step workflow: transforming data, calculating group-wise statistics, performing statistical tests, filtering, and assembling a results dataframe with a specified schema. The planning and action loads are moderate due to the need to infer workflow steps and adhere to explicit output requirements. There is minor potential for semantic confusion in group labeling, but no major repair is needed. No experience transfer is involved.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:59:27.168997+00:00"
+  }
+}

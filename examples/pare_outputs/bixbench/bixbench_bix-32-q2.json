@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-32-q2",
+      "question": "How many enriched pathways using KEGG enrichment are significantly enriched (absolute value of lfc > 1.5) in the same direction for all three mutant strains (97, 98, and 99), relative to wildtype?",
+      "data": [],
+      "answer": "2",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-32-q2",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0",
+          "4",
+          "6"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-32-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "How many enriched pathways using KEGG enrichment are significantly enriched (absolute value of lfc > 1.5) in the same direction for all three mutant strains (97, 98, and 99), relative to wildtype?"
+        ],
+        "reason": "The question requires integrating results across three mutant strains, applying a significance threshold (abs(lfc) > 1.5), and ensuring the direction of enrichment is consistent across all strains. This implies a multi-stage workflow: (1) perform KEGG enrichment for each strain vs wildtype, (2) filter by lfc threshold, (3) check directionality, (4) intersect results. However, the method for KEGG enrichment is standard and no explicit branching or multiple defensible methods are described."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "significantly enriched (absolute value of lfc > 1.5)",
+          "str_verifier"
+        ],
+        "reason": "There is a clear numeric threshold (abs(lfc) > 1.5) and the output is a single integer (number of pathways), with a strict string verifier. However, only one output type is required and the specification is not highly rigid beyond the threshold."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "relative to wildtype",
+          "in the same direction for all three mutant strains"
+        ],
+        "reason": "The semantics are mostly clear, but there is minor potential ambiguity in 'same direction' (up or down) and whether 'relative to wildtype' is per strain or combined. However, this is not a major repair burden."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This task requires a moderate amount of planning to coordinate enrichment analysis across three strains and apply a directionality and threshold filter, but does not involve major branching or ambiguity. Action load is low to moderate due to a single output and a clear threshold. Reflection load is minimal, with only minor semantic clarification needed. There is no evolution/transfer load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2222,
+        "completion_tokens": 626,
+        "total_tokens": 2848
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "How many enriched pathways using KEGG enrichment are significantly enriched (absolute value of lfc > 1.5) in the same direction for all three mutant strains (97, 98, and 99), relative to wildtype?"
+          ],
+          "reason": "The question requires integrating results across three mutant strains, applying a significance threshold (abs(lfc) > 1.5), and ensuring the direction of enrichment is consistent across all strains. This implies a multi-stage workflow: (1) perform KEGG enrichment for each strain vs wildtype, (2) filter by lfc threshold, (3) check directionality, (4) intersect results. However, the method for KEGG enrichment is standard and no explicit branching or multiple defensible methods are described.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "significantly enriched (absolute value of lfc > 1.5)",
+            "str_verifier"
+          ],
+          "reason": "There is a clear numeric threshold (abs(lfc) > 1.5) and the output is a single integer (number of pathways), with a strict string verifier. However, only one output type is required and the specification is not highly rigid beyond the threshold.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "relative to wildtype",
+            "in the same direction for all three mutant strains"
+          ],
+          "reason": "The semantics are mostly clear, but there is minor potential ambiguity in 'same direction' (up or down) and whether 'relative to wildtype' is per strain or combined. However, this is not a major repair burden.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a moderate amount of planning to coordinate enrichment analysis across three strains and apply a directionality and threshold filter, but does not involve major branching or ambiguity. Action load is low to moderate due to a single output and a clear threshold. Reflection load is minimal, with only minor semantic clarification needed. There is no evolution/transfer load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:08:16.416798+00:00"
+  }
+}

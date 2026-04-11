@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-51-q1",
+      "question": "Using a logistic regression model and age as the only predictor, what is the predicted probability of achieving efficacy PR with treatment in patients aged 65?",
+      "data": [],
+      "answer": "(0.38,0.40)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-51-q1",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.65,0.75)",
+          "(0.45,0.55)",
+          "(0.15,0.25)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-51-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Using a logistic regression model and age as the only predictor",
+          "predicted probability of achieving efficacy PR with treatment in patients aged 65"
+        ],
+        "reason": "The task requires mapping the question to a standard logistic regression prediction workflow, but the workflow is straightforward and does not require decomposition into multiple dependency-constrained steps or branching decisions. The method (logistic regression with a single predictor) is fully specified, and there is no evidence of multiple reasonable methods or branching."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "predicted probability",
+          "range_verifier",
+          "mcq"
+        ],
+        "reason": "The output is a single probability value (or a range, as per the answer format), and the evaluation uses a range verifier. There is some format constraint (range), but no evidence of multiple artifact types, strict schema, or complex parameterization. The action load is minor, mainly due to the need to produce a probability in a specified range."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "age as the only predictor",
+          "no data provided"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair. The question is clear and unambiguous, and no data is provided that would require schema alignment or repair. The only minor load is confirming that 'age as the only predictor' is interpreted as intended."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "no prior trajectory or transfer context"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward logistic regression prediction task with a single predictor and a specified output format. There is minor planning and action load due to mapping the question to the model and producing a probability in a specified range, but no evidence of branching, complex artifact realization, semantic ambiguity, or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2228,
+        "completion_tokens": 567,
+        "total_tokens": 2795
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Using a logistic regression model and age as the only predictor",
+            "predicted probability of achieving efficacy PR with treatment in patients aged 65"
+          ],
+          "reason": "The task requires mapping the question to a standard logistic regression prediction workflow, but the workflow is straightforward and does not require decomposition into multiple dependency-constrained steps or branching decisions. The method (logistic regression with a single predictor) is fully specified, and there is no evidence of multiple reasonable methods or branching.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "predicted probability",
+            "range_verifier",
+            "mcq"
+          ],
+          "reason": "The output is a single probability value (or a range, as per the answer format), and the evaluation uses a range verifier. There is some format constraint (range), but no evidence of multiple artifact types, strict schema, or complex parameterization. The action load is minor, mainly due to the need to produce a probability in a specified range.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "age as the only predictor",
+            "no data provided"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair. The question is clear and unambiguous, and no data is provided that would require schema alignment or repair. The only minor load is confirming that 'age as the only predictor' is interpreted as intended.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "no prior trajectory or transfer context"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward logistic regression prediction task with a single predictor and a specified output format. There is minor planning and action load due to mapping the question to the model and producing a probability in a specified range, but no evidence of branching, complex artifact realization, semantic ambiguity, or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:24:58.050085+00:00"
+  }
+}

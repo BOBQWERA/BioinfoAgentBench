@@ -1,0 +1,123 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_c61082a2-2c8c-4244-b09e-5e0a0dc314f9",
+      "question": "What fragment lengths should I expect to see after digesting the sequence AAAAAACCCATAGAGTTCCTACGACGCCTCGTCTGTAAAGACCCACATATACCGGCGGGATGTTCATCCAGAAGGTCTACACTACCGTGGGATATCCATTTTTGCTATTTAACCTTCTGCGAAAACACTGAGCTCTACGAGCGACCAAAGTTGTCACGCAATTGGGGTGGGGAACGTAGAGGTAGAAGTATCTTCGCGCGAACCCTCCGCCACGGATTGTCGCGAGCAGAGCGCTAGCACCGAGGTGCGATCAACGTCGTATGCCAATTCGATTGGCTATTCAATCGTAAAGCCGGCTAGAGCGGAAGGGGGCCGATGGACACGTTATGGTTGCCGCCTAGGACGTCTTCAAGAAAAGCATGAGGTCTATATATGTGCTTTAGGTACGGAACGCACCAAATAGTGGGAGCCTACGCTGATTTGTCTGGCCTGTTTGACTGCAAAGTTCCCGGTTTGGCACAGATGGCTAGCCGTTTTGAGTATAACTGCAACTTTCCATAGTACACTGCAGCTCGGGGACCGCCGATGGGGAAACGCTTTTGGAAAGCCGGATCGCATACAAGGATCGATAAGAACACGGGTCGCAAAGGCTCGGTGCGCCCTGGCAGGGGCAATTTGGGCTACAACTTTATCCCCACTAGTGATAGGGCCCAGTTAACGTATCAACTTGTGTGTCACTATTTGCGCATTCCACCTTACAGTAAGAACGCGTCCGAACATTCCTTTGCGCCAGTGAGCCCTTTAATATGAGGTAACCCTCACGATCGAAACTGTCTCGTGGACTCCCGGGATTAAGCTGCCCCGACCAGCATCTTATTCCTCAACTTCCAGGCAGAGAGGTGTGCTACTACGTAATTCGAAGTGACCTATGTACTTGTTGACCTTTACCGTTAGAGCAAACTACCATTACTGGCAAAAAACTAATAATAGGAACTCGCGCCTGTGATTCCCTGACGCTCCGCACGTATCTTCTACGCGAGGAAAGTCTCTACTAGTCTTC with the following enzymes: Ppu21I?",
+      "data": [],
+      "answer": "851, 113, 36",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "SeqQA",
+        "task_name": "RE-seq-lenfrags",
+        "tag": "seqqa",
+        "version": "2.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "36, 895, 69",
+          "861, 5, 134",
+          "999"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_c61082a2-2c8c-4244-b09e-5e0a0dc314f9",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What fragment lengths should I expect to see after digesting the sequence ... with the following enzymes: Ppu21I?"
+        ],
+        "reason": "The task requires identifying restriction sites for Ppu21I in a provided DNA sequence and determining the resulting fragment lengths. This is a standard, single-enzyme restriction digest analysis with a single sequence and no explicit branching or multi-stage workflow. There is a minor workflow structuring load (P1) in that the sequence must be scanned for enzyme cut sites and fragments calculated, but there is no evidence of method branching (P2) or multiple defensible approaches."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "answer: '851, 113, 36'",
+          "What fragment lengths should I expect to see after digesting the sequence ... with the following enzymes: Ppu21I?"
+        ],
+        "reason": "The output is a list of fragment lengths, a single artifact type with no explicit format constraints or strict verification rules. There is some minor load in ensuring correct calculation and ordering of fragment sizes, but no evidence of multiple output types, format rigidity, or parameterization tightness."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What fragment lengths should I expect to see after digesting the sequence ... with the following enzymes: Ppu21I?"
+        ],
+        "reason": "The question is clearly worded and the sequence is provided in full. There is no evidence of semantic ambiguity, missing fields, or data representation issues. The only trace load is the need to interpret the enzyme name correctly, but this is minimal."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [],
+        "reason": "There is no prior trajectory, experience text, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a standard restriction digest fragment length calculation for a single enzyme and sequence. There is minor workflow structuring and artifact realization load, but no evidence of method branching, strict output specification, semantic ambiguity, or transfer context.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2760,
+        "completion_tokens": 562,
+        "total_tokens": 3322
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What fragment lengths should I expect to see after digesting the sequence ... with the following enzymes: Ppu21I?"
+          ],
+          "reason": "The task requires identifying restriction sites for Ppu21I in a provided DNA sequence and determining the resulting fragment lengths. This is a standard, single-enzyme restriction digest analysis with a single sequence and no explicit branching or multi-stage workflow. There is a minor workflow structuring load (P1) in that the sequence must be scanned for enzyme cut sites and fragments calculated, but there is no evidence of method branching (P2) or multiple defensible approaches.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "answer: '851, 113, 36'",
+            "What fragment lengths should I expect to see after digesting the sequence ... with the following enzymes: Ppu21I?"
+          ],
+          "reason": "The output is a list of fragment lengths, a single artifact type with no explicit format constraints or strict verification rules. There is some minor load in ensuring correct calculation and ordering of fragment sizes, but no evidence of multiple output types, format rigidity, or parameterization tightness.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What fragment lengths should I expect to see after digesting the sequence ... with the following enzymes: Ppu21I?"
+          ],
+          "reason": "The question is clearly worded and the sequence is provided in full. There is no evidence of semantic ambiguity, missing fields, or data representation issues. The only trace load is the need to interpret the enzyme name correctly, but this is minimal.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [],
+          "reason": "There is no prior trajectory, experience text, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a standard restriction digest fragment length calculation for a single enzyme and sequence. There is minor workflow structuring and artifact realization load, but no evidence of method branching, strict output specification, semantic ambiguity, or transfer context.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:44:14.108945+00:00"
+  }
+}

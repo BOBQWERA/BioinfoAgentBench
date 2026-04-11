@@ -1,0 +1,10 @@
+{
+  "sheet_name": "BixBench",
+  "total": 205,
+  "pare_y": 205,
+  "pare_n": 0,
+  "filtered_count": 205,
+  "splits": {
+    "train": 205
+  }
+}

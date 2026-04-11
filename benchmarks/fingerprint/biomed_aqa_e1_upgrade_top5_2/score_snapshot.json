@@ -1,0 +1,62 @@
+[
+  {
+    "question_id": "biomed_aqa_122",
+    "scores": {
+      "P": 3,
+      "A": 3,
+      "R": 1,
+      "E": 0
+    },
+    "scoring_mode": "single_round",
+    "model": "gpt-4.1",
+    "confidence": 0.98
+  },
+  {
+    "question_id": "biomed_aqa_141",
+    "scores": {
+      "P": 3,
+      "A": 3,
+      "R": 1,
+      "E": 0
+    },
+    "scoring_mode": "single_round",
+    "model": "gpt-4.1",
+    "confidence": 0.95
+  },
+  {
+    "question_id": "biomed_aqa_152",
+    "scores": {
+      "P": 2,
+      "A": 2,
+      "R": 1,
+      "E": 0
+    },
+    "scoring_mode": "single_round",
+    "model": "gpt-4.1",
+    "confidence": 0.98
+  },
+  {
+    "question_id": "biomed_aqa_227",
+    "scores": {
+      "P": 2,
+      "A": 2,
+      "R": 1,
+      "E": 0
+    },
+    "scoring_mode": "single_round",
+    "model": "gpt-4.1",
+    "confidence": 0.98
+  },
+  {
+    "question_id": "biomed_aqa_234",
+    "scores": {
+      "P": 2,
+      "A": 2,
+      "R": 1,
+      "E": 0
+    },
+    "scoring_mode": "single_round",
+    "model": "gpt-4.1",
+    "confidence": 0.98
+  }
+]

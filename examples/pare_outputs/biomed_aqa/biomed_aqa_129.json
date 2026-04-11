@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_129",
+      "question": "I have a dataset {lung_cancer.csv}, and the \"Target\" column is the corresponding classification label. Please use a multilayer perceptron to classify the data.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0129/files/lung_cancer.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0129\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0129\\\\milestone\\\\test.csv\"}, {\"name\": \"mlp_predictions.csv\", \"path\": \"downloaded_files\\\\index_0129\\\\milestone\\\\mlp_predictions.csv\"}], \"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the prediction results file of the algorithm on the test set.\"], \"steps\": [\"Divide the dataset\", \"Train and predict using a multilayer perceptron (MLP).\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "多层感知机",
+        "task": "Classification",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.15,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_129",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Milestones: 'Generate train.csv and test.csv files', 'Generate the prediction results file of the algorithm on the test set.'",
+          "Steps: 'Divide the dataset', 'Train and predict using a multilayer perceptron (MLP).'"
+        ],
+        "reason": "There is a clear multi-stage workflow: data splitting and model training/prediction, requiring the user to structure the process into at least two dependency-constrained steps. However, the method (MLP) is specified and there is no explicit evidence of major branching or multiple valid methods that would affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Milestone files: train.csv, test.csv, mlp_predictions.csv",
+          "Explicit requirement to generate prediction results file"
+        ],
+        "reason": "The task requires the creation of multiple output files of different types (train/test splits and prediction results), and the outputs are primary scoring targets. However, there is no explicit evidence of strict format constraints, parameter sensitivity, or tight specification beyond standard file generation."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Question is clear and specifies the label column ('Target')",
+          "No evidence of missing fields, ambiguity, or schema mismatch"
+        ],
+        "reason": "The problem is well-specified with no indication of semantic or representational ambiguity. Only a trace load is present due to the need to identify the label column, but this is explicitly named."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a standard two-stage workflow (data splitting and MLP classification) with moderate planning and artifact realization load due to explicit multi-step requirements and multiple output files. There is minimal reflection load as the problem is clearly specified, and no evolution load as there is no transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2426,
+        "completion_tokens": 563,
+        "total_tokens": 2989
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Milestones: 'Generate train.csv and test.csv files', 'Generate the prediction results file of the algorithm on the test set.'",
+            "Steps: 'Divide the dataset', 'Train and predict using a multilayer perceptron (MLP).'"
+          ],
+          "reason": "There is a clear multi-stage workflow: data splitting and model training/prediction, requiring the user to structure the process into at least two dependency-constrained steps. However, the method (MLP) is specified and there is no explicit evidence of major branching or multiple valid methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Milestone files: train.csv, test.csv, mlp_predictions.csv",
+            "Explicit requirement to generate prediction results file"
+          ],
+          "reason": "The task requires the creation of multiple output files of different types (train/test splits and prediction results), and the outputs are primary scoring targets. However, there is no explicit evidence of strict format constraints, parameter sensitivity, or tight specification beyond standard file generation.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Question is clear and specifies the label column ('Target')",
+            "No evidence of missing fields, ambiguity, or schema mismatch"
+          ],
+          "reason": "The problem is well-specified with no indication of semantic or representational ambiguity. Only a trace load is present due to the need to identify the label column, but this is explicitly named.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-stage workflow (data splitting and MLP classification) with moderate planning and artifact realization load due to explicit multi-step requirements and multiple output files. There is minimal reflection load as the problem is clearly specified, and no evolution load as there is no transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:14:36.394528+00:00"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "question": {
+    "benchmark": "biomni_eval1",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomni_patient_gene_detection_212",
+      "question": "\nTask: Given a patient's phenotypes and a list of candidate genes, identify the causal gene.\nPhenotypes: HP:0000474, HP:0000733, HP:0002354, HP:0002442, HP:0002446, HP:0006892, HP:0010522, HP:0011204, HP:0001250, HP:0002300, HP:0012735, HP:0001347, HP:0000741, HP:0008572, HP:0000554, HP:0012653, HP:0011736, HP:0001025\nCandidate genes: ENSG00000092330, ENSG00000131174, ENSG00000113318, ENSG00000197563, ENSG00000130638, ENSG00000118965, ENSG00000131446, ENSG00000051180, ENSG00000075673, ENSG00000161011\n\nOutput format: {'causal_gene': [gene1]}\n        ",
+      "data": [],
+      "answer": "ENSG00000161011",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "Biomni",
+        "source_dataset": "biomni/Eval1",
+        "task_name": "patient_gene_detection",
+        "task_instance_id": 212,
+        "split": "val",
+        "global_instance_id": 143
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomni_patient_gene_detection_212",
+    "benchmark": "biomni_eval1",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Task: Given a patient's phenotypes and a list of candidate genes, identify the causal gene.",
+          "Phenotypes: HP:... (list of HPO terms)",
+          "Candidate genes: ENSG... (list of gene IDs)"
+        ],
+        "reason": "The task requires mapping a set of phenotypes to a list of candidate genes to select the causal gene. This implies at least a two-step reasoning process: (1) mapping phenotypes to gene associations, and (2) selecting among candidates. However, there is no explicit evidence of complex workflow structuring or major branching decisions; the method is not specified, but the goal is concrete and the output is singular."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output format: {'causal_gene': [gene1]}"
+        ],
+        "reason": "The output is a single gene identifier in a specified dictionary format. There is some format constraint, but only one artifact type and no evidence of strict parameterization or multiple output types."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Phenotypes and candidate genes are provided as lists with standard identifiers.",
+          "No evidence of missing fields, ambiguity, or schema mismatch."
+        ],
+        "reason": "There is no evidence of semantic or representational ambiguity. The task is well-posed with standard identifiers. No repair is needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves mapping a set of HPO-coded phenotypes to a list of candidate genes to select the causal gene, with a single, well-specified output format. There is minor planning and action load due to the need to relate phenotypes to genes and adhere to a simple output schema, but no evidence of complex workflow, branching, repair, or transfer requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2371,
+        "completion_tokens": 573,
+        "total_tokens": 2944
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Task: Given a patient's phenotypes and a list of candidate genes, identify the causal gene.",
+            "Phenotypes: HP:... (list of HPO terms)",
+            "Candidate genes: ENSG... (list of gene IDs)"
+          ],
+          "reason": "The task requires mapping a set of phenotypes to a list of candidate genes to select the causal gene. This implies at least a two-step reasoning process: (1) mapping phenotypes to gene associations, and (2) selecting among candidates. However, there is no explicit evidence of complex workflow structuring or major branching decisions; the method is not specified, but the goal is concrete and the output is singular.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output format: {'causal_gene': [gene1]}"
+          ],
+          "reason": "The output is a single gene identifier in a specified dictionary format. There is some format constraint, but only one artifact type and no evidence of strict parameterization or multiple output types.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Phenotypes and candidate genes are provided as lists with standard identifiers.",
+            "No evidence of missing fields, ambiguity, or schema mismatch."
+          ],
+          "reason": "There is no evidence of semantic or representational ambiguity. The task is well-posed with standard identifiers. No repair is needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves mapping a set of HPO-coded phenotypes to a list of candidate genes to select the causal gene, with a single, well-specified output format. There is minor planning and action load due to the need to relate phenotypes to genes and adhere to a simple output schema, but no evidence of complex workflow, branching, repair, or transfer requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:41:25.083927+00:00"
+  }
+}

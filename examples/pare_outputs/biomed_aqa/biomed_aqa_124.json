@@ -1,0 +1,131 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_124",
+      "question": "I have a dataset {heart_disease.csv}, and the \"Target\" column is the corresponding classification label. Please use Naive Bayes to classify the data.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0124/files/heart_disease.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0124\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0124\\\\milestone\\\\test.csv\"}, {\"name\": \"gaussianNB_predictions.csv\", \"path\": \"downloaded_files\\\\index_0124\\\\milestone\\\\gaussianNB_predictions.csv\"}], \"milestones\": [\"Generate train.csv and test.csv\", \"Generate the prediction results file of the algorithm on the test set.\"], \"steps\": [\"Divide the dataset\", \"Train and predict the data using Naive Bayes.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "朴素贝叶斯",
+        "task": "Classification",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.1,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_124",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "steps: [\"Divide the dataset\", \"Train and predict the data using Naive Bayes.\"]",
+          "milestones: [\"Generate train.csv and test.csv\", \"Generate the prediction results file of the algorithm on the test set.\"]"
+        ],
+        "reason": "There is a clear two-stage workflow: data splitting and model training/prediction, with explicit intermediate and final artifacts. However, the method (Naive Bayes) is fully specified and there is no evidence of significant branching or multiple reasonable methods that would affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: [{\"name\": \"train.csv\"}, {\"name\": \"test.csv\"}, {\"name\": \"gaussianNB_predictions.csv\"}]"
+        ],
+        "reason": "There are three explicit output files of different types (train/test splits and prediction results), but there is no evidence of strict format constraints, parameter sensitivity, or explicit verification rules."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The question and answer specify the label column and required steps; no ambiguity or schema mismatch is indicated."
+        ],
+        "reason": "There is minimal evidence of semantic or representational ambiguity. The label column is named, and the workflow is clear. No repair or clarification is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or transfer requirements."
+      }
+    },
+    "overall_summary": "This task requires a standard two-stage workflow (data split, Naive Bayes training/prediction) with explicit intermediate and final artifacts. There is moderate planning and artifact realization load, but no significant branching, parameter sensitivity, or repair/transfer requirements.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2423,
+        "completion_tokens": 547,
+        "total_tokens": 2970
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "steps: [\"Divide the dataset\", \"Train and predict the data using Naive Bayes.\"]",
+            "milestones: [\"Generate train.csv and test.csv\", \"Generate the prediction results file of the algorithm on the test set.\"]"
+          ],
+          "reason": "There is a clear two-stage workflow: data splitting and model training/prediction, with explicit intermediate and final artifacts. However, the method (Naive Bayes) is fully specified and there is no evidence of significant branching or multiple reasonable methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: [{\"name\": \"train.csv\"}, {\"name\": \"test.csv\"}, {\"name\": \"gaussianNB_predictions.csv\"}]"
+          ],
+          "reason": "There are three explicit output files of different types (train/test splits and prediction results), but there is no evidence of strict format constraints, parameter sensitivity, or explicit verification rules.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The question and answer specify the label column and required steps; no ambiguity or schema mismatch is indicated."
+          ],
+          "reason": "There is minimal evidence of semantic or representational ambiguity. The label column is named, and the workflow is clear. No repair or clarification is required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a standard two-stage workflow (data split, Naive Bayes training/prediction) with explicit intermediate and final artifacts. There is moderate planning and artifact realization load, but no significant branching, parameter sensitivity, or repair/transfer requirements.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:13:17.779724+00:00"
+  }
+}

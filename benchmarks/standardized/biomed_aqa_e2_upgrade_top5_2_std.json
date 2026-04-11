@@ -1,0 +1,207 @@
+{
+  "benchmark": "biomed_aqa_e2_upgrade_top5_2_std",
+  "schema_version": "1.0.0",
+  "count": 5,
+  "records": [
+    {
+      "id": "biomed_aqa_50",
+      "question": "[De-identified Prior Trajectory]\n1) Start from a normalized signal matrix with explicit group labels and produce a ranked differential candidate set.\n2) Validate that effect direction and significance fields are both present before exporting candidates.\n3) Convert candidates into a clean identifier list for downstream functional analysis.\n4) If candidate count is too sparse, relax thresholds cautiously and re-export.\n5) Continue only when identifier format is consistent and duplicate entries are resolved.\n\n[Transfer Gap Hints]\n- Gap (metric_change): source=differential significance/effect endpoint -> target=pathway-level enrichment significance endpoint\n- Gap (schema_change): source=full differential table output -> target=identifier list compatible with enrichment input\n- Gap (constraint_change): source=contrast-dependent DEG assumptions -> target=background/pathway-database assumptions in enrichment\n\n[Target Task]\nPerform gene set functional enrichment on the gene list {TGF_signaling.csv}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0050/files/TGF_signaling.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"KEGG.tsv\", \"path\": \"downloaded_files\\\\index_0050\\\\milestone\\\\KEGG.tsv\"}, {\"name\": \"GO.tsv\", \"path\": \"downloaded_files\\\\index_0050\\\\milestone\\\\GO.tsv\"}], \"milestones\": [\"Generate functional enrichment result file\"], \"steps\": [\"Gene set functional enrichment\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "KOBAS",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.14,
+        "milestone_count": 1,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_not_overlap_existing_r1_r2_e1_e2_sets', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 61,
+              "workflow_memory_Index": 219,
+              "task_abbr": "DEG",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Calculate differentially expressed genes from gene expression data and grouping information.\n    - **Tool**: deg\n    - **Input**: \n        - exp_file: \"exp_COAD.csv\" (gene expression profile data file)\n        - group_file: \"group_COAD.csv\" (grouping information file)\n    - **Output**: \"DEG.csv\" (file containing the set of genes significantly differentially expressed under the two experimental conditions)\n    - **Description**: The DEG tool will analyze the gene expression data and the corresponding grouping information to identify and extract the differentially expressed genes between the specified groups.\n]"
+            },
+            "original_question": "Perform gene set functional enrichment on the gene list {TGF_signaling.csv}"
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_125",
+      "question": "[De-identified Prior Trajectory]\n1) Partition and preprocess feature matrix with strict consistency checks.\n2) Select stable feature subset and run core modeling step.\n3) Evaluate output quality with explicit criterion and compare candidate settings.\n4) If one configuration is unstable across random seeds/splits, switch to a more stable setting.\n5) Preserve transformation pipeline metadata so repeated runs are reproducible.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=supervised label-guided decision task -> target=unsupervised partitioning task\n- Gap (metric_change): source=classification accuracy-oriented evaluation -> target=cluster-quality/index-oriented evaluation\n- Gap (constraint_change): source=train/test split dependence -> target=global clustering over full feature matrix\n\n[Target Task]\nI have a dataset {heart_disease.csv}, the \"Target\" column is the corresponding classification label, please use K-means clustering to classify the data.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0125/files/heart_disease.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"kmeans_output.csv\", \"path\": \"downloaded_files\\\\index_0125\\\\milestone\\\\kmeans_output.csv\"}], \"milestones\": [\"Generate Kmeans clustering result file\"], \"steps\": [\"Use the Kmeans algorithm for prediction.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "K-means",
+        "task": "Classification",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.11,
+        "milestone_count": 1,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_not_overlap_existing_r1_r2_e1_e2_sets', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 115,
+              "workflow_memory_Index": 243,
+              "task_abbr": "Classfication",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"diabetes.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a testing set, maintaining the \"Target\" column as the label.\n\n2. **Goal**: Perform feature selection based on correlation with the label column.\n    - **Tool**: featureselect\n    - **Input**: train_csv_file, test_csv_file, \"Target\", n (number of features to select)\n    - **Output**: train_result_file, test_result_file\n    - **Description**: This tool will select the top n features correlated with the \"Target\" column from the training set and filter the test set accordingly.\n\n3. **Goal**: Build classifiers using the training set and predict on the test set.\n    - **Tool**: logistic\n    - **Input**: train_result_file, test_result_file, \"Target\"\n    - **Output**: logistic_predictions_file\n    - **Description**: This tool will train a Logistic Regression classifier on the training set and predict the labels for the test set.\n\n4. **Goal**: B"
+            },
+            "original_question": "I have a dataset {heart_disease.csv}, the \"Target\" column is the corresponding classification label, please use K-means clustering to classify the data."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_160",
+      "question": "[De-identified Prior Trajectory]\n1) Convert feature table to numeric matrix and standardize scale before structure discovery.\n2) Run a structure extraction step and inspect whether latent structure is stable.\n3) Compare nearby parameter settings to avoid one-shot over-interpretation.\n4) If structure shifts strongly under small setting changes, revise preprocessing and rerun.\n5) Output compact structure representation with traceable preprocessing choices.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=distance-tree grouping assumptions -> target=latent-factor covariance assumptions\n- Gap (metric_change): source=cluster-separation/stability perspective -> target=factor-loading/variance-explained perspective\n- Gap (aggregation_change): source=sample-group assignment output -> target=factor-score/loading output\n\n[Target Task]\nI have a dataset {breast_cancer.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform factor analysis for dimensionality reduction on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0160/files/breast_cancer.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"breast_cancer_fa_result.csv\", \"path\": \"downloaded_files\\\\index_0160\\\\milestone\\\\breast_cancer_fa_result.csv\"}], \"milestones\": [\"Generate the result file after analyzing the algorithm.\"], \"steps\": [\"Use factor analysis dimensionality reduction algorithms to analyze the data.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "因子分析",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.46,
+        "milestone_count": 1,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_not_overlap_existing_r1_r2_e1_e2_sets', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 152,
+              "workflow_memory_Index": 146,
+              "task_abbr": "HClust聚类",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the dataset from the file hcluster.tsv and convert it to CSV format for clustering analysis.\n    - **Tool**: None\n    - **Input**: \"hcluster.tsv\"\n    - **Output**: data_csv_file (path to the converted CSV file)\n    - **Description**: Read the hcluster.tsv file, extract the feature columns while skipping the ID column, and save the result as a CSV file.\n\n2. **Goal**: Perform hierarchical clustering analysis on the feature columns.\n    - **Tool**: hierarchical\n    - **Input**: data_csv_file (path to the CSV file containing feature columns), n_clusters (number of clusters to be defined by the user)\n    - **Output**: result_csv_file (path to the clustering result file), silhouette (average silhouette score)\n    - **Description**: Use the hierarchical clustering algorithm directly on the validated feature data to generate clusters and output the results along with a silhouette score for evaluation.\n]"
+            },
+            "original_question": "I have a dataset {breast_cancer.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform factor analysis for dimensionality reduction on this dataset."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_194",
+      "question": "[De-identified Prior Trajectory]\n1) Validate key analysis columns and clean invalid entries before inference.\n2) Run a nonparametric group-comparison test with explicit null-hypothesis setup.\n3) Inspect whether sample-size/group-balance assumptions are acceptable.\n4) If assumptions are weak, prefer conservative interpretation and avoid over-claiming significance.\n5) Report statistical outputs with clear mapping between tested variable and conclusion.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=cross-sectional group-difference test -> target=time-to-event hazard model\n- Gap (metric_change): source=rank-based group significance -> target=hazard ratio and survival-risk significance\n- Gap (schema_change): source=single response + group columns -> target=time/event/covariate survival schema\n\n[Target Task]\nThere is an existing dataset cox_forest.tsv, where the \"time\" column represents survival time and \"status\" represents survival status. Please perform a multivariate Cox analysis on the variables \"age\" and \"sex\".",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0194/files/cox_forest.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"cox_forest_cox.png\", \"path\": \"downloaded_files\\\\index_0194\\\\milestone\\\\cox_forest_cox.png\"}], \"milestones\": [\"Generate forest plot\", \"The result file for saving the image is correct.\"], \"steps\": [\"Draw a forest plot\", \"Check whether the result file for saving the image is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Inferential statistics",
+        "task_abbr": "生存分析-cox回归",
+        "task": "Inferential statistics",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.5700000000001,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_not_overlap_existing_r1_r2_e1_e2_sets', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 225,
+              "workflow_memory_Index": 8,
+              "task_abbr": "Kruskal-Wallis H检验",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the data from the \"boxplot.tsv\" file and extract the \"Age_Group\" and \"WBC\" columns.\n    - **Tool**: None (This will be done using Python code)\n    - **Input**: \"boxplot.tsv\"\n    - **Output**: A structured list of \"WBC\" values grouped by \"Age_Group\".\n    - **Description**: Read the TSV file and directly prepare the data for analysis.\n\n2. **Goal**: Perform the Kruskal-Wallis H test on the grouped \"WBC\" values.\n    - **Tool**: None (This will be done using Python code)\n    - **Input**: The structured list of \"WBC\" values grouped by \"Age_Group\".\n    - **Output**: H statistic and p-value.\n    - **Description**: Use the Kruskal-Wallis H test to determine if there are significant differences in WBC counts across the different age groups.\n\n3. **Goal**: Interpret the results of the Kruskal-Wallis H test.\n    - **Tool**: None (This will be done using Python code)\n    - **Input**: H statistic and p-value from the previous step.\n    - **Output**: A summary report including the test statistic, p-value, and interpretation of the results.\n    - **Description**: Document the findings of the st"
+            },
+            "original_question": "There is an existing dataset cox_forest.tsv, where the \"time\" column represents survival time and \"status\" represents survival status. Please perform a multivariate Cox analysis on the variables \"age\" and \"sex\"."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_242",
+      "question": "[De-identified Prior Trajectory]\n1) Confirm axis-variable role mapping and ensure plotted measure is numeric.\n2) Apply deterministic ordering or grouping transformations before rendering.\n3) Generate visualization and cross-check that encoded trend matches transformed data.\n4) If visual signal is noisy or misleading, revise transformation granularity and regenerate.\n5) Keep plotting parameters explicit so the figure is reproducible.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=continuous trend over x with grouped area encoding -> target=distribution shape via binning of a single variable\n- Gap (metric_change): source=group-wise area trend interpretation -> target=frequency/bin-density interpretation\n- Gap (constraint_change): source=ordered x-axis relationship -> target=binning policy and bin-width constraints\n\n[Target Task]\nThere is a data file histogram.tsv, where the \"type\" column contains grouping information. Please draw a histogram between the two groups based on the values in the \"value\" column.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0242/files/histogram.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"histograms_histogram.jpg\", \"path\": \"downloaded_files\\\\index_0242\\\\milestone\\\\histograms_histogram.jpg\"}], \"milestones\": [\"Generate histogram\", \"The result file for saving the image is in jpg format, which is correct.\"], \"steps\": [\"Draw a histogram\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Basic plot",
+        "task_abbr": "Histogram",
+        "task": "Basic plot",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.11,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_not_overlap_existing_r1_r2_e1_e2_sets', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 232,
+              "workflow_memory_Index": 72,
+              "task_abbr": "Area plot",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps in sequence:\n1. **Goal**: Load the TSV file and parse the data directly into a structured format.\n    - **Tool**: None\n    - **Input**: \"area.tsv\"\n    - **Output**: List of dictionaries containing the data from the file, ensuring it includes 'group', 'xaxis.value', and 'yaxis.value' columns.\n    - **Description**: Read the TSV file and convert it into a structured format for plotting without intermediate steps.\n\n2. **Goal**: Create the area chart using a suitable plotting library directly from the loaded data.\n    - **Tool**: None\n    - **Input**: List of dictionaries from the previous step.\n    - **Output**: Area chart visualization.\n    - **Description**: Use a plotting library to generate an area chart that displays the values for Group1, Group2, and Group3, ensuring proper labeling and legends. Include error handling to check for the presence of 'group', 'xaxis.value', and 'yaxis.value' keys before plotting to prevent KeyErrors.\n]"
+            },
+            "original_question": "There is a data file histogram.tsv, where the \"type\" column contains grouping information. Please draw a histogram between the two groups based on the values in the \"value\" column."
+          }
+        }
+      }
+    }
+  ]
+}

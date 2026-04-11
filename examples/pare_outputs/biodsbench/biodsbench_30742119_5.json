@@ -1,0 +1,160 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_30742119_5",
+      "question": "Make univariate survival analysis with the post-treatment survival for the entire cohorts. Use response to PD-L1 as the feature. Get its coefficient and -log10(p) value, save the results as variables\n- coefficients\n- minus_log10_p",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_timeline_status.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_timeline_treatment.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\nimport numpy as np\\nfrom lifelines import CoxPHFitter\\nimport matplotlib.pyplot as plt\\n\\n# Load the data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\n\\n\\n# Prepare the data for Cox Proportional Hazards model\\ndf = data_clinical_patient[[\\\"OS_FROM_PD1I_MONTHS\\\", \\\"OS_FROM_PD1I_STATUS\\\", \\\"RESPONSE\\\"]].dropna()\\ndf[\\\"OS_FROM_PD1I_STATUS\\\"] = df[\\\"OS_FROM_PD1I_STATUS\\\"].apply(lambda x: 1 if x == \\\"1:DECEASED\\\" else 0)\\ndf[\\\"RESPONSE\\\"] = df[\\\"RESPONSE\\\"].apply(lambda x: 1 if x == \\\"Yes\\\" else 0)\\n\\n# Fit the Cox Proportional Hazards model\\ncph = CoxPHFitter()\\ncph.fit(df, duration_col=\\\"OS_FROM_PD1I_MONTHS\\\", event_col=\\\"OS_FROM_PD1I_STATUS\\\")\\n\\n# Print the summary of the model\\nprint(cph.summary)\\n\\n# Plot the survival function\\ncph.plot()\\nplt.savefig(\\\"cox_model_survival_function.png\\\")\\nplt.show()\\n\\ncoefficients = cph.summary['coef']\\ncoefficients = coefficients.values[0]\\n\\np_values = cph.summary['p']\\nminus_log10_p = -np.log10(p_values.values[0])\", \"test_cases\": \"assert abs(minus_log10_p-0.33136911167873484) < 1e-8\\n\\nassert abs(coefficients+0.5454816294446085) < 1e-8\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "30742119_5",
+        "study_id": "30742119",
+        "question_id": "5",
+        "analysis_types": "['Survival Outcome Analysis', 'Clinical Feature Engineering', 'Treatment Response Visualization & Quantification']",
+        "study_type": "Integrative",
+        "study_title": "Immune and genomic correlates of response to anti-PD-1 immunotherapy in glioblastoma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=gbm_columbia_2019",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_30742119_5",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Make univariate survival analysis with the post-treatment survival for the entire cohorts.",
+          "Use response to PD-L1 as the feature.",
+          "Get its coefficient and -log10(p) value, save the results as variables",
+          "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_timeline_status.csv, data_timeline_treatment.csv"
+        ],
+        "reason": "The task requires structuring a workflow that involves extracting relevant clinical data, selecting the appropriate survival outcome and feature, and performing a univariate survival analysis. The need to identify and extract the correct columns from among several input files, and to map 'response to PD-L1' to the correct variable, implies a moderate workflow structuring load. However, the method (univariate survival analysis) is specified and standard, and there is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Get its coefficient and -log10(p) value, save the results as variables\n- coefficients\n- minus_log10_p",
+          "Explicit variable names required for output: coefficients, minus_log10_p",
+          "Test cases: assert abs(minus_log10_p-0.33136911167873484) < 1e-8; assert abs(coefficients+0.5454816294446085) < 1e-8"
+        ],
+        "reason": "There is a clear requirement to produce two specific output variables with precise values, and the test cases enforce strict numeric correctness. The outputs are simple (scalars), but the specification is tight due to the required variable names and exact value checks. There is no evidence of heterogeneous artifact types or complex format constraints."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Multiple input files, but only data_clinical_patient.csv is used in the reference answer",
+          "Feature mapping: 'response to PD-L1' must be mapped to 'RESPONSE' column",
+          "Survival outcome mapping: 'post-treatment survival' must be mapped to 'OS_FROM_PD1I_MONTHS' and 'OS_FROM_PD1I_STATUS'"
+        ],
+        "reason": "There is some minor semantic repair required to map the abstract feature and outcome names in the question to the concrete column names in the data. However, there is no evidence of schema mismatch, missing fields, or contradictory constraints. The repair is limited to aligning question wording with data columns."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience text, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task involves moderate planning and action load due to the need to extract and map the correct clinical variables from multiple input files, perform a standard univariate survival analysis, and produce tightly specified scalar outputs. There is minor semantic repair required to align the question's terminology with the data columns, but no evidence of major ambiguity or schema inconsistency. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2904,
+        "completion_tokens": 825,
+        "total_tokens": 3729
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Make univariate survival analysis with the post-treatment survival for the entire cohorts.",
+            "Use response to PD-L1 as the feature.",
+            "Get its coefficient and -log10(p) value, save the results as variables",
+            "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_timeline_status.csv, data_timeline_treatment.csv"
+          ],
+          "reason": "The task requires structuring a workflow that involves extracting relevant clinical data, selecting the appropriate survival outcome and feature, and performing a univariate survival analysis. The need to identify and extract the correct columns from among several input files, and to map 'response to PD-L1' to the correct variable, implies a moderate workflow structuring load. However, the method (univariate survival analysis) is specified and standard, and there is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Get its coefficient and -log10(p) value, save the results as variables\n- coefficients\n- minus_log10_p",
+            "Explicit variable names required for output: coefficients, minus_log10_p",
+            "Test cases: assert abs(minus_log10_p-0.33136911167873484) < 1e-8; assert abs(coefficients+0.5454816294446085) < 1e-8"
+          ],
+          "reason": "There is a clear requirement to produce two specific output variables with precise values, and the test cases enforce strict numeric correctness. The outputs are simple (scalars), but the specification is tight due to the required variable names and exact value checks. There is no evidence of heterogeneous artifact types or complex format constraints.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Multiple input files, but only data_clinical_patient.csv is used in the reference answer",
+            "Feature mapping: 'response to PD-L1' must be mapped to 'RESPONSE' column",
+            "Survival outcome mapping: 'post-treatment survival' must be mapped to 'OS_FROM_PD1I_MONTHS' and 'OS_FROM_PD1I_STATUS'"
+          ],
+          "reason": "There is some minor semantic repair required to map the abstract feature and outcome names in the question to the concrete column names in the data. However, there is no evidence of schema mismatch, missing fields, or contradictory constraints. The repair is limited to aligning question wording with data columns.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience text, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate planning and action load due to the need to extract and map the correct clinical variables from multiple input files, perform a standard univariate survival analysis, and produce tightly specified scalar outputs. There is minor semantic repair required to align the question's terminology with the data columns, but no evidence of major ambiguity or schema inconsistency. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:51:10.082168+00:00"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-61-q4",
+      "question": "What is the total number of indel mutations (insertions + deletions) in the MDR sample (SRR35233585)?",
+      "data": [],
+      "answer": "3173",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-61-q4",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "2973",
+          "3373",
+          "3573"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-61-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the total number of indel mutations (insertions + deletions) in the MDR sample (SRR35233585)?"
+        ],
+        "reason": "The question requires determining the total number of indel mutations in a specific sample, which likely involves at least two steps: identifying indel mutations (insertions and deletions) and summing them. However, there is no explicit evidence of complex workflow structuring or significant branching decisions; the method is implied to be standard."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the total number of indel mutations (insertions + deletions) in the MDR sample (SRR35233585)?",
+          "\"answer\": \"3173\""
+        ],
+        "reason": "The output is a single integer value, and there is no explicit mention of strict format, parameterization, or verification constraints. The action load is minor, as the artifact is simple and specification is not tight."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or data repair cues in the question or metadata."
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair requirements. The question is clear and the answer is a single value."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a straightforward query for the total number of indel mutations in a specific sample. There is minor planning and action load due to the need to identify and sum insertions and deletions, but no evidence of complex workflow, branching, strict output specification, or repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2208,
+        "completion_tokens": 545,
+        "total_tokens": 2753
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the total number of indel mutations (insertions + deletions) in the MDR sample (SRR35233585)?"
+          ],
+          "reason": "The question requires determining the total number of indel mutations in a specific sample, which likely involves at least two steps: identifying indel mutations (insertions and deletions) and summing them. However, there is no explicit evidence of complex workflow structuring or significant branching decisions; the method is implied to be standard.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the total number of indel mutations (insertions + deletions) in the MDR sample (SRR35233585)?",
+            "\"answer\": \"3173\""
+          ],
+          "reason": "The output is a single integer value, and there is no explicit mention of strict format, parameterization, or verification constraints. The action load is minor, as the artifact is simple and specification is not tight.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or data repair cues in the question or metadata."
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair requirements. The question is clear and the answer is a single value.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward query for the total number of indel mutations in a specific sample. There is minor planning and action load due to the need to identify and sum insertions and deletions, but no evidence of complex workflow, branching, strict output specification, or repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:35:44.879614+00:00"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "question": {
+    "benchmark": "biomni_eval1",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomni_lab_bench_dbqa_207",
+      "question": "The following is a multiple choice question about biology.\nPlease answer by responding with the letter of the correct answer.\n\nQuestion: Which of the following genes is most likely contained in the gene set CAHOY_NEURONAL, which contains genes up-regulated in neurons. This gene set is a part of the C6 collection: oncogenic signature gene sets. \nOptions:\nA.RASL10A\nB.Insufficient information to answer the question.\nC.EVI2B\nD.TCAF1\nE.KIR3DL3\n\nYou MUST include the letter of the correct answer within the following tags:\n[ANSWER] and [/ANSWER]. For example, '[ANSWER]<answer>[/ANSWER]',\nwhere <answer> is the correct letter. Always answer in exactly this format\nof a single letter between the two tags, even if you are unsure.\nWe require this because we use automatic parsing.\n            ",
+      "data": [],
+      "answer": "A",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "Biomni",
+        "source_dataset": "biomni/Eval1",
+        "task_name": "lab_bench_dbqa",
+        "task_instance_id": 207,
+        "split": "val",
+        "global_instance_id": 283
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomni_lab_bench_dbqa_207",
+    "benchmark": "biomni_eval1",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Single multiple choice question with one correct answer required",
+          "No explicit or implicit multi-stage workflow or branching"
+        ],
+        "reason": "The task is a direct multiple choice question with a single answer required. There is no evidence of workflow structuring or method branching; the answer is expected to be selected directly from the provided options."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Explicit output format required: '[ANSWER]<answer>[/ANSWER]'",
+          "Strict requirement to answer with a single letter between tags"
+        ],
+        "reason": "There is a minor artifact realization load due to the strict output format, but only a single output type (the answer letter in tags) is required. The format constraint is explicit but not complex."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Question is clearly worded with no ambiguity or missing fields",
+          "No evidence of data or schema inconsistency"
+        ],
+        "reason": "There is no need for semantic or data repair; the question is well-defined and the answer format is specified. No ambiguity or representational inconsistency is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This is a straightforward multiple choice biology question with a strict but simple output format. There is minimal planning or repair load, and no transfer or evolution context. The main complexity is the explicit answer formatting requirement.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2344,
+        "completion_tokens": 473,
+        "total_tokens": 2817
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Single multiple choice question with one correct answer required",
+            "No explicit or implicit multi-stage workflow or branching"
+          ],
+          "reason": "The task is a direct multiple choice question with a single answer required. There is no evidence of workflow structuring or method branching; the answer is expected to be selected directly from the provided options.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Explicit output format required: '[ANSWER]<answer>[/ANSWER]'",
+            "Strict requirement to answer with a single letter between tags"
+          ],
+          "reason": "There is a minor artifact realization load due to the strict output format, but only a single output type (the answer letter in tags) is required. The format constraint is explicit but not complex.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Question is clearly worded with no ambiguity or missing fields",
+            "No evidence of data or schema inconsistency"
+          ],
+          "reason": "There is no need for semantic or data repair; the question is well-defined and the answer format is specified. No ambiguity or representational inconsistency is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward multiple choice biology question with a strict but simple output format. There is minimal planning or repair load, and no transfer or evolution context. The main complexity is the explicit answer formatting requirement.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T11:42:26.208176+00:00"
+  }
+}

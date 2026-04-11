@@ -1,0 +1,131 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_5b6f38a4-60ef-4c1b-9de6-3492786a823f",
+      "question": "What is the expected amplicon length if I used the primer pair AATCAGTCTCACTGGTCAGCC,TAGTAGTGGGGTCCATTTGCACCT in a PCR from the following template: TGGCAATCAGTCTCACTGGTCAGCCCCGAGTAGGGTGTACCGGTATAGTTCCTATCTCCGATGAAATGTAAGGGCTTCAGGCCACGCGAATAGGTCGCCATGATCTAAAGGCTTCTATATGGCCCCATAAAAGAGTCTGCGCAGTGCATTAACCGACGGGGTGACGTTTCGTGGCGCCACGTCCCAGATACTATCGTAAGTCAACAGACAAGGATGAGGAAAGCTTTGCGAAAGCAGGACGCGCGATAGAGTAGGAGAACTCTCGGTGGTGGCCAGAGAGCGTTTGGGAGCCCGCTCAAATGGCGCGTTAGCTTGCGAGTGTAGCTGCTACGGAGATTACAAGTGGGCAATGGCATTATCGCCTCGTTTGGCGTCCACGCATAACAGACAGCTTAAATTCGGTTGCGACACAACATATCTTATTGAACTAACACGCCGTCCGGCTCATTGTAACGATTATATGCGCAGGGGCTTAAACGGTCTCAACTTCTCTAGTTCGTACCCGTACATTAGATCTTCAACTAGCTCAGTGGTCCGGCACGGGCTAATACTGCAGAATCAAACGGCTGGCCGGTATCCCACAGAAGCAATACCTCCATGTTCTTGATACGGTGGCGAACCGGTTAGCTACCCACCGTGTATCGCGAAAATCATGCATTTAACGGCTATTCAGAGTTTTATCGAGCCCTTCCTTACCTACGATGTTAAGGTGCAAATGGACCCCACTACTATTGTGATAAAGCCAGCAACAGGGGTTTATTACCAATAAGTCATGAGCCGGTGCCCAAGCATAAGAAAGGTGGAAGCGCAAGTAGAGCACTCCCTACCGGTATGTTTCTTCGAGTTGAGCTATCTACGCTGGAGATGACTGAGACAAGCGTTCCACATCTCCTTAATACGAATCGGTCCTACAATATTAAAACCATCCTAGGTTCTTGCGCCCACCGGATCGGGTAACGTTCCCGTATGCACTTACAAAGAATCCTCGTTACGCCAACAG?",
+      "data": [],
+      "answer": "727",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "SeqQA",
+        "task_name": "PCR-primers-len",
+        "tag": "seqqa",
+        "version": "1.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "593",
+          "905",
+          "407"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_5b6f38a4-60ef-4c1b-9de6-3492786a823f",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question requires determining amplicon length from a primer pair and a template sequence.",
+          "No explicit workflow steps or method branching described."
+        ],
+        "reason": "There is a minor workflow structuring load: the solver must identify the primer binding sites within the template and calculate the distance between them, which is not a single direct statement but a simple, standard process. There is no evidence of significant method branching or multiple defensible approaches."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Single numeric output (amplicon length).",
+          "No explicit format, threshold, or verification constraints."
+        ],
+        "reason": "The action load is minimal: only a single integer output is required, with no evidence of multiple artifact types, strict format, or parameterization burden."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Primer sequences and template are clearly provided.",
+          "No evidence of ambiguity, missing fields, or representational inconsistency."
+        ],
+        "reason": "There is no need for semantic or data repair; the task is well-defined and the input is structured. Only a trace load for possible minor clarifications (e.g., strand orientation), but nothing substantial."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task is a straightforward calculation of PCR amplicon length given explicit primer and template sequences. There is a minor planning load due to the need to locate primer sites and compute the distance, but no significant branching, artifact, repair, or transfer complexity is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2773,
+        "completion_tokens": 500,
+        "total_tokens": 3273
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question requires determining amplicon length from a primer pair and a template sequence.",
+            "No explicit workflow steps or method branching described."
+          ],
+          "reason": "There is a minor workflow structuring load: the solver must identify the primer binding sites within the template and calculate the distance between them, which is not a single direct statement but a simple, standard process. There is no evidence of significant method branching or multiple defensible approaches.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Single numeric output (amplicon length).",
+            "No explicit format, threshold, or verification constraints."
+          ],
+          "reason": "The action load is minimal: only a single integer output is required, with no evidence of multiple artifact types, strict format, or parameterization burden.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Primer sequences and template are clearly provided.",
+            "No evidence of ambiguity, missing fields, or representational inconsistency."
+          ],
+          "reason": "There is no need for semantic or data repair; the task is well-defined and the input is structured. Only a trace load for possible minor clarifications (e.g., strand orientation), but nothing substantial.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is a straightforward calculation of PCR amplicon length given explicit primer and template sequences. There is a minor planning load due to the need to locate primer sites and compute the distance, but no significant branching, artifact, repair, or transfer complexity is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:43:41.135305+00:00"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_013805c0-a3fc-4cb9-b038-7ac6ed37cfe6",
+      "question": "Which of the following genes is most likely contained in the gene set MP_ABNORMAL_TUMOR_VASCULARIZATION, which contains mouse genes annotated to abnormal tumor vascularization (MP:0010144) retrieved from the Mouse Genome Informatics database via MouseMine ",
+      "data": [],
+      "answer": "Dock4",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "DbQA",
+        "task_name": "mouse_tumor_gene_sets",
+        "tag": "dbqa",
+        "version": "1.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "Neu3",
+          "Tnik",
+          "Prkce"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_013805c0-a3fc-4cb9-b038-7ac6ed37cfe6",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Which of the following genes is most likely contained in the gene set MP_ABNORMAL_TUMOR_VASCULARIZATION",
+          "contains mouse genes annotated to abnormal tumor vascularization (MP:0010144)"
+        ],
+        "reason": "The task is a direct database lookup or fact retrieval: given a gene set and a phenotype annotation, select the correct gene from a list. There is no evidence of a multi-stage workflow or branching decision; the method is direct and unambiguous."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Which of the following genes...",
+          "answer: Dock4",
+          "distractors: Neu3, Tnik, Prkce"
+        ],
+        "reason": "The output is a single gene name selected from a short list. There is no evidence of heterogeneous artifacts, strict format constraints, or parameterization. The action is a simple selection."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of ambiguous semantics or data representation issues.",
+          "Gene set and phenotype are clearly specified by name and identifier (MP:0010144)."
+        ],
+        "reason": "The question is semantically clear and the data representation is unambiguous. No repair or clarification is needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present."
+        ],
+        "reason": "There is no evidence of prior experience or transfer requirements."
+      }
+    },
+    "overall_summary": "This is a straightforward database question requiring direct lookup of a gene set membership. There is minimal planning or action load, and no evidence of semantic ambiguity, data repair, or experience transfer.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2255,
+        "completion_tokens": 493,
+        "total_tokens": 2748
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Which of the following genes is most likely contained in the gene set MP_ABNORMAL_TUMOR_VASCULARIZATION",
+            "contains mouse genes annotated to abnormal tumor vascularization (MP:0010144)"
+          ],
+          "reason": "The task is a direct database lookup or fact retrieval: given a gene set and a phenotype annotation, select the correct gene from a list. There is no evidence of a multi-stage workflow or branching decision; the method is direct and unambiguous.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Which of the following genes...",
+            "answer: Dock4",
+            "distractors: Neu3, Tnik, Prkce"
+          ],
+          "reason": "The output is a single gene name selected from a short list. There is no evidence of heterogeneous artifacts, strict format constraints, or parameterization. The action is a simple selection.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of ambiguous semantics or data representation issues.",
+            "Gene set and phenotype are clearly specified by name and identifier (MP:0010144)."
+          ],
+          "reason": "The question is semantically clear and the data representation is unambiguous. No repair or clarification is needed.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present."
+          ],
+          "reason": "There is no evidence of prior experience or transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward database question requiring direct lookup of a gene set membership. There is minimal planning or action load, and no evidence of semantic ambiguity, data repair, or experience transfer.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:40:51.763024+00:00"
+  }
+}

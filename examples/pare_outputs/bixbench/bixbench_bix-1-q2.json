@@ -1,0 +1,138 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-1-q2",
+      "question": "What is the adjusted p-val threshold for neutrophil activation GO Process from an enrichment analysis (using enrichGO as method) using all significant (p<0.05) differentially expressed genes between ASXL1 mutation and control over all genes as background (from gencode), and after removing GO terms with similarity > 0.7?",
+      "data": [],
+      "answer": "1.9E-05",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-1-q2",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "3.23E-08",
+          "4.56E-04",
+          "2.15E-06"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-1-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "enrichment analysis (using enrichGO as method)",
+          "using all significant (p<0.05) differentially expressed genes between ASXL1 mutation and control",
+          "over all genes as background (from gencode)",
+          "after removing GO terms with similarity > 0.7"
+        ],
+        "reason": "The task requires chaining several steps: identifying DE genes, running enrichGO with a specified background, and post-processing to remove GO terms with similarity > 0.7. The workflow is not a single direct computation and requires structuring. However, the method (enrichGO) is specified, and the main branching is in the post-processing, not in method choice, so P2 is moderate."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "adjusted p-val threshold for neutrophil activation GO Process",
+          "using enrichGO as method",
+          "using all significant (p<0.05) differentially expressed genes",
+          "after removing GO terms with similarity > 0.7",
+          "eval_mode: str_verifier"
+        ],
+        "reason": "The output is a specific numeric value (adjusted p-value) for a particular GO term after a multi-step process, with explicit filtering and a strict string verifier. There is moderate artifact realization and parameterization load due to the need to apply a similarity threshold and select the correct GO term."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "after removing GO terms with similarity > 0.7"
+        ],
+        "reason": "There is some minor ambiguity in how GO term similarity is computed and applied, but the rest of the task is well-specified. No evidence of major semantic or data repair is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context in payload"
+        ],
+        "reason": "No explicit prior experience, trajectory, or transfer context is present."
+      }
+    },
+    "overall_summary": "This task involves a moderately complex workflow with explicit multi-step requirements (DE gene selection, enrichment analysis, post-processing by similarity), moderate artifact and parameterization load due to strict output requirements, and minor ambiguity in the similarity filtering step. There is no evidence of experience transfer or major semantic/data repair.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2264,
+        "completion_tokens": 613,
+        "total_tokens": 2877
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "enrichment analysis (using enrichGO as method)",
+            "using all significant (p<0.05) differentially expressed genes between ASXL1 mutation and control",
+            "over all genes as background (from gencode)",
+            "after removing GO terms with similarity > 0.7"
+          ],
+          "reason": "The task requires chaining several steps: identifying DE genes, running enrichGO with a specified background, and post-processing to remove GO terms with similarity > 0.7. The workflow is not a single direct computation and requires structuring. However, the method (enrichGO) is specified, and the main branching is in the post-processing, not in method choice, so P2 is moderate.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "adjusted p-val threshold for neutrophil activation GO Process",
+            "using enrichGO as method",
+            "using all significant (p<0.05) differentially expressed genes",
+            "after removing GO terms with similarity > 0.7",
+            "eval_mode: str_verifier"
+          ],
+          "reason": "The output is a specific numeric value (adjusted p-value) for a particular GO term after a multi-step process, with explicit filtering and a strict string verifier. There is moderate artifact realization and parameterization load due to the need to apply a similarity threshold and select the correct GO term.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "after removing GO terms with similarity > 0.7"
+          ],
+          "reason": "There is some minor ambiguity in how GO term similarity is computed and applied, but the rest of the task is well-specified. No evidence of major semantic or data repair is present.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context in payload"
+          ],
+          "reason": "No explicit prior experience, trajectory, or transfer context is present.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderately complex workflow with explicit multi-step requirements (DE gene selection, enrichment analysis, post-processing by similarity), moderate artifact and parameterization load due to strict output requirements, and minor ambiguity in the similarity filtering step. There is no evidence of experience transfer or major semantic/data repair.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:44:30.557922+00:00"
+  }
+}

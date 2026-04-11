@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_98",
+      "question": "You are analyzing the genetic testing data of a patient with a genetic disease. The patient's mutation data is stored in the following files: {MUT_edit1.fastq.gz}{MUT_edit2.fastq.gz}. You need to first identify the mutations, and based on the results of the mutations, please identify the patient's pathogenic mutations and suggest possible diseases.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0098/files/MUT_edit1.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0098/files/MUT_edit2.fastq.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"tumor.recal.bam\", \"path\": \"downloaded_files\\\\index_0098\\\\milestone\\\\tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\", \"path\": \"downloaded_files\\\\index_0098\\\\milestone\\\\tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\", \"path\": \"downloaded_files\\\\index_0098\\\\milestone\\\\tumor.recal.fil.maf\"}, {\"name\": \"disease.tsv\", \"path\": \"downloaded_files\\\\index_0098\\\\milestone\\\\disease.tsv\"}], \"milestones\": [\"Generate comparison result: bam\", \"Generate VCF\", \"There are records of mutation results: chr6-49427089-A-G, chr6-49419304-A-G.\", \"Associated diseases recorded: Methylmalonic aciduria, mut(0) type.\"], \"steps\": [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\", \"Associated Diseases\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "P",
+        "task_subclass": "Genetic",
+        "task_abbr": "Rare disease",
+        "task": "Genetic",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 21.02,
+        "milestone_count": 4,
+        "step_count": 4
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_98",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "You need to first identify the mutations, and based on the results of the mutations, please identify the patient's pathogenic mutations and suggest possible diseases.",
+          "steps\": [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\", \"Associated Diseases\"]",
+          "milestone_files\": [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\"}, {\"name\": \"disease.tsv\"}]"
+        ],
+        "reason": "The task requires decomposing the workflow from raw FASTQ files through mutation identification (BAM, VCF, MAF) to disease association (TSV), which is a multi-stage process. However, the workflow is relatively standard for genetic variant analysis and disease association, and there is no explicit evidence of major method branching or ambiguous assumptions that would drive P2 higher."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files\": [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\"}, {\"name\": \"disease.tsv\"}]",
+          "steps\": [\"Compare and generate bam ...\", \"Identification and generation of VCF\", \"Comment, generate maf\", \"Associated Diseases\"]"
+        ],
+        "reason": "There are multiple heterogeneous output files (BAM, VCF, MAF, TSV), each with distinct formats. The outputs are primary deliverables, but there is no explicit evidence of strict parameterization, thresholds, or format verifiers that would increase A2."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit mention of ambiguous semantics, missing fields, or data schema inconsistencies.",
+          "Input files are standard FASTQ format."
+        ],
+        "reason": "There is no direct evidence of semantic ambiguity or data representation issues. The workflow and file types are standard, and the question is sufficiently defined for the task."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; the task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-stage genetic variant analysis pipeline, requiring planning to structure the workflow from raw sequencing data to disease association. There is moderate artifact realization load due to multiple output types, but no explicit evidence of strict parameterization or data/semantic repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2607,
+        "completion_tokens": 739,
+        "total_tokens": 3346
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "You need to first identify the mutations, and based on the results of the mutations, please identify the patient's pathogenic mutations and suggest possible diseases.",
+            "steps\": [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\", \"Associated Diseases\"]",
+            "milestone_files\": [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\"}, {\"name\": \"disease.tsv\"}]"
+          ],
+          "reason": "The task requires decomposing the workflow from raw FASTQ files through mutation identification (BAM, VCF, MAF) to disease association (TSV), which is a multi-stage process. However, the workflow is relatively standard for genetic variant analysis and disease association, and there is no explicit evidence of major method branching or ambiguous assumptions that would drive P2 higher.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files\": [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\"}, {\"name\": \"disease.tsv\"}]",
+            "steps\": [\"Compare and generate bam ...\", \"Identification and generation of VCF\", \"Comment, generate maf\", \"Associated Diseases\"]"
+          ],
+          "reason": "There are multiple heterogeneous output files (BAM, VCF, MAF, TSV), each with distinct formats. The outputs are primary deliverables, but there is no explicit evidence of strict parameterization, thresholds, or format verifiers that would increase A2.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit mention of ambiguous semantics, missing fields, or data schema inconsistencies.",
+            "Input files are standard FASTQ format."
+          ],
+          "reason": "There is no direct evidence of semantic ambiguity or data representation issues. The workflow and file types are standard, and the question is sufficiently defined for the task.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-stage genetic variant analysis pipeline, requiring planning to structure the workflow from raw sequencing data to disease association. There is moderate artifact realization load due to multiple output types, but no explicit evidence of strict parameterization or data/semantic repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:10:45.632457+00:00"
+  }
+}

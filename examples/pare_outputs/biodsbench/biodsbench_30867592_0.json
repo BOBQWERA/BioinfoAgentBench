@@ -1,0 +1,156 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_30867592_0",
+      "question": "Make the waterfall plot of the maximum\nchange in tumour metabolism according to standardized uptake values\n(SUVmax), measured by PET, for all patients. Save the data as a pd.DataFrame named `data_suv` with two columns\n- PATIENT_ID\n- SUV",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_cna.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\nimport matplotlib.pyplot as plt\\n\\n# Load the data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\n\\n# Extract the necessary data\\ndata = data_clinical_patient[[\\\"PATIENT_ID\\\", \\\"PERCENT_CHANGE_BY_PET\\\"]].dropna()\\n\\n# Sort the data by the percent change\\ndata_sorted = data.sort_values(by=\\\"PERCENT_CHANGE_BY_PET\\\")\\n\\ndata_suv = data_sorted\\ndata_suv.columns = [\\\"PATIENT_ID\\\", \\\"SUV\\\"]\\n\\n# Create the waterfall plot\\nplt.figure(figsize=(10, 6))\\nbars = plt.bar(range(len(data_sorted)), data_sorted[\\\"SUV\\\"], color=(data_sorted[\\\"SUV\\\"] > 0).map({True: 'r', False: 'b'}))\\nplt.xlabel(\\\"Patients\\\")\\nplt.ylabel(\\\"Percent Change in Tumor Metabolism (SUVmax)\\\")\\nplt.title(\\\"Waterfall Plot of Maximum Change in Tumor Metabolism (SUVmax)\\\")\\n\\n# Save the plot\\nplt.savefig(\\\"waterfall_plot.png\\\")\\nplt.show()\\n\", \"test_cases\": \"assert data_suv[\\\"SUV\\\"].max() == 0\\n\\nassert data_suv[\\\"SUV\\\"].min() == -100.0\\n\\nassert data_suv[\\\"SUV\\\"].median() == -100\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "30867592_0",
+        "study_id": "30867592",
+        "question_id": "0",
+        "analysis_types": "['Treatment Response Visualization & Quantification']",
+        "study_type": "Translational",
+        "study_title": "Efficacy of MEK inhibition in patients with histiocytic neoplasms",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=histiocytosis_cobi_msk_2019",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_30867592_0",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Make the waterfall plot of the maximum change in tumour metabolism according to standardized uptake values (SUVmax), measured by PET, for all patients.",
+          "Save the data as a pd.DataFrame named `data_suv` with two columns - PATIENT_ID - SUV",
+          "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_cna.csv"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires extracting and transforming data (likely from data_clinical_patient.csv), renaming columns, sorting, and plotting. However, the method is fairly direct and there is no explicit evidence of branching decisions or multiple valid methods that would affect correctness. The presence of multiple input files does not increase P2, as only one is used for the required data."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Save the data as a pd.DataFrame named `data_suv` with two columns - PATIENT_ID - SUV",
+          "Make the waterfall plot...",
+          "Explicit test cases: assert data_suv[\"SUV\"].max() == 0, assert data_suv[\"SUV\"].min() == -100.0, assert data_suv[\"SUV\"].median() == -100",
+          "Output includes both a DataFrame and a plot file"
+        ],
+        "reason": "There is moderate artifact realization load: the task requires producing a DataFrame with specific columns and a plot, and the answer includes explicit test cases for the DataFrame's values. The output format and content are specified, but not with extreme rigidity or multiple complex formats."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Columns to extract and rename are specified",
+          "No evidence of ambiguous or missing semantic fields",
+          "No schema mismatch or data repair indicated"
+        ],
+        "reason": "There is only trace evidence for reflection load: the task is clearly worded, the required columns are specified, and there is no indication of ambiguity or data inconsistency. Routine data extraction and renaming do not count as repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context in the payload"
+        ],
+        "reason": "There is no evidence of experience assimilation or transfer; the task is standalone."
+      }
+    },
+    "overall_summary": "This task involves moderate action load due to the need to produce both a DataFrame with specific columns and a plot, with explicit test cases for the DataFrame. Planning load is weak to moderate, as the workflow is straightforward and does not require significant branching or method selection. Reflection and evolution loads are minimal or absent, as the task is clearly specified and does not require semantic or data repair, nor does it involve transfer from prior experience.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2803,
+        "completion_tokens": 730,
+        "total_tokens": 3533
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Make the waterfall plot of the maximum change in tumour metabolism according to standardized uptake values (SUVmax), measured by PET, for all patients.",
+            "Save the data as a pd.DataFrame named `data_suv` with two columns - PATIENT_ID - SUV",
+            "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_cna.csv"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires extracting and transforming data (likely from data_clinical_patient.csv), renaming columns, sorting, and plotting. However, the method is fairly direct and there is no explicit evidence of branching decisions or multiple valid methods that would affect correctness. The presence of multiple input files does not increase P2, as only one is used for the required data.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Save the data as a pd.DataFrame named `data_suv` with two columns - PATIENT_ID - SUV",
+            "Make the waterfall plot...",
+            "Explicit test cases: assert data_suv[\"SUV\"].max() == 0, assert data_suv[\"SUV\"].min() == -100.0, assert data_suv[\"SUV\"].median() == -100",
+            "Output includes both a DataFrame and a plot file"
+          ],
+          "reason": "There is moderate artifact realization load: the task requires producing a DataFrame with specific columns and a plot, and the answer includes explicit test cases for the DataFrame's values. The output format and content are specified, but not with extreme rigidity or multiple complex formats.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Columns to extract and rename are specified",
+            "No evidence of ambiguous or missing semantic fields",
+            "No schema mismatch or data repair indicated"
+          ],
+          "reason": "There is only trace evidence for reflection load: the task is clearly worded, the required columns are specified, and there is no indication of ambiguity or data inconsistency. Routine data extraction and renaming do not count as repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context in the payload"
+          ],
+          "reason": "There is no evidence of experience assimilation or transfer; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate action load due to the need to produce both a DataFrame with specific columns and a plot, with explicit test cases for the DataFrame. Planning load is weak to moderate, as the workflow is straightforward and does not require significant branching or method selection. Reflection and evolution loads are minimal or absent, as the task is clearly specified and does not require semantic or data repair, nor does it involve transfer from prior experience.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:41:24.234233+00:00"
+  }
+}

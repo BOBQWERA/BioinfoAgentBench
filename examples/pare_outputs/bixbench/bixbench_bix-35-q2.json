@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-35-q2",
+      "question": "What is the Mann-Whitney U statistic value for the comparison of evolutionary rates between animals and fungi across all genes? Use PhyKIT's evo_rate function to calculate evolutionary rates.",
+      "data": [],
+      "answer": "3661",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-35-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "2847",
+          "4523",
+          "5192"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-35-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Use PhyKIT's evo_rate function to calculate evolutionary rates.",
+          "Mann-Whitney U statistic value for the comparison of evolutionary rates between animals and fungi across all genes"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires first calculating evolutionary rates using a specific function (PhyKIT's evo_rate), then comparing two groups (animals vs fungi) using the Mann-Whitney U test. However, the method is specified and there is no evidence of branching decision load or multiple defensible methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Mann-Whitney U statistic value",
+          "Use PhyKIT's evo_rate function"
+        ],
+        "reason": "The output is a single numeric statistic (U value), and the process involves generating evolutionary rates as an intermediate artifact. There is no explicit format or parameterization strictness, and only one output type is required."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or data repair cues"
+        ],
+        "reason": "The question is clear and specifies the method and comparison groups. There is no evidence of semantic ambiguity or data/representation repair needs."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a minor multi-step workflow (calculate evolutionary rates, then perform a Mann-Whitney U test), but both the method and output are clearly specified. There is no evidence of branching, strict parameterization, semantic ambiguity, or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2217,
+        "completion_tokens": 499,
+        "total_tokens": 2716
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Use PhyKIT's evo_rate function to calculate evolutionary rates.",
+            "Mann-Whitney U statistic value for the comparison of evolutionary rates between animals and fungi across all genes"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires first calculating evolutionary rates using a specific function (PhyKIT's evo_rate), then comparing two groups (animals vs fungi) using the Mann-Whitney U test. However, the method is specified and there is no evidence of branching decision load or multiple defensible methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Mann-Whitney U statistic value",
+            "Use PhyKIT's evo_rate function"
+          ],
+          "reason": "The output is a single numeric statistic (U value), and the process involves generating evolutionary rates as an intermediate artifact. There is no explicit format or parameterization strictness, and only one output type is required.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or data repair cues"
+          ],
+          "reason": "The question is clear and specifies the method and comparison groups. There is no evidence of semantic ambiguity or data/representation repair needs.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor multi-step workflow (calculate evolutionary rates, then perform a Mann-Whitney U test), but both the method and output are clearly specified. There is no evidence of branching, strict parameterization, semantic ambiguity, or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:11:30.816858+00:00"
+  }
+}

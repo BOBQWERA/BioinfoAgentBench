@@ -1,0 +1,160 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_32211396_2",
+      "question": "##Question##\nUse the 'ggplot2' and 'ggrepel' packages to draw a volcano plot to visualize the differential miRNA expression between patient groups labeled as 1 and 3. Use the data frame (named as variable 'DEGAll') that includes columns for log2 fold change ('logFC'), p-value ('PValue'), and color. Highlight up-regulated miRNAs in red and down-regulated miRNAs in blue. Mark the top 10 significant miRNAs (stored in 'top_miRNAs') with their names on the plot.\n\n##Task##\n1. Creates a dataframe named 'DEGAll\" by adding log2 fold changes, p-values, and colors for significant miRNAs.\n2. Selects the top 10 miRNAs by p-value and log2 fold change.\n3. miRNArates a volcano plot and labels the top miRNAs.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_miRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(ggplot2)\\nlibrary(ggrepel)\\n\\n# Create a data frame with the necessary columns for the volcano plot\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue,\\n    color = ifelse(pValue < 0.05 & abs(log2FoldChange) > 0.5,\\n                   ifelse(log2FoldChange > 0.5, \\\"red\\\", \\\"blue\\\"), \\\"gray\\\")\\n  )\\n\\n# Define colors\\ncolor <- c(red = \\\"#800000\\\", gray = \\\"#A9A9A9\\\", blue = \\\"#4682B433\\\")\\n\\n# Define the number of top miRNAs to label\\ntop_n <- 10\\n\\n# Filter top miRNAs by p-value and log2 fold change\\ntop_miRNAs <- DEGAll %>%\\n  arrange(pValue) %>%\\n  slice_head(n = top_n)\\n\\n# Plot the volcano plot\\nggplot(DEGAll, aes(logFC, -log10(PValue), col = color)) +\\n  geom_point() +\\n  geom_text_repel(\\n    data = top_miRNAs,\\n    aes(label = miRNA),\\n    size = 3,\\n    box.padding = 0.3,\\n    point.padding = 0.5,\\n    segment.color = 'grey50',\\n    color = 'black'  # Set miRNA label color to black\\n  ) +\\n  theme_bw() +\\n  scale_color_manual(values = color) +\\n  labs(x = \\\"log2 (fold change)\\\", y = \\\"-log10 (q-value)\\\") +\\n  geom_hline(yintercept = -log10(0.05), lty = 4, col = \\\"darkgreen\\\", lwd = 0.6) +\\n  geom_vline(xintercept = c(-0.5, 0.5), lty = 4, col = \\\"darkgreen\\\", lwd = 0.6) +\\n  theme(\\n    legend.position = \\\"none\\\",\\n    panel.grid = element_blank(),\\n    axis.title = element_text(size = 16),\\n    axis.text = element_text(size = 14)\\n  )\", \"test_cases\": \"ncol(DEGAll) == 8\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "32211396_2",
+        "study_id": "32211396",
+        "question_id": "2",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Therapeutics",
+        "study_title": "MicroRNAs Associated With Colon Cancer: New Potential Prognostic Markers and Targets for Therapy",
+        "dataset_url": "CMOB/GS-COAD",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_32211396_2",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Creates a dataframe named 'DEGAll' by adding log2 fold changes, p-values, and colors for significant miRNAs.",
+          "Selects the top 10 miRNAs by p-value and log2 fold change.",
+          "miRNArates a volcano plot and labels the top miRNAs.",
+          "Use the 'ggplot2' and 'ggrepel' packages to draw a volcano plot to visualize the differential miRNA expression between patient groups labeled as 1 and 3.",
+          "Highlight up-regulated miRNAs in red and down-regulated miRNAs in blue.",
+          "Mark the top 10 significant miRNAs (stored in 'top_miRNAs') with their names on the plot."
+        ],
+        "reason": "The task requires structuring a workflow with multiple dependent steps: data frame creation with specific columns, selection of top miRNAs, and plotting with specific highlights and labels. However, the workflow is relatively standard for this type of visualization and does not show explicit evidence of major method branching or ambiguous method choice."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Creates a dataframe named 'DEGAll' by adding log2 fold changes, p-values, and colors for significant miRNAs.",
+          "Selects the top 10 miRNAs by p-value and log2 fold change.",
+          "miRNArates a volcano plot and labels the top miRNAs.",
+          "Highlight up-regulated miRNAs in red and down-regulated miRNAs in blue.",
+          "Mark the top 10 significant miRNAs (stored in 'top_miRNAs') with their names on the plot.",
+          "test_cases: ncol(DEGAll) == 8"
+        ],
+        "reason": "There are multiple explicit output artifacts (dataframe, plot, labeled points), and the output must meet specific color and labeling requirements. There is a test case specifying the number of columns in the output dataframe, indicating some format constraint. However, parameterization and specification tightness are moderate, not maximal."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit evidence of semantic ambiguity or data schema inconsistency.",
+          "Input files are listed but no mention of missing fields, contradictions, or need for repair."
+        ],
+        "reason": "There is little evidence of the need for semantic or representational repair. The task is clearly defined, and the required columns and outputs are specified. The only trace is the need to ensure the correct columns are present, but this is routine and not a major repair load."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-step workflow for generating a volcano plot with specific highlights and labels using R. The planning and action loads are moderate due to the need to structure the workflow and meet explicit output requirements, but there is no strong evidence of major branching, specification tightness, or repair. There is no transfer or evolution load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3138,
+        "completion_tokens": 810,
+        "total_tokens": 3948
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Creates a dataframe named 'DEGAll' by adding log2 fold changes, p-values, and colors for significant miRNAs.",
+            "Selects the top 10 miRNAs by p-value and log2 fold change.",
+            "miRNArates a volcano plot and labels the top miRNAs.",
+            "Use the 'ggplot2' and 'ggrepel' packages to draw a volcano plot to visualize the differential miRNA expression between patient groups labeled as 1 and 3.",
+            "Highlight up-regulated miRNAs in red and down-regulated miRNAs in blue.",
+            "Mark the top 10 significant miRNAs (stored in 'top_miRNAs') with their names on the plot."
+          ],
+          "reason": "The task requires structuring a workflow with multiple dependent steps: data frame creation with specific columns, selection of top miRNAs, and plotting with specific highlights and labels. However, the workflow is relatively standard for this type of visualization and does not show explicit evidence of major method branching or ambiguous method choice.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Creates a dataframe named 'DEGAll' by adding log2 fold changes, p-values, and colors for significant miRNAs.",
+            "Selects the top 10 miRNAs by p-value and log2 fold change.",
+            "miRNArates a volcano plot and labels the top miRNAs.",
+            "Highlight up-regulated miRNAs in red and down-regulated miRNAs in blue.",
+            "Mark the top 10 significant miRNAs (stored in 'top_miRNAs') with their names on the plot.",
+            "test_cases: ncol(DEGAll) == 8"
+          ],
+          "reason": "There are multiple explicit output artifacts (dataframe, plot, labeled points), and the output must meet specific color and labeling requirements. There is a test case specifying the number of columns in the output dataframe, indicating some format constraint. However, parameterization and specification tightness are moderate, not maximal.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit evidence of semantic ambiguity or data schema inconsistency.",
+            "Input files are listed but no mention of missing fields, contradictions, or need for repair."
+          ],
+          "reason": "There is little evidence of the need for semantic or representational repair. The task is clearly defined, and the required columns and outputs are specified. The only trace is the need to ensure the correct columns are present, but this is routine and not a major repair load.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-step workflow for generating a volcano plot with specific highlights and labels using R. The planning and action loads are moderate due to the need to structure the workflow and meet explicit output requirements, but there is no strong evidence of major branching, specification tightness, or repair. There is no transfer or evolution load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:56:51.837885+00:00"
+  }
+}

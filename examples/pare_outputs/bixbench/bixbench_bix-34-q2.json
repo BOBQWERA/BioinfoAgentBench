@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-34-q2",
+      "question": "What is the median patristic distance for the fungal gene 981902at2759?",
+      "data": [],
+      "answer": "2.63",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-34-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "1.89",
+          "3.41",
+          "4.15"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-34-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: What is the median patristic distance for the fungal gene 981902at2759?",
+          "No explicit workflow or method specified"
+        ],
+        "reason": "The question requires computing a median patristic distance, which implies at least two steps: (1) obtaining or inferring a phylogenetic tree for the specified gene, and (2) calculating all pairwise patristic distances and then the median. However, there is no explicit evidence of complex workflow structuring or major branching decisions; the method is not specified, but the goal is concrete and likely has a standard approach."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Answer is a single numeric value: '2.63'",
+          "No explicit format or parameter constraints"
+        ],
+        "reason": "The output is a single number, with no evidence of multiple artifact types or strict format/parameterization requirements. No explicit thresholds, rounding, or schema constraints are mentioned."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No evidence of ambiguity or schema inconsistency"
+        ],
+        "reason": "There is no evidence of semantic or representational ambiguity. The question is clear and does not require repair or clarification to be logically definable."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience required or present in the payload."
+      }
+    },
+    "overall_summary": "This task involves a straightforward computation of a median patristic distance for a specified gene, with minor workflow structuring implied but no explicit branching, artifact complexity, or repair/transfer requirements. The load is low to moderate for planning, and minimal for other dimensions.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2203,
+        "completion_tokens": 537,
+        "total_tokens": 2740
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: What is the median patristic distance for the fungal gene 981902at2759?",
+            "No explicit workflow or method specified"
+          ],
+          "reason": "The question requires computing a median patristic distance, which implies at least two steps: (1) obtaining or inferring a phylogenetic tree for the specified gene, and (2) calculating all pairwise patristic distances and then the median. However, there is no explicit evidence of complex workflow structuring or major branching decisions; the method is not specified, but the goal is concrete and likely has a standard approach.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Answer is a single numeric value: '2.63'",
+            "No explicit format or parameter constraints"
+          ],
+          "reason": "The output is a single number, with no evidence of multiple artifact types or strict format/parameterization requirements. No explicit thresholds, rounding, or schema constraints are mentioned.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No evidence of ambiguity or schema inconsistency"
+          ],
+          "reason": "There is no evidence of semantic or representational ambiguity. The question is clear and does not require repair or clarification to be logically definable.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience required or present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward computation of a median patristic distance for a specified gene, with minor workflow structuring implied but no explicit branching, artifact complexity, or repair/transfer requirements. The load is low to moderate for planning, and minimal for other dimensions.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:09:56.773547+00:00"
+  }
+}

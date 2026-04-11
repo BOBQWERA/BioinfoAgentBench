@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-27-q4",
+      "question": "Which Reactome pathway is most significantly enriched in genes specific to the cluster with the highest number of significantly enriched pathways?",
+      "data": [],
+      "answer": "Aerobic respiration and respiratory electron transport",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-27-q4",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Vesicle-mediated transport in synapse",
+          "Base-excision repair",
+          "Sodium-calcium exchangers"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-27-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Which Reactome pathway is most significantly enriched in genes specific to the cluster with the highest number of significantly enriched pathways?"
+        ],
+        "reason": "The question requires a multi-stage reasoning process: (1) identify clusters, (2) determine which cluster has the highest number of significantly enriched pathways, (3) for that cluster, identify the most significantly enriched Reactome pathway. This implies a dependency-constrained step graph (P1). However, there is no explicit evidence of major method branching (P2), as the question wording suggests a canonical enrichment analysis workflow."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Which Reactome pathway is most significantly enriched...",
+          "cluster with the highest number of significantly enriched pathways"
+        ],
+        "reason": "The output is a single pathway name (from a fixed set), so artifact realization is simple (A1). There is some parameterization load (A2) implied by the need to determine 'significantly enriched' pathways and 'most significantly enriched', but no explicit thresholds, schemas, or strict verification rules are stated."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "'significantly enriched' is not explicitly defined",
+          "no explicit data or schema provided"
+        ],
+        "reason": "There is minor semantic ambiguity in what constitutes 'significantly enriched' (R1), as no threshold or statistical definition is given. However, the question is still logically answerable and does not require major repair. No evidence of data/schema repair (R2) since no data is provided."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no evidence of transfer or prior experience context in the payload."
+      }
+    },
+    "overall_summary": "This question requires moderate planning due to its multi-stage dependency structure (identify cluster, count pathways, select most significant pathway), but does not show strong evidence of method branching or ambiguity. Action and reflection loads are minor to moderate, mainly due to implicit parameterization and mild semantic openness. There is no evolution/transfer load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2220,
+        "completion_tokens": 601,
+        "total_tokens": 2821
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Which Reactome pathway is most significantly enriched in genes specific to the cluster with the highest number of significantly enriched pathways?"
+          ],
+          "reason": "The question requires a multi-stage reasoning process: (1) identify clusters, (2) determine which cluster has the highest number of significantly enriched pathways, (3) for that cluster, identify the most significantly enriched Reactome pathway. This implies a dependency-constrained step graph (P1). However, there is no explicit evidence of major method branching (P2), as the question wording suggests a canonical enrichment analysis workflow.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Which Reactome pathway is most significantly enriched...",
+            "cluster with the highest number of significantly enriched pathways"
+          ],
+          "reason": "The output is a single pathway name (from a fixed set), so artifact realization is simple (A1). There is some parameterization load (A2) implied by the need to determine 'significantly enriched' pathways and 'most significantly enriched', but no explicit thresholds, schemas, or strict verification rules are stated.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "'significantly enriched' is not explicitly defined",
+            "no explicit data or schema provided"
+          ],
+          "reason": "There is minor semantic ambiguity in what constitutes 'significantly enriched' (R1), as no threshold or statistical definition is given. However, the question is still logically answerable and does not require major repair. No evidence of data/schema repair (R2) since no data is provided.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no evidence of transfer or prior experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This question requires moderate planning due to its multi-stage dependency structure (identify cluster, count pathways, select most significant pathway), but does not show strong evidence of method branching or ambiguity. Action and reflection loads are minor to moderate, mainly due to implicit parameterization and mild semantic openness. There is no evolution/transfer load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:01:18.872406+00:00"
+  }
+}

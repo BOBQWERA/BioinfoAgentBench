@@ -1,0 +1,154 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_28481359_7",
+      "question": "Using the gene expression data `df_exp` and clinical outcome data `df_diag`, analyze the differences in overall survival between patients with higher TP53 expression and those with lower TTN expression, specifically for the cancer subtype \"LAML\".\n\nDefinition:\n- **High TTN expression**: Patients whose TTN expression level is above the median.\n- **Low TTN expression**: Patients whose TTN expression level is at or below the median.\n\nOutput Requirements:\n1. Two fitted Kaplan-Meier survival models:\n   - One for patients with high TTN expression, named `kmf_exp`.\n   - One for patients with low TTN expression, named `kmf_control`.\n2. Median survival times for both groups, named `median_survival_time_exp` and `median_survival_time_control`.\n3. A plot comparing the survival functions of both groups, including at-risk counts.\n\nWrite the code to generate these outputs.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/diagnosis_outcome_sub.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/gene_expression_rna_sub.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/gene_mutation_dna_sub.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\ndf_diag = pd.read_csv(\\\"/workdir/diagnosis_outcome_sub.csv\\\")\\ndf_exp = pd.read_csv(\\\"/workdir/gene_expression_rna_sub.csv\\\")\\ngene_name = \\\"TTN\\\"\\ndf_diag_subset = df_diag[df_diag[\\\"cancer type abbreviation\\\"] == \\\"LAML\\\"]\\npids = df_diag_subset[\\\"sample\\\"]\\ndf_exp_subset = df_exp[df_exp[\\\"sample\\\"].isin(pids)].reset_index(drop=True)\\nmean_ttn = df_exp_subset[gene_name].median()\\ndf_exp_subset_high = df_exp_subset[df_exp_subset[gene_name] > mean_ttn]\\ndf_exp_subset_low = df_exp_subset[df_exp_subset[gene_name] <= mean_ttn]\\ndf_diag_subset_high = df_diag_subset[df_diag_subset[\\\"sample\\\"].isin(df_exp_subset_high[\\\"sample\\\"])]\\ndf_diag_subset_low = df_diag_subset[df_diag_subset[\\\"sample\\\"].isin(df_exp_subset_low[\\\"sample\\\"])]\\n\\nfrom lifelines import KaplanMeierFitter\\nfrom lifelines.utils import median_survival_times\\nimport matplotlib.pyplot as plt\\nax= plt.subplot(111)\\n\\ndata = df_diag_subset_high[[\\\"OS\\\",\\\"OS.time\\\"]].dropna()\\nkmf_exp = KaplanMeierFitter()\\nkmf_exp.fit(data[\\\"OS.time\\\"], data[\\\"OS\\\"], label=f\\\"{gene_name} high expression\\\")\\nmedian_survival_time_exp = median_survival_times(kmf_exp)\\nkmf_exp.plot_survival_function(ax=ax)\\n\\ndata = df_diag_subset_low[[\\\"OS\\\",\\\"OS.time\\\"]].dropna()\\nkmf_control = KaplanMeierFitter()\\nkmf_control.fit(data[\\\"OS.time\\\"], data[\\\"OS\\\"], label=f\\\"{gene_name} low expression\\\")\\nmedian_survival_time_control = median_survival_times(kmf_control)\\nkmf_control.plot_survival_function(ax=ax)\\n\\nfrom lifelines.plotting import add_at_risk_counts\\nadd_at_risk_counts(kmf_exp, kmf_control, ax=ax)\\n\\nplt.savefig(\\\"fig.png\\\")\", \"test_cases\": \"assert abs(median_survival_time_exp - 489) < 1e-4\\n\\nassert abs(median_survival_time_control - 486) < 1e-4\\n\\nassert kmf_exp.percentile(0.8) == 153\\n\\nassert kmf_control.percentile(0.8) == 150\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "28481359_7",
+        "study_id": "28481359",
+        "question_id": "7",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Survival Outcome Analysis', 'Clinical Feature Engineering', 'Descriptive Statistics']",
+        "study_type": "Pan-Cancer",
+        "study_title": "Mutational landscape of metastatic cancer revealed from prospective clinical sequencing of 10,000 patients",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=msk_impact_2018",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_28481359_7",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Analyze the differences in overall survival between patients with higher TP53 expression and those with lower TTN expression, specifically for the cancer subtype \"LAML\".",
+          "Definition: High TTN expression: Patients whose TTN expression level is above the median. Low TTN expression: Patients whose TTN expression level is at or below the median.",
+          "Output Requirements: 1. Two fitted Kaplan-Meier survival models... 2. Median survival times for both groups... 3. A plot comparing the survival functions of both groups, including at-risk counts.",
+          "Multiple input files: gene expression, clinical outcome, gene mutation"
+        ],
+        "reason": "The task requires structuring a workflow that includes subsetting by cancer type, splitting patients by gene expression median, merging clinical and expression data, fitting two survival models, and generating both numeric and plot outputs. However, the method for splitting is specified (median), and the workflow is standard for survival analysis, so branching is limited."
+      },
+      "A": {
+        "score": 4,
+        "evidence": [
+          "Output Requirements: 1. Two fitted Kaplan-Meier survival models... 2. Median survival times for both groups... 3. A plot comparing the survival functions of both groups, including at-risk counts.",
+          "Explicit output variable names: kmf_exp, kmf_control, median_survival_time_exp, median_survival_time_control",
+          "Plot must include at-risk counts",
+          "Test cases: assert abs(median_survival_time_exp - 489) < 1e-4, assert kmf_exp.percentile(0.8) == 153"
+        ],
+        "reason": "There is a high artifact realization load due to the requirement for multiple heterogeneous outputs (model objects, numeric summaries, and a plot with specific features). There is also high parameterization/specification tightness, as output variable names, plot content, and numeric precision are all explicitly tested."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Input files: gene expression, clinical outcome, gene mutation",
+          "Subsetting by cancer type and gene expression median is specified",
+          "No explicit mention of missing/ambiguous fields or schema mismatch"
+        ],
+        "reason": "There is some minor representational repair needed to align and subset the data by sample and cancer type, but the requirements are clearly specified and there is no evidence of ambiguity or contradiction in semantics or schema."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; the task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a moderately complex workflow for survival analysis, requiring data subsetting, merging, and the generation of multiple output types with strict specification and verification. The main difficulty drivers are the explicit artifact realization and parameterization requirements. There is some minor representational alignment needed, but no evidence of ambiguity or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3203,
+        "completion_tokens": 785,
+        "total_tokens": 3988
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Analyze the differences in overall survival between patients with higher TP53 expression and those with lower TTN expression, specifically for the cancer subtype \"LAML\".",
+            "Definition: High TTN expression: Patients whose TTN expression level is above the median. Low TTN expression: Patients whose TTN expression level is at or below the median.",
+            "Output Requirements: 1. Two fitted Kaplan-Meier survival models... 2. Median survival times for both groups... 3. A plot comparing the survival functions of both groups, including at-risk counts.",
+            "Multiple input files: gene expression, clinical outcome, gene mutation"
+          ],
+          "reason": "The task requires structuring a workflow that includes subsetting by cancer type, splitting patients by gene expression median, merging clinical and expression data, fitting two survival models, and generating both numeric and plot outputs. However, the method for splitting is specified (median), and the workflow is standard for survival analysis, so branching is limited.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 4,
+          "evidence": [
+            "Output Requirements: 1. Two fitted Kaplan-Meier survival models... 2. Median survival times for both groups... 3. A plot comparing the survival functions of both groups, including at-risk counts.",
+            "Explicit output variable names: kmf_exp, kmf_control, median_survival_time_exp, median_survival_time_control",
+            "Plot must include at-risk counts",
+            "Test cases: assert abs(median_survival_time_exp - 489) < 1e-4, assert kmf_exp.percentile(0.8) == 153"
+          ],
+          "reason": "There is a high artifact realization load due to the requirement for multiple heterogeneous outputs (model objects, numeric summaries, and a plot with specific features). There is also high parameterization/specification tightness, as output variable names, plot content, and numeric precision are all explicitly tested.",
+          "subdimension_breakdown": {
+            "A1": 4,
+            "A2": 4
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Input files: gene expression, clinical outcome, gene mutation",
+            "Subsetting by cancer type and gene expression median is specified",
+            "No explicit mention of missing/ambiguous fields or schema mismatch"
+          ],
+          "reason": "There is some minor representational repair needed to align and subset the data by sample and cancer type, but the requirements are clearly specified and there is no evidence of ambiguity or contradiction in semantics or schema.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderately complex workflow for survival analysis, requiring data subsetting, merging, and the generation of multiple output types with strict specification and verification. The main difficulty drivers are the explicit artifact realization and parameterization requirements. There is some minor representational alignment needed, but no evidence of ambiguity or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:43:13.478603+00:00"
+  }
+}

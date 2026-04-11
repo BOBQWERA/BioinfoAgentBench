@@ -1,0 +1,129 @@
+{
+  "question": {
+    "benchmark": "autoba",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "autoba_case2.3",
+      "question": "use scanpy to identify top5 marker genes",
+      "data": [
+        {
+          "type": "input",
+          "value": "autoba/case2.3/data/filtered_gene_bc_matrices/hg19"
+        }
+      ],
+      "answer": "",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "AutoBA",
+        "case_name": "case2.3",
+        "task_category": "Single Cell RNA-seq",
+        "task_description": "Identify top5 marker genes",
+        "meta": {},
+        "task_type": "code_generation"
+      }
+    }
+  },
+  "result": {
+    "question_id": "autoba_case2.3",
+    "benchmark": "autoba",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "\"use scanpy to identify top5 marker genes\"",
+          "input: filtered_gene_bc_matrices/hg19"
+        ],
+        "reason": "The task requires identifying the top 5 marker genes using Scanpy from a 10X-style filtered matrix directory. This implies a multi-step workflow: loading data, preprocessing (normalization, filtering), clustering or group definition, and marker gene identification. However, the method (e.g., clustering vs. known groups) is not specified, so some workflow structuring is needed, but there is no strong evidence of major branching or multiple materially different methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"identify top5 marker genes\"",
+          "no explicit output format or strict verification"
+        ],
+        "reason": "The output is a list of the top 5 marker genes, but there is no explicit requirement for output format, schema, or strict parameterization. The artifact is a single list or table, and no explicit thresholds or format constraints are given."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "\"marker genes\" not further defined",
+          "no explicit group/cluster definition"
+        ],
+        "reason": "There is some minor semantic ambiguity: 'marker genes' could refer to markers for clusters or for some other group, and the group definition is not specified. However, this is a common default in Scanpy workflows and does not rise to the level of major repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context in payload"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context."
+      }
+    },
+    "overall_summary": "This task requires a standard multi-step Scanpy workflow to identify marker genes from a 10X-style input, with some minor ambiguity about group definition and marker gene criteria. There is no explicit output format or parameterization constraint, and no evidence of transfer or repair beyond minor semantic openness.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2183,
+        "completion_tokens": 574,
+        "total_tokens": 2757
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "\"use scanpy to identify top5 marker genes\"",
+            "input: filtered_gene_bc_matrices/hg19"
+          ],
+          "reason": "The task requires identifying the top 5 marker genes using Scanpy from a 10X-style filtered matrix directory. This implies a multi-step workflow: loading data, preprocessing (normalization, filtering), clustering or group definition, and marker gene identification. However, the method (e.g., clustering vs. known groups) is not specified, so some workflow structuring is needed, but there is no strong evidence of major branching or multiple materially different methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"identify top5 marker genes\"",
+            "no explicit output format or strict verification"
+          ],
+          "reason": "The output is a list of the top 5 marker genes, but there is no explicit requirement for output format, schema, or strict parameterization. The artifact is a single list or table, and no explicit thresholds or format constraints are given.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "\"marker genes\" not further defined",
+            "no explicit group/cluster definition"
+          ],
+          "reason": "There is some minor semantic ambiguity: 'marker genes' could refer to markers for clusters or for some other group, and the group definition is not specified. However, this is a common default in Scanpy workflows and does not rise to the level of major repair.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context in payload"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a standard multi-step Scanpy workflow to identify marker genes from a 10X-style input, with some minor ambiguity about group definition and marker gene criteria. There is no explicit output format or parameterization constraint, and no evidence of transfer or repair beyond minor semantic openness.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:36:49.904034+00:00"
+  }
+}

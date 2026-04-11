@@ -1,0 +1,151 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_r1_upgrade_top5_2_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_189",
+      "question": "Given heatmap_matrix.tsv, perform Spearman correlation analysis on these genes. The phrase \"on these genes\" is intentionally under-specified in ranking semantics: one interpretation ranks values within each gene across samples, while another ranks values within each sample across genes before correlation. Select one ranking axis formalization and apply it consistently.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0189/files/heatmap_matrix.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"spearman_heatmap.pdf\", \"path\": \"downloaded_files\\\\index_0189\\\\milestone\\\\spearman_heatmap.pdf\"}], \"milestones\": [\"Complete the Spearman correlation analysis\", \"Generate heatmap, and the image content is correct.\"], \"steps\": [\"Conduct Spearman correlation analysis\", \"Draw the corresponding heat map\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Descriptive statistics",
+        "task_abbr": "spearman相关性分析",
+        "task": "Descriptive statistics",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.5200000000001,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R1",
+          "selection_basis": "new round of R1 upgrades (non-overlap with existing R/E upgrade sets)",
+          "edit_context": {
+            "r1_mechanism": {
+              "missing_semantic_anchor": "ranking-axis semantics for Spearman computation",
+              "intent": "Increase R1 by introducing a local, repairable semantic under-specification before computation."
+            },
+            "original_question": "There is an existing gene expression matrix file heatmap_matrix.tsv, please perform Spearman correlation analysis on these genes."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_189",
+    "benchmark": "biomed_aqa_r1_upgrade_top5_2_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"perform Spearman correlation analysis on these genes\"",
+          "\"Draw the corresponding heat map\"",
+          "\"milestone_files\": [{\"name\": \"spearman_heatmap.pdf\"}]"
+        ],
+        "reason": "The task requires Spearman correlation analysis and heatmap generation, which implies a two-step workflow (analysis then visualization). However, the workflow is standard and does not require complex decomposition or branching. The only branching is in the interpretation of the ranking axis, but the instruction is to select one and apply it consistently, not to resolve both or compare them."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"spearman_heatmap.pdf\"}]",
+          "\"Generate heatmap, and the image content is correct.\""
+        ],
+        "reason": "There are two artifact types: the correlation analysis result (implied, possibly as an intermediate) and the heatmap PDF. The output format is specified as a PDF, but there are no strict schema or parameterization constraints beyond correctness of the image content."
+      },
+      "R": {
+        "score": 4,
+        "evidence": [
+          "\"The phrase 'on these genes' is intentionally under-specified in ranking semantics: one interpretation ranks values within each gene across samples, while another ranks values within each sample across genes before correlation. Select one ranking axis formalization and apply it consistently.\"",
+          "\"missing_semantic_anchor\": \"ranking-axis semantics for Spearman computation\"",
+          "\"intent\": \"Increase R1 by introducing a local, repairable semantic under-specification before computation.\""
+        ],
+        "reason": "The central challenge is a semantic ambiguity in the ranking axis for Spearman correlation, which must be clarified and formalized before computation. The payload explicitly states this is an intentional, repairable under-specification, making R1 a major difficulty driver. There is no evidence of data/schema repair (R2)."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "The main complexity in this task is the need to repair an intentional semantic ambiguity regarding the ranking axis for Spearman correlation (R1). Planning and action loads are present but moderate, as the workflow is standard and artifact requirements are not highly rigid. There is no evolution/transfer load.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2545,
+        "completion_tokens": 677,
+        "total_tokens": 3222
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"perform Spearman correlation analysis on these genes\"",
+            "\"Draw the corresponding heat map\"",
+            "\"milestone_files\": [{\"name\": \"spearman_heatmap.pdf\"}]"
+          ],
+          "reason": "The task requires Spearman correlation analysis and heatmap generation, which implies a two-step workflow (analysis then visualization). However, the workflow is standard and does not require complex decomposition or branching. The only branching is in the interpretation of the ranking axis, but the instruction is to select one and apply it consistently, not to resolve both or compare them.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"spearman_heatmap.pdf\"}]",
+            "\"Generate heatmap, and the image content is correct.\""
+          ],
+          "reason": "There are two artifact types: the correlation analysis result (implied, possibly as an intermediate) and the heatmap PDF. The output format is specified as a PDF, but there are no strict schema or parameterization constraints beyond correctness of the image content.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 4,
+          "evidence": [
+            "\"The phrase 'on these genes' is intentionally under-specified in ranking semantics: one interpretation ranks values within each gene across samples, while another ranks values within each sample across genes before correlation. Select one ranking axis formalization and apply it consistently.\"",
+            "\"missing_semantic_anchor\": \"ranking-axis semantics for Spearman computation\"",
+            "\"intent\": \"Increase R1 by introducing a local, repairable semantic under-specification before computation.\""
+          ],
+          "reason": "The central challenge is a semantic ambiguity in the ranking axis for Spearman correlation, which must be clarified and formalized before computation. The payload explicitly states this is an intentional, repairable under-specification, making R1 a major difficulty driver. There is no evidence of data/schema repair (R2).",
+          "subdimension_breakdown": {
+            "R1": 4,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "The main complexity in this task is the need to repair an intentional semantic ambiguity regarding the ranking axis for Spearman correlation (R1). Planning and action loads are present but moderate, as the workflow is standard and artifact requirements are not highly rigid. There is no evolution/transfer load.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-09T03:48:17.528964+00:00"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-38-q6",
+      "question": "What is the median ratio of fungal to animal tree lengths across paired orthologs?",
+      "data": [],
+      "answer": "2.178",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-38-q6",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "1.524",
+          "2.892",
+          "3.463"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-38-q6",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "What is the median ratio of fungal to animal tree lengths across paired orthologs?"
+        ],
+        "reason": "The question requires computing a median ratio across paired orthologs, which implies at least two steps: (1) obtaining or inferring tree lengths for both fungi and animals for each ortholog pair, and (2) calculating the ratio for each pair, then (3) computing the median of those ratios. However, there is no explicit evidence of multiple reasonable methods or branching decisions that would materially affect correctness; the workflow is multi-step but standard."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the median ratio of fungal to animal tree lengths across paired orthologs?",
+          "answer: 2.178"
+        ],
+        "reason": "The output is a single numeric value (the median ratio), so artifact heterogeneity is low. There is no explicit format or parameterization constraint beyond the implied need for a numeric answer. No explicit thresholds, rounding, or strict schema are specified."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What is the median ratio of fungal to animal tree lengths across paired orthologs?"
+        ],
+        "reason": "There is a minor need to clarify what constitutes 'tree length' and how orthologs are paired, but the question is otherwise well-posed and does not show evidence of ambiguity or representational inconsistency requiring repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This task requires a standard multi-step workflow to compute a median ratio across paired orthologs, with moderate planning load due to the need to structure the workflow. Action and reflection loads are low, as the output is a single value and the question is mostly well-defined. There is no evidence of experience transfer requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2201,
+        "completion_tokens": 575,
+        "total_tokens": 2776
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "What is the median ratio of fungal to animal tree lengths across paired orthologs?"
+          ],
+          "reason": "The question requires computing a median ratio across paired orthologs, which implies at least two steps: (1) obtaining or inferring tree lengths for both fungi and animals for each ortholog pair, and (2) calculating the ratio for each pair, then (3) computing the median of those ratios. However, there is no explicit evidence of multiple reasonable methods or branching decisions that would materially affect correctness; the workflow is multi-step but standard.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the median ratio of fungal to animal tree lengths across paired orthologs?",
+            "answer: 2.178"
+          ],
+          "reason": "The output is a single numeric value (the median ratio), so artifact heterogeneity is low. There is no explicit format or parameterization constraint beyond the implied need for a numeric answer. No explicit thresholds, rounding, or strict schema are specified.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What is the median ratio of fungal to animal tree lengths across paired orthologs?"
+          ],
+          "reason": "There is a minor need to clarify what constitutes 'tree length' and how orthologs are paired, but the question is otherwise well-posed and does not show evidence of ambiguity or representational inconsistency requiring repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a standard multi-step workflow to compute a median ratio across paired orthologs, with moderate planning load due to the need to structure the workflow. Action and reflection loads are low, as the output is a single value and the question is mostly well-defined. There is no evidence of experience transfer requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:15:27.923988+00:00"
+  }
+}

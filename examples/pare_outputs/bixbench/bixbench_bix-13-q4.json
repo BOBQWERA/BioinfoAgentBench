@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-13-q4",
+      "question": "Using DESeq2 to conduct differential expression analysis relative to strain JBX1, what is the total percentage of genes that are uniquely statistically differentially expressed in ∆lasI (JBX98) or ∆rhlI (JBX97). Use a Benjamini-Hochberg False Discovery Rate correction threshold of 0.05.",
+      "data": [],
+      "answer": "8.1%",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-13-q4",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "12.4%",
+          "15.7%",
+          "4.8%"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-13-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Using DESeq2 to conduct differential expression analysis relative to strain JBX1",
+          "uniquely statistically differentially expressed in ∆lasI (JBX98) or ∆rhlI (JBX97)",
+          "Benjamini-Hochberg False Discovery Rate correction threshold of 0.05"
+        ],
+        "reason": "The task requires structuring a workflow: (1) running DESeq2 for two contrasts (JBX98 vs JBX1 and JBX97 vs JBX1), (2) identifying genes uniquely differentially expressed in either mutant (not both), and (3) applying a specific FDR threshold. There is a clear dependency chain, but the method (DESeq2) and threshold are specified, so branching is limited."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "total percentage of genes that are uniquely statistically differentially expressed",
+          "Benjamini-Hochberg False Discovery Rate correction threshold of 0.05",
+          "eval_mode: str_verifier"
+        ],
+        "reason": "The output is a single percentage value, but it is derived from a multi-step process involving gene-level filtering and set operations. The threshold is explicit, and the answer must be formatted as a percentage, but there is no evidence of strict schema or multiple output types."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "uniquely statistically differentially expressed in ∆lasI (JBX98) or ∆rhlI (JBX97)"
+        ],
+        "reason": "There is some minor ambiguity in the definition of 'uniquely' (does it mean genes DE in one mutant but not the other, or in either?), but the context is mostly clear. No evidence of data schema or representation repair is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning and action load due to the need to structure a multi-step DESeq2 analysis, apply a specific FDR threshold, and compute a unique gene set percentage. There is minor ambiguity in the semantics of 'uniquely' but not enough to drive high reflection load. No evidence of experience transfer is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2253,
+        "completion_tokens": 660,
+        "total_tokens": 2913
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Using DESeq2 to conduct differential expression analysis relative to strain JBX1",
+            "uniquely statistically differentially expressed in ∆lasI (JBX98) or ∆rhlI (JBX97)",
+            "Benjamini-Hochberg False Discovery Rate correction threshold of 0.05"
+          ],
+          "reason": "The task requires structuring a workflow: (1) running DESeq2 for two contrasts (JBX98 vs JBX1 and JBX97 vs JBX1), (2) identifying genes uniquely differentially expressed in either mutant (not both), and (3) applying a specific FDR threshold. There is a clear dependency chain, but the method (DESeq2) and threshold are specified, so branching is limited.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "total percentage of genes that are uniquely statistically differentially expressed",
+            "Benjamini-Hochberg False Discovery Rate correction threshold of 0.05",
+            "eval_mode: str_verifier"
+          ],
+          "reason": "The output is a single percentage value, but it is derived from a multi-step process involving gene-level filtering and set operations. The threshold is explicit, and the answer must be formatted as a percentage, but there is no evidence of strict schema or multiple output types.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "uniquely statistically differentially expressed in ∆lasI (JBX98) or ∆rhlI (JBX97)"
+          ],
+          "reason": "There is some minor ambiguity in the definition of 'uniquely' (does it mean genes DE in one mutant but not the other, or in either?), but the context is mostly clear. No evidence of data schema or representation repair is present.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning and action load due to the need to structure a multi-step DESeq2 analysis, apply a specific FDR threshold, and compute a unique gene set percentage. There is minor ambiguity in the semantics of 'uniquely' but not enough to drive high reflection load. No evidence of experience transfer is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:50:11.924645+00:00"
+  }
+}

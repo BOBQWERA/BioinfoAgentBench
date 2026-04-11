@@ -1,0 +1,144 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_33177247_1",
+      "question": "##Question##\nPerform univariate Cox regression analysis for each gene in 'expression_data_t' to identify those significantly associated with overall survival. Sanitize gene names in 'expression_data_merged' before running the Cox regression. The columns 'survival_times' and 'event_observed' are used for survival time and status, respectively. Store the Cox regression results in the 'cox_results' list.\n\n##Task##\n1. Define survival time and status columns.\n2. Sanitize the gene names.\n3. Initialize an empty list to store Cox regression results.\n4. Perform univariate Cox regression for each gene",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/KIRP_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_KIRP.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(survival)\\n# Load necessary libraries\\nlibrary(survival)\\n\\n# Define survival time and status columns\\ntime_col <- \\\"survival_times\\\" \\nstatus_col <- \\\"event_observed\\\" \\n\\n# Function to sanitize gene names\\nsanitize_gene_name <- function(gene_name) {\\n  make.names(gene_name, unique = TRUE)\\n}\\n\\n# Sanitize column names in the merged data frame\\ncolnames(expression_data_merged) <- sapply(colnames(expression_data_merged), sanitize_gene_name)\\n\\n# Initialize an empty list to store Cox regression results\\ncox_results <- list()\\n\\n# Perform univariate Cox regression for each gene\\nfor (gene in colnames(expression_data_t)[-ncol(expression_data_t)]) {\\n  sanitized_gene <- sanitize_gene_name(gene)\\n  if(sanitized_gene %in% colnames(expression_data_merged)) {\\n    formula <- as.formula(paste(\\\"Surv(\\\", time_col, \\\",\\\", status_col, \\\") ~\\\", sanitized_gene))\\n    cox_model <- tryCatch({\\n      coxph(formula, data = expression_data_merged)\\n    }, error = function(e) {\\n      message(paste(\\\"Error with gene\\\", gene, \\\":\\\", e))\\n      NULL\\n    })\\n    if (!is.null(cox_model)) {\\n      cox_summary <- summary(cox_model)\\n      cox_results[[gene]] <- cox_summary$coefficients\\n    }\\n  } else {\\n    message(paste(\\\"Gene\\\", gene, \\\"not found in the merged data frame\\\"))\\n  }\\n}\", \"test_cases\": \"length(cox_results) == 5000\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33177247_1",
+        "study_id": "33177247",
+        "question_id": "1",
+        "analysis_types": "['Survival Outcome Analysis', 'Treatment Response Visualization & Quantification']",
+        "study_type": "Molecular",
+        "study_title": "Prognostic risk signature based on the expression of three m6A RNA methylation regulatory genes in kidney renal papillary cell carcinoma",
+        "dataset_url": "CMOB/KIRP",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_33177247_1",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Task requires: (1) defining survival columns, (2) sanitizing gene names, (3) initializing results list, (4) performing univariate Cox regression for each gene",
+          "Sanitization step must precede regression, implying a dependency chain",
+          "No explicit method branching or alternative approaches specified"
+        ],
+        "reason": "There is a clear multi-step workflow with dependency (sanitization before regression), but no evidence of major method branching or multiple defensible approaches. The steps are sequential and standard for this analysis."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Requires outputting a list ('cox_results') with Cox regression coefficients for each gene",
+          "Sanitization of gene names must be reflected in the data structure",
+          "Test case: 'length(cox_results) == 5000' implies strict output cardinality",
+          "No explicit format/schema constraints beyond list structure"
+        ],
+        "reason": "There is moderate artifact realization load: the output must be a list of results for 5000 genes, and gene name sanitization must be handled. However, there are no highly strict format or parameterization constraints beyond this."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Sanitize gene names in 'expression_data_merged' before running the Cox regression"
+        ],
+        "reason": "There is a minor data/representation repair requirement (gene name sanitization), but no evidence of major semantic ambiguity or schema contradiction. The repair is limited to column name formatting."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer; this is a standalone task."
+      }
+    },
+    "overall_summary": "The task involves a standard multi-step workflow for univariate Cox regression with a moderate planning and artifact realization load, due to the need to sanitize gene names and process results for a large number of genes. There is a minor data repair requirement (gene name sanitization), but no evidence of major ambiguity, branching, or transfer learning.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2888,
+        "completion_tokens": 605,
+        "total_tokens": 3493
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Task requires: (1) defining survival columns, (2) sanitizing gene names, (3) initializing results list, (4) performing univariate Cox regression for each gene",
+            "Sanitization step must precede regression, implying a dependency chain",
+            "No explicit method branching or alternative approaches specified"
+          ],
+          "reason": "There is a clear multi-step workflow with dependency (sanitization before regression), but no evidence of major method branching or multiple defensible approaches. The steps are sequential and standard for this analysis.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Requires outputting a list ('cox_results') with Cox regression coefficients for each gene",
+            "Sanitization of gene names must be reflected in the data structure",
+            "Test case: 'length(cox_results) == 5000' implies strict output cardinality",
+            "No explicit format/schema constraints beyond list structure"
+          ],
+          "reason": "There is moderate artifact realization load: the output must be a list of results for 5000 genes, and gene name sanitization must be handled. However, there are no highly strict format or parameterization constraints beyond this.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Sanitize gene names in 'expression_data_merged' before running the Cox regression"
+          ],
+          "reason": "There is a minor data/representation repair requirement (gene name sanitization), but no evidence of major semantic ambiguity or schema contradiction. The repair is limited to column name formatting.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "The task involves a standard multi-step workflow for univariate Cox regression with a moderate planning and artifact realization load, due to the need to sanitize gene names and process results for a large number of genes. There is a minor data repair requirement (gene name sanitization), but no evidence of major ambiguity, branching, or transfer learning.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:58:09.530366+00:00"
+  }
+}

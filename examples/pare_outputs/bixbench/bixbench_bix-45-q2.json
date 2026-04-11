@@ -1,0 +1,126 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-45-q2",
+      "question": "What is the median RCV score for fungal orthologs using PhyKIT's rcv function?",
+      "data": [],
+      "answer": "0.22",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-45-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.15",
+          "0.31",
+          "0.08"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-45-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the median RCV score for fungal orthologs using PhyKIT's rcv function?"
+        ],
+        "reason": "The question requires the use of a specific function (PhyKIT's rcv) to compute a summary statistic (median) for a defined group (fungal orthologs). While this implies at least two steps (compute RCV scores, then take the median), there is no evidence of complex workflow structuring or significant branching decision load. The method is specified and the goal is concrete."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the median RCV score for fungal orthologs using PhyKIT's rcv function?",
+          "\"answer\": \"0.22\""
+        ],
+        "reason": "The output is a single numeric value (median RCV score), with no evidence of heterogeneous artifact types or strict format constraints. There is a minor parameterization load in that the correct computation depends on using the right function and summarizing correctly, but no explicit thresholds or verification rules are stated."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What is the median RCV score for fungal orthologs using PhyKIT's rcv function?"
+        ],
+        "reason": "The question is clear and unambiguous, with no evidence of semantic or data representation repair required. The group (fungal orthologs) and function (rcv) are specified. There is a trace load in that the definition of 'fungal orthologs' could, in principle, require clarification, but nothing in the payload suggests ambiguity or contradiction."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This is a straightforward computational question requiring the use of a specified function to compute a summary statistic for a defined group. There is minor workflow structuring and parameterization load, but no evidence of complex planning, artifact heterogeneity, semantic/data repair, or transfer from prior experience.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2205,
+        "completion_tokens": 611,
+        "total_tokens": 2816
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the median RCV score for fungal orthologs using PhyKIT's rcv function?"
+          ],
+          "reason": "The question requires the use of a specific function (PhyKIT's rcv) to compute a summary statistic (median) for a defined group (fungal orthologs). While this implies at least two steps (compute RCV scores, then take the median), there is no evidence of complex workflow structuring or significant branching decision load. The method is specified and the goal is concrete.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the median RCV score for fungal orthologs using PhyKIT's rcv function?",
+            "\"answer\": \"0.22\""
+          ],
+          "reason": "The output is a single numeric value (median RCV score), with no evidence of heterogeneous artifact types or strict format constraints. There is a minor parameterization load in that the correct computation depends on using the right function and summarizing correctly, but no explicit thresholds or verification rules are stated.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What is the median RCV score for fungal orthologs using PhyKIT's rcv function?"
+          ],
+          "reason": "The question is clear and unambiguous, with no evidence of semantic or data representation repair required. The group (fungal orthologs) and function (rcv) are specified. There is a trace load in that the definition of 'fungal orthologs' could, in principle, require clarification, but nothing in the payload suggests ambiguity or contradiction.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward computational question requiring the use of a specified function to compute a summary statistic for a defined group. There is minor workflow structuring and parameterization load, but no evidence of complex planning, artifact heterogeneity, semantic/data repair, or transfer from prior experience.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:21:12.560806+00:00"
+  }
+}

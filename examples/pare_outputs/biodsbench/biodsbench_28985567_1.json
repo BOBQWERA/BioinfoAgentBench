@@ -1,0 +1,152 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_28985567_1",
+      "question": "Get International Prognostic Index score (IPI) scores for each patient, classify the patient into groups of: low risk, intermediate risk, and high risk. Drop the patients with unknown scores. The results are saved as a pd.DataFrame named `IPI_RISK` with two columns:\n- PATIENT_ID\n- Risk Group",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_log2_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\n\\n# Load the data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\n\\n# Drop patients with unknown IPI scores\\ndata_clinical_patient = data_clinical_patient.dropna(subset=['IPI'])\\n\\n# Classify patients into risk groups based on IPI scores\\ndef classify_risk_group(ipi_score):\\n    if ipi_score <= 1:\\n        return 'Low Risk'\\n    elif ipi_score <= 3:\\n        return 'Intermediate Risk'\\n    else:\\n        return 'High Risk'\\n\\ndata_clinical_patient['Risk Group'] = data_clinical_patient['IPI'].apply(classify_risk_group)\\n\\n# Create the IPI_RISK DataFrame\\nIPI_RISK = data_clinical_patient[['PATIENT_ID', 'Risk Group']]\\n\\n# Save the results to a CSV file\\nIPI_RISK.to_csv(\\\"IPI_RISK.csv\\\", index=False)\\n\\n# Display the first few rows of the IPI_RISK DataFrame\\nprint(IPI_RISK.head())\\n\", \"test_cases\": \"assert IPI_RISK.shape == (761, 2)\\n\\n\\nassert IPI_RISK[\\\"Risk Group\\\"].nunique() == 3\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "28985567_1",
+        "study_id": "28985567",
+        "question_id": "1",
+        "analysis_types": "['Clinical Feature Engineering']",
+        "study_type": "Therapeutics",
+        "study_title": "Genetic and Functional Drivers of Diffuse Large B Cell Lymphoma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=dlbcl_duke_2017",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_28985567_1",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Get International Prognostic Index score (IPI) scores for each patient, classify the patient into groups of: low risk, intermediate risk, and high risk.",
+          "Drop the patients with unknown scores.",
+          "The results are saved as a pd.DataFrame named `IPI_RISK` with two columns: PATIENT_ID, Risk Group"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires extracting IPI scores, filtering out patients with missing scores, classifying into risk groups, and producing a specific output DataFrame. However, the steps are sequential and standard, with no evidence of branching decisions or multiple valid methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "The results are saved as a pd.DataFrame named `IPI_RISK` with two columns: PATIENT_ID, Risk Group",
+          "assert IPI_RISK.shape == (761, 2)",
+          "assert IPI_RISK[\"Risk Group\"].nunique() == 3"
+        ],
+        "reason": "There is a weak artifact realization load: the output must be a DataFrame with a specific schema and column names, and there are explicit test cases for shape and unique group count. However, only one output artifact is required, and parameterization/specification is not tight beyond the basic groupings."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of missing or ambiguous semantic fields.",
+          "No schema mismatch or data repair required is stated."
+        ],
+        "reason": "There is almost no reflection/repair load. The task is clearly defined, and the required fields are specified. No ambiguity or data inconsistency is indicated."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text is present in the payload."
+        ],
+        "reason": "No transfer or evolution context is present."
+      }
+    },
+    "overall_summary": "This task involves a simple, sequential workflow: extracting IPI scores, filtering, classifying into risk groups, and producing a DataFrame with a specified schema. There is minor planning and artifact realization load due to the need for sequential steps and explicit output requirements, but no significant branching, parameterization, or repair is required. No transfer or evolution context is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2761,
+        "completion_tokens": 639,
+        "total_tokens": 3400
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Get International Prognostic Index score (IPI) scores for each patient, classify the patient into groups of: low risk, intermediate risk, and high risk.",
+            "Drop the patients with unknown scores.",
+            "The results are saved as a pd.DataFrame named `IPI_RISK` with two columns: PATIENT_ID, Risk Group"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires extracting IPI scores, filtering out patients with missing scores, classifying into risk groups, and producing a specific output DataFrame. However, the steps are sequential and standard, with no evidence of branching decisions or multiple valid methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "The results are saved as a pd.DataFrame named `IPI_RISK` with two columns: PATIENT_ID, Risk Group",
+            "assert IPI_RISK.shape == (761, 2)",
+            "assert IPI_RISK[\"Risk Group\"].nunique() == 3"
+          ],
+          "reason": "There is a weak artifact realization load: the output must be a DataFrame with a specific schema and column names, and there are explicit test cases for shape and unique group count. However, only one output artifact is required, and parameterization/specification is not tight beyond the basic groupings.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of missing or ambiguous semantic fields.",
+            "No schema mismatch or data repair required is stated."
+          ],
+          "reason": "There is almost no reflection/repair load. The task is clearly defined, and the required fields are specified. No ambiguity or data inconsistency is indicated.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text is present in the payload."
+          ],
+          "reason": "No transfer or evolution context is present.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a simple, sequential workflow: extracting IPI scores, filtering, classifying into risk groups, and producing a DataFrame with a specified schema. There is minor planning and artifact realization load due to the need for sequential steps and explicit output requirements, but no significant branching, parameterization, or repair is required. No transfer or evolution context is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T10:44:51.955127+00:00"
+  }
+}

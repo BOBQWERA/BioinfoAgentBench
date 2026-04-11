@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-52-q6",
+      "question": "Which chromosome in the Jackdaw genome shows the highest density of age-related CpG sites?",
+      "data": [],
+      "answer": "Chromosome W",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-52-q6",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Chromosome 1",
+          "Chromosome 32",
+          "Chromosome Z"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-52-q6",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Which chromosome in the Jackdaw genome shows the highest density of age-related CpG sites?",
+          "task_type: mcq"
+        ],
+        "reason": "The question is a direct query for a single value (chromosome with highest density), and the MCQ format suggests a single correct answer is expected. There is no explicit evidence of a multi-stage workflow or branching decision load. The only trace of planning is the need to conceptually compare densities across chromosomes, but this is minimal and does not require workflow structuring or method branching."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "task_type: mcq",
+          "answer: Chromosome W",
+          "distractors: Chromosome 1, Chromosome 32, Chromosome Z"
+        ],
+        "reason": "The output is a single-choice answer from a fixed set of options, with no evidence of heterogeneous artifact types or strict parameterization. There are no explicit format or threshold constraints beyond selecting the correct MCQ option."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No data provided",
+          "No ambiguity or schema inconsistency in question wording"
+        ],
+        "reason": "There is no evidence of semantic or representational ambiguity, contradiction, or need for repair. The question is clear and well-formed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward MCQ question asking for the chromosome with the highest density of age-related CpG sites in the Jackdaw genome. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2205,
+        "completion_tokens": 518,
+        "total_tokens": 2723
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Which chromosome in the Jackdaw genome shows the highest density of age-related CpG sites?",
+            "task_type: mcq"
+          ],
+          "reason": "The question is a direct query for a single value (chromosome with highest density), and the MCQ format suggests a single correct answer is expected. There is no explicit evidence of a multi-stage workflow or branching decision load. The only trace of planning is the need to conceptually compare densities across chromosomes, but this is minimal and does not require workflow structuring or method branching.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "task_type: mcq",
+            "answer: Chromosome W",
+            "distractors: Chromosome 1, Chromosome 32, Chromosome Z"
+          ],
+          "reason": "The output is a single-choice answer from a fixed set of options, with no evidence of heterogeneous artifact types or strict parameterization. There are no explicit format or threshold constraints beyond selecting the correct MCQ option.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No data provided",
+            "No ambiguity or schema inconsistency in question wording"
+          ],
+          "reason": "There is no evidence of semantic or representational ambiguity, contradiction, or need for repair. The question is clear and well-formed.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward MCQ question asking for the chromosome with the highest density of age-related CpG sites in the Jackdaw genome. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:27:55.064834+00:00"
+  }
+}

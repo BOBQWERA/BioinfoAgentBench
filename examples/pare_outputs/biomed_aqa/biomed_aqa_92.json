@@ -1,0 +1,129 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_92",
+      "question": "{The following is the storage path of the 10X high-throughput sequencing data from human peripheral blood cell data {pbmc_1k_v3_fastqs.tar.gz}, consisting of lymphocytes (T cells, B cells, and NK cells) and monocytes. Please generate downstream analysis files.}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0092/files/pbmc_1k_v3_fastqs.tar.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"filtered_feature_bc_matrix.h5\", \"path\": \"downloaded_files\\\\index_0092\\\\milestone\\\\filtered_feature_bc_matrix.h5\"}], \"milestones\": [\"Generated downstream files such as filtered_feature_bc_matrix.h5.\"], \"steps\": [\"Use Cell Ranger to align the FASTQ files with the reference transcriptome and generate downstream analysis files.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "scRNA",
+        "task_abbr": "Cellranger count",
+        "task": "scRNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 13.14,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_92",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"Please generate downstream analysis files.\"",
+          "\"Use Cell Ranger to align the FASTQ files with the reference transcriptome and generate downstream analysis files.\""
+        ],
+        "reason": "The task requires converting raw FASTQ data into downstream analysis files, which implies a standard multi-step workflow (e.g., alignment, quantification). However, the method (Cell Ranger) is specified in the answer, and the milestone is a single output file, so the workflow structuring is present but not complex. There is no explicit evidence of branching decisions or multiple valid methods affecting correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"filtered_feature_bc_matrix.h5\", ...}]",
+          "\"Use Cell Ranger to align the FASTQ files...\""
+        ],
+        "reason": "The output is a specific file (filtered_feature_bc_matrix.h5), which is a standard artifact from Cell Ranger. There is some artifact realization load due to the need to generate a specific file type, but there is no evidence of multiple heterogeneous outputs or strict parameterization/verification constraints."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"The following is the storage path of the 10X high-throughput sequencing data...\""
+        ],
+        "reason": "The input is a standard compressed FASTQ archive, and the task is clearly defined. There is no evidence of semantic ambiguity or data representation issues requiring repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [],
+        "reason": "There is no prior trajectory, experience, or transfer context provided in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard workflow of processing 10X scRNA-seq FASTQ data to generate a downstream analysis file using Cell Ranger. The planning and action loads are minor to weak due to the standard nature of the workflow and the single specified output. There is minimal reflection load and no evolution load, as no transfer or repair is required.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2399,
+        "completion_tokens": 573,
+        "total_tokens": 2972
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"Please generate downstream analysis files.\"",
+            "\"Use Cell Ranger to align the FASTQ files with the reference transcriptome and generate downstream analysis files.\""
+          ],
+          "reason": "The task requires converting raw FASTQ data into downstream analysis files, which implies a standard multi-step workflow (e.g., alignment, quantification). However, the method (Cell Ranger) is specified in the answer, and the milestone is a single output file, so the workflow structuring is present but not complex. There is no explicit evidence of branching decisions or multiple valid methods affecting correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"filtered_feature_bc_matrix.h5\", ...}]",
+            "\"Use Cell Ranger to align the FASTQ files...\""
+          ],
+          "reason": "The output is a specific file (filtered_feature_bc_matrix.h5), which is a standard artifact from Cell Ranger. There is some artifact realization load due to the need to generate a specific file type, but there is no evidence of multiple heterogeneous outputs or strict parameterization/verification constraints.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"The following is the storage path of the 10X high-throughput sequencing data...\""
+          ],
+          "reason": "The input is a standard compressed FASTQ archive, and the task is clearly defined. There is no evidence of semantic ambiguity or data representation issues requiring repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [],
+          "reason": "There is no prior trajectory, experience, or transfer context provided in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard workflow of processing 10X scRNA-seq FASTQ data to generate a downstream analysis file using Cell Ranger. The planning and action loads are minor to weak due to the standard nature of the workflow and the single specified output. There is minimal reflection load and no evolution load, as no transfer or repair is required.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:10:14.701542+00:00"
+  }
+}

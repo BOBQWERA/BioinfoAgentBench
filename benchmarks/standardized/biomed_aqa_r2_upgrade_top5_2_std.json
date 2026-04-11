@@ -1,0 +1,264 @@
+{
+  "benchmark": "biomed_aqa_r2_upgrade_top5_2_std",
+  "schema_version": "1.0.0",
+  "count": 5,
+  "records": [
+    {
+      "id": "biomed_aqa_38",
+      "question": "Currently, there is expression data {exp_COAD.csv} and grouping info {group_COAD.csv}. Compute functional enrichment results for differentially expressed genes between two groups. Before computation, repair representation mismatches between files: sample identifiers may differ by case/prefix style, and group labels may include duplicate aliases. Reconcile IDs and group encodings deterministically before DEG and enrichment.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0038/files/exp_COAD.csv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0038/files/group_COAD.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"DEG_COAD.csv\", \"path\": \"downloaded_files\\\\index_0038\\\\milestone\\\\DEG_COAD.csv\"}, {\"name\": \"GSEA_COAD.tsv\", \"path\": \"downloaded_files\\\\index_0038\\\\milestone\\\\GSEA_COAD.tsv\"}], \"milestones\": [\"Generate differential genes\", \"Generate functional enrichment results\"], \"steps\": [\"Calculate differential genes\", \"Gene Set Functional Enrichment Analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "DEG & enrichment",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.02,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_existing_r1_r2_e1_e2_sets', 'must_have_workflow_memory_reference', 'targets_are_tsv_or_csv_only', 'r2_representation_repair_must_dominate']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Cross-file sample ID mismatch + group label normalization before DEG.",
+              "intent": "Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation."
+            },
+            "data_repair_methods": [
+              "Canonicalize sample IDs by lowercasing and removing fixed prefixes/suffixes in both expression and group tables.",
+              "Map group aliases to a canonical two-group encoding and reject unmappable labels.",
+              "Keep only intersected sample IDs after reconciliation, and preserve explicit dropped-ID log."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 38,
+              "workflow_memory_Index": 172,
+              "task_abbr": "DEG & enrichment",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Calculate differentially expressed genes between the two groups using gene expression data and grouping information.\n    - **Tool**: deg\n    - **Input**: exp_COAD.csv (gene expression profile data), group_COAD.csv (grouping information)\n    - **Output**: deg_file (set of genes significantly differentially expressed)\n    - **Description**: The deg tool will analyze the provided gene expression data and grouping information to extract differentially expressed genes between the specified groups.\n\n2. **Goal**: Perform functional enrichment analysis on the identified differentially expressed genes.\n    - **Tool**: KOBAS_enrichment\n    - **Input**: deg_file (set of differentially expressed genes)\n    - **Output**: GO_enrichment_result (GO terms affected by the input gene set), KEGG_enrichment_result (KEGG pathways affected by the input gene set)\n    - **Description**: Conduct Gene Set Enrichment analysis to identify enriched biological functions for the set of differentially expressed genes, generating results related to affected GO terms and KEGG pathways.\n]"
+            },
+            "original_question": "Currently, there is an expression profile data {exp_COAD.csv} and corresponding grouping information {group_COAD.csv}. Calculate the gene set functional enrichment results for the differentially expressed genes between the two groups."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_44",
+      "question": "Given standardized expression data {exp_COAD.csv} and preprocessed grouping info {group_COAD.csv}, select genes relevant to grouping and perform enrichment. Before network/selection analysis, repair representation quality issues: expression matrix may contain duplicated gene rows and mixed missing-value tokens. Normalize missing tokens and deduplicate genes with a deterministic policy.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0044/files/exp_COAD.csv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0044/files/group_COAD.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"DEG_COAD.csv\", \"path\": \"downloaded_files\\\\index_0044\\\\milestone\\\\DEG_COAD.csv\"}, {\"name\": \"KEGG.tsv\", \"path\": \"downloaded_files\\\\index_0044\\\\milestone\\\\KEGG.tsv\"}, {\"name\": \"GO.tsv\", \"path\": \"downloaded_files\\\\index_0044\\\\milestone\\\\GO.tsv\"}], \"milestones\": [\"Generate differential genes\", \"Generate functional enrichment results\"], \"steps\": [\"Calculate differential genes\", \"Gene Set Functional Enrichment Analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "WGCNA",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.08,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_existing_r1_r2_e1_e2_sets', 'must_have_workflow_memory_reference', 'targets_are_tsv_or_csv_only', 'r2_representation_repair_must_dominate']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Duplicate gene identifiers + non-unified missing-value representation in expression matrix.",
+              "intent": "Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation."
+            },
+            "data_repair_methods": [
+              "Normalize missing tokens (NA, N/A, null, empty) to one missing representation before numeric coercion.",
+              "For duplicated gene IDs, keep the row with highest non-missing sample coverage.",
+              "Drop genes with insufficient observed values after normalization (e.g., all-missing rows)."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 44,
+              "workflow_memory_Index": 178,
+              "task_abbr": "WGCNA",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Calculate differentially expressed genes (DEGs) from the expression profile data.\n    - **Tool**: deg\n    - **Input**: exp_COAD.csv (gene expression profile data), group_COAD.csv (grouping information)\n    - **Output**: DEG.csv (set of genes significantly differentially expressed)\n    - **Description**: The deg tool will analyze the provided gene expression data and grouping information to extract differentially expressed genes between the specified groups.\n\n2. **Goal**: Perform gene set functional enrichment analysis on the identified differentially expressed genes.\n    - **Tool**: KOBAS_enrichment\n    - **Input**: DEG.csv (gene set that will be used to perform functional enrichment analysis)\n    - **Output**: GO_enrichment_result (GO terms affected by the input gene set), KEGG_enrichment_result (KEGG pathways affected by the input gene set)\n    - **Description**: Conduct Gene Set Enrichment analysis to identify enriched biological functions for the set of differentially expressed genes derived from the previous step.\n]"
+            },
+            "original_question": "Currently, there is a standardized expression profile data {exp_COAD.csv} and preprocessed grouping information {group_COAD.csv}. Please select the genes most relevant to the grouping information and perform gene set functional enrichment analysis."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_158",
+      "question": "For {Groceries_dataset.csv}, perform association rule mining using itemDescription. Before mining, repair representation inconsistencies in transactions: item separators may be mixed (space/comma/semicolon), and repeated items can appear within the same transaction string. Normalize separators and deduplicate items per transaction before basket construction.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0158/files/Groceries_dataset.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"frequent_itemsets.csv\", \"path\": \"downloaded_files\\\\index_0158\\\\milestone\\\\frequent_itemsets.csv\"}, {\"name\": \"association_rules.csv\", \"path\": \"downloaded_files\\\\index_0158\\\\milestone\\\\association_rules.csv\"}], \"milestones\": [\"Generate frequent itemsets result file, such as frequent_itemsets.csv.\", \"Generate the association rules result file, such as association_rules.csv.\"], \"steps\": [\"Use association rule mining to analyze the data.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "关联规则挖掘",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.44,
+        "milestone_count": 2,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_existing_r1_r2_e1_e2_sets', 'must_have_workflow_memory_reference', 'targets_are_tsv_or_csv_only', 'r2_representation_repair_must_dominate']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Transaction tokenization inconsistency + within-transaction duplicate items.",
+              "intent": "Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation."
+            },
+            "data_repair_methods": [
+              "Normalize separators to a single delimiter before token split.",
+              "Trim and lowercase item tokens for canonical item vocabulary mapping.",
+              "Deduplicate items inside each transaction and remove empty tokens."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 158,
+              "workflow_memory_Index": 152,
+              "task_abbr": "关联规则挖掘",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps in sequence:\n1. **Goal**: Load the dataset and preprocess the \"itemDescription\" column.\n    - **Tool**: None\n    - **Input**: \"Groceries_dataset.csv\"\n    - **Output**: transactions_list\n    - **Description**: Read the CSV file and split the \"itemDescription\" entries into individual items, creating a list of transactions where each transaction is a list of items purchased together.\n\n2. **Goal**: Perform association rule mining using the Apriori algorithm.\n    - **Tool**: None\n    - **Input**: transactions_list\n    - **Output**: association_rules\n    - **Description**: Apply the Apriori algorithm to the list of transactions to identify frequent itemsets and generate association rules, calculating metrics such as support, confidence, and lift.\n\n3. **Goal**: Output the results of the association rule mining.\n    - **Tool**: None\n    - **Input**: association_rules\n    - **Output**: results_summary\n    - **Description**: Summarize the association rules generated, including key metrics, and prepare the results for presentation or further analysis.\n]"
+            },
+            "original_question": "I have a dataset {Groceries_dataset.csv} that contains a feature column named \"itemDescription,\" whose elements are separated by spaces. Please perform association rule mining on this dataset."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_190",
+      "question": "There are two datasets: train.tsv (feature matrix) and cl.tsv (class labels). Perform quadratic discriminant analysis on train with labels from cl.tsv. Before fitting, repair cross-file representation issues: sample keys may use different naming conventions, and cl.tsv may contain duplicated or conflicting labels for a sample. Reconcile key mapping and label uniqueness deterministically.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0190/files/train.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0190/files/cl.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"out_lda.tsv\", \"path\": \"downloaded_files\\\\index_0190\\\\milestone\\\\out_lda.tsv\"}], \"milestones\": [\"Complete the second discriminant analysis\"], \"steps\": [\"Perform second-order discriminant analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Descriptive statistics",
+        "task_abbr": "二次判别分析",
+        "task": "Descriptive statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.5300000000001,
+        "milestone_count": 1,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_existing_r1_r2_e1_e2_sets', 'must_have_workflow_memory_reference', 'targets_are_tsv_or_csv_only', 'r2_representation_repair_must_dominate']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Cross-file sample-key alignment + duplicate/conflicting label rows.",
+              "intent": "Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation."
+            },
+            "data_repair_methods": [
+              "Canonicalize sample keys in both files (case-fold + trim + symbol normalization).",
+              "If duplicate labels exist for a sample, keep one consistent label row; flag conflicts and drop unresolved samples.",
+              "Inner-join train and cl on reconciled keys and preserve matched sample order for model input."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 190,
+              "workflow_memory_Index": 36,
+              "task_abbr": "二次判别分析",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the datasets from 'train.tsv' and 'cl.tsv' and ensure they are compatible.\n    - **Tool**: None (custom code)\n    - **Input**: \"train.tsv\", \"cl.tsv\"\n    - **Output**: features (list of sample features), labels (list of classification labels)\n    - **Description**: Read the TSV files and extract the features and corresponding labels, ensuring that both datasets have the same number of samples and are correctly matched.\n\n2. **Goal**: Prepare the data for QDA by creating a test dataset from the training data.\n    - **Tool**: None (custom code)\n    - **Input**: features, labels\n    - **Output**: test_csv_file (a CSV file containing the features and labels)\n    - **Description**: Combine the features and labels into a single CSV file format suitable for the QDA tool.\n\n3. **Goal**: Perform Quadratic Discriminant Analysis on the training dataset.\n    - **Tool**: qda\n    - **Input**: test_csv_file (as both train and test for this case), \"Target\" (the column name for labels)\n    - **Output**: result_csv_file (the output file with predictions)\n    - **Description**: Use the QDA tool to t"
+            },
+            "original_question": "There are two existing datasets, train.tsv contains a matrix of sample features, and cl.tsv contains the corresponding sample classification labels. Please perform quadratic discriminant analysis on the train dataset, targeting the classifications specified in cl.tsv, in order to more accurately distinguish between different categories in the feature space."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_288",
+      "question": "For file pcoa.tsv, where result is grouping info, perform principal coordinate analysis using columns 2 to 9. Before distance/ordination, repair representation issues: numeric feature columns may contain mixed decimal formats and out-of-range placeholders, and result labels may include trailing spaces/case variants. Normalize feature tokens and group labels before PCoA.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0288/files/pcoa.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"pcoa.png\", \"path\": \"downloaded_files\\\\index_0288\\\\milestone\\\\pcoa.png\"}], \"milestones\": [\"Generate PCoA plot\", \"The content of the PCoA plot is correct.\"], \"steps\": [\"Draw PCoA plot\", \"Check whether the content of the image is correct\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Fitting & inference",
+        "task_abbr": "PCoA",
+        "task": "Fitting & inference",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.57,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_existing_r1_r2_e1_e2_sets', 'must_have_workflow_memory_reference', 'targets_are_tsv_or_csv_only', 'r2_representation_repair_must_dominate']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Numeric token normalization + group label canonicalization in ordination input.",
+              "intent": "Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation."
+            },
+            "data_repair_methods": [
+              "Convert comma-decimal numbers to dot-decimal and parse columns 2-9 strictly as numeric.",
+              "Treat placeholder tokens (e.g., -, inf, nan strings) as missing and remove rows with unresolved numeric fields.",
+              "Canonicalize result labels by trimming whitespace and case-folding before grouping overlays."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 288,
+              "workflow_memory_Index": 61,
+              "task_abbr": "PCoA",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps:\n\n1. **Goal**: Load the data from the file \"pcoa.tsv\" and extract the relevant columns (2 to 9) and the \"result\" column for grouping.\n    - **Tool**: None (Python code)\n    - **Input**: \"pcoa.tsv\"\n    - **Output**: (data_matrix, groups)\n    - **Description**: Read the contents of the pcoa.tsv file, parse the numerical data from columns 2 to 9 into a list (data_matrix), and extract the \"result\" column into a separate list (groups).\n\n2. **Goal**: Perform principal coordinate analysis (PCA) on the data_matrix directly without cleaning.\n    - **Tool**: None (Python code)\n    - **Input**: data_matrix\n    - **Output**: pca_results\n    - **Description**: Implement PCA algorithm to reduce the dimensionality of the data_matrix, resulting in a list of principal components (pca_results). Add debug print statements to confirm the shape and content of data_matrix before PCA is performed.\n\n3. **Goal**: Visualize the PCA results using a scatter plot, differentiating the groups.\n    - **Tool**: None (Python code)\n    - **Input**: pca_results, groups\n    - **Output**: \"pca_scatter_plot.png\"\n    - **Description**: Use a plott"
+            },
+            "original_question": "There is a data file pcoa.tsv, in which the \"result\" column contains grouping information. Please perform principal coordinate analysis using the data from columns 2 to 9."
+          }
+        }
+      }
+    }
+  ]
+}

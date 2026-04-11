@@ -1,0 +1,158 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_32437664_4",
+      "question": "get the median progression-free survival and its 95% confidence interval. Save the output as `pfs`, `ci_high`, and `ci_low`.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_sv.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\nimport pandas as pd\\nfrom lifelines import KaplanMeierFitter\\nfrom lifelines.utils import median_survival_times\\nimport matplotlib.pyplot as plt\\n\\n# Load the data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\n\\n# Filter data for PFS and PFS status\\ndata = data_clinical_patient[[\\\"PFS_MONTHS\\\", \\\"PFS_STATUS\\\"]].dropna()\\n\\ndata[\\\"PFS_STATUS\\\"] = data[\\\"PFS_STATUS\\\"].apply(lambda x: 1 if x == \\\"1:Yes\\\" else 0)\\n\\n# Initialize KaplanMeierFitter\\nkmf = KaplanMeierFitter()\\n\\n# Fit the data\\nkmf.fit(data[\\\"PFS_MONTHS\\\"], event_observed=data[\\\"PFS_STATUS\\\"], label=\\\"PFS\\\")\\n\\n# Get the median progression-free survival and its 95% confidence interval\\nmedian_pfs = kmf.median_survival_time_\\nci = median_survival_times(kmf.confidence_interval_)\\n\\n# Extract the confidence interval values\\nci_low = ci.iloc[0, 0]\\nci_high = ci.iloc[0, 1]\\n\\n# Save the output\\npfs = median_pfs\\n\\n# Print the results\\nprint(f\\\"Median PFS: {pfs} months\\\")\\nprint(f\\\"95% CI: ({ci_low}, {ci_high}) months\\\")\\n\\n# Plot the survival function\\nax = plt.subplot(111)\\nkmf.plot_survival_function(ax=ax)\\nplt.title(\\\"Progression-Free Survival Curve\\\")\\nplt.xlabel(\\\"Time (months)\\\")\\nplt.ylabel(\\\"Survival Probability\\\")\\nplt.savefig(\\\"pfs_curve.png\\\")\\nplt.show()\\n\", \"test_cases\": \"assert abs(ci_low - 6.45) < 1e-8\\n\\nassert abs(ci_high - 16.45) < 1e-8\\n\\nassert abs(pfs - 13.03) < 1e-8\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "32437664_4",
+        "study_id": "32437664",
+        "question_id": "4",
+        "analysis_types": "['Survival Outcome Analysis', 'Descriptive Statistics']",
+        "study_type": "Genomics",
+        "study_title": "First-line pembrolizumab and trastuzumab in HER2-positive oesophageal, gastric, or gastro-oesophageal junction cancer: an open-label, single-arm, phase 2 trial",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=egc_trap_msk_2020",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_32437664_4",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "get the median progression-free survival and its 95% confidence interval",
+          "Save the output as `pfs`, `ci_high`, and `ci_low`.",
+          "multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_cna.csv, data_sv.csv"
+        ],
+        "reason": "The task requires extracting and calculating the median progression-free survival and its 95% confidence interval, which implies at least a two-step process (data extraction/selection, then survival analysis). However, the workflow is relatively standard and there is no explicit evidence of major branching or dependency-constrained step graph beyond routine survival analysis. The method is implied (Kaplan-Meier), and the main data source is clear (data_clinical_patient.csv), so branching is limited."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Save the output as `pfs`, `ci_high`, and `ci_low`.",
+          "assert abs(ci_low - 6.45) < 1e-8",
+          "assert abs(ci_high - 16.45) < 1e-8",
+          "assert abs(pfs - 13.03) < 1e-8"
+        ],
+        "reason": "There are three explicit output variables with strict value checks (assertions with tight tolerances), indicating moderate artifact realization and parameterization load. The outputs are scalar values, not complex files, but the strictness of the required values and the need to extract them precisely from the analysis increases the action load."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "multiple input files, but only data_clinical_patient.csv is used in the reference answer",
+          "no explicit ambiguity or schema mismatch described"
+        ],
+        "reason": "There is a trace of representational ambiguity due to the presence of multiple input files, but the reference answer and question make it clear which file is relevant. There is no evidence of semantic ambiguity or need for data/schema repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a standard survival analysis workflow with moderate action load due to strict output requirements and minor planning load from the need to extract and process the correct data. There is minimal reflection load and no evolution/transfer load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2984,
+        "completion_tokens": 692,
+        "total_tokens": 3676
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "get the median progression-free survival and its 95% confidence interval",
+            "Save the output as `pfs`, `ci_high`, and `ci_low`.",
+            "multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_cna.csv, data_sv.csv"
+          ],
+          "reason": "The task requires extracting and calculating the median progression-free survival and its 95% confidence interval, which implies at least a two-step process (data extraction/selection, then survival analysis). However, the workflow is relatively standard and there is no explicit evidence of major branching or dependency-constrained step graph beyond routine survival analysis. The method is implied (Kaplan-Meier), and the main data source is clear (data_clinical_patient.csv), so branching is limited.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Save the output as `pfs`, `ci_high`, and `ci_low`.",
+            "assert abs(ci_low - 6.45) < 1e-8",
+            "assert abs(ci_high - 16.45) < 1e-8",
+            "assert abs(pfs - 13.03) < 1e-8"
+          ],
+          "reason": "There are three explicit output variables with strict value checks (assertions with tight tolerances), indicating moderate artifact realization and parameterization load. The outputs are scalar values, not complex files, but the strictness of the required values and the need to extract them precisely from the analysis increases the action load.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "multiple input files, but only data_clinical_patient.csv is used in the reference answer",
+            "no explicit ambiguity or schema mismatch described"
+          ],
+          "reason": "There is a trace of representational ambiguity due to the presence of multiple input files, but the reference answer and question make it clear which file is relevant. There is no evidence of semantic ambiguity or need for data/schema repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard survival analysis workflow with moderate action load due to strict output requirements and minor planning load from the need to extract and process the correct data. There is minimal reflection load and no evolution/transfer load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:44:19.305019+00:00"
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-14-q1",
+      "question": "In the BLM mutation carrier cohort, what fraction of variants with a variant allele frequency (VAF) below 0.3 are annotated as synonymous?",
+      "data": [],
+      "answer": "(0.6 , 0.7)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-14-q1",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.8, 0.9)",
+          "(0.3, 0.4)",
+          "(0.1,0.2)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-14-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "what fraction of variants with a variant allele frequency (VAF) below 0.3 are annotated as synonymous?",
+          "BLM mutation carrier cohort"
+        ],
+        "reason": "The question requires filtering variants by VAF threshold (<0.3) and then determining which are annotated as synonymous, followed by calculating a fraction. This implies a two-step dependency (filter, then annotate/count), but the workflow is straightforward and canonical for variant annotation tasks. There is no evidence of multiple branching methods or ambiguous workflow structuring."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "what fraction ... are annotated as synonymous?",
+          "variant allele frequency (VAF) below 0.3",
+          "answer is a range: (0.6 , 0.7)",
+          "eval_mode: range_verifier"
+        ],
+        "reason": "The output is a numeric fraction (within a specified range), and the answer is scored by a range verifier. There is some parameterization (VAF threshold, annotation type), but no evidence of multiple output types or strict format constraints beyond the range. The artifact realization is simple (single numeric output), and parameterization is present but not highly strict."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No explicit ambiguity or schema mismatch in question"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair required. The question is clear and well-posed, and there are no contradictory constraints or missing fields. The absence of data means no schema alignment is needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience or trajectory in the payload."
+      }
+    },
+    "overall_summary": "This task involves a straightforward filtering and annotation count to compute a fraction, with a simple numeric output verified by a range. There is minor planning and parameterization load, but no evidence of branching, strict artifact constraints, semantic ambiguity, or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2233,
+        "completion_tokens": 595,
+        "total_tokens": 2828
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "what fraction of variants with a variant allele frequency (VAF) below 0.3 are annotated as synonymous?",
+            "BLM mutation carrier cohort"
+          ],
+          "reason": "The question requires filtering variants by VAF threshold (<0.3) and then determining which are annotated as synonymous, followed by calculating a fraction. This implies a two-step dependency (filter, then annotate/count), but the workflow is straightforward and canonical for variant annotation tasks. There is no evidence of multiple branching methods or ambiguous workflow structuring.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "what fraction ... are annotated as synonymous?",
+            "variant allele frequency (VAF) below 0.3",
+            "answer is a range: (0.6 , 0.7)",
+            "eval_mode: range_verifier"
+          ],
+          "reason": "The output is a numeric fraction (within a specified range), and the answer is scored by a range verifier. There is some parameterization (VAF threshold, annotation type), but no evidence of multiple output types or strict format constraints beyond the range. The artifact realization is simple (single numeric output), and parameterization is present but not highly strict.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No explicit ambiguity or schema mismatch in question"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair required. The question is clear and well-posed, and there are no contradictory constraints or missing fields. The absence of data means no schema alignment is needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience or trajectory in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward filtering and annotation count to compute a fraction, with a simple numeric output verified by a range. There is minor planning and parameterization load, but no evidence of branching, strict artifact constraints, semantic ambiguity, or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:50:43.707433+00:00"
+  }
+}

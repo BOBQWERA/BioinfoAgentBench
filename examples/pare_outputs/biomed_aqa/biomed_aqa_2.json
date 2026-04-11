@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_2",
+      "question": "You are analyzing the genetic testing data of a patient with a genetic disease. The patient's mutation data is stored in the following files: {MUT_edit1.fastq.gz}{MUT_edit2.fastq.gz}. You need to first identify the mutations, and based on the results of the mutations, please find the pathogenic mutations of the patient.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0002/files/MUT_edit1.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0002/files/MUT_edit2.fastq.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"tumor.recal.bam\", \"path\": \"downloaded_files\\\\index_0002\\\\milestone\\\\tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\", \"path\": \"downloaded_files\\\\index_0002\\\\milestone\\\\tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\", \"path\": \"downloaded_files\\\\index_0002\\\\milestone\\\\tumor.recal.fil.maf\"}], \"milestones\": [\"Generate comparison result: bam\", \"Generate VCF\", \"There are records of mutation results: chr6-49427089-A-G, chr6-49419304-A-G.\"], \"steps\": [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "DNA",
+        "task_abbr": "GATK haplotyper",
+        "task": "DNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 11.02,
+        "milestone_count": 3,
+        "step_count": 3
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_2",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "You need to first identify the mutations, and based on the results of the mutations, please find the pathogenic mutations of the patient.",
+          "steps: [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]",
+          "milestone_files: [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\"}]"
+        ],
+        "reason": "The task requires decomposing the workflow into multiple dependency-constrained steps: mutation identification from FASTQ (implying alignment and variant calling), then pathogenicity assessment. The explicit mention of intermediate artifacts (BAM, VCF, MAF) and stepwise milestones shows a clear multi-stage pipeline. However, the method for pathogenicity assessment is not specified, but the payload does not provide strong evidence of multiple materially different valid routes or major branching decisions."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\"}]",
+          "steps: [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]"
+        ],
+        "reason": "There are multiple heterogeneous output artifacts (BAM, VCF, MAF), each with distinct formats and roles in the workflow. The answer expects these files as milestones, indicating moderate artifact realization load. However, there is no explicit evidence of strict parameterization, thresholds, or format verifiers in the payload."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or schema mismatch in question or data.",
+          "Input files are standard FASTQ; output artifacts are standard formats."
+        ],
+        "reason": "There is no direct evidence of semantic ambiguity or data/representation repair needs. The workflow and file types are standard and clearly specified. No contradictory constraints or missing fields are present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context provided in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-stage genomics workflow: mutation identification from FASTQ files, followed by pathogenicity assessment, with explicit intermediate and final artifacts (BAM, VCF, MAF). The planning and action loads are moderate due to the need for workflow decomposition and multiple output types, but there is no strong evidence of major branching, strict parameterization, or repair/transfer requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2554,
+        "completion_tokens": 773,
+        "total_tokens": 3327
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "You need to first identify the mutations, and based on the results of the mutations, please find the pathogenic mutations of the patient.",
+            "steps: [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]",
+            "milestone_files: [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\"}]"
+          ],
+          "reason": "The task requires decomposing the workflow into multiple dependency-constrained steps: mutation identification from FASTQ (implying alignment and variant calling), then pathogenicity assessment. The explicit mention of intermediate artifacts (BAM, VCF, MAF) and stepwise milestones shows a clear multi-stage pipeline. However, the method for pathogenicity assessment is not specified, but the payload does not provide strong evidence of multiple materially different valid routes or major branching decisions.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\"}]",
+            "steps: [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]"
+          ],
+          "reason": "There are multiple heterogeneous output artifacts (BAM, VCF, MAF), each with distinct formats and roles in the workflow. The answer expects these files as milestones, indicating moderate artifact realization load. However, there is no explicit evidence of strict parameterization, thresholds, or format verifiers in the payload.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or schema mismatch in question or data.",
+            "Input files are standard FASTQ; output artifacts are standard formats."
+          ],
+          "reason": "There is no direct evidence of semantic ambiguity or data/representation repair needs. The workflow and file types are standard and clearly specified. No contradictory constraints or missing fields are present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context provided in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-stage genomics workflow: mutation identification from FASTQ files, followed by pathogenicity assessment, with explicit intermediate and final artifacts (BAM, VCF, MAF). The planning and action loads are moderate due to the need for workflow decomposition and multiple output types, but there is no strong evidence of major branching, strict parameterization, or repair/transfer requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:01:04.470307+00:00"
+  }
+}

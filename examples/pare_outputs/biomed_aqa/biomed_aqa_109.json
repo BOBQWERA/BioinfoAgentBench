@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_109",
+      "question": "You are analyzing the genetic testing data of a tumor patient. The genomic variation data of this patient is stored in the following files: {BRAF_edit1.fastq.gz}{BRAF_edit2.fastq.gz}. You need to use GATK to analyze and identify genomic variations and perform variant annotation. Based on the results of the variations, please recommend possible targeted drugs for the patient. If there are multiple options, please prioritize them.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0109/files/BRAF_edit1.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0109/files/BRAF_edit2.fastq.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"tumor.recal.bam\", \"path\": \"downloaded_files\\\\index_0109\\\\milestone\\\\tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\", \"path\": \"downloaded_files\\\\index_0109\\\\milestone\\\\tumor.recal.vcf\"}, {\"name\": \"drug.tsv\", \"path\": \"downloaded_files\\\\index_0109\\\\milestone\\\\drug.tsv\"}], \"milestones\": [\"Generate comparison result: bam\", \"Generate VCF\", \"Recommended targeted drug: Dabrafenib\"], \"steps\": [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Recommended targeted drugs\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "P",
+        "task_subclass": "Tumor",
+        "task_abbr": "Tumor-only drugs",
+        "task": "Tumor",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 21.13,
+        "milestone_count": 3,
+        "step_count": 3
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_109",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "You need to use GATK to analyze and identify genomic variations and perform variant annotation.",
+          "Based on the results of the variations, please recommend possible targeted drugs for the patient.",
+          "\"steps\": [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Recommended targeted drugs\"]"
+        ],
+        "reason": "The task requires structuring a multi-stage workflow: (1) process FASTQ to BAM, (2) call variants to VCF, (3) annotate variants, and (4) recommend and prioritize drugs. The workflow is not a single direct step and involves dependency-constrained steps. However, the method (GATK) is specified, and the steps are relatively canonical, with no explicit evidence of major branching or multiple materially different methods."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"drug.tsv\"}]",
+          "\"milestones\": [\"Generate comparison result: bam\", \"Generate VCF\", \"Recommended targeted drug: Dabrafenib\"]"
+        ],
+        "reason": "There are multiple heterogeneous output artifacts (BAM, VCF, TSV drug recommendation). The output types are standard for the domain, and while the formats are implied, there is no explicit evidence of strict parameterization, thresholds, or format rigidity beyond standard expectations."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "question_type: clear",
+          "No evidence of missing or ambiguous fields; input files are specified and standard."
+        ],
+        "reason": "The question is clear and the data is well-structured. There is no evidence of semantic ambiguity or representational inconsistency requiring repair. Only a trace load is present due to the possibility of minor clarifications in drug prioritization, but this is not a major driver."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience or transfer context provided."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-stage genomic analysis workflow with moderate planning and artifact realization load due to multiple dependent steps and heterogeneous outputs. There is little evidence of semantic or representational repair needs, and no transfer/experience assimilation is required.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2544,
+        "completion_tokens": 682,
+        "total_tokens": 3226
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "You need to use GATK to analyze and identify genomic variations and perform variant annotation.",
+            "Based on the results of the variations, please recommend possible targeted drugs for the patient.",
+            "\"steps\": [\"Compare and generate bam (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Recommended targeted drugs\"]"
+          ],
+          "reason": "The task requires structuring a multi-stage workflow: (1) process FASTQ to BAM, (2) call variants to VCF, (3) annotate variants, and (4) recommend and prioritize drugs. The workflow is not a single direct step and involves dependency-constrained steps. However, the method (GATK) is specified, and the steps are relatively canonical, with no explicit evidence of major branching or multiple materially different methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"tumor.recal.bam\"}, {\"name\": \"tumor.recal.vcf\"}, {\"name\": \"drug.tsv\"}]",
+            "\"milestones\": [\"Generate comparison result: bam\", \"Generate VCF\", \"Recommended targeted drug: Dabrafenib\"]"
+          ],
+          "reason": "There are multiple heterogeneous output artifacts (BAM, VCF, TSV drug recommendation). The output types are standard for the domain, and while the formats are implied, there is no explicit evidence of strict parameterization, thresholds, or format rigidity beyond standard expectations.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "question_type: clear",
+            "No evidence of missing or ambiguous fields; input files are specified and standard."
+          ],
+          "reason": "The question is clear and the data is well-structured. There is no evidence of semantic ambiguity or representational inconsistency requiring repair. Only a trace load is present due to the possibility of minor clarifications in drug prioritization, but this is not a major driver.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience or transfer context provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-stage genomic analysis workflow with moderate planning and artifact realization load due to multiple dependent steps and heterogeneous outputs. There is little evidence of semantic or representational repair needs, and no transfer/experience assimilation is required.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:11:33.897612+00:00"
+  }
+}

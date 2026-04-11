@@ -1,0 +1,156 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_28985567_3",
+      "question": "Get the indicator for each patient and gene pair for two classes:\n- copy number gain: threshold defined >= 0.2\n- copy number loss: threshold defined <= -0.2\n\nSave the output as a pd.DataFrame named \"patient_cna\" with columns\n- PATIENT_ID\n- Hugo_Symbol\n- Copy_Number_Gain\n- Copy_Number_Loss",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_log2_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\nimport pandas as pd\\n\\n# Load the data\\ndata_log2_cna = pd.read_csv(\\\"/workdir/data_log2_cna.csv\\\")\\n\\n# Melt the data to long format\\ndata_long = data_log2_cna.melt(id_vars=[\\\"Hugo_Symbol\\\", \\\"Entrez_Gene_Id\\\"], var_name=\\\"PATIENT_ID\\\", value_name=\\\"Copy_Number\\\")\\n\\n# Define the thresholds\\ngain_threshold = 0.2\\nloss_threshold = -0.2\\n\\n# Create the indicators for copy number gain and loss\\ndata_long[\\\"Copy_Number_Gain\\\"] = (data_long[\\\"Copy_Number\\\"] >= gain_threshold).astype(int)\\ndata_long[\\\"Copy_Number_Loss\\\"] = (data_long[\\\"Copy_Number\\\"] <= loss_threshold).astype(int)\\n\\n# Select the required columns\\npatient_cna = data_long[[\\\"PATIENT_ID\\\", \\\"Hugo_Symbol\\\", \\\"Copy_Number_Gain\\\", \\\"Copy_Number_Loss\\\"]]\\n\\n# Save the output to a DataFrame\\npatient_cna.to_csv(\\\"patient_cna.csv\\\", index=False)\\n\\n# Display the first few rows of the DataFrame\\nprint(patient_cna.head())\\n\", \"test_cases\": \"assert patient_cna.shape == (140140, 4)\\n\\n\\nassert patient_cna[\\\"Copy_Number_Gain\\\"].sum() == 21828\\n\\nassert patient_cna[\\\"Copy_Number_Loss\\\"].sum() == 15562\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "28985567_3",
+        "study_id": "28985567",
+        "question_id": "3",
+        "analysis_types": "['Data Integration & Transformation']",
+        "study_type": "Therapeutics",
+        "study_title": "Genetic and Functional Drivers of Diffuse Large B Cell Lymphoma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=dlbcl_duke_2017",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_28985567_3",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Multiple input files listed: data_mutations.csv, data_log2_cna.csv, data_clinical_sample.csv, data_clinical_patient.csv",
+          "Task requires generating indicators for each patient and gene pair for two classes (gain/loss) with explicit thresholds",
+          "Output must be a DataFrame with specific columns"
+        ],
+        "reason": "There is a minor workflow structuring load due to the need to process a matrix (patients x genes), apply thresholds, and generate indicators, but the method is direct and standard for this type of data transformation. No evidence of significant branching or multiple valid methods; the thresholds and output schema are explicitly specified."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Output must be a pd.DataFrame named 'patient_cna' with four specific columns",
+          "Explicit thresholds: gain >= 0.2, loss <= -0.2",
+          "Test cases assert exact shape and sum of indicator columns",
+          "Strict output schema and column names required"
+        ],
+        "reason": "There is a moderate artifact realization and parameterization load: the output must match a strict schema, use exact thresholds, and pass explicit shape and sum checks. The requirements for column names and indicator logic are clear and must be followed exactly."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of ambiguous semantics or data schema mismatch",
+          "Input files are listed but only data_log2_cna.csv is used for the main computation",
+          "Thresholds and output schema are explicitly defined"
+        ],
+        "reason": "There is almost no repair load; the task is well-specified with clear semantics and no indication of data inconsistency or ambiguity. The presence of unused input files does not create a repair requirement."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a straightforward data transformation with explicit thresholds and output schema. There is minor planning load due to the need to process patient-gene pairs and generate indicators, but no significant branching or ambiguity. The main complexity is in meeting the strict output and parameterization requirements. No repair or transfer load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2842,
+        "completion_tokens": 652,
+        "total_tokens": 3494
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Multiple input files listed: data_mutations.csv, data_log2_cna.csv, data_clinical_sample.csv, data_clinical_patient.csv",
+            "Task requires generating indicators for each patient and gene pair for two classes (gain/loss) with explicit thresholds",
+            "Output must be a DataFrame with specific columns"
+          ],
+          "reason": "There is a minor workflow structuring load due to the need to process a matrix (patients x genes), apply thresholds, and generate indicators, but the method is direct and standard for this type of data transformation. No evidence of significant branching or multiple valid methods; the thresholds and output schema are explicitly specified.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Output must be a pd.DataFrame named 'patient_cna' with four specific columns",
+            "Explicit thresholds: gain >= 0.2, loss <= -0.2",
+            "Test cases assert exact shape and sum of indicator columns",
+            "Strict output schema and column names required"
+          ],
+          "reason": "There is a moderate artifact realization and parameterization load: the output must match a strict schema, use exact thresholds, and pass explicit shape and sum checks. The requirements for column names and indicator logic are clear and must be followed exactly.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of ambiguous semantics or data schema mismatch",
+            "Input files are listed but only data_log2_cna.csv is used for the main computation",
+            "Thresholds and output schema are explicitly defined"
+          ],
+          "reason": "There is almost no repair load; the task is well-specified with clear semantics and no indication of data inconsistency or ambiguity. The presence of unused input files does not create a repair requirement.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward data transformation with explicit thresholds and output schema. There is minor planning load due to the need to process patient-gene pairs and generate indicators, but no significant branching or ambiguity. The main complexity is in meeting the strict output and parameterization requirements. No repair or transfer load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:50:12.338443+00:00"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-41-q1",
+      "question": "Using Dunnett's test to compare co-culture groups to the Strain 1, at the significance threshold of 0.05, how many co-culture conditions with two strains are statistically equivalent to Strain 1 in both area and circularity measurements?",
+      "data": [],
+      "answer": "6",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-41-q1",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "4",
+          "9",
+          "3"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-41-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Using Dunnett's test to compare co-culture groups to the Strain 1",
+          "how many co-culture conditions with two strains are statistically equivalent to Strain 1 in both area and circularity measurements?"
+        ],
+        "reason": "The question requires decomposing the goal into at least two steps: (1) performing Dunnett's test for each co-culture group versus Strain 1 for both area and circularity, and (2) determining which groups are statistically equivalent in both measurements. There is a dependency chain (test, then intersection of results). However, the method (Dunnett's test) is specified and there is no explicit evidence of multiple branching methods or ambiguous assumptions that would materially affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "at the significance threshold of 0.05",
+          "statistically equivalent to Strain 1 in both area and circularity measurements",
+          "eval_mode: str_verifier"
+        ],
+        "reason": "There is a clear requirement to apply a significance threshold (0.05) and to check equivalence in two measurement types, but the output is a single number (count of conditions), and there are no explicit format or schema constraints beyond this. The str_verifier suggests a simple string output. Parameterization is present but not highly strict or complex."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No explicit ambiguity or contradiction in question wording"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clear in its intent and does not require clarification or schema alignment. The absence of data means no representational repair is possible or needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience or trajectory in the payload."
+      }
+    },
+    "overall_summary": "The task requires a moderate level of planning due to the need to apply Dunnett's test across multiple groups and measurements and then combine results, but the method is specified and there is no strong evidence of branching or ambiguity. Action load is low to moderate due to the simple output and clear threshold, with no complex artifact requirements. Reflection and evolution loads are minimal or absent due to clear semantics and no transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2228,
+        "completion_tokens": 659,
+        "total_tokens": 2887
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Using Dunnett's test to compare co-culture groups to the Strain 1",
+            "how many co-culture conditions with two strains are statistically equivalent to Strain 1 in both area and circularity measurements?"
+          ],
+          "reason": "The question requires decomposing the goal into at least two steps: (1) performing Dunnett's test for each co-culture group versus Strain 1 for both area and circularity, and (2) determining which groups are statistically equivalent in both measurements. There is a dependency chain (test, then intersection of results). However, the method (Dunnett's test) is specified and there is no explicit evidence of multiple branching methods or ambiguous assumptions that would materially affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "at the significance threshold of 0.05",
+            "statistically equivalent to Strain 1 in both area and circularity measurements",
+            "eval_mode: str_verifier"
+          ],
+          "reason": "There is a clear requirement to apply a significance threshold (0.05) and to check equivalence in two measurement types, but the output is a single number (count of conditions), and there are no explicit format or schema constraints beyond this. The str_verifier suggests a simple string output. Parameterization is present but not highly strict or complex.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No explicit ambiguity or contradiction in question wording"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The question is clear in its intent and does not require clarification or schema alignment. The absence of data means no representational repair is possible or needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience or trajectory in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "The task requires a moderate level of planning due to the need to apply Dunnett's test across multiple groups and measurements and then combine results, but the method is specified and there is no strong evidence of branching or ambiguity. Action load is low to moderate due to the simple output and clear threshold, with no complex artifact requirements. Reflection and evolution loads are minimal or absent due to clear semantics and no transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:17:50.051718+00:00"
+  }
+}

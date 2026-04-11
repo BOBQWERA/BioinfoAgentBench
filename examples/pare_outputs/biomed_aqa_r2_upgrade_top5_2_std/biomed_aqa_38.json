@@ -1,0 +1,172 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_r2_upgrade_top5_2_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_38",
+      "question": "Currently, there is expression data {exp_COAD.csv} and grouping info {group_COAD.csv}. Compute functional enrichment results for differentially expressed genes between two groups. Before computation, repair representation mismatches between files: sample identifiers may differ by case/prefix style, and group labels may include duplicate aliases. Reconcile IDs and group encodings deterministically before DEG and enrichment.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0038/files/exp_COAD.csv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0038/files/group_COAD.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"DEG_COAD.csv\", \"path\": \"downloaded_files\\\\index_0038\\\\milestone\\\\DEG_COAD.csv\"}, {\"name\": \"GSEA_COAD.tsv\", \"path\": \"downloaded_files\\\\index_0038\\\\milestone\\\\GSEA_COAD.tsv\"}], \"milestones\": [\"Generate differential genes\", \"Generate functional enrichment results\"], \"steps\": [\"Calculate differential genes\", \"Gene Set Functional Enrichment Analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "DEG & enrichment",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.02,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_existing_r1_r2_e1_e2_sets', 'must_have_workflow_memory_reference', 'targets_are_tsv_or_csv_only', 'r2_representation_repair_must_dominate']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Cross-file sample ID mismatch + group label normalization before DEG.",
+              "intent": "Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation."
+            },
+            "data_repair_methods": [
+              "Canonicalize sample IDs by lowercasing and removing fixed prefixes/suffixes in both expression and group tables.",
+              "Map group aliases to a canonical two-group encoding and reject unmappable labels.",
+              "Keep only intersected sample IDs after reconciliation, and preserve explicit dropped-ID log."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 38,
+              "workflow_memory_Index": 172,
+              "task_abbr": "DEG & enrichment",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Calculate differentially expressed genes between the two groups using gene expression data and grouping information.\n    - **Tool**: deg\n    - **Input**: exp_COAD.csv (gene expression profile data), group_COAD.csv (grouping information)\n    - **Output**: deg_file (set of genes significantly differentially expressed)\n    - **Description**: The deg tool will analyze the provided gene expression data and grouping information to extract differentially expressed genes between the specified groups.\n\n2. **Goal**: Perform functional enrichment analysis on the identified differentially expressed genes.\n    - **Tool**: KOBAS_enrichment\n    - **Input**: deg_file (set of differentially expressed genes)\n    - **Output**: GO_enrichment_result (GO terms affected by the input gene set), KEGG_enrichment_result (KEGG pathways affected by the input gene set)\n    - **Description**: Conduct Gene Set Enrichment analysis to identify enriched biological functions for the set of differentially expressed genes, generating results related to affected GO terms and KEGG pathways.\n]"
+            },
+            "original_question": "Currently, there is an expression profile data {exp_COAD.csv} and corresponding grouping information {group_COAD.csv}. Calculate the gene set functional enrichment results for the differentially expressed genes between the two groups."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_38",
+    "benchmark": "biomed_aqa_r2_upgrade_top5_2_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Milestone and step list: ['Generate differential genes', 'Generate functional enrichment results']",
+          "Explicit dependency: DEG must precede enrichment",
+          "Workflow reference excerpt describes two-stage pipeline (DEG, then enrichment)",
+          "No explicit method branching or alternative routes described"
+        ],
+        "reason": "There is a clear two-stage workflow (DEG then enrichment) with dependency, requiring structuring, but no evidence of major method branching or multiple materially different valid routes."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Milestone files: DEG_COAD.csv, GSEA_COAD.tsv (two output types, CSV and TSV)",
+          "Explicit output file names and formats",
+          "No explicit parameterization, thresholds, or strict verification rules stated"
+        ],
+        "reason": "There is moderate artifact realization load due to multiple output types and explicit file format requirements, but no evidence of strict parameterization or tight specification."
+      },
+      "R": {
+        "score": 5,
+        "evidence": [
+          "Question: 'repair representation mismatches between files: sample identifiers may differ by case/prefix style, and group labels may include duplicate aliases'",
+          "Instruction: 'Reconcile IDs and group encodings deterministically before DEG and enrichment'",
+          "Bench_builder intent: 'Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation'",
+          "Data repair methods: 'Canonicalize sample IDs by lowercasing and removing fixed prefixes/suffixes', 'Map group aliases to a canonical two-group encoding', 'Keep only intersected sample IDs after reconciliation, and preserve explicit dropped-ID log.'"
+        ],
+        "reason": "Representation repair is the central and dominant difficulty driver: explicit, multi-faceted schema mismatches (case/prefix in IDs, group label aliasing) must be detected and deterministically repaired before any computation is possible. The payload and metadata both emphasize this as the main challenge."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No explicit prior trajectory, experience text, or transfer context in the payload"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; the task is standalone."
+      }
+    },
+    "overall_summary": "This task is dominated by explicit representation repair requirements (R2=5), as the main challenge is to reconcile mismatched sample IDs and group labels before standard DEG and enrichment analysis. Planning and action loads are moderate due to the two-stage workflow and multiple output artifacts, but there is no evidence of major method branching or strict parameterization. No transfer/experience load is present.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3017,
+        "completion_tokens": 693,
+        "total_tokens": 3710
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Milestone and step list: ['Generate differential genes', 'Generate functional enrichment results']",
+            "Explicit dependency: DEG must precede enrichment",
+            "Workflow reference excerpt describes two-stage pipeline (DEG, then enrichment)",
+            "No explicit method branching or alternative routes described"
+          ],
+          "reason": "There is a clear two-stage workflow (DEG then enrichment) with dependency, requiring structuring, but no evidence of major method branching or multiple materially different valid routes.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Milestone files: DEG_COAD.csv, GSEA_COAD.tsv (two output types, CSV and TSV)",
+            "Explicit output file names and formats",
+            "No explicit parameterization, thresholds, or strict verification rules stated"
+          ],
+          "reason": "There is moderate artifact realization load due to multiple output types and explicit file format requirements, but no evidence of strict parameterization or tight specification.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 5,
+          "evidence": [
+            "Question: 'repair representation mismatches between files: sample identifiers may differ by case/prefix style, and group labels may include duplicate aliases'",
+            "Instruction: 'Reconcile IDs and group encodings deterministically before DEG and enrichment'",
+            "Bench_builder intent: 'Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation'",
+            "Data repair methods: 'Canonicalize sample IDs by lowercasing and removing fixed prefixes/suffixes', 'Map group aliases to a canonical two-group encoding', 'Keep only intersected sample IDs after reconciliation, and preserve explicit dropped-ID log.'"
+          ],
+          "reason": "Representation repair is the central and dominant difficulty driver: explicit, multi-faceted schema mismatches (case/prefix in IDs, group label aliasing) must be detected and deterministically repaired before any computation is possible. The payload and metadata both emphasize this as the main challenge.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 5
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No explicit prior trajectory, experience text, or transfer context in the payload"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is dominated by explicit representation repair requirements (R2=5), as the main challenge is to reconcile mismatched sample IDs and group labels before standard DEG and enrichment analysis. Planning and action loads are moderate due to the two-stage workflow and multiple output artifacts, but there is no evidence of major method branching or strict parameterization. No transfer/experience load is present.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-09T03:54:00.643898+00:00"
+  }
+}

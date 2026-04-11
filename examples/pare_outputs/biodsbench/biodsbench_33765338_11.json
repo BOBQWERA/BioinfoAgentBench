@@ -1,0 +1,164 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_33765338_11",
+      "question": "Get the pvalues for each OS HR and RFS HR. Further adjust them for multiple comparisons Use the Benjamini-Hochberg procedure, get the FDR values correspondingly. Add results to new columns to `results_df`:\n- OS_FDR\n- RFS_FDR",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_sv.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_timeline.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\nimport pandas as pd\\nfrom lifelines import CoxPHFitter\\nfrom statsmodels.stats.multitest import multipletests\\n\\n# Load the necessary data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\ndata_clinical_sample = pd.read_csv(\\\"/workdir/data_clinical_sample.csv\\\")\\ndata_mutations = pd.read_csv(\\\"/workdir/data_mutations.csv\\\")\\n\\n\\n# Define the gene alterations of interest\\ngenes_of_interest = ['BRAF', 'IDH1', 'KRAS', 'TERT', 'ARID1A', 'BAP1', 'PBRM1', 'TP53']\\n\\n# Prepare the results DataFrame\\nresults_df = []\\n\\n# Merge clinical data with mutation data\\ndata_mutations = data_mutations.merge(data_clinical_sample[[\\\"PATIENT_ID\\\",\\\"SAMPLE_ID\\\"]], left_on=\\\"Tumor_Sample_Barcode\\\", right_on=\\\"SAMPLE_ID\\\")\\nmerged_data = data_clinical_patient.merge(data_mutations, on=\\\"PATIENT_ID\\\")\\n\\n# Function to perform univariate Cox regression analysis\\ndef univariate_cox_analysis(gene, data, time_col, event_col):\\n    cph = CoxPHFitter()\\n    data['gene_altered'] = data['Hugo_Symbol'] == gene\\n    data = data.dropna(subset=[time_col, event_col]).reset_index(drop=True)\\n    cph.fit(data[[time_col, event_col, 'gene_altered']], duration_col=time_col, event_col=event_col)\\n    summary = cph.summary\\n    hr = summary.loc['gene_altered', 'exp(coef)']\\n    hr_ci_lower = summary.loc['gene_altered', 'exp(coef) lower 95%']\\n    hr_ci_upper = summary.loc['gene_altered', 'exp(coef) upper 95%']\\n    p_value = summary.loc['gene_altered', 'p']\\n    return hr, hr_ci_lower, hr_ci_upper, p_value\\n\\n# Perform analysis for each gene\\nrfs_p_values = []\\nos_p_values = []\\n\\nfor gene in genes_of_interest:\\n    cohort = merged_data[merged_data[\\\"Hugo_Symbol\\\"] == gene]\\n    \\n    merged_data_rfs = merged_data.dropna(subset=[\\\"RFS_MONTHS\\\",\\\"RFS_STATUS\\\"])\\n    merged_data_rfs[\\\"RFS_STATUS\\\"] = merged_data_rfs[\\\"RFS_STATUS\\\"].apply(lambda x: 1 if x == \\\"1:RELAPSED\\\" else 0)\\n    rfs_hr, rfs_hr_low, rfs_hr_high, rfs_p_value = univariate_cox_analysis(gene, merged_data_rfs, 'RFS_MONTHS', 'RFS_STATUS')\\n    rfs_p_values.append(rfs_p_value)\\n\\n    merged_data_os = merged_data.dropna(subset=[\\\"OS_MONTHS\\\",\\\"OS_STATUS\\\"])\\n    merged_data_os[\\\"OS_STATUS\\\"] = merged_data_os[\\\"OS_STATUS\\\"].apply(lambda x: 1 if x == \\\"1:DECEASED\\\" else 0)\\n    os_hr, os_hr_low, os_hr_high, os_p_value = univariate_cox_analysis(gene, merged_data_os, 'OS_MONTHS', 'OS_STATUS')\\n    os_p_values.append(os_p_value)\\n    \\n    results_df.append({\\n        'Hugo_Symbol': gene,\\n        'RFS_HR': rfs_hr,\\n        'RFS_HR_LOW': rfs_hr_low,\\n        'RFS_HR_HIGH': rfs_hr_high,\\n        'RFS_P_VALUE': rfs_p_value,\\n        'OS_HR': os_hr,\\n        'OS_HR_LOW': os_hr_low,\\n        'OS_HR_HIGH': os_hr_high,\\n        'OS_P_VALUE': os_p_value\\n    })\\n\\nresults_df = pd.DataFrame(results_df)\\n\\n# Adjust p-values for multiple comparisons using Benjamini-Hochberg procedure\\nresults_df['RFS_FDR'] = multipletests(results_df['RFS_P_VALUE'], method='fdr_bh')[1]\\nresults_df['OS_FDR'] = multipletests(results_df['OS_P_VALUE'], method='fdr_bh')[1]\\n\\nprint(results_df)\\n\", \"test_cases\": \"assert len(results_df[results_df[\\\"RFS_FDR\\\"] < 0.05][\\\"Hugo_Symbol\\\"].tolist()) == 4\\n\\nassert len(results_df[results_df[\\\"OS_FDR\\\"] < 0.05][\\\"Hugo_Symbol\\\"].tolist()) == 3\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33765338_11",
+        "study_id": "33765338",
+        "question_id": "11",
+        "analysis_types": "['Treatment Response Visualization & Quantification']",
+        "study_type": "Therapeutics",
+        "study_title": "Genetic Determinants of Outcome in Intrahepatic Cholangiocarcinoma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=ihch_msk_2021",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_33765338_11",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Get the pvalues for each OS HR and RFS HR.",
+          "Further adjust them for multiple comparisons Use the Benjamini-Hochberg procedure, get the FDR values correspondingly.",
+          "Add results to new columns to `results_df`: - OS_FDR - RFS_FDR",
+          "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_cna.csv, data_sv.csv, data_timeline.csv"
+        ],
+        "reason": "The task requires a multi-step workflow: extracting/merging relevant data from several files, performing Cox regression for two endpoints (OS and RFS) across multiple genes, collecting p-values, and then adjusting them for multiple comparisons using a specified method. The workflow is not a single direct computation and involves chaining steps. However, the method for multiple testing correction is specified (Benjamini-Hochberg), and the endpoints are clearly defined, so branching is limited."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Add results to new columns to `results_df`: - OS_FDR - RFS_FDR",
+          "Explicit output columns required: OS_FDR, RFS_FDR",
+          "Test cases: assert len(results_df[results_df[\"RFS_FDR\"] < 0.05][\"Hugo_Symbol\"].tolist()) == 4",
+          "Test cases: assert len(results_df[results_df[\"OS_FDR\"] < 0.05][\"Hugo_Symbol\"].tolist()) == 3"
+        ],
+        "reason": "There is a moderate artifact realization load: the output must be a DataFrame with specific new columns, and the test cases require correct filtering and value assignment. The Benjamini-Hochberg procedure is explicitly required, and the output must be compatible with the test assertions. However, there are no highly strict format or parameterization constraints beyond these requirements."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv",
+          "Reference answer merges and aligns data across files"
+        ],
+        "reason": "There is some representational repair required: the data must be merged and aligned across several files to create a consistent input for the analysis. However, there is no evidence of ambiguous semantics, missing key fields, or contradictory requirements. The repair is limited to standard merging and alignment."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present in the payload"
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience or trajectory; the task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning and action load due to the need to merge multiple input files, perform Cox regression for two endpoints across multiple genes, and adjust p-values using a specified method, with explicit output requirements. There is some representational repair in merging data, but no major ambiguity or contradiction. No experience transfer is required.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3627,
+        "completion_tokens": 802,
+        "total_tokens": 4429
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Get the pvalues for each OS HR and RFS HR.",
+            "Further adjust them for multiple comparisons Use the Benjamini-Hochberg procedure, get the FDR values correspondingly.",
+            "Add results to new columns to `results_df`: - OS_FDR - RFS_FDR",
+            "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_cna.csv, data_sv.csv, data_timeline.csv"
+          ],
+          "reason": "The task requires a multi-step workflow: extracting/merging relevant data from several files, performing Cox regression for two endpoints (OS and RFS) across multiple genes, collecting p-values, and then adjusting them for multiple comparisons using a specified method. The workflow is not a single direct computation and involves chaining steps. However, the method for multiple testing correction is specified (Benjamini-Hochberg), and the endpoints are clearly defined, so branching is limited.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Add results to new columns to `results_df`: - OS_FDR - RFS_FDR",
+            "Explicit output columns required: OS_FDR, RFS_FDR",
+            "Test cases: assert len(results_df[results_df[\"RFS_FDR\"] < 0.05][\"Hugo_Symbol\"].tolist()) == 4",
+            "Test cases: assert len(results_df[results_df[\"OS_FDR\"] < 0.05][\"Hugo_Symbol\"].tolist()) == 3"
+          ],
+          "reason": "There is a moderate artifact realization load: the output must be a DataFrame with specific new columns, and the test cases require correct filtering and value assignment. The Benjamini-Hochberg procedure is explicitly required, and the output must be compatible with the test assertions. However, there are no highly strict format or parameterization constraints beyond these requirements.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv",
+            "Reference answer merges and aligns data across files"
+          ],
+          "reason": "There is some representational repair required: the data must be merged and aligned across several files to create a consistent input for the analysis. However, there is no evidence of ambiguous semantics, missing key fields, or contradictory requirements. The repair is limited to standard merging and alignment.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present in the payload"
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience or trajectory; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning and action load due to the need to merge multiple input files, perform Cox regression for two endpoints across multiple genes, and adjust p-values using a specified method, with explicit output requirements. There is some representational repair in merging data, but no major ambiguity or contradiction. No experience transfer is required.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:42:25.163117+00:00"
+  }
+}

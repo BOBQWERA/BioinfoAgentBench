@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-10-q5",
+      "question": "For healthcare workers seeing over 100 patients, what is the statistical significance (p-value) of the association between vaccination status and disease severity?",
+      "data": [],
+      "answer": "(0.43,0.45)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-10-q5",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.03,0.04)",
+          "(0.32,0.35)",
+          "(0.14,0.16)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-10-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'what is the statistical significance (p-value) of the association between vaccination status and disease severity?'",
+          "No explicit method or test specified",
+          "Population subset: 'healthcare workers seeing over 100 patients'"
+        ],
+        "reason": "There is a minor workflow structuring load because the question requires filtering a subset (healthcare workers seeing over 100 patients) and then testing association between two variables. However, the method for association (e.g., chi-square, Fisher's exact, logistic regression) is not specified, which introduces some branching, but the context and MCQ format suggest a standard approach is expected. No evidence of complex dependency chains or major branching."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Answer format: (0.43,0.45)",
+          "eval_mode: 'range_verifier'",
+          "No explicit schema or file format constraints"
+        ],
+        "reason": "The output is a numeric range (p-value), and the evaluation mode is 'range_verifier', indicating some sensitivity to the output value. However, there are no explicit format or parameterization constraints beyond the numeric range, and only one artifact type (the p-value) is required."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided ('data': [])",
+          "Variables and population subset are clearly stated"
+        ],
+        "reason": "There is a trace need for semantic clarification due to the lack of data, but the question itself is clear in its intent and variables. No evidence of schema mismatch, ambiguity, or contradiction."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "No evidence of transfer or reuse context; this is a standalone question."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow structuring and method selection load due to the need to filter a population and test association without a specified method, but the MCQ format and context suggest a standard approach. Output realization and parameterization loads are low, as only a numeric p-value range is required with minimal explicit constraints. There is only a trace of semantic repair need, and no evidence of transfer or evolution load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2227,
+        "completion_tokens": 606,
+        "total_tokens": 2833
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'what is the statistical significance (p-value) of the association between vaccination status and disease severity?'",
+            "No explicit method or test specified",
+            "Population subset: 'healthcare workers seeing over 100 patients'"
+          ],
+          "reason": "There is a minor workflow structuring load because the question requires filtering a subset (healthcare workers seeing over 100 patients) and then testing association between two variables. However, the method for association (e.g., chi-square, Fisher's exact, logistic regression) is not specified, which introduces some branching, but the context and MCQ format suggest a standard approach is expected. No evidence of complex dependency chains or major branching.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Answer format: (0.43,0.45)",
+            "eval_mode: 'range_verifier'",
+            "No explicit schema or file format constraints"
+          ],
+          "reason": "The output is a numeric range (p-value), and the evaluation mode is 'range_verifier', indicating some sensitivity to the output value. However, there are no explicit format or parameterization constraints beyond the numeric range, and only one artifact type (the p-value) is required.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided ('data': [])",
+            "Variables and population subset are clearly stated"
+          ],
+          "reason": "There is a trace need for semantic clarification due to the lack of data, but the question itself is clear in its intent and variables. No evidence of schema mismatch, ambiguity, or contradiction.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "No evidence of transfer or reuse context; this is a standalone question.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow structuring and method selection load due to the need to filter a population and test association without a specified method, but the MCQ format and context suggest a standard approach. Output realization and parameterization loads are low, as only a numeric p-value range is required with minimal explicit constraints. There is only a trace of semantic repair need, and no evidence of transfer or evolution load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:45:50.274099+00:00"
+  }
+}

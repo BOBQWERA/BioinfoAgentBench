@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_67",
+      "question": "{For RNA-seq sequencing data of individuals {reads_1.fastq.gz} and {reads_2.fastq.gz}, use kallisto to calculate the expression profile}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0067/files/reads_1.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0067/files/reads_2.fastq.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"expression.txt\", \"path\": \"downloaded_files\\\\index_0067\\\\milestone\\\\expression.txt\"}], \"milestones\": [\"Generate expression results\"], \"steps\": [\"Calculate expression levels and generate expression files.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "Kallisto",
+        "task": "RNA",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.31,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_67",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "question: 'use kallisto to calculate the expression profile'",
+          "inputs: reads_1.fastq.gz, reads_2.fastq.gz",
+          "answer: steps: ['Calculate expression levels and generate expression files.']"
+        ],
+        "reason": "The task requires using kallisto on paired-end FASTQ files to generate an expression profile, which is a standard, single-tool workflow. There is a minor workflow structuring load (P1=2) because the user must recognize the need to run kallisto with paired-end input and produce the correct output, but there is no evidence of branching decisions (P2=0) as the method and tool are specified and there are no alternative routes or ambiguous requirements."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "answer: milestone_files: [{name: 'expression.txt', ...}]",
+          "output: expression.txt"
+        ],
+        "reason": "There is a minor artifact realization load (A1=2) as the output must be a specific file (expression.txt), but only one output type is required and there are no explicit format or parameterization constraints (A2=0). The specification is clear and does not require strict parameter tuning or multiple output types."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "question_type: 'clear'",
+          "no evidence of missing fields, ambiguity, or schema mismatch"
+        ],
+        "reason": "There is no evidence of semantic or data/representation repair required. The question is clear, the input files are specified, and the output is well-defined."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "no prior trajectory or experience text present"
+        ],
+        "reason": "There is no transfer or evolution context in the payload; this is a standalone task."
+      }
+    },
+    "overall_summary": "This is a standard, well-specified RNA-seq quantification task using kallisto on paired-end FASTQ files. There is minor planning and artifact realization load due to the need to recognize paired-end input and produce a specific output file, but no evidence of branching, ambiguity, or transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2372,
+        "completion_tokens": 586,
+        "total_tokens": 2958
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "question: 'use kallisto to calculate the expression profile'",
+            "inputs: reads_1.fastq.gz, reads_2.fastq.gz",
+            "answer: steps: ['Calculate expression levels and generate expression files.']"
+          ],
+          "reason": "The task requires using kallisto on paired-end FASTQ files to generate an expression profile, which is a standard, single-tool workflow. There is a minor workflow structuring load (P1=2) because the user must recognize the need to run kallisto with paired-end input and produce the correct output, but there is no evidence of branching decisions (P2=0) as the method and tool are specified and there are no alternative routes or ambiguous requirements.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "answer: milestone_files: [{name: 'expression.txt', ...}]",
+            "output: expression.txt"
+          ],
+          "reason": "There is a minor artifact realization load (A1=2) as the output must be a specific file (expression.txt), but only one output type is required and there are no explicit format or parameterization constraints (A2=0). The specification is clear and does not require strict parameter tuning or multiple output types.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "question_type: 'clear'",
+            "no evidence of missing fields, ambiguity, or schema mismatch"
+          ],
+          "reason": "There is no evidence of semantic or data/representation repair required. The question is clear, the input files are specified, and the output is well-defined.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "no prior trajectory or experience text present"
+          ],
+          "reason": "There is no transfer or evolution context in the payload; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a standard, well-specified RNA-seq quantification task using kallisto on paired-end FASTQ files. There is minor planning and artifact realization load due to the need to recognize paired-end input and produce a specific output file, but no evidence of branching, ambiguity, or transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T11:06:39.875954+00:00"
+  }
+}

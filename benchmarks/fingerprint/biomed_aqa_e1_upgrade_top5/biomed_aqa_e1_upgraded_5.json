@@ -1,0 +1,509 @@
+{
+  "benchmark": "biomed_aqa",
+  "edit_target": "E1",
+  "file_scope_constraint": "target questions must use only .tsv/.csv input files",
+  "source_file": "benchmarks_pare/standardized/biomed_aqa.json",
+  "workflow_memory_file": "workflow_memory_biomed_aqa.json",
+  "selection_constraints": [
+    "targets_not_overlap_r1_r2_e2_sets",
+    "targets_are_tsv_or_csv_only",
+    "source_target_same_family"
+  ],
+  "count": 5,
+  "records": [
+    {
+      "id": "biomed_aqa_116",
+      "source_question_id": "biomed_aqa_115",
+      "original_question": "I have a binary classification dataset {{diabetes.csv}}, where the \"Target\" column corresponds to the classification labels. Split the dataset into training and testing sets, and use the training set to build a classifier that achieves better prediction performance on the testing set.",
+      "rewritten_question": "[Abstracted Experience Guidance]\n- Principle 1: Split before any learned preprocessing to protect the test boundary, because leakage can falsely inflate classification quality.\n- Principle 2: Treat class balance and metric choice together; evaluate with imbalance-aware metrics when class frequencies are skewed.\n- Decision rationale: Generalization quality is trustworthy only when feature processing is fitted on training data and transferred unchanged to test data.\n- Switch condition: If class imbalance is substantial, prefer class-weighting or threshold-aware tuning; otherwise default optimization is usually sufficient.\n- Caution: A frequent failure mode is fitting scalers/encoders on full data prior to split.\n\n[Target Task]\nI have a binary classification dataset {{diabetes.csv}}, where the \"Target\" column corresponds to the classification labels. Split the dataset into training and testing sets, and use the training set to build a classifier that achieves better prediction performance on the testing set.",
+      "edit_summary": {
+        "target_dimension": "E1",
+        "edit_intent": "Prepend de-identified transferable guidance distilled from successful same-family workflow.",
+        "same_family_rationale": "source and target are both Classfication tasks in broad class M.",
+        "risk_of_P_inflation": "minimal",
+        "risk_of_R_inflation": "none",
+        "risk_of_A_inflation": "none",
+        "why_core_task_is_preserved": "Task objective, domain, and expected outputs are unchanged; only guidance context is added."
+      },
+      "source_workflow_abstraction": {
+        "de_identification_actions": [
+          {
+            "original_element": "source dataset/file identifiers",
+            "abstracted_as": "generic tabular classification dataset",
+            "reason": "remove source-specific traces"
+          },
+          {
+            "original_element": "source tool-level commands",
+            "abstracted_as": "split-preprocess-train-evaluate pattern",
+            "reason": "require strategy assimilation instead of command copy"
+          }
+        ],
+        "transferable_principles": [
+          "split-before-preprocess anti-leakage discipline",
+          "imbalance-aware evaluation and tuning"
+        ],
+        "decision_rationales": [
+          "because leakage invalidates model assessment, preprocessing must be train-fitted only"
+        ],
+        "switch_conditions": [
+          "if class imbalance is high, apply class-weighting/threshold tuning; otherwise use default settings"
+        ],
+        "failure_modes_or_cautions": [
+          "full-dataset preprocessing before split inflates test performance"
+        ]
+      },
+      "prepended_guidance_block": "[Abstracted Experience Guidance]\n- Principle 1: Split before any learned preprocessing to protect the test boundary, because leakage can falsely inflate classification quality.\n- Principle 2: Treat class balance and metric choice together; evaluate with imbalance-aware metrics when class frequencies are skewed.\n- Decision rationale: Generalization quality is trustworthy only when feature processing is fitted on training data and transferred unchanged to test data.\n- Switch condition: If class imbalance is substantial, prefer class-weighting or threshold-aware tuning; otherwise default optimization is usually sufficient.\n- Caution: A frequent failure mode is fitting scalers/encoders on full data prior to split.",
+      "target_task_selection_note": {
+        "target_family": "M",
+        "target_subtype": "Classfication",
+        "why_this_is_same_family": "Target stays in the same narrow family as the source workflow.",
+        "why_direct_copy_should_not_work": "Source-specific identifiers, commands, and outputs are removed; only transferable strategy remains."
+      },
+      "expected_e1_mechanism": {
+        "why_the_agent_must_abstract": "The block gives strategic constraints rather than executable recipe details.",
+        "which_parts_are_transferable": [
+          "split-before-preprocess anti-leakage discipline",
+          "imbalance-aware evaluation and tuning"
+        ],
+        "which_parts_were_intentionally_removed_to_prevent_copying": [
+          "source dataset/file identifiers",
+          "source exact commands and numeric outputs"
+        ]
+      },
+      "non_targets_check": {
+        "P_change": "none",
+        "R_change": "none",
+        "A_change": "none",
+        "E2_change": "minimal",
+        "justification": "No new branch-heavy workflow, ambiguity, or artifact burden added; only guidance abstraction added."
+      },
+      "grading_preservation_note": {
+        "is_still_verifiable": true,
+        "why_the_guidance_does_not_leak_the_answer": "Guidance is de-identified and excludes target-specific outputs."
+      },
+      "workflow_reference": {
+        "workflow_memory_index": 115,
+        "workflow_memory_Index": 243,
+        "task_abbr": "Classfication",
+        "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"diabetes.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a testing set, maintaining the \"Target\" column as the label.\n\n2. **Goal**: Perform feature selection based on correlation with the label column.\n    - **Tool**: featureselect\n    - **Input**: train_csv_file, test_csv_file, \"Target\", n (number of features to select)\n    - **Output**: train_result_file, test_result_file\n    - **Description**: This tool will select the top n features correlated with the \"Target\" column from the training set and filter the test set accordingly.\n\n3. **Goal**: Build classifiers using the training set and predict on the test set.\n    - **Tool**: logistic\n    - **Input**: train_result_file, test_result_file, \"Target\"\n    - **Output**: logistic_predictions_file\n    - **Description**: This tool will train a Logistic Regression classifier on the training set and predict the labels for the test set.\n\n4. **Goal**: B"
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0116/files/diabetes.csv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "Classfication",
+        "task": "Classification",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.02,
+        "milestone_count": 5,
+        "step_count": 5
+      }
+    },
+    {
+      "id": "biomed_aqa_132",
+      "source_question_id": "biomed_aqa_131",
+      "original_question": "I have a regression dataset {{diabetes.csv}}, and the \"Target\" column of the dataset corresponds to the results. Please use an appropriate algorithm to train and test.",
+      "rewritten_question": "[Abstracted Experience Guidance]\n- Principle 1: Use a leakage-safe regression pipeline (split first, fit transforms on train only, evaluate on held-out data).\n- Principle 2: Pair feature selection with residual/error inspection, because good in-sample fit can still hide poor generalization.\n- Decision rationale: Model adequacy should be judged by out-of-sample error behavior, not training fit alone.\n- Switch condition: If residual pattern remains close to linear and stable, keep a simple model; otherwise move to a more flexible regressor.\n- Caution: Common failures include reporting only training metrics and ignoring outlier-driven error spikes.\n\n[Target Task]\nI have a regression dataset {{diabetes.csv}}, and the \"Target\" column of the dataset corresponds to the results. Please use an appropriate algorithm to train and test.",
+      "edit_summary": {
+        "target_dimension": "E1",
+        "edit_intent": "Prepend de-identified transferable guidance distilled from successful same-family workflow.",
+        "same_family_rationale": "source and target are both Regression tasks in broad class M.",
+        "risk_of_P_inflation": "minimal",
+        "risk_of_R_inflation": "none",
+        "risk_of_A_inflation": "none",
+        "why_core_task_is_preserved": "Task objective, domain, and expected outputs are unchanged; only guidance context is added."
+      },
+      "source_workflow_abstraction": {
+        "de_identification_actions": [
+          {
+            "original_element": "source dataset-specific naming",
+            "abstracted_as": "generic tabular regression dataset",
+            "reason": "prevent answer leakage"
+          },
+          {
+            "original_element": "source concrete execution steps",
+            "abstracted_as": "model-agnostic supervised workflow",
+            "reason": "retain transferable structure"
+          }
+        ],
+        "transferable_principles": [
+          "split->select->fit->evaluate pipeline skeleton",
+          "residual-informed model adequacy checks"
+        ],
+        "decision_rationales": [
+          "because training fit can be misleading, rely on held-out error behavior for model decisions"
+        ],
+        "switch_conditions": [
+          "if residuals are simple and stable keep linear baseline, else switch to flexible model"
+        ],
+        "failure_modes_or_cautions": [
+          "training-only reporting and unhandled outliers degrade reliability"
+        ]
+      },
+      "prepended_guidance_block": "[Abstracted Experience Guidance]\n- Principle 1: Use a leakage-safe regression pipeline (split first, fit transforms on train only, evaluate on held-out data).\n- Principle 2: Pair feature selection with residual/error inspection, because good in-sample fit can still hide poor generalization.\n- Decision rationale: Model adequacy should be judged by out-of-sample error behavior, not training fit alone.\n- Switch condition: If residual pattern remains close to linear and stable, keep a simple model; otherwise move to a more flexible regressor.\n- Caution: Common failures include reporting only training metrics and ignoring outlier-driven error spikes.",
+      "target_task_selection_note": {
+        "target_family": "M",
+        "target_subtype": "Regression",
+        "why_this_is_same_family": "Target stays in the same narrow family as the source workflow.",
+        "why_direct_copy_should_not_work": "Source-specific identifiers, commands, and outputs are removed; only transferable strategy remains."
+      },
+      "expected_e1_mechanism": {
+        "why_the_agent_must_abstract": "The block gives strategic constraints rather than executable recipe details.",
+        "which_parts_are_transferable": [
+          "split->select->fit->evaluate pipeline skeleton",
+          "residual-informed model adequacy checks"
+        ],
+        "which_parts_were_intentionally_removed_to_prevent_copying": [
+          "source dataset/file identifiers",
+          "source exact commands and numeric outputs"
+        ]
+      },
+      "non_targets_check": {
+        "P_change": "none",
+        "R_change": "none",
+        "A_change": "none",
+        "E2_change": "minimal",
+        "justification": "No new branch-heavy workflow, ambiguity, or artifact burden added; only guidance abstraction added."
+      },
+      "grading_preservation_note": {
+        "is_still_verifiable": true,
+        "why_the_guidance_does_not_leak_the_answer": "Guidance is de-identified and excludes target-specific outputs."
+      },
+      "workflow_reference": {
+        "workflow_memory_index": 131,
+        "workflow_memory_Index": 255,
+        "task_abbr": "Regression",
+        "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"diabetes.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a testing set based on the default ratio of 0.8-0.2, maintaining the \"Target\" column as the label.\n\n2. **Goal**: Perform feature selection to identify features highly correlated with the target column.\n    - **Tool**: featureselect\n    - **Input**: train_csv_file, test_csv_file, \"Target\", n (where n is the number of features to select)\n    - **Output**: train_result_file, test_result_file\n    - **Description**: This tool will filter the features in both the training and testing sets based on the selected features that are highly correlated with the \"Target\" column.\n\n3. **Goal**: Train a linear regression model using the selected features.\n    - **Tool**: regression\n    - **Input**: train_result_file, test_result_file, \"Target\"\n    - **Output**: result_csv_file\n    - **Description**: This tool will train a linear regression model on the "
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0132/files/diabetes.csv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Regression",
+        "task_abbr": "Regression",
+        "task": "Regression",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.18,
+        "milestone_count": 4,
+        "step_count": 4
+      }
+    },
+    {
+      "id": "biomed_aqa_162",
+      "source_question_id": "biomed_aqa_128",
+      "original_question": "I have a dataset {heart_disease.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform linear discriminant analysis for dimensionality reduction on this dataset.",
+      "rewritten_question": "[Abstracted Experience Guidance]\n- Principle 1: Standardize feature scale consistently across train/test before linear discriminative modeling, because boundary quality is scale-sensitive.\n- Principle 2: Validate discriminative performance on held-out samples and inspect confusion structure, not only aggregate score.\n- Decision rationale: Stable class separation depends on both scaling consistency and balanced decision behavior across classes.\n- Switch condition: If one class is persistently misclassified, adjust class handling or preprocessing robustness before final fit.\n- Caution: A typical failure mode is train/test preprocessing mismatch, which shifts decision boundaries unexpectedly.\n\n[Target Task]\nI have a dataset {heart_disease.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform linear discriminant analysis for dimensionality reduction on this dataset.",
+      "edit_summary": {
+        "target_dimension": "E1",
+        "edit_intent": "Prepend de-identified transferable guidance distilled from successful same-family workflow.",
+        "same_family_rationale": "source and target are both 线性判别分析 tasks in broad class M.",
+        "risk_of_P_inflation": "minimal",
+        "risk_of_R_inflation": "none",
+        "risk_of_A_inflation": "none",
+        "why_core_task_is_preserved": "Task objective, domain, and expected outputs are unchanged; only guidance context is added."
+      },
+      "source_workflow_abstraction": {
+        "de_identification_actions": [
+          {
+            "original_element": "source file/column tokens",
+            "abstracted_as": "generic feature matrix and class label",
+            "reason": "de-identify source details"
+          },
+          {
+            "original_element": "source algorithm invocation details",
+            "abstracted_as": "linear discriminative modeling stage",
+            "reason": "keep method family but avoid recipe copying"
+          }
+        ],
+        "transferable_principles": [
+          "scale-consistent discriminative pipeline",
+          "confusion-pattern-based validation"
+        ],
+        "decision_rationales": [
+          "because decision boundaries are scale-sensitive, consistent preprocessing is required end-to-end"
+        ],
+        "switch_conditions": [
+          "if one class dominates errors, refine class handling/preprocessing; otherwise keep default linear discriminant flow"
+        ],
+        "failure_modes_or_cautions": [
+          "preprocessing mismatch between train and test causes unstable boundaries"
+        ]
+      },
+      "prepended_guidance_block": "[Abstracted Experience Guidance]\n- Principle 1: Standardize feature scale consistently across train/test before linear discriminative modeling, because boundary quality is scale-sensitive.\n- Principle 2: Validate discriminative performance on held-out samples and inspect confusion structure, not only aggregate score.\n- Decision rationale: Stable class separation depends on both scaling consistency and balanced decision behavior across classes.\n- Switch condition: If one class is persistently misclassified, adjust class handling or preprocessing robustness before final fit.\n- Caution: A typical failure mode is train/test preprocessing mismatch, which shifts decision boundaries unexpectedly.",
+      "target_task_selection_note": {
+        "target_family": "M",
+        "target_subtype": "线性判别分析",
+        "why_this_is_same_family": "Target stays in the same narrow family as the source workflow.",
+        "why_direct_copy_should_not_work": "Source-specific identifiers, commands, and outputs are removed; only transferable strategy remains."
+      },
+      "expected_e1_mechanism": {
+        "why_the_agent_must_abstract": "The block gives strategic constraints rather than executable recipe details.",
+        "which_parts_are_transferable": [
+          "scale-consistent discriminative pipeline",
+          "confusion-pattern-based validation"
+        ],
+        "which_parts_were_intentionally_removed_to_prevent_copying": [
+          "source dataset/file identifiers",
+          "source exact commands and numeric outputs"
+        ]
+      },
+      "non_targets_check": {
+        "P_change": "none",
+        "R_change": "none",
+        "A_change": "none",
+        "E2_change": "minimal",
+        "justification": "No new branch-heavy workflow, ambiguity, or artifact burden added; only guidance abstraction added."
+      },
+      "grading_preservation_note": {
+        "is_still_verifiable": true,
+        "why_the_guidance_does_not_leak_the_answer": "Guidance is de-identified and excludes target-specific outputs."
+      },
+      "workflow_reference": {
+        "workflow_memory_index": 128,
+        "workflow_memory_Index": 125,
+        "task_abbr": "线性判别分析",
+        "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"lung_cancer.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a test set based on the default ratio of 0.8-0.2.\n\n2. **Goal**: Classify the test set using linear discriminant analysis.\n    - **Tool**: lda\n    - **Input**: train_csv_file, test_csv_file, \"Target\"\n    - **Output**: result_csv_file\n    - **Description**: This tool will train the LDA model on the training set and predict the classifications for the test set, adding a \"Predicted\" column to the output file.\n\n3. **Goal**: Check the number of unique values in the 'Target' column.\n    - **Tool**: None (Custom Implementation)\n    - **Input**: result_csv_file\n    - **Output**: unique_classes\n    - **Description**: This step will determine the number of unique classes in the 'Target' column of the result file.\n\n4. **Goal**: Calculate the evaluation metrics for the LDA predictions if applicable.\n    - **Tool**: calculate_classify_metrics\n    "
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0162/files/heart_disease.csv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "线性判别分析",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.48,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    },
+    {
+      "id": "biomed_aqa_62",
+      "source_question_id": "biomed_aqa_61",
+      "original_question": "{Expression profile data {exp_COAD.csv}, corresponding grouping information {group_COAD.csv}, calculate the differential genes between groups}",
+      "rewritten_question": "[Abstracted Experience Guidance]\n- Principle 1: Define contrast groups explicitly before differential testing, because ambiguous grouping invalidates downstream interpretation.\n- Principle 2: Keep both effect-size and significance filters in the selection step to avoid unstable candidate sets.\n- Decision rationale: Differential candidates are reliable only when directionality and statistical support are jointly enforced.\n- Switch condition: If candidate count is too small for downstream use, relax thresholds gradually and record the applied criteria.\n- Caution: A common failure is using only p-value or only fold-change filters, which yields biased candidate lists.\n\n[Target Task]\n{Expression profile data {exp_COAD.csv}, corresponding grouping information {group_COAD.csv}, calculate the differential genes between groups}",
+      "edit_summary": {
+        "target_dimension": "E1",
+        "edit_intent": "Prepend de-identified transferable guidance distilled from successful same-family workflow.",
+        "same_family_rationale": "source and target are both DEG tasks in broad class O.",
+        "risk_of_P_inflation": "minimal",
+        "risk_of_R_inflation": "none",
+        "risk_of_A_inflation": "none",
+        "why_core_task_is_preserved": "Task objective, domain, and expected outputs are unchanged; only guidance context is added."
+      },
+      "source_workflow_abstraction": {
+        "de_identification_actions": [
+          {
+            "original_element": "source expression/group filenames",
+            "abstracted_as": "generic expression matrix and grouping table",
+            "reason": "remove source-specific references"
+          },
+          {
+            "original_element": "source exact cutoff values",
+            "abstracted_as": "adaptive thresholding policy",
+            "reason": "preserve strategy without leaking constants"
+          }
+        ],
+        "transferable_principles": [
+          "explicit contrast definition",
+          "joint effect-size + significance filtering"
+        ],
+        "decision_rationales": [
+          "because single-criterion filtering is unstable, combine direction and significance for candidate reliability"
+        ],
+        "switch_conditions": [
+          "if candidate set is too sparse, relax thresholds conservatively and document changes"
+        ],
+        "failure_modes_or_cautions": [
+          "single-criterion filtering yields unreliable DEG sets"
+        ]
+      },
+      "prepended_guidance_block": "[Abstracted Experience Guidance]\n- Principle 1: Define contrast groups explicitly before differential testing, because ambiguous grouping invalidates downstream interpretation.\n- Principle 2: Keep both effect-size and significance filters in the selection step to avoid unstable candidate sets.\n- Decision rationale: Differential candidates are reliable only when directionality and statistical support are jointly enforced.\n- Switch condition: If candidate count is too small for downstream use, relax thresholds gradually and record the applied criteria.\n- Caution: A common failure is using only p-value or only fold-change filters, which yields biased candidate lists.",
+      "target_task_selection_note": {
+        "target_family": "O",
+        "target_subtype": "DEG",
+        "why_this_is_same_family": "Target stays in the same narrow family as the source workflow.",
+        "why_direct_copy_should_not_work": "Source-specific identifiers, commands, and outputs are removed; only transferable strategy remains."
+      },
+      "expected_e1_mechanism": {
+        "why_the_agent_must_abstract": "The block gives strategic constraints rather than executable recipe details.",
+        "which_parts_are_transferable": [
+          "explicit contrast definition",
+          "joint effect-size + significance filtering"
+        ],
+        "which_parts_were_intentionally_removed_to_prevent_copying": [
+          "source dataset/file identifiers",
+          "source exact commands and numeric outputs"
+        ]
+      },
+      "non_targets_check": {
+        "P_change": "none",
+        "R_change": "none",
+        "A_change": "none",
+        "E2_change": "minimal",
+        "justification": "No new branch-heavy workflow, ambiguity, or artifact burden added; only guidance abstraction added."
+      },
+      "grading_preservation_note": {
+        "is_still_verifiable": true,
+        "why_the_guidance_does_not_leak_the_answer": "Guidance is de-identified and excludes target-specific outputs."
+      },
+      "workflow_reference": {
+        "workflow_memory_index": 61,
+        "workflow_memory_Index": 219,
+        "task_abbr": "DEG",
+        "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Calculate differentially expressed genes from gene expression data and grouping information.\n    - **Tool**: deg\n    - **Input**: \n        - exp_file: \"exp_COAD.csv\" (gene expression profile data file)\n        - group_file: \"group_COAD.csv\" (grouping information file)\n    - **Output**: \"DEG.csv\" (file containing the set of genes significantly differentially expressed under the two experimental conditions)\n    - **Description**: The DEG tool will analyze the gene expression data and the corresponding grouping information to identify and extract the differentially expressed genes between the specified groups.\n]"
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0062/files/exp_COAD.csv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0062/files/group_COAD.csv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "DEG",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.26,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    },
+    {
+      "id": "biomed_aqa_157",
+      "source_question_id": "biomed_aqa_152",
+      "original_question": "I have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use AGNES for clustering analysis.",
+      "rewritten_question": "[Abstracted Experience Guidance]\n- Principle 1: Run clustering only after consistent feature scaling and basic noise inspection, because distance-based structure is sensitive to scale/noise.\n- Principle 2: Check cluster stability under nearby parameter settings instead of trusting a single run.\n- Decision rationale: Robust cluster interpretation requires reproducible structure, not one-shot partitioning.\n- Switch condition: If cluster assignment changes strongly across close settings, prioritize data conditioning or parameter revision before final output.\n- Caution: Frequent failures include using raw unscaled features and over-interpreting unstable small clusters.\n\n[Target Task]\nI have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use AGNES for clustering analysis.",
+      "edit_summary": {
+        "target_dimension": "E1",
+        "edit_intent": "Prepend de-identified transferable guidance distilled from successful same-family workflow.",
+        "same_family_rationale": "source and target are both AGNES聚类 tasks in broad class M.",
+        "risk_of_P_inflation": "minimal",
+        "risk_of_R_inflation": "none",
+        "risk_of_A_inflation": "none",
+        "why_core_task_is_preserved": "Task objective, domain, and expected outputs are unchanged; only guidance context is added."
+      },
+      "source_workflow_abstraction": {
+        "de_identification_actions": [
+          {
+            "original_element": "source dataset and cluster labels",
+            "abstracted_as": "generic tabular feature set and cluster assignments",
+            "reason": "avoid source answer leakage"
+          },
+          {
+            "original_element": "source algorithm-specific operation details",
+            "abstracted_as": "hierarchical clustering workflow texture",
+            "reason": "retain transferable experience"
+          }
+        ],
+        "transferable_principles": [
+          "scale->cluster->stability-check sequence",
+          "parameter sensitivity sanity checking"
+        ],
+        "decision_rationales": [
+          "because distance structure is fragile, stability checks are needed before accepting clusters"
+        ],
+        "switch_conditions": [
+          "if clustering is unstable across close settings, revise conditioning/parameters; otherwise finalize"
+        ],
+        "failure_modes_or_cautions": [
+          "unscaled/noisy features create artificial cluster structure"
+        ]
+      },
+      "prepended_guidance_block": "[Abstracted Experience Guidance]\n- Principle 1: Run clustering only after consistent feature scaling and basic noise inspection, because distance-based structure is sensitive to scale/noise.\n- Principle 2: Check cluster stability under nearby parameter settings instead of trusting a single run.\n- Decision rationale: Robust cluster interpretation requires reproducible structure, not one-shot partitioning.\n- Switch condition: If cluster assignment changes strongly across close settings, prioritize data conditioning or parameter revision before final output.\n- Caution: Frequent failures include using raw unscaled features and over-interpreting unstable small clusters.",
+      "target_task_selection_note": {
+        "target_family": "M",
+        "target_subtype": "AGNES聚类",
+        "why_this_is_same_family": "Target stays in the same narrow family as the source workflow.",
+        "why_direct_copy_should_not_work": "Source-specific identifiers, commands, and outputs are removed; only transferable strategy remains."
+      },
+      "expected_e1_mechanism": {
+        "why_the_agent_must_abstract": "The block gives strategic constraints rather than executable recipe details.",
+        "which_parts_are_transferable": [
+          "scale->cluster->stability-check sequence",
+          "parameter sensitivity sanity checking"
+        ],
+        "which_parts_were_intentionally_removed_to_prevent_copying": [
+          "source dataset/file identifiers",
+          "source exact commands and numeric outputs"
+        ]
+      },
+      "non_targets_check": {
+        "P_change": "none",
+        "R_change": "none",
+        "A_change": "none",
+        "E2_change": "minimal",
+        "justification": "No new branch-heavy workflow, ambiguity, or artifact burden added; only guidance abstraction added."
+      },
+      "grading_preservation_note": {
+        "is_still_verifiable": true,
+        "why_the_guidance_does_not_leak_the_answer": "Guidance is de-identified and excludes target-specific outputs."
+      },
+      "workflow_reference": {
+        "workflow_memory_index": 152,
+        "workflow_memory_Index": 146,
+        "task_abbr": "HClust聚类",
+        "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the dataset from the file hcluster.tsv and convert it to CSV format for clustering analysis.\n    - **Tool**: None\n    - **Input**: \"hcluster.tsv\"\n    - **Output**: data_csv_file (path to the converted CSV file)\n    - **Description**: Read the hcluster.tsv file, extract the feature columns while skipping the ID column, and save the result as a CSV file.\n\n2. **Goal**: Perform hierarchical clustering analysis on the feature columns.\n    - **Tool**: hierarchical\n    - **Input**: data_csv_file (path to the CSV file containing feature columns), n_clusters (number of clusters to be defined by the user)\n    - **Output**: result_csv_file (path to the clustering result file), silhouette (average silhouette score)\n    - **Description**: Use the hierarchical clustering algorithm directly on the validated feature data to generate clusters and output the results along with a silhouette score for evaluation.\n]"
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0157/files/hcluster.tsv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Clustering",
+        "task_abbr": "AGNES聚类",
+        "task": "Clustering",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.43,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  ]
+}

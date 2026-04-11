@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-26-q5",
+      "question": "In P. aeruginosa KEGG pathway enrichment analysis, how many pathways are significantly enriched under iron-depleted conditions but show no significant enrichment under innate media conditions? Significantly enriched pathways are defined as have an absolute log fold change greater than 1.5 and an adjusted p-values less than 0.05.",
+      "data": [],
+      "answer": "3",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-26-q5",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "5",
+          "6",
+          "1"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-26-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Compare pathway enrichment under two conditions: iron-depleted vs innate media",
+          "Significantly enriched pathways defined by absolute log fold change > 1.5 and adjusted p-value < 0.05"
+        ],
+        "reason": "The task requires decomposing the goal into at least two steps: (1) identify significantly enriched pathways under each condition using explicit thresholds, and (2) compare the sets to find those unique to iron-depleted. The workflow is not a single direct statement, but the method is standard and there is no explicit evidence of major branching or multiple defensible methods."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Explicit thresholds: absolute log fold change > 1.5, adjusted p-value < 0.05",
+          "Output is a single integer (number of pathways), with strict definition of significance"
+        ],
+        "reason": "There is clear specification of thresholds for significance, and the output is a single integer, but the answer depends on applying these explicit criteria. No evidence of multiple artifact types or complex format constraints."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Significance criteria are explicitly defined",
+          "No data or schema provided; no evidence of ambiguity or repair need"
+        ],
+        "reason": "The question is well-specified with explicit criteria and no evidence of semantic or data representation ambiguity. No repair is needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no evidence of transfer or reuse of prior experience; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task requires a moderate level of planning and action load due to the need to apply explicit significance criteria and compare pathway enrichment between two conditions. There is little to no reflection or evolution load, as the question is well-specified and does not involve transfer from prior experience.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2240,
+        "completion_tokens": 563,
+        "total_tokens": 2803
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Compare pathway enrichment under two conditions: iron-depleted vs innate media",
+            "Significantly enriched pathways defined by absolute log fold change > 1.5 and adjusted p-value < 0.05"
+          ],
+          "reason": "The task requires decomposing the goal into at least two steps: (1) identify significantly enriched pathways under each condition using explicit thresholds, and (2) compare the sets to find those unique to iron-depleted. The workflow is not a single direct statement, but the method is standard and there is no explicit evidence of major branching or multiple defensible methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Explicit thresholds: absolute log fold change > 1.5, adjusted p-value < 0.05",
+            "Output is a single integer (number of pathways), with strict definition of significance"
+          ],
+          "reason": "There is clear specification of thresholds for significance, and the output is a single integer, but the answer depends on applying these explicit criteria. No evidence of multiple artifact types or complex format constraints.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Significance criteria are explicitly defined",
+            "No data or schema provided; no evidence of ambiguity or repair need"
+          ],
+          "reason": "The question is well-specified with explicit criteria and no evidence of semantic or data representation ambiguity. No repair is needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no evidence of transfer or reuse of prior experience; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a moderate level of planning and action load due to the need to apply explicit significance criteria and compare pathway enrichment between two conditions. There is little to no reflection or evolution load, as the question is well-specified and does not involve transfer from prior experience.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:00:43.726617+00:00"
+  }
+}

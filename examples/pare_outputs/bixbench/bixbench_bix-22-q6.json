@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-22-q6",
+      "question": "When examining protein-coding genes only, what is the pearson correlation coefficient between gene length and gene expression?",
+      "data": [],
+      "answer": "(0.3,0.4)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-22-q6",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.1,0.2)",
+          "(0.2,0.3)",
+          "(0.4,0.5)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-22-q6",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "When examining protein-coding genes only",
+          "pearson correlation coefficient between gene length and gene expression"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires filtering for protein-coding genes and then computing a Pearson correlation between two properties. However, the method is standard and there is no evidence of branching or multiple defensible methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "pearson correlation coefficient",
+          "answer is a numeric range (0.3,0.4)",
+          "eval_mode: range_verifier"
+        ],
+        "reason": "There is a weak artifact realization load: the output is a numeric value (Pearson correlation) and must fall within a specified range. The format is simple and there is no evidence of multiple output types or strict schema, but the range verifier adds some parameterization sensitivity."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No evidence of ambiguity or schema mismatch"
+        ],
+        "reason": "There is almost no reflection load. The question is clear and unambiguous, and there is no evidence of semantic or representational repair required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "No evidence of experience assimilation or transfer; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow (filtering and correlation calculation) and requires a numeric output within a specified range, but does not present significant planning, artifact, or repair complexity. There is no transfer or evolution load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2221,
+        "completion_tokens": 489,
+        "total_tokens": 2710
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "When examining protein-coding genes only",
+            "pearson correlation coefficient between gene length and gene expression"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires filtering for protein-coding genes and then computing a Pearson correlation between two properties. However, the method is standard and there is no evidence of branching or multiple defensible methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "pearson correlation coefficient",
+            "answer is a numeric range (0.3,0.4)",
+            "eval_mode: range_verifier"
+          ],
+          "reason": "There is a weak artifact realization load: the output is a numeric value (Pearson correlation) and must fall within a specified range. The format is simple and there is no evidence of multiple output types or strict schema, but the range verifier adds some parameterization sensitivity.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No evidence of ambiguity or schema mismatch"
+          ],
+          "reason": "There is almost no reflection load. The question is clear and unambiguous, and there is no evidence of semantic or representational repair required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "No evidence of experience assimilation or transfer; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow (filtering and correlation calculation) and requires a numeric output within a specified range, but does not present significant planning, artifact, or repair complexity. There is no transfer or evolution load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:58:34.397098+00:00"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-27-q2",
+      "question": "Perform hierarchical clustering with 3 clusters using a bootstrap consensus approach (50 iterations, 70/30 train-test splits with logistic regression for label prediction) and determine how many samples are consistently classified into the same cluster across both training and test consensus clustering.",
+      "data": [],
+      "answer": "(160,180)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-27-q2",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(40,60)",
+          "(70,90)",
+          "(10,30)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-27-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 4,
+        "evidence": [
+          "Perform hierarchical clustering with 3 clusters using a bootstrap consensus approach (50 iterations, 70/30 train-test splits with logistic regression for label prediction)",
+          "determine how many samples are consistently classified into the same cluster across both training and test consensus clustering"
+        ],
+        "reason": "The task requires structuring a multi-stage workflow: (1) hierarchical clustering, (2) bootstrap consensus (50 iterations), (3) repeated 70/30 train-test splits, (4) logistic regression for label prediction, and (5) consistency assessment across consensus clusterings. The workflow is not a single direct step and involves chaining unsupervised and supervised methods. There is also branching in how consensus is defined and how consistency is measured, which could materially affect the output."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "determine how many samples are consistently classified into the same cluster across both training and test consensus clustering",
+          "bootstrap consensus approach (50 iterations, 70/30 train-test splits)"
+        ],
+        "reason": "The output is a count of consistently classified samples, which is a single numeric artifact, but the process involves multiple iterations and splits, requiring aggregation and possibly intermediate outputs. There is some parameterization (number of clusters, iterations, split ratio), but no explicit format or strict verification constraints are stated."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "consistently classified into the same cluster across both training and test consensus clustering"
+        ],
+        "reason": "There is some ambiguity in how 'consistently classified' is defined (e.g., what threshold or rule is used for consistency across consensus clusterings), but the rest of the task is reasonably well-specified. No evidence of data schema or representation repair is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context is present in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context provided."
+      }
+    },
+    "overall_summary": "This task has high planning load due to the need to structure a multi-stage workflow combining clustering, bootstrapping, train-test splits, and supervised prediction, with branching in consensus and consistency definitions. Action load is moderate due to iterative aggregation but lacks strict output specification. Reflection load is weak to moderate, mainly from ambiguity in the definition of 'consistently classified.' There is no evolution load as no transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2233,
+        "completion_tokens": 670,
+        "total_tokens": 2903
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 4,
+          "evidence": [
+            "Perform hierarchical clustering with 3 clusters using a bootstrap consensus approach (50 iterations, 70/30 train-test splits with logistic regression for label prediction)",
+            "determine how many samples are consistently classified into the same cluster across both training and test consensus clustering"
+          ],
+          "reason": "The task requires structuring a multi-stage workflow: (1) hierarchical clustering, (2) bootstrap consensus (50 iterations), (3) repeated 70/30 train-test splits, (4) logistic regression for label prediction, and (5) consistency assessment across consensus clusterings. The workflow is not a single direct step and involves chaining unsupervised and supervised methods. There is also branching in how consensus is defined and how consistency is measured, which could materially affect the output.",
+          "subdimension_breakdown": {
+            "P1": 4,
+            "P2": 4
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "determine how many samples are consistently classified into the same cluster across both training and test consensus clustering",
+            "bootstrap consensus approach (50 iterations, 70/30 train-test splits)"
+          ],
+          "reason": "The output is a count of consistently classified samples, which is a single numeric artifact, but the process involves multiple iterations and splits, requiring aggregation and possibly intermediate outputs. There is some parameterization (number of clusters, iterations, split ratio), but no explicit format or strict verification constraints are stated.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "consistently classified into the same cluster across both training and test consensus clustering"
+          ],
+          "reason": "There is some ambiguity in how 'consistently classified' is defined (e.g., what threshold or rule is used for consistency across consensus clusterings), but the rest of the task is reasonably well-specified. No evidence of data schema or representation repair is present.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context is present in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task has high planning load due to the need to structure a multi-stage workflow combining clustering, bootstrapping, train-test splits, and supervised prediction, with branching in consensus and consistency definitions. Action load is moderate due to iterative aggregation but lacks strict output specification. Reflection load is weak to moderate, mainly from ambiguity in the definition of 'consistently classified.' There is no evolution load as no transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:00:59.612498+00:00"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_232",
+      "question": "There is a data file area.tsv, the \"group\" column is for grouping, containing three groups: Group1, Group2, and Group3. Please use the \"xaxis.value\" column as the x-axis and the \"yaxis.value\" column as the y-axis to draw an area chart that includes the three groups: Group1, Group2, and Group3.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0232/files/area.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"area_area.jpg\", \"path\": \"downloaded_files\\\\index_0232\\\\milestone\\\\area_area.jpg\"}], \"milestones\": [\"Generate area map\", \"The result file for saving the image is correct.\"], \"steps\": [\"Draw an area chart\", \"Check whether the result file for saving the image is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Basic plot",
+        "task_abbr": "Area plot",
+        "task": "Basic plot",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.01,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_232",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "The question requires using three columns (group, xaxis.value, yaxis.value) to plot an area chart for three groups.",
+          "Milestones and steps: 'Draw an area chart', 'Check whether the result file for saving the image is correct.'"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must map columns to axes and groupings, but the workflow is standard and linear (read file, plot, save). No evidence of branching decisions or multiple valid methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output artifact: area_area.jpg (image file).",
+          "Explicit instruction to use specific columns for axes and groupings.",
+          "Milestone: 'The result file for saving the image is correct.'"
+        ],
+        "reason": "There is a single output artifact (image file) with a specified name and path, and explicit mapping of columns to axes. No evidence of strict format constraints, parameterization, or multiple output types."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Column names and group values are explicitly specified.",
+          "No evidence of missing, ambiguous, or inconsistent data/semantics."
+        ],
+        "reason": "The task is well-specified with clear column names and group values. No evidence of semantic or representational ambiguity requiring repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This is a straightforward plotting task with explicit column mappings and a single output artifact. There is minor workflow structuring and artifact realization load, but no evidence of branching, strict parameterization, semantic ambiguity, or transfer context.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2399,
+        "completion_tokens": 546,
+        "total_tokens": 2945
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "The question requires using three columns (group, xaxis.value, yaxis.value) to plot an area chart for three groups.",
+            "Milestones and steps: 'Draw an area chart', 'Check whether the result file for saving the image is correct.'"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must map columns to axes and groupings, but the workflow is standard and linear (read file, plot, save). No evidence of branching decisions or multiple valid methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output artifact: area_area.jpg (image file).",
+            "Explicit instruction to use specific columns for axes and groupings.",
+            "Milestone: 'The result file for saving the image is correct.'"
+          ],
+          "reason": "There is a single output artifact (image file) with a specified name and path, and explicit mapping of columns to axes. No evidence of strict format constraints, parameterization, or multiple output types.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Column names and group values are explicitly specified.",
+            "No evidence of missing, ambiguous, or inconsistent data/semantics."
+          ],
+          "reason": "The task is well-specified with clear column names and group values. No evidence of semantic or representational ambiguity requiring repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward plotting task with explicit column mappings and a single output artifact. There is minor workflow structuring and artifact realization load, but no evidence of branching, strict parameterization, semantic ambiguity, or transfer context.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:29:50.233658+00:00"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-22-q1",
+      "question": "After calculating Pearson correlations between gene length and average gene expression levels for protein-coding genes, in which immune cell type (CD4, CD8, CD14, or CD19) is the correlation the weakest (lowest absolute correlation value)?",
+      "data": [],
+      "answer": "CD14",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-22-q1",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "CD8",
+          "CD4",
+          "CD19"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-22-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "After calculating Pearson correlations between gene length and average gene expression levels for protein-coding genes",
+          "in which immune cell type (CD4, CD8, CD14, or CD19) is the correlation the weakest (lowest absolute correlation value)?"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires calculating Pearson correlations for each cell type, which implies a simple dependency chain (group by cell type, compute correlation, compare values). However, there is no evidence of significant branching or multiple reasonable methods; the method (Pearson correlation) and comparison metric (absolute value) are specified."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "mcq",
+          "eval_mode: str_verifier",
+          "lowest absolute correlation value"
+        ],
+        "reason": "The output is a single categorical answer (cell type), and the evaluation is via string matching. There is some minor parameterization load due to the need to compute and compare absolute correlation values, but no explicit format or threshold constraints beyond standard MCQ output."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Pearson correlations between gene length and average gene expression levels for protein-coding genes"
+        ],
+        "reason": "There is a trace of semantic repair load in clarifying that the correlation is between gene length and average expression for each cell type, but the question is otherwise well-specified and unambiguous. No evidence of data or schema repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward MCQ task requiring calculation and comparison of Pearson correlations across four cell types. There is minor workflow structuring and parameterization load, but no significant branching, repair, or transfer requirements. The task is well-specified and does not require complex planning or artifact realization.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2228,
+        "completion_tokens": 580,
+        "total_tokens": 2808
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "After calculating Pearson correlations between gene length and average gene expression levels for protein-coding genes",
+            "in which immune cell type (CD4, CD8, CD14, or CD19) is the correlation the weakest (lowest absolute correlation value)?"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires calculating Pearson correlations for each cell type, which implies a simple dependency chain (group by cell type, compute correlation, compare values). However, there is no evidence of significant branching or multiple reasonable methods; the method (Pearson correlation) and comparison metric (absolute value) are specified.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "mcq",
+            "eval_mode: str_verifier",
+            "lowest absolute correlation value"
+          ],
+          "reason": "The output is a single categorical answer (cell type), and the evaluation is via string matching. There is some minor parameterization load due to the need to compute and compare absolute correlation values, but no explicit format or threshold constraints beyond standard MCQ output.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Pearson correlations between gene length and average gene expression levels for protein-coding genes"
+          ],
+          "reason": "There is a trace of semantic repair load in clarifying that the correlation is between gene length and average expression for each cell type, but the question is otherwise well-specified and unambiguous. No evidence of data or schema repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward MCQ task requiring calculation and comparison of Pearson correlations across four cell types. There is minor workflow structuring and parameterization load, but no significant branching, repair, or transfer requirements. The task is well-specified and does not require complex planning or artifact realization.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:57:32.050039+00:00"
+  }
+}

@@ -1,0 +1,821 @@
+{
+  "benchmark": "biodsbench-r",
+  "schema_version": "1.0.0",
+  "count": 26,
+  "records": [
+    {
+      "id": "biodsbench_r_33176622_3",
+      "question": "##Question##\nFilter genes in the data frame (named as variable 'DEGAll') based on p-value (PValue < 0.05) and absolute log2 fold change (abs(log2FoldChange) > 0.5). Use the 'clusterProfiler' package to map gene names from 'SYMBOL' to 'ENTREZID' using the bitr() function, referencing the genome data 'org.Hs.eg.db'. Save the selected genes in a data frame (named as variable 'selected_genes').\n\n##Task##\n1. Creates a dataframe named \"DEGAll\" based on \"results\" with log2 fold changes and p-values.\n2.  Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\n3. Perform gene ID conversion with bitr() to get Entrez IDs",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n\\nlibrary(org.Hs.eg.db)\\nlibrary(pathview)\\nlibrary(clusterProfiler)\\n# Load necessary libraries\\nlibrary(clusterProfiler)\\nlibrary(org.Hs.eg.db)\\n\\n# Create a DEGAll data frame with necessary columns for GO enrichment\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue\\n  )\\n\\n# Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\\nselected_genes <- DEGAll %>%\\n  filter(pValue < 0.05 & abs(log2FoldChange) > 0.5) %>%\\n  dplyr::select(Gene)\\n\\n# Perform gene ID conversion with bitr() to get Entrez IDs\\nhg<-bitr(selected_genes$Gene,fromType=\\\"SYMBOL\\\",toType=c(\\\"ENTREZID\\\"),OrgDb=\\\"org.Hs.eg.db\\\")\", \"test_cases\": \"ncol(DEGAll) == 7\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33176622_3",
+        "study_id": "33176622",
+        "question_id": "3",
+        "analysis_types": "['Enrichment & Pathway Analysis', 'Descriptive Statistics']",
+        "study_type": "Biomarkers",
+        "study_title": "Transcriptomics and Prognosis Analysis to Identify Critical Biomarkers in Invasive Breast Carcinoma",
+        "dataset_url": "CMOB/GS-BRCA",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33177247_5",
+      "question": "##Question##\nPerform k-means clustering for the given gene list ('IGF2BP3', 'KIAA1429', 'HNRNPC') with values of 'k' ranging from 2 to 9. Store the clustering results in the variable 'cluster_results' and extract the cluster assignments for each 'k' into the variable 'cluster_df'. Reshape the data using 'tidyr::gather' to create the variable 'melted_cluster_df'. Generate a color palette with enough colors and determine the order of samples within each cluster 'k' using the variable 'sample_order'. Merge this order information back into 'melted_cluster_df' and plot a tracking plot to visualize clustering results.\n\n##Task##\n1. Perform k-means clustering for k = 2 to 9 and store results.\n2. Extract cluster assignments for each k into a data frame.\n3. Combine all results into a single data frame.\n4. Use tidyr::gather to reshape data.\n5. Generate a color palette with enough colors.\n6. Determine the order of samples within each cluster k.\n7. Merge the order information back to `melted_cluster_df`.\n8. Plot the tracking plot with the corrected color scale and ordered samples.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/KIRP_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_KIRP.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(ggplot2)\\n\\n# Perform k-means clustering for k = 2 to 9 and store results\\ncluster_results <- lapply(2:9, function(k) {\\n  kmeans(clustering_data, centers = k, nstart = 25)\\n})\\n\\n# Extract cluster assignments for each k into a data frame\\ncluster_df <- lapply(seq_along(cluster_results), function(i) {\\n  data.frame(Sample = filtered_data$Sample, k = i, cluster = cluster_results[[i]]$cluster)\\n})\\n\\n# Combine all results into a single data frame\\ncluster_df <- do.call(rbind, cluster_df)\\n\\n# Use tidyr::gather to reshape data\\nmelted_cluster_df <- cluster_df %>%\\n  tidyr::gather(variable, value, -Sample, -k)\\n\\n# Generate a color palette with enough colors\\nnum_clusters <- length(unique(melted_cluster_df$value))\\ncolor_palette <- rainbow(num_clusters)\\n\\n# Determine the order of samples within each cluster k\\nsample_order <- melted_cluster_df %>%\\n  arrange(k, value) %>%\\n  group_by(k) %>%\\n  mutate(order = row_number()) %>%\\n  ungroup() %>%\\n  select(Sample, k, order)\\n\\n# Merge the order information back to melted_cluster_df\\nmelted_cluster_df <- merge(melted_cluster_df, sample_order, by = c(\\\"Sample\\\", \\\"k\\\"))\\n\\n# Plot the tracking plot with corrected color scale and ordered samples\\nggplot(melted_cluster_df, aes(x = interaction(variable, order, lex.order = TRUE), y = k, fill = as.factor(value))) +\\n  geom_tile() +\\n  scale_fill_manual(values = color_palette) +\\n  labs(title = \\\"Tracking Plot for K-means Clustering\\\",\\n       x = \\\"Samples\\\",\\n       y = \\\"Number of Clusters (k)\\\",\\n       fill = \\\"Cluster\\\") +\\n  theme_minimal() +\\n  theme(axis.text.x = element_blank(),  \\n        axis.title.x = element_blank(),  \\n        legend.position = \\\"bottom\\\")    \", \"test_cases\": \"nrow(melted_cluster_df) == 2184\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33177247_5",
+        "study_id": "33177247",
+        "question_id": "5",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Data Integration & Transformation']",
+        "study_type": "Molecular",
+        "study_title": "Prognostic risk signature based on the expression of three m6A RNA methylation regulatory genes in kidney renal papillary cell carcinoma",
+        "dataset_url": "CMOB/KIRP",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_34305920_4",
+      "question": "##Question##\nGenerate a heatmap that shows the expression of the top 10 genes with the highest variance across cancer types 0-3 using the 'expression_data_merged' data frame. Exclude sample names from the visualization and scale the rows to better visualize patterns. Use the 'pheatmap' package for this task.\n\n##Task##\n1. Extract data from the merged expression dataset for cancer types labeled 0 to 3.\n2. Compute the variance for each gene and select the top 10 genes with the highest variance.\n3. Filter the dataset to include only the top 10 genes, set row names to sample identifiers, and convert the data into a matrix format suitable for heatmap visualization. Save the output named \"expression_data_top_genes\".\n4. Generate a heatmap using the pheatmap package, with rows scaled by gene expression and sample names hidden from the visualization.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/Pan_cancer_mRNA.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/Pan_cancer_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"# Load necessary libraries\\nlibrary(pheatmap)  # pheatmap for heatmap visualization\\n\\n# Define cancer types of interest\\ncancer_types_of_interest <- 0:3\\n\\n# Filter the data to include only cancer types 0-3\\nexpression_data_filtered <- expression_data_merged[expression_data_merged$Label %in% cancer_types_of_interest, ]\\n\\n# Identify top genes based on variance (select the top 10 genes with highest variance)\\n# Calculate variance of each gene\\nvariances <- apply(expression_data_filtered[, !names(expression_data_filtered) %in% c(\\\"Sample\\\", \\\"Label\\\")], 2, var)\\ntop_genes <- names(sort(variances, decreasing = TRUE))[1:10]\\n\\n# Filter expression data to include only top genes\\nexpression_data_top_genes <- expression_data_filtered[, c(\\\"Sample\\\", \\\"Label\\\", top_genes)]\\n\\n# Convert the data to matrix format for heatmap\\n# Set row names and remove the Label and Sample columns\\nexpression_data_top_genes_matrix <- expression_data_top_genes\\nrownames(expression_data_top_genes_matrix) <- expression_data_top_genes_matrix$Sample\\nexpression_data_top_genes_matrix <- expression_data_top_genes_matrix[, !names(expression_data_top_genes_matrix) %in% c(\\\"Sample\\\", \\\"Label\\\")]\\nexpression_data_top_genes_matrix <- as.matrix(expression_data_top_genes_matrix)\\n\\n# Create heatmap\\npheatmap(\\n  expression_data_top_genes_matrix,\\n  cluster_rows = TRUE,\\n  cluster_cols = TRUE,\\n  scale = \\\"row\\\",  # Scaling the rows to better visualize patterns\\n  main = \\\"Heatmap of Top Genes in Cancer Types 0-3\\\",\\n  show_rownames = FALSE  # Hide sample names\\n)\", \"test_cases\": \"nrow(expression_data_top_genes) == 1525\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "34305920_4",
+        "study_id": "34305920",
+        "question_id": "4",
+        "analysis_types": "['Gene Expression & Differential Analysis']",
+        "study_type": "Pan-Cancer",
+        "study_title": "A Pan-Cancer Analysis of CD164, a Potential New Immune Checkpoint",
+        "dataset_url": "CMOB/Pan-cancer",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33761933_3",
+      "question": "##Question##\nUse the 'ggsurvplot', 'survival', and 'survminer' packages to plot Kaplan-Meier survival curves for clusters from the 'final_data' data frame. The survival times are specified in the 'survival_times' column and event statuses in the 'event_observed' column.\n\n##Task##\n1. Create a survival object.\n2. Fit Kaplan-Meier curves for each cluster. Saved as 'km_fit'.\n3. Plot the Kaplan-Meier curves with ggsurvplot. ",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/KIRC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_KIRC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(survival)\\n# Load necessary libraries\\nlibrary(survival)\\nlibrary(survminer)\\n\\n# Create a survival object\\nsurv_obj <- with(final_data, Surv(survival_times, event_observed))\\n\\n# Fit Kaplan-Meier curves for each cluster\\nkm_fit <- survfit(surv_obj ~ Cluster, data = final_data)\\n\\n# Plot the Kaplan-Meier curves\\nggsurvplot(km_fit, data = final_data, pval = TRUE, conf.int = TRUE, legend.labs = c(\\\"Cluster 1\\\", \\\"Cluster 2\\\"),\\n           title = \\\"Kaplan-Meier Curves by Clusters\\\",\\n           xlab = \\\"Time (days)\\\", ylab = \\\"Survival Probability\\\",\\n           palette = c(\\\"#E41A1C\\\", \\\"#377EB8\\\", \\\"#4DAF4A\\\"))  \", \"test_cases\": \"nrow(final_data) == 314\\n\\nlength(km_fit) == 18\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33761933_3",
+        "study_id": "33761933",
+        "question_id": "3",
+        "analysis_types": "['Survival Outcome Analysis']",
+        "study_type": "Integrative",
+        "study_title": "Multi-omics analysis of tumor angiogenesis characteristics and potential epigenetic regulation mechanisms in renal clear cell carcinoma",
+        "dataset_url": "CMOB/KIRC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_23502430_1",
+      "question": "##Question##\nUse the 'pheatmap' package to draw a heatmap visualizing the gene expression matrix for patient groups labeled as 0, 1, and 2. Display only the top 100 genes based on variance. Use the data frame (named as variable 'expression_data_merged') and filter it to include only the relevant patient groups. Select the top 100 genes with the highest variance, transpose the expression data, and plot the heatmap with clustering for both rows and columns.\n\n##Task##\n1. Filter for patient groups 0, 1, and 2. Output as a table named variable \"filtered_data\".\n2. Select the top 100 genes with the highest variance.\n3. Filter the expression data for these top 100 genes. Output as a table named \"top_expression_data\".\n4. Transpose data for heatmap.\n5. Plot the Heatmap plot.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/GBM_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/GBM_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\nlibrary(pheatmap)\\n\\n# Filter for patient groups 0, 1, and 2\\nfiltered_data <- expression_data_merged %>%\\n  filter(Label %in% c(0, 1, 2))\\n\\n# Select the top genes based on variance\\ntop_genes <- filtered_data %>%\\n  select(-Sample, -Label) %>%\\n  summarise_all(~ var(.)) %>%\\n  gather(key = \\\"Gene\\\", value = \\\"Variance\\\") %>%\\n  arrange(desc(Variance)) %>%\\n  slice(1:100) %>%\\n  pull(Gene)\\n\\n# Filter the expression data for these top 100 genes\\ntop_expression_data <- expression_data_merged %>%\\n  filter(Label %in% c(0, 1, 2)) %>%\\n  select(Sample, one_of(top_genes))\\n\\n# Transpose data for pheatmap\\ntop_expression_matrix <- as.matrix(top_expression_data[, -1])  # Remove Sample column for matrix\\n\\n#Heatmap plot\\npheatmap(\\n  top_expression_matrix,\\n  cluster_rows = TRUE,\\n  cluster_cols = TRUE,\\n  show_rownames = FALSE,\\n  show_colnames = FALSE,\\n  color = colorRampPalette(c(\\\"blue\\\", \\\"white\\\", \\\"red\\\"))(50),\\n  main = \\\"Heatmap of Top 100 Genes Expression (Patient Groups 0, 1, 2)\\\"\\n)\", \"test_cases\": \"nrow(filtered_data) == 181\\n\\nnrow(top_expression_data) == 181\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "23502430_1",
+        "study_id": "23502430",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Data Integration & Transformation']",
+        "study_type": "Biomarkers",
+        "study_title": "Identification of prognostic gene signatures of glioblastoma: a study based on TCGA data analysis",
+        "dataset_url": "CMOB/GS-GBM",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33746977_2",
+      "question": "##Question##\nUse the 'ggplot2' package to visualize the PCA plot of mRNA expression data with cluster assignments from the 'kmeans_result' object and save the plot in the variable 'pca_plot'. Merge the cluster assignments from 'filtered_data' back with the 'survival' data by the 'Sample' column and save the result in the variable 'final_data'. Display 'final_data' with cluster assignments.\n\n##Task##\n1. Add the cluster assignment to the data.\n2. PCA plot for visualization. Create the PCA object using `prcomp`, save the variable named 'pca'.\n3. Merge the cluster assignment back with the survival data.\n4. View the final data with cluster assignments.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/ACC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_ACC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"# Load necessary libraries\\nlibrary(ggplot2)\\n\\n# Add the cluster assignment to the data\\nfiltered_data$Cluster <- kmeans_result$cluster\\n\\n# PCA plot for visualization\\npca <- prcomp(clustering_data, scale. = TRUE)\\npca_data <- as.data.frame(pca$x)\\npca_data$Cluster <- as.factor(filtered_data$Cluster)\\n\\nggplot(pca_data, aes(x = PC1, y = PC2, color = Cluster)) +\\n  geom_point(size = 3) +\\n  labs(title = \\\"PCA of mRNA Expression Data\\\",\\n       x = \\\"Principal Component 1\\\",\\n       y = \\\"Principal Component 2\\\")\\n\\n# Merge the cluster assignment back with the survival data\\nfinal_data <- merge(filtered_data, survival, by = \\\"Sample\\\")\\n\\n# View the final data with cluster assignments\\nprint(final_data)\", \"test_cases\": \"length(pca) == 5\\n\\nnrow(final_data) == 177\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33746977_2",
+        "study_id": "33746977",
+        "question_id": "2",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Survival Outcome Analysis', 'Data Integration & Transformation']",
+        "study_type": "Molecular",
+        "study_title": "Analysis of m6A-Related Signatures in the Tumor Immune Microenvironment and Identification of Clinical Prognostic Regulators in Adrenocortical Carcinoma",
+        "dataset_url": "CMOB/ACC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_37091789_3",
+      "question": "##Question##\nUse the 'pheatmap' package to draw a heatmap visualizing the differential gene expression between patient groups labeled as 0 and 1. Use the expression data (named as variable 'selected_expression_data_matrix') and include annotations (named as variable 'annotation_row') to display up-regulated genes in red and down-regulated genes in blue. Do not show gene names on the heatmap.\n\n##Task##\n1. Creates a dataframe named `DEGAll` based on 'results' with log2 fold changes, p-values.\n2. Filter DEGs based on pValue and FoldChange.\n3. Filter the expression data for the selected genes.\n4. Filter the expression data to include only valid labels (0 and 1)\n5. Draw the heatmap",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LGG_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LGG_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(pheatmap)\\n\\n# Create a DEGAll data frame with necessary columns\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue\\n  )\\n\\n# Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\\nselected_genes <- DEGAll %>%\\n  filter(pValue < 0.05 & abs(log2FoldChange) > 0.5) %>%\\n  dplyr::select(Gene)\\n\\n# Filter the expression data for the selected genes\\nselected_expression_data <- expression_data_t %>%\\n  dplyr::select(Sample, one_of(selected_genes$Gene))\\n\\n# Add labels to the expression data\\nselected_expression_data <- selected_expression_data %>%\\n  mutate(Label = expression_data_merged$Label[match(selected_expression_data$Sample, expression_data_merged$Sample)])\\n\\n# Set row names to Sample and remove Sample column\\nrownames(selected_expression_data) <- selected_expression_data$Sample\\nselected_expression_data <- selected_expression_data %>%\\n  dplyr::select(-Sample)\\n\\n# Filter to include only valid labels (0 and 1)\\nselected_expression_data <- selected_expression_data %>%\\n  filter(Label %in% c(0, 1))\\n\\n# Order the data by Label\\nselected_expression_data <- selected_expression_data[order(selected_expression_data$Label),]\\n\\n# Ensure all values are finite\\nselected_expression_data_matrix <- as.matrix(selected_expression_data[, -ncol(selected_expression_data)])\\nselected_expression_data_matrix[!is.finite(selected_expression_data_matrix)] <- NA\\nselected_expression_data_matrix <- selected_expression_data_matrix[rowSums(is.na(selected_expression_data_matrix)) == 0, ]\\n\\n# Check annotation_row\\nannotation_row <- data.frame(Label = selected_expression_data$Label)\\nrownames(annotation_row) <- rownames(selected_expression_data)\\n\\n#Heatmap plot\\npheatmap(\\n  selected_expression_data_matrix,\\n  cluster_rows = TRUE,\\n  cluster_cols = TRUE,\\n  annotation_row = annotation_row,\\n  show_rownames = FALSE,\\n  show_colnames = FALSE,\\n  color = colorRampPalette(c(\\\"blue\\\", \\\"white\\\", \\\"red\\\"))(50),\\n  main = \\\"Heatmap of DEGs\\\")\", \"test_cases\": \"ncol(DEGAll) == 7\\n\\nncol(labels) == 2\\n\\nncol(results) == 5\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "37091789_3",
+        "study_id": "37091789",
+        "question_id": "3",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Integrative",
+        "study_title": "The integrative analysis based on super-enhancer related genes for predicting different subtypes and prognosis of patient with lower-grade glioma",
+        "dataset_url": "CMOB/GS-LGG",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_32211396_1",
+      "question": "##Question##\nUse the 'tidyr' and 'dplyr' packages, transform the merged expression data (named as variable 'expression_data_merged') into a long format (named as variable 'expression_long') suitable for analysis. Calculate the differential miRNA expression between patient groups labeled as 1 and 2. For each gene, compute the mean expression levels for both groups, the log2 fold change (named as variable 'log2FoldChange'), and the p-value of the difference in expression (named as variable 'pValue') using a t-test. Ensure genes with NA log2FoldChange values are filtered out from the final results. \nSave the final results in a data frame named 'results', which has columns:\n- Gene: gene names\n- mean_expr_1: mean expression values for group 1\n- mean_expr_2: mean expression values for group 2\n- log2FoldChange: log2 fold change values\n- pValue: p-values\n\n##Task##\n1. Gather miRNA expression data into long format\n2. Calculates the log2 fold change and p-values for each miRNA between two groups.\n3. Creates a dataframe with log2 fold changes, p-values, and colors for significant miRNAs.\n4. Filter out miRNAs with N/A log2FoldChange.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_miRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\n\\n# Gather data into long format\\nexpression_long <- gather(expression_data_merged, miRNA, Expression, -Sample, -Label)\\n\\n# Calculate log2 fold changes and p-values for each miRNA\\nresults <- expression_long %>%\\n  group_by(miRNA) %>%\\n  summarize(\\n    mean_expr_1 = mean(Expression[Label == 1], na.rm = TRUE),\\n    mean_expr_0 = mean(Expression[Label == 2], na.rm = TRUE),\\n    log2FoldChange = ifelse(mean_expr_0 != 0, log2(mean_expr_1 / mean_expr_0), NA),\\n    pValue = t.test(Expression[Label == 1], Expression[Label == 2])$p.value\\n  )\\n\\n# Filter out miRNAs with NA log2FoldChange\\nresults <- results %>%\\n  filter(!is.na(log2FoldChange))\", \"test_cases\": \"ncol(results) == 5\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "32211396_1",
+        "study_id": "32211396",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Therapeutics",
+        "study_title": "MicroRNAs Associated With Colon Cancer: New Potential Prognostic Markers and Targets for Therapy",
+        "dataset_url": "CMOB/GS-COAD",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_38329437_3",
+      "question": "##Question##\nUse the 'ggsurvplot', 'survival', and 'survminer' packages to plot Kaplan-Meier survival curves for the clusters in the 'final_data' data frame. The survival times are provided in the 'survival_times' column and event statuses in the 'event_observed' column. Adjust the plot to show p-values, confidence intervals, and use specific colors for the clusters.\n\n##Task##\n1. Create a survival object.\n2. Fit Kaplan-Meier curves for each cluster. Save the fit KM curve named \"km_fit\".\n3. Plot the Kaplan-Meier curves with ggsurvplot.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/THCA_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_THCA.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(survival)\\n# Load necessary libraries\\nlibrary(survival)\\nlibrary(survminer)\\n\\n# Merge the labeled expression with the survival data\\nfinal_data <- merge(expression_data_merged, survival, by = \\\"Sample\\\")\\n\\n# Create a survival object\\nsurv_obj <- with(final_data, Surv(survival_times, event_observed))\\n\\n# Fit Kaplan-Meier curves for each cluster\\nkm_fit <- survfit(surv_obj ~ Label, data = final_data)\\n\\n# Plot the Kaplan-Meier curves\\nggsurvplot(km_fit, data = final_data, pval = TRUE, conf.int = TRUE, legend.labs = c(\\\"Cluster 1\\\", \\\"Cluster 2\\\"),\\n           title = \\\"Kaplan-Meier Curves by Clusters\\\",\\n           xlab = \\\"Time (days)\\\", ylab = \\\"Survival Probability\\\",\\n           palette = c(\\\"#E41A1C\\\", \\\"#377EB8\\\", \\\"#4DAF4A\\\"))  # Adjust colors as needed\", \"test_cases\": \"nrow(final_data) == 229\\n\\nlength(km_fit) == 18\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "38329437_3",
+        "study_id": "38329437",
+        "question_id": "3",
+        "analysis_types": "['Survival Outcome Analysis']",
+        "study_type": "Translational",
+        "study_title": "Investigating the clinical role and prognostic value of genes related to insulin-like growth factor signaling pathway in thyroid cancer",
+        "dataset_url": "CMOB/THCA",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_37091789_2",
+      "question": "##Question##\nUse the 'ggplot2' and 'ggrepel' packages to create a volcano plot to visualize the differential gene expression between patient groups labeled as 0 and 1. Use the data frame (named as variable 'DEGAll') that includes columns for log2 fold change (logFC), p-value (PValue), and color. Highlight up-regulated genes in red and down-regulated genes in blue, and mark the top 10 significant genes (stored in variable 'top_genes') with their names.\n\n##Task##\n1. Creates a dataframe named \"DEGAll\" based on \"results\"  by adding log2 fold changes, p-values, and colors for significant genes.\n2. Selects the top 10 genes by p-value and log2 fold change.\n3. Generates a volcano plot and labels the top genes.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LGG_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LGG_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(ggplot2)\\nlibrary(ggrepel)\\n\\n# Create a data frame with the necessary columns for the volcano plot\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue,\\n    color = ifelse(pValue < 0.05 & abs(log2FoldChange) > 0.5,\\n                   ifelse(log2FoldChange > 0.5, \\\"red\\\", \\\"blue\\\"), \\\"gray\\\")\\n  )\\n\\n# Define colors\\ncolor <- c(red = \\\"#800000\\\", gray = \\\"#A9A9A9\\\", blue = \\\"#4682B433\\\")\\n\\n# Define the number of top genes to label\\ntop_n <- 10\\n\\n# Filter top genes by p-value and log2 fold change\\ntop_genes <- DEGAll %>%\\n  arrange(pValue) %>%\\n  slice_head(n = top_n)\\n\\n# Plot the volcano plot\\nggplot(DEGAll, aes(logFC, -log10(PValue), col = color)) +\\n  geom_point() +\\n  geom_text_repel(\\n    data = top_genes,\\n    aes(label = Gene),\\n    size = 3,\\n    box.padding = 0.3,\\n    point.padding = 0.5,\\n    segment.color = 'grey50',\\n    color = 'black'  # Set gene label color to black\\n  ) +\\n  theme_bw() +\\n  scale_color_manual(values = color) +\\n  labs(x = \\\"log2 (fold change)\\\", y = \\\"-log10 (q-value)\\\") +\\n  geom_hline(yintercept = -log10(0.05), lty = 4, col = \\\"darkgreen\\\", lwd = 0.6) +\\n  geom_vline(xintercept = c(-0.5, 0.5), lty = 4, col = \\\"darkgreen\\\", lwd = 0.6) +\\n  theme(\\n    legend.position = \\\"none\\\",\\n    panel.grid = element_blank(),\\n    axis.title = element_text(size = 16),\\n    axis.text = element_text(size = 14)\\n  )\", \"test_cases\": \"ncol(DEGAll) == 8\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "37091789_2",
+        "study_id": "37091789",
+        "question_id": "2",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Integrative",
+        "study_title": "The integrative analysis based on super-enhancer related genes for predicting different subtypes and prognosis of patient with lower-grade glioma",
+        "dataset_url": "CMOB/GS-LGG",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33176622_0",
+      "question": "##Question##\nLoads gene expression data (named as a variable `expression_data`) and labels (named as variable `labels`) then merge them. Save the merged data as a table named `expression_data_merged`, which has columns:\n- Sample: sample index\n- Label: label of the sample\n- gene1, gene2, ...: the columns for all gene expression data\n\n##Task##\n1. Loads expression data and labels from CSV file.\n2. Transposes the expression data, saved in a variable `expression_data_t`.\n3. Merges expression data with the labels.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"# Load data\\nexpression_data <- read.csv('/workdir/BRCA_mRNA_top.csv', row.names = 1)  \\n\\n# Load the labels\\nlabels <- read.csv('/workdir/BRCA_label_num.csv', row.names=NULL)\\n\\n# Add a column for Sample names to the labels data frame\\nlabels$Sample <- colnames(expression_data)\\n\\n# Transpose expression data for easier manipulation\\nexpression_data_t <- as.data.frame(t(expression_data))\\nexpression_data_t$Sample <- rownames(expression_data_t)\\n\\n# Merge expression data with labels\\nexpression_data_merged <- merge(expression_data_t, labels, by = \\\"Sample\\\")\", \"test_cases\": \"ncol(expression_data_merged) == 5002\\n\\nnrow(expression_data_merged) == 671\\n\\nnrow(expression_data_t) == nrow(labels)\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33176622_0",
+        "study_id": "33176622",
+        "question_id": "0",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Data Integration & Transformation']",
+        "study_type": "Biomarkers",
+        "study_title": "Transcriptomics and Prognosis Analysis to Identify Critical Biomarkers in Invasive Breast Carcinoma",
+        "dataset_url": "CMOB/GS-BRCA",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_37091789_1",
+      "question": "##Question##\nUse the 'tidyr' and 'dplyr' packages, transform the merged expression data (named as variable 'expression_data_merged') into a long format (named as variable 'expression_long') suitable for analysis. Calculate the differential gene expression between patient groups labeled as 0 and 1. For each gene, compute the mean expression levels for both groups, the log2 fold change (named as variable 'log2FoldChange'), and the p-value of the difference in expression (named as variable 'pValue') using a t-test. Ensure genes with NA log2FoldChange values are filtered out from the final results. \nSave the final results in a data frame named 'results', which has columns:\n- Gene: gene names\n- mean_expr_0: mean expression values for group 0\n- mean_expr_1: mean expression values for group 1\n- log2FoldChange: log2 fold change values\n- pValue: p-values\n\n##Task##\n1. Gather gene expression data into long format\n2. Calculates the log2 fold change and p-values for each gene between two groups.\n3. Creates a dataframe with log2 fold changes, p-values, and colors for significant genes.\n4. Filter out genes with N/A log2FoldChange.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LGG_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LGG_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\n\\n# Gather data into long format\\nexpression_long <- gather(expression_data_merged, Gene, Expression, -Sample, -Label)\\n\\n# Calculate log2 fold changes and p-values for each gene\\nresults <- expression_long %>%\\n  group_by(Gene) %>%\\n  summarize(\\n    mean_expr_1 = mean(Expression[Label == 1], na.rm = TRUE),\\n    mean_expr_0 = mean(Expression[Label == 0], na.rm = TRUE),\\n    log2FoldChange = ifelse(mean_expr_0 != 0, log2(mean_expr_1 / mean_expr_0), NA),\\n    pValue = t.test(Expression[Label == 1], Expression[Label == 0])$p.value\\n  )\\n\\n# Filter out genes with NA log2FoldChange\\nresults <- results %>%\\n  filter(!is.na(log2FoldChange))\", \"test_cases\": \"ncol(results) == 5\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "37091789_1",
+        "study_id": "37091789",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Integrative",
+        "study_title": "The integrative analysis based on super-enhancer related genes for predicting different subtypes and prognosis of patient with lower-grade glioma",
+        "dataset_url": "CMOB/GS-LGG",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_32211396_2",
+      "question": "##Question##\nUse the 'ggplot2' and 'ggrepel' packages to draw a volcano plot to visualize the differential miRNA expression between patient groups labeled as 1 and 3. Use the data frame (named as variable 'DEGAll') that includes columns for log2 fold change ('logFC'), p-value ('PValue'), and color. Highlight up-regulated miRNAs in red and down-regulated miRNAs in blue. Mark the top 10 significant miRNAs (stored in 'top_miRNAs') with their names on the plot.\n\n##Task##\n1. Creates a dataframe named 'DEGAll\" by adding log2 fold changes, p-values, and colors for significant miRNAs.\n2. Selects the top 10 miRNAs by p-value and log2 fold change.\n3. miRNArates a volcano plot and labels the top miRNAs.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_miRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/COAD_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(ggplot2)\\nlibrary(ggrepel)\\n\\n# Create a data frame with the necessary columns for the volcano plot\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue,\\n    color = ifelse(pValue < 0.05 & abs(log2FoldChange) > 0.5,\\n                   ifelse(log2FoldChange > 0.5, \\\"red\\\", \\\"blue\\\"), \\\"gray\\\")\\n  )\\n\\n# Define colors\\ncolor <- c(red = \\\"#800000\\\", gray = \\\"#A9A9A9\\\", blue = \\\"#4682B433\\\")\\n\\n# Define the number of top miRNAs to label\\ntop_n <- 10\\n\\n# Filter top miRNAs by p-value and log2 fold change\\ntop_miRNAs <- DEGAll %>%\\n  arrange(pValue) %>%\\n  slice_head(n = top_n)\\n\\n# Plot the volcano plot\\nggplot(DEGAll, aes(logFC, -log10(PValue), col = color)) +\\n  geom_point() +\\n  geom_text_repel(\\n    data = top_miRNAs,\\n    aes(label = miRNA),\\n    size = 3,\\n    box.padding = 0.3,\\n    point.padding = 0.5,\\n    segment.color = 'grey50',\\n    color = 'black'  # Set miRNA label color to black\\n  ) +\\n  theme_bw() +\\n  scale_color_manual(values = color) +\\n  labs(x = \\\"log2 (fold change)\\\", y = \\\"-log10 (q-value)\\\") +\\n  geom_hline(yintercept = -log10(0.05), lty = 4, col = \\\"darkgreen\\\", lwd = 0.6) +\\n  geom_vline(xintercept = c(-0.5, 0.5), lty = 4, col = \\\"darkgreen\\\", lwd = 0.6) +\\n  theme(\\n    legend.position = \\\"none\\\",\\n    panel.grid = element_blank(),\\n    axis.title = element_text(size = 16),\\n    axis.text = element_text(size = 14)\\n  )\", \"test_cases\": \"ncol(DEGAll) == 8\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "32211396_2",
+        "study_id": "32211396",
+        "question_id": "2",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Therapeutics",
+        "study_title": "MicroRNAs Associated With Colon Cancer: New Potential Prognostic Markers and Targets for Therapy",
+        "dataset_url": "CMOB/GS-COAD",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33746977_3",
+      "question": "##Question##\nUse the 'ggsurvplot', 'survival', and 'survminer' packages to plot Kaplan-Meier survival curves for the clusters in the 'final_data' data frame. The survival times are provided in the 'survival_times' column and event statuses in the 'event_observed' column. Adjust the plot to show p-values, confidence intervals, and use specific colors for the clusters.\n\n##Task##\n1. Create a survival object.\n2. Fit Kaplan-Meier curves for each cluster. Named \"km_fit\"\n3. Plot the Kaplan-Meier curves with ggsurvplot.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/ACC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_ACC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(survival)\\n# Load necessary libraries\\nlibrary(survival)\\nlibrary(survminer)\\n\\n# Create a survival object\\nsurv_obj <- with(final_data, Surv(survival_times, event_observed))\\n\\n# Fit Kaplan-Meier curves for each cluster\\nkm_fit <- survfit(surv_obj ~ Cluster, data = final_data)\\n\\n# Plot the Kaplan-Meier curves\\nggsurvplot(km_fit, data = final_data, pval = TRUE, conf.int = TRUE, legend.labs = c(\\\"Cluster 1\\\", \\\"Cluster 2\\\", \\\"Cluster 3\\\"),\\n           title = \\\"Kaplan-Meier Curves by Clusters\\\",\\n           xlab = \\\"Time (days)\\\", ylab = \\\"Survival Probability\\\",\\n           palette = c(\\\"#E41A1C\\\", \\\"#377EB8\\\", \\\"#4DAF4A\\\"))  # Adjust colors as needed\", \"test_cases\": \"nrow(final_data) == 177\\n\\nlength(km_fit) == 17\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33746977_3",
+        "study_id": "33746977",
+        "question_id": "3",
+        "analysis_types": "['Survival Outcome Analysis']",
+        "study_type": "Molecular",
+        "study_title": "Analysis of m6A-Related Signatures in the Tumor Immune Microenvironment and Identification of Clinical Prognostic Regulators in Adrenocortical Carcinoma",
+        "dataset_url": "CMOB/ACC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_23502430_2",
+      "question": "##Question##\nUse the 'ggplot2' and 'cowplot' packages to plot the gene expression for genes 'NPR3', 'FBXO45', 'TRAM1L1', 'PI4KB', 'KIAA0922', and 'WBP1' across patient groups labeled as 0, 1, and 2. Create individual plots for each gene, showing expression levels with jittered points and average expression lines. Arrange these plots in a 2x3 grid layout using the plot_grid function from the 'cowplot' package.\n\n##Task##\n1. Filter for groups 0, 1, and 2. Save it named 'filtered_data'.\n2. Define the genes of interest.\n3. Create a list to store plots for each gene.\n4. Calculate average expression level for each gene and each group.\n5. Plot using 'ggplot' with jittered points on x-axis.\n6. Arrange plots in a 2x3 grid.\n7. Display the grid of plots.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/GBM_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/GBM_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\nlibrary(ggplot2)\\nlibrary(ggrepel)\\nlibrary(cowplot)  \\n\\n# Filter for groups 0, 1, and 2\\nfiltered_data <- expression_data_merged %>%\\n  filter(Label %in% c(0, 1, 2))\\n\\n# Define the genes of interest\\ngenes_of_interest <- c(\\\"NPR3\\\", \\\"FBXO45\\\", \\\"TRAM1L1\\\", \\\"PI4KB\\\", \\\"KIAA0922\\\", \\\"WBP1\\\")\\n\\n# Create a list to store plots for each gene\\nplots <- lapply(genes_of_interest, function(gene) {\\n  gene_expression_data <- filtered_data %>%\\n    select(Sample, !!gene, Label)\\n  \\n  # Calculate average expression level for each gene and each group\\n  avg_expression <- gene_expression_data %>%\\n    group_by(Label) %>%\\n    summarise(avg_expression = mean(!!sym(gene), na.rm = TRUE))\\n  \\n  # Plot using ggplot with jittered points on x-axis\\n  p <- ggplot(gene_expression_data, aes(x = as.factor(Label), y = !!sym(gene), shape = as.factor(Label), color = as.factor(Label))) +\\n    geom_jitter(position = position_jitter(width = 0.2), size = 3) +  # Jitter points on x-axis\\n    scale_shape_manual(values = c(16, 17, 18)) +  # Set different shapes (16 = circle, 17 = triangle, 18 = square)\\n    labs(x = \\\"Group\\\", y = \\\"Expression Level\\\", color = \\\"Group\\\", shape = \\\"Group\\\") +\\n    ggtitle(paste(\\\"Gene Expression of\\\", gene)) +\\n    theme_minimal() +\\n    theme(legend.position = \\\"none\\\") +  # Remove legend for individual plots\\n    geom_hline(data = avg_expression, aes(yintercept = avg_expression, color = as.factor(Label)), linetype = \\\"dashed\\\")  # Add average expression line per group\\n  \\n  return(p)\\n})\\n\\n# Arrange plots in a 2x3 grid\\nmultiplot <- cowplot::plot_grid(plotlist = plots, nrow = 2, align = 'hv')\\n\\n# Display the grid of plots\\nmultiplot\", \"test_cases\": \"nrow(filtered_data) == 181\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "23502430_2",
+        "study_id": "23502430",
+        "question_id": "2",
+        "analysis_types": "['Gene Expression & Differential Analysis']",
+        "study_type": "Biomarkers",
+        "study_title": "Identification of prognostic gene signatures of glioblastoma: a study based on TCGA data analysis",
+        "dataset_url": "CMOB/GS-GBM",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33177247_2",
+      "question": "##Question##\nSelect the top 15 genes based on their 'p' values from the Cox regression results stored in 'cox_results_df'. Use 'ggplot2' to generate a forest plot for these top 15 genes, displaying the 'exp_coef' values with error bars and a vertical dashed line at 1.\n\n##Task##\n1. Convert the results to a data frame.\n2. Add a column for gene names.\n3. Sort the results by p-value and select the top 15.\n4. Create a forest plot for the top 15 genes.\n5. Display the top 15 results.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/KIRP_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_KIRP.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(ggplot2)\\n\\n# Convert the results to a data frame\\ncox_results_df <- do.call(rbind, cox_results)\\ncox_results_df <- as.data.frame(cox_results_df)\\nnames(cox_results_df) <- c(\\\"coef\\\", \\\"exp_coef\\\", \\\"se_coef\\\", \\\"z\\\", \\\"p\\\")\\n\\n# Add a column for gene names\\ncox_results_df$gene <- rownames(cox_results_df)\\n\\n# Sort the results by p-value and select the top 15\\ntop_genes_df <- cox_results_df %>% arrange(p) %>% head(15)\\n\\n# Create a forest plot for the top 15 genes\\nggplot(top_genes_df, aes(x = exp_coef, y = gene)) +\\n  geom_point(shape = 15, color = \\\"green\\\", size = 3) +\\n  geom_errorbarh(aes(xmin = exp_coef - 1.96 * se_coef, xmax = exp_coef + 1.96 * se_coef), height = 0.2, color = \\\"blue\\\") +\\n  geom_vline(xintercept = 1, linetype = \\\"dashed\\\") +\\n  scale_x_log10() +\\n  labs(x = \\\"Hazard ratio\\\", y = \\\"Gene\\\", title = \\\"Forest Plot of Top 15 Cox Regression Results\\\") +\\n  theme_minimal()\\n\\n# Display the top 15 results\\nprint(top_genes_df)\", \"test_cases\": \"nrow(cox_results_df) == 5000\\n\\nncol(cox_results_df) == 6\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33177247_2",
+        "study_id": "33177247",
+        "question_id": "2",
+        "analysis_types": "['Survival Outcome Analysis']",
+        "study_type": "Molecular",
+        "study_title": "Prognostic risk signature based on the expression of three m6A RNA methylation regulatory genes in kidney renal papillary cell carcinoma",
+        "dataset_url": "CMOB/KIRP",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_31010415_2",
+      "question": "##Question##\nSelect the top 15 differential expression genes based on absolute 'logFC' and 'pValue' from the data frame (named as variable 'DEGAll'). Use these selected genes to filter the expression data (named as variable 'filtered_data') for patient groups labeled as 0 and 1.\n\n##Task##\n1. Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\n2. Filter expression data for the selected genes and groups 0 and 1",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/OV_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/OV_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Create a DEGAll data frame with necessary columns for GO enrichment\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue\\n  )\\n\\n# Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\\nselected_genes <- DEGAll %>%\\n  filter(pValue < 0.05 & abs(log2FoldChange) > 0.5) %>%\\n  dplyr::select(Gene)\\n\\n# Filter DEGAll for genes with pValue < 0.05 and abs(log2FoldChange) > 0.5\\nselected_genes <- DEGAll %>%\\n  filter(pValue < 0.05 & abs(logFC) > 0.5) %>%\\n  arrange(desc(abs(logFC))) %>%  # Arrange by descending absolute logFC\\n  head(15)  # Select top 15 genes\\n\\n# Filter expression data for the selected genes and groups 0 and 1\\nfiltered_data <- expression_long %>%\\n  filter(Gene %in% selected_genes$Gene, Label %in% c(0, 1))\", \"test_cases\": \"ncol(filtered_data) == 4\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "31010415_2",
+        "study_id": "31010415",
+        "question_id": "2",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Biomarkers",
+        "study_title": "Identification of significant genes with poor prognosis in ovarian cancer via bioinformatical analysis",
+        "dataset_url": "CMOB/GS-OV",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33177247_1",
+      "question": "##Question##\nPerform univariate Cox regression analysis for each gene in 'expression_data_t' to identify those significantly associated with overall survival. Sanitize gene names in 'expression_data_merged' before running the Cox regression. The columns 'survival_times' and 'event_observed' are used for survival time and status, respectively. Store the Cox regression results in the 'cox_results' list.\n\n##Task##\n1. Define survival time and status columns.\n2. Sanitize the gene names.\n3. Initialize an empty list to store Cox regression results.\n4. Perform univariate Cox regression for each gene",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/KIRP_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_KIRP.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(survival)\\n# Load necessary libraries\\nlibrary(survival)\\n\\n# Define survival time and status columns\\ntime_col <- \\\"survival_times\\\" \\nstatus_col <- \\\"event_observed\\\" \\n\\n# Function to sanitize gene names\\nsanitize_gene_name <- function(gene_name) {\\n  make.names(gene_name, unique = TRUE)\\n}\\n\\n# Sanitize column names in the merged data frame\\ncolnames(expression_data_merged) <- sapply(colnames(expression_data_merged), sanitize_gene_name)\\n\\n# Initialize an empty list to store Cox regression results\\ncox_results <- list()\\n\\n# Perform univariate Cox regression for each gene\\nfor (gene in colnames(expression_data_t)[-ncol(expression_data_t)]) {\\n  sanitized_gene <- sanitize_gene_name(gene)\\n  if(sanitized_gene %in% colnames(expression_data_merged)) {\\n    formula <- as.formula(paste(\\\"Surv(\\\", time_col, \\\",\\\", status_col, \\\") ~\\\", sanitized_gene))\\n    cox_model <- tryCatch({\\n      coxph(formula, data = expression_data_merged)\\n    }, error = function(e) {\\n      message(paste(\\\"Error with gene\\\", gene, \\\":\\\", e))\\n      NULL\\n    })\\n    if (!is.null(cox_model)) {\\n      cox_summary <- summary(cox_model)\\n      cox_results[[gene]] <- cox_summary$coefficients\\n    }\\n  } else {\\n    message(paste(\\\"Gene\\\", gene, \\\"not found in the merged data frame\\\"))\\n  }\\n}\", \"test_cases\": \"length(cox_results) == 5000\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33177247_1",
+        "study_id": "33177247",
+        "question_id": "1",
+        "analysis_types": "['Survival Outcome Analysis', 'Treatment Response Visualization & Quantification']",
+        "study_type": "Molecular",
+        "study_title": "Prognostic risk signature based on the expression of three m6A RNA methylation regulatory genes in kidney renal papillary cell carcinoma",
+        "dataset_url": "CMOB/KIRP",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33176622_2",
+      "question": "##Question##\nUse the 'ggplot2' and 'ggrepel' packages to create a volcano plot to visualize the differential gene expression between patient groups labeled as 0 and 1. Use the data frame (named as variable 'DEGAll') that includes columns for log2 fold change (logFC), p-value (PValue), and color. Highlight up-regulated genes in red and down-regulated genes in blue, and mark the top 10 significant genes (stored in variable 'top_genes') with their names.\n\n##Task##\n1. Creates a dataframe named \"DEGAll\" based on \"results\" by adding log2 fold changes, p-values, and colors for significant genes.\n2. Selects the top 10 genes by p-value and log2 fold change.\n3. Generates a volcano plot and labels the top genes.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(ggplot2)\\nlibrary(ggrepel)\\n\\n# Create a data frame with the necessary columns for the volcano plot\\nDEGAll <- results %>%\\n  mutate(\\n    logFC = log2FoldChange,\\n    PValue = pValue,\\n    color = ifelse(pValue < 0.05 & abs(log2FoldChange) > 0.5,\\n                   ifelse(log2FoldChange > 0.5, \\\"red\\\", \\\"blue\\\"), \\\"gray\\\")\\n  )\\n\\n# Define colors\\ncolor <- c(red = \\\"#800000\\\", gray = \\\"#A9A9A9\\\", blue = \\\"#4682B433\\\")\\n\\n# Define the number of top genes to label\\ntop_n <- 10\\n\\n# Filter top genes by p-value and log2 fold change\\ntop_genes <- DEGAll %>%\\n  arrange(pValue) %>%\\n  slice_head(n = top_n)\\n\\n# Plot the volcano plot\\nggplot(DEGAll, aes(logFC, -log10(PValue), col = color)) +\\n  geom_point() +\\n  geom_text_repel(\\n    data = top_genes,\\n    aes(label = Gene),\\n    size = 3,\\n    box.padding = 0.3,\\n    point.padding = 0.5,\\n    segment.color = 'grey50',\\n    color = 'black'  # Set gene label color to black\\n  ) +\\n  theme_bw() +\\n  scale_color_manual(values = color) +\\n  labs(x = \\\"log2 (fold change)\\\", y = \\\"-log10 (q-value)\\\") +\\n  geom_hline(yintercept = -log10(0.05), lty = 4, col = \\\"darkgreen\\\", lwd = 0.6) +\\n  geom_vline(xintercept = c(-0.5, 0.5), lty = 4, col = \\\"darkgreen\\\", lwd = 0.6) +\\n  theme(\\n    legend.position = \\\"none\\\",\\n    panel.grid = element_blank(),\\n    axis.title = element_text(size = 16),\\n    axis.text = element_text(size = 14)\\n  )\", \"test_cases\": \"ncol(DEGAll) == 8\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33176622_2",
+        "study_id": "33176622",
+        "question_id": "2",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Biomarkers",
+        "study_title": "Transcriptomics and Prognosis Analysis to Identify Critical Biomarkers in Invasive Breast Carcinoma",
+        "dataset_url": "CMOB/GS-BRCA",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33176622_4",
+      "question": "##Question##\nUse the 'ggplot2' package to visualize Gene Ontology (GO) enrichment analysis results (stored as variable 'go') for genes showing significant differential expression between patient groups 0 and 1. Apply color gradients (based on p.adjust) and facet grids to distinguish and organize GO categories. Ensure that the plot includes a point size that reflects the GeneRatio and use the theme settings to adjust the text size. If no enriched GO terms are found, print a message indicating this.\n\n##Task##\n1. Conduct GO enrichment analysis (enrichGO()) using Entrez IDs of significant genes. Results be a variable named \"go\".\n2. Generate a ggplot2 dot plot to visualize enriched GO terms, where GeneRatio represents the proportion of genes in the category, and Description provides GO term descriptions.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\nlibrary(org.Hs.eg.db)\\nlibrary(pathview)\\nlibrary(clusterProfiler)\\n# Load necessary libraries\\nlibrary(ggplot2)\\nlibrary(ggrepel)\\n\\n# Perform GO enrichment analysis using enrichGO()\\ngo <- enrichGO(hg$ENTREZID,\\n               OrgDb = org.Hs.eg.db, \\n               ont='ALL',\\n               pAdjustMethod = 'BH',\\n               pvalueCutoff = 0.1, \\n               qvalueCutoff = 0.1,\\n               keyType = 'ENTREZID')\\n\\n# Plot enriched GO terms using ggplot2 and dotplot\\nif (!is.null(go) && !is.na(go) && nrow(go) > 0) {\\n  ggplot(go, split = \\\"ONTOLOGY\\\", showCategory = 5) +\\n    geom_point(aes(x = GeneRatio,\\n                   y = Description,\\n                   color = p.adjust,\\n                   size = GeneRatio)) +\\n    scale_color_gradient(low = \\\"#1763a3\\\", high = \\\"#800000\\\") +\\n    facet_grid(ONTOLOGY ~ ., scale = \\\"free\\\") +\\n    theme_bw(base_size = 18) +   # Set plot theme\\n    theme(text = element_text(size = 17))  # Adjust text size\\n} else {\\n  print(\\\"No enrichment GO terms found!\\\")\\n}\", \"test_cases\": \"!is.null(go)\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33176622_4",
+        "study_id": "33176622",
+        "question_id": "4",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Enrichment & Pathway Analysis', 'Clinical Feature Engineering']",
+        "study_type": "Biomarkers",
+        "study_title": "Transcriptomics and Prognosis Analysis to Identify Critical Biomarkers in Invasive Breast Carcinoma",
+        "dataset_url": "CMOB/GS-BRCA",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33176622_1",
+      "question": "##Question##\nUse the 'tidyr' and 'dplyr' packages, transform the merged expression data (named as variable 'expression_data_merged') into a long format (named as variable 'expression_long') suitable for analysis. Calculate the differential gene expression between patient groups labeled as 0 and 1. For each gene, compute the mean expression levels for both groups, the log2 fold change, and the p-value of the difference in expression using a t-test. Ensure genes with NA log2FoldChange values are filtered out from the final results. \nSave the final results in a data frame named 'results', which has columns:\n- Gene: gene names\n- mean_expr_1: mean expression values for group 1\n- mean_expr_0: mean expression values for group 0\n- log2FoldChange: log2 fold change values\n- pValue: p-values\n\n##Task##\n1. Gather gene expression data into long format\n2. Calculates the log2 fold change and p-values for each gene between two groups.\n3. Creates a dataframe with log2 fold changes, p-values, and colors for significant genes.\n4. Filter out genes with N/A log2FoldChange.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/BRCA_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\n\\n# Gather data into long format\\nexpression_long <- gather(expression_data_merged, Gene, Expression, -Sample, -Label)\\n\\n# Calculate log2 fold changes and p-values for each gene\\nresults <- expression_long %>%\\n  group_by(Gene) %>%\\n  summarize(\\n    mean_expr_1 = mean(Expression[Label == 1], na.rm = TRUE),\\n    mean_expr_0 = mean(Expression[Label == 0], na.rm = TRUE),\\n    log2FoldChange = ifelse(mean_expr_0 != 0, log2(mean_expr_1 / mean_expr_0), NA),\\n    pValue = t.test(Expression[Label == 1], Expression[Label == 0])$p.value\\n  )\\n\\n# Filter out genes with NA log2FoldChange\\nresults <- results %>%\\n  filter(!is.na(log2FoldChange))\", \"test_cases\": \"ncol(results) == 5\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33176622_1",
+        "study_id": "33176622",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Biomarkers",
+        "study_title": "Transcriptomics and Prognosis Analysis to Identify Critical Biomarkers in Invasive Breast Carcinoma",
+        "dataset_url": "CMOB/GS-BRCA",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_34305920_1",
+      "question": "##Question##\nFilter the data to include only cancer types labeled from 0 to 13 using the 'expression_data_merged' data frame. Save the output named \"expression_data_filtered\". Create a boxplot to show the expression of the gene 'CD161' across these cancer types. Use 'ggplot2' for plotting, add jittered points to the boxplot, label samples with high expression, and adjust the plot for better readability. Display the plot using the variable name 'p'.\n\n##Task##\n1.Filter the data to include only cancer types labeled from 0 to 13.\n2.Create a boxplot to show the expression of the gene CD161 across the selected cancer types from 0 to 13.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/Pan_cancer_mRNA.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/Pan_cancer_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Filter the data to include only cancer types labeled from 0 to 13\\nexpression_data_filtered <- expression_data_merged %>% filter(Label >= 0 & Label <= 13)\\n\\n# Plot boxplot for CD161 expression across all cancer types from 0 to 13\\ngene_of_interest <- \\\"CD161\\\"\\n\\np <- ggplot(expression_data_filtered, aes(x = factor(Label), y = .data[[gene_of_interest]])) +\\n  geom_boxplot(outlier.colour = \\\"red\\\", outlier.shape = 16, outlier.size = 2, notch = FALSE) +\\n  geom_jitter(shape = 16, position = position_jitter(0.2), alpha = 0.6) +\\n  labs(title = sprintf(\\\"Expression of %s Across Selected Cancer Types\\\", gene_of_interest),\\n       x = \\\"Cancer Type\\\",\\n       y = sprintf(\\\"Expression of %s\\\", gene_of_interest)) +\\n  theme_minimal() +\\n  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +\\n  geom_text_repel(aes(label = ifelse(.data[[gene_of_interest]] > quantile(.data[[gene_of_interest]], 0.75), Sample, \\\")), \\n                  size = 3, box.padding = 0.5)\\n\\n# Print the plot\\nprint(p)\", \"test_cases\": \"nrow(expression_data_filtered) == 3887\\n\\nncol(expression_data_filtered) == 3219\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "34305920_1",
+        "study_id": "34305920",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis']",
+        "study_type": "Pan-Cancer",
+        "study_title": "A Pan-Cancer Analysis of CD162, a Potential New Immune Checkpoint",
+        "dataset_url": "CMOB/Pan-cancer",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33746977_5",
+      "question": "##Question##\nUse the 'tidyr' and 'dplyr' packages, transform the merged expression data (named as variable 'expression_data_merged') into a long format (named as variable 'expression_long') suitable for analysis. Calculate the differential gene expression between patient groups labeled as 1 and 2. For each gene, compute the mean expression levels for both groups, the log2 fold change (named as variable 'log2FoldChange'), and the p-value of the difference in expression (named as variable 'pValue') using a t-test. Ensure genes with NA log2FoldChange values are filtered out from the final results. \nSave the final results in a data frame named 'results', which has columns:\n- Gene: gene names\n- mean_expr_1: mean expression values for group 1\n- mean_expr_2: mean expression values for group 2\n- log2FoldChange: log2 fold change values\n- pValue: p-values\n\n##Task##\n1. Gather gene expression data into long format\n2. Calculates the log2 fold change and p-values for each gene between two groups.\n3. Creates a dataframe with log2 fold changes, p-values, and colors for significant genes.\n4. Filter out genes with N/A log2FoldChange.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/ACC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_ACC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\n\\n# Gather data into long format\\nexpression_long <- gather(expression_data_merged, Gene, Expression, -Sample, -Label)\\n\\n# Calculate log2 fold changes and p-values for each gene\\nresults <- expression_long %>%\\n  group_by(Gene) %>%\\n  summarize(\\n    mean_expr_1 = mean(Expression[Label == 1], na.rm = TRUE),\\n    mean_expr_0 = mean(Expression[Label == 2], na.rm = TRUE),\\n    log2FoldChange = ifelse(mean_expr_0 != 0, log2(mean_expr_1 / mean_expr_0), NA),\\n    pValue = t.test(Expression[Label == 1], Expression[Label == 2])$p.value\\n  )\\n\\n# Filter out genes with NA log2FoldChange\\nresults <- results %>%\\n  filter(!is.na(log2FoldChange))\", \"test_cases\": \"ncol(results) == 5\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33746977_5",
+        "study_id": "33746977",
+        "question_id": "5",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Molecular",
+        "study_title": "Analysis of m6A-Related Signatures in the Tumor Immune Microenvironment and Identification of Clinical Prognostic Regulators in Adrenocortical Carcinoma",
+        "dataset_url": "CMOB/ACC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_34092242_3",
+      "question": "##Question##\nUse the 'ggsurvplot', 'survival', and 'survminer' packages to plot Kaplan-Meier survival curves for the clusters in the 'final_data' data frame. The survival times are provided in the 'survival_times' column and event statuses in the 'event_observed' column. Adjust the plot to show p-values, confidence intervals, and use specific colors for the clusters.\n\n##Task##\n1. Create a survival object.\n2. Fit Kaplan-Meier curves for each cluster. Saved as \"km_fit\".\n3. Plot the Kaplan-Meier curves with ggsurvplot.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LUAD_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_LUAD.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(survival)\\n# Load necessary libraries\\nlibrary(survival)\\nlibrary(survminer)\\n\\n# Merge the labeled expression with the survival data\\nfinal_data <- merge(expression_data_merged, survival, by = \\\"Sample\\\")\\n\\n# Create a survival object\\nsurv_obj <- with(final_data, Surv(survival_times, event_observed))\\n\\n# Fit Kaplan-Meier curves for each cluster\\nkm_fit <- survfit(surv_obj ~ Label, data = final_data)\\n\\n# Plot the Kaplan-Meier curves\\nggsurvplot(km_fit, data = final_data, pval = TRUE, conf.int = TRUE, legend.labs = c(\\\"Cluster 1\\\", \\\"Cluster 2\\\"),\\n           title = \\\"Kaplan-Meier Curves by Clusters\\\",\\n           xlab = \\\"Time (days)\\\", ylab = \\\"Survival Probability\\\",\\n           palette = c(\\\"#E41A1C\\\", \\\"#377EB8\\\", \\\"#4DAF4A\\\"))  # Adjust colors as needed\", \"test_cases\": \"nrow(final_data) == 450\\n\\nlength(km_fit) == 19\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "34092242_3",
+        "study_id": "34092242",
+        "question_id": "3",
+        "analysis_types": "['Survival Outcome Analysis']",
+        "study_type": "Biomarkers",
+        "study_title": "A seven-gene prognostic signature predicts overall survival of patients with lung adenocarcinoma (LUAD)",
+        "dataset_url": "CMOB/LUAD",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33746977_1",
+      "question": "##Question##\nFilter the list of specific genes ('METTL3', 'METTL14', 'RBM15', 'RBM15B', 'WTAP', 'KIAA1429', 'CBLL1', 'ZC3H13', 'ALKBH5', 'FTO', 'YTHDC1', 'YTHDC2', 'YTHDF1', 'YTHDF2', 'YTHDF3', 'IGF2BP1', 'HNRNPA2B1', 'HNRNPC', 'FMR1', 'LRPPRC', 'ELAVL1') to include only those present in the 'expression_data_merged' data frame. Remove samples with missing gene data and perform k-means clustering with 'k = 3' using these genes. Use the 'fviz_nbclust' function to determine the optimal number of clusters with the Elbow method.\n\n##Task##\n1. Make a list of genes of interest.\n2. Filter genes of interest to those present in the expression data.\n3. Filter the expression data for these genes. Save the results named \"filtered_data\"\n4. Remove samples with missing gene data.\n5. Remove the Sample column for clustering.\n6. Determine the optimal number of clusters using the Elbow method.\n7. Set the seed for reproducibility.\n8. Perform k-means clustering with k = 3. Results saved \"kmeans_result\".",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/ACC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_ACC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\nlibrary(cluster)\\nlibrary(factoextra)\\n\\n# List of genes of interest\\ngenes_of_interest <- c(\\\"METTL3\\\", \\\"METTL14\\\", \\\"RBM15\\\", \\\"RBM15B\\\", \\\"WTAP\\\", \\\"KIAA1429\\\", \\\"CBLL1\\\", \\\"ZC3H13\\\", \\\"ALKBH5\\\", \\\"FTO\\\", \\\"YTHDC1\\\", \\\"YTHDC2\\\", \\\"YTHDF1\\\", \\\"YTHDF2\\\", \\\"YTHDF3\\\", \\\"IGF2BP1\\\", \\\"HNRNPA2B1\\\", \\\"HNRNPC\\\", \\\"FMR1\\\", \\\"LRPPRC\\\", \\\"ELAVL1\\\")\\n\\n# Filter genes of interest to those present in the expression data\\ngenes_of_interest <- genes_of_interest[genes_of_interest %in% colnames(expression_data_merged)]\\n\\n# Filter the expression data for these genes\\nfiltered_data <- expression_data_merged %>%\\n  select(Sample, all_of(genes_of_interest))\\n\\n# Remove samples with missing gene data\\nfiltered_data <- filtered_data %>%\\n  filter(complete.cases(.))\\n\\n# Remove the Sample column for clustering\\nclustering_data <- filtered_data %>%\\n  select(-Sample)\\n\\n# Determine the optimal number of clusters using the Elbow method\\nfviz_nbclust(clustering_data, kmeans, method = \\\"wss\\\") + \\n  geom_vline(xintercept = 3, linetype = 2) +\\n  labs(subtitle = \\\"Elbow method\\\")\\n\\n# Set the seed for reproducibility\\nset.seed(123)\\n\\n# Perform k-means clustering with k = 3\\nkmeans_result <- kmeans(clustering_data, centers = 3, nstart = 25)\", \"test_cases\": \"nrow(filtered_data) == 177\\n\\nncol(filtered_data) == 7\\n\\nlength(kmeans_result) == 9\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33746977_1",
+        "study_id": "33746977",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Descriptive Statistics']",
+        "study_type": "Molecular",
+        "study_title": "Analysis of m6A-Related Signatures in the Tumor Immune Microenvironment and Identification of Clinical Prognostic Regulators in Adrenocortical Carcinoma",
+        "dataset_url": "CMOB/ACC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    },
+    {
+      "id": "biodsbench_r_33761933_8",
+      "question": "##Question##\nMerge the 'DEGAll' data with 'hg' by 'Gene' to prepare the data for Gene Set Enrichment Analysis (GSEA). Assign log fold changes to 'GSEA_input' with gene IDs as names, sort 'GSEA_input' in descending order, and perform the GSEA analysis using 'gseKEGG'. Plot the curves for the top 5 results using the 'gseaplot2' function from the 'enrichplot' package.\n\n##Task##\n1. Merge the data for GSEA analysis.\n2. GSEA analysis with 'gseKEGG'.\n3. Plot the top-5 result",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/KIRC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_KIRC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"#Merge the data for GSEA analysis\\ncolnames(hg) <- c(\\\"Gene\\\", \\\"ENTREZID\\\")\\ninfo_merge <- merge(DEGAll,hg,by='Gene')\\nGSEA_input <- info_merge$logFC\\nnames(GSEA_input) = info_merge$ENTREZID\\nGSEA_input = sort(GSEA_input, decreasing = TRUE)\\n\\n#GSEA analysis with 'gseKEGG'\\nGSEA_KEGG <- gseKEGG(GSEA_input, organism = 'hsa', pvalueCutoff = 1)\\n\\n#Plot the result\\ngseaplot2(GSEA_KEGG,geneSetID = 1:5, pvalue_table = T)\", \"test_cases\": \"!is.null(GSEA_KEGG)\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33761933_8",
+        "study_id": "33761933",
+        "question_id": "8",
+        "analysis_types": "['Data Integration & Transformation']",
+        "study_type": "Integrative",
+        "study_title": "Multi-omics analysis of tumor angiogenesis characteristics and potential epigenetic regulation mechanisms in renal clear cell carcinoma",
+        "dataset_url": "CMOB/KIRC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  ]
+}

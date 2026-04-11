@@ -1,0 +1,146 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_34092242_3",
+      "question": "##Question##\nUse the 'ggsurvplot', 'survival', and 'survminer' packages to plot Kaplan-Meier survival curves for the clusters in the 'final_data' data frame. The survival times are provided in the 'survival_times' column and event statuses in the 'event_observed' column. Adjust the plot to show p-values, confidence intervals, and use specific colors for the clusters.\n\n##Task##\n1. Create a survival object.\n2. Fit Kaplan-Meier curves for each cluster. Saved as \"km_fit\".\n3. Plot the Kaplan-Meier curves with ggsurvplot.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/LUAD_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_LUAD.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(survival)\\n# Load necessary libraries\\nlibrary(survival)\\nlibrary(survminer)\\n\\n# Merge the labeled expression with the survival data\\nfinal_data <- merge(expression_data_merged, survival, by = \\\"Sample\\\")\\n\\n# Create a survival object\\nsurv_obj <- with(final_data, Surv(survival_times, event_observed))\\n\\n# Fit Kaplan-Meier curves for each cluster\\nkm_fit <- survfit(surv_obj ~ Label, data = final_data)\\n\\n# Plot the Kaplan-Meier curves\\nggsurvplot(km_fit, data = final_data, pval = TRUE, conf.int = TRUE, legend.labs = c(\\\"Cluster 1\\\", \\\"Cluster 2\\\"),\\n           title = \\\"Kaplan-Meier Curves by Clusters\\\",\\n           xlab = \\\"Time (days)\\\", ylab = \\\"Survival Probability\\\",\\n           palette = c(\\\"#E41A1C\\\", \\\"#377EB8\\\", \\\"#4DAF4A\\\"))  # Adjust colors as needed\", \"test_cases\": \"nrow(final_data) == 450\\n\\nlength(km_fit) == 19\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "34092242_3",
+        "study_id": "34092242",
+        "question_id": "3",
+        "analysis_types": "['Survival Outcome Analysis']",
+        "study_type": "Biomarkers",
+        "study_title": "A seven-gene prognostic signature predicts overall survival of patients with lung adenocarcinoma (LUAD)",
+        "dataset_url": "CMOB/LUAD",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_34092242_3",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Task requires: 1. Create a survival object. 2. Fit Kaplan-Meier curves for each cluster. 3. Plot the Kaplan-Meier curves with ggsurvplot.",
+          "Data merging step is implied: 'final_data' is created by merging expression and survival data.",
+          "No explicit method branching or alternative approaches specified."
+        ],
+        "reason": "There is a minor workflow structuring load due to the need to merge data and perform a sequence of steps (create survival object, fit model, plot), but the steps are standard and sequential with no evidence of significant branching or multiple valid methods."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Artifacts: survival object, fitted model (km_fit), plot.",
+          "Plot must show p-values, confidence intervals, and use specific colors for clusters.",
+          "Test cases: nrow(final_data) == 450, length(km_fit) == 19.",
+          "Explicit requirements for plot features (p-values, confidence intervals, color palette)."
+        ],
+        "reason": "There is moderate artifact realization load due to multiple output types (object, model, plot) and explicit requirements for plot features and color specification. Parameterization is moderately tight due to explicit plot features, but not highly strict."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Data merging is required: 'final_data' is created by merging expression and survival data.",
+          "No evidence of ambiguous semantics or schema mismatch beyond standard merging."
+        ],
+        "reason": "There is a weak reflection load due to the need to merge two input files into a single data frame, but no evidence of ambiguity, contradiction, or schema repair beyond this routine step."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-step workflow for Kaplan-Meier survival analysis and plotting in R, with moderate artifact and parameterization load due to explicit plot requirements. Planning and reflection loads are minor, as the workflow is sequential and only requires routine data merging. There is no evidence of experience transfer or strategy evolution.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2754,
+        "completion_tokens": 615,
+        "total_tokens": 3369
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Task requires: 1. Create a survival object. 2. Fit Kaplan-Meier curves for each cluster. 3. Plot the Kaplan-Meier curves with ggsurvplot.",
+            "Data merging step is implied: 'final_data' is created by merging expression and survival data.",
+            "No explicit method branching or alternative approaches specified."
+          ],
+          "reason": "There is a minor workflow structuring load due to the need to merge data and perform a sequence of steps (create survival object, fit model, plot), but the steps are standard and sequential with no evidence of significant branching or multiple valid methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Artifacts: survival object, fitted model (km_fit), plot.",
+            "Plot must show p-values, confidence intervals, and use specific colors for clusters.",
+            "Test cases: nrow(final_data) == 450, length(km_fit) == 19.",
+            "Explicit requirements for plot features (p-values, confidence intervals, color palette)."
+          ],
+          "reason": "There is moderate artifact realization load due to multiple output types (object, model, plot) and explicit requirements for plot features and color specification. Parameterization is moderately tight due to explicit plot features, but not highly strict.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Data merging is required: 'final_data' is created by merging expression and survival data.",
+            "No evidence of ambiguous semantics or schema mismatch beyond standard merging."
+          ],
+          "reason": "There is a weak reflection load due to the need to merge two input files into a single data frame, but no evidence of ambiguity, contradiction, or schema repair beyond this routine step.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-step workflow for Kaplan-Meier survival analysis and plotting in R, with moderate artifact and parameterization load due to explicit plot requirements. Planning and reflection loads are minor, as the workflow is sequential and only requires routine data merging. There is no evidence of experience transfer or strategy evolution.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:59:43.262983+00:00"
+  }
+}

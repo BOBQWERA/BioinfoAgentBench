@@ -1,0 +1,139 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_313",
+      "question": "There is a data file fishplot.tsv, where \"timepoints\" represents the time points, \"parents\" indicates the parent-child relationships between clones, \"samplename\" represents the sample name, and \"event1\", \"event2\", \"event3\", \"event4\" represent the number of different clones at each time point. Please use this data to draw a fish plot to display the evolutionary relationships of the clones.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0313/files/fishplot.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"fishplot.jpg\", \"path\": \"downloaded_files\\\\index_0313\\\\milestone\\\\fishplot.jpg\"}], \"milestones\": [\"Generate fish plot\", \"The result file for saving the image is in jpg format, which is correct.\"], \"steps\": [\"Draw fish plot\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Other",
+        "task_abbr": "fishplot",
+        "task": "Other",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.82,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_313",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "The question requires using a data file with multiple fields (timepoints, parents, samplename, event1-4) to draw a fish plot.",
+          "The answer milestones and steps indicate: 'Draw fish plot', 'Check whether the file format of the saved image result is correct.'",
+          "Parent-child relationships and timepoints must be interpreted to construct the evolutionary relationships."
+        ],
+        "reason": "There is a moderate planning load: the task requires decomposing the workflow into at least two steps (data interpretation and plot generation), and the parent-child relationships and timepoints must be mapped to the fish plot structure. However, there is no explicit evidence of multiple branching methods or ambiguous workflow topology."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "The required output is a fish plot image in jpg format ('fishplot.jpg').",
+          "Milestone: 'The result file for saving the image is in jpg format, which is correct.'",
+          "Step: 'Check whether the file format of the saved image result is correct.'"
+        ],
+        "reason": "There is a moderate action load: the task requires generating a specific image file in a specified format, and there is an explicit verification step for file format correctness. However, there is only one output artifact type and no evidence of strict parameterization or multiple output types."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "The question describes the columns in the data file and their meanings.",
+          "No evidence of missing fields, schema mismatch, or ambiguity in the data description."
+        ],
+        "reason": "There is weak reflection load: the mapping from data columns to fish plot elements is described, but there is no evidence of ambiguity, contradiction, or need for semantic or representational repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves moderate planning and action load due to the need to interpret structured data and generate a specific plot image with format verification. There is weak reflection load, as the data mapping is described but not ambiguous. There is no evolution load, as no transfer or prior experience context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2413,
+        "completion_tokens": 645,
+        "total_tokens": 3058
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "The question requires using a data file with multiple fields (timepoints, parents, samplename, event1-4) to draw a fish plot.",
+            "The answer milestones and steps indicate: 'Draw fish plot', 'Check whether the file format of the saved image result is correct.'",
+            "Parent-child relationships and timepoints must be interpreted to construct the evolutionary relationships."
+          ],
+          "reason": "There is a moderate planning load: the task requires decomposing the workflow into at least two steps (data interpretation and plot generation), and the parent-child relationships and timepoints must be mapped to the fish plot structure. However, there is no explicit evidence of multiple branching methods or ambiguous workflow topology.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "The required output is a fish plot image in jpg format ('fishplot.jpg').",
+            "Milestone: 'The result file for saving the image is in jpg format, which is correct.'",
+            "Step: 'Check whether the file format of the saved image result is correct.'"
+          ],
+          "reason": "There is a moderate action load: the task requires generating a specific image file in a specified format, and there is an explicit verification step for file format correctness. However, there is only one output artifact type and no evidence of strict parameterization or multiple output types.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "The question describes the columns in the data file and their meanings.",
+            "No evidence of missing fields, schema mismatch, or ambiguity in the data description."
+          ],
+          "reason": "There is weak reflection load: the mapping from data columns to fish plot elements is described, but there is no evidence of ambiguity, contradiction, or need for semantic or representational repair.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate planning and action load due to the need to interpret structured data and generate a specific plot image with format verification. There is weak reflection load, as the data mapping is described but not ambiguous. There is no evolution load, as no transfer or prior experience context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:37:03.319898+00:00"
+  }
+}

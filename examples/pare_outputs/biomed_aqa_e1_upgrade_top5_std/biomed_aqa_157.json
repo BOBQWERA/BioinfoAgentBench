@@ -1,0 +1,163 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_e1_upgrade_top5_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_157",
+      "question": "[Abstracted Experience Guidance]\n- Principle 1: Run clustering only after consistent feature scaling and basic noise inspection, because distance-based structure is sensitive to scale/noise.\n- Principle 2: Check cluster stability under nearby parameter settings instead of trusting a single run.\n- Decision rationale: Robust cluster interpretation requires reproducible structure, not one-shot partitioning.\n- Switch condition: If cluster assignment changes strongly across close settings, prioritize data conditioning or parameter revision before final output.\n- Caution: Frequent failures include using raw unscaled features and over-interpreting unstable small clusters.\n\n[Target Task]\nI have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use AGNES for clustering analysis.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0157/files/hcluster.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"hcluster.csv\", \"path\": \"downloaded_files\\\\index_0157\\\\milestone\\\\hcluster.csv\"}, {\"name\": \"hierarchical_output.csv\", \"path\": \"downloaded_files\\\\index_0157\\\\milestone\\\\hierarchical_output.csv\"}], \"milestones\": [\"Generate a CSV format file\", \"Generate the prediction result file of the algorithm on the dataset.\"], \"steps\": [\"Convert data from TSV format to CSV format\", \"Train and test on this dataset using the AGNES algorithm.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Clustering",
+        "task_abbr": "AGNES聚类",
+        "task": "Clustering",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.43,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E1",
+          "selection_basis": "['targets_not_overlap_r1_r2_e2_sets', 'targets_are_tsv_or_csv_only', 'source_target_same_family']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 152,
+              "workflow_memory_Index": 146,
+              "task_abbr": "HClust聚类",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the dataset from the file hcluster.tsv and convert it to CSV format for clustering analysis.\n    - **Tool**: None\n    - **Input**: \"hcluster.tsv\"\n    - **Output**: data_csv_file (path to the converted CSV file)\n    - **Description**: Read the hcluster.tsv file, extract the feature columns while skipping the ID column, and save the result as a CSV file.\n\n2. **Goal**: Perform hierarchical clustering analysis on the feature columns.\n    - **Tool**: hierarchical\n    - **Input**: data_csv_file (path to the CSV file containing feature columns), n_clusters (number of clusters to be defined by the user)\n    - **Output**: result_csv_file (path to the clustering result file), silhouette (average silhouette score)\n    - **Description**: Use the hierarchical clustering algorithm directly on the validated feature data to generate clusters and output the results along with a silhouette score for evaluation.\n]"
+            },
+            "original_question": "I have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use AGNES for clustering analysis."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_157",
+    "benchmark": "biomed_aqa_e1_upgrade_top5_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Principle 1: Run clustering only after consistent feature scaling and basic noise inspection",
+          "Principle 2: Check cluster stability under nearby parameter settings",
+          "Switch condition: If cluster assignment changes strongly across close settings, prioritize data conditioning or parameter revision before final output",
+          "Steps: Convert data from TSV format to CSV format, Train and test on this dataset using the AGNES algorithm"
+        ],
+        "reason": "The task requires a multi-stage workflow: data conversion, feature scaling, noise inspection, clustering, and stability checking. The explicit experience guidance introduces additional steps (scaling, noise inspection, stability checks) beyond a direct clustering run. However, the method (AGNES) is specified, and while parameter sensitivity is mentioned, there is no explicit requirement to choose among multiple fundamentally different methods or to resolve major branching ambiguity. Thus, the planning load is moderate."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: hcluster.csv, hierarchical_output.csv",
+          "milestones: Generate a CSV format file, Generate the prediction result file of the algorithm on the dataset",
+          "Steps: Convert data from TSV format to CSV format, Train and test on this dataset using the AGNES algorithm",
+          "Principle 1: Run clustering only after consistent feature scaling and basic noise inspection"
+        ],
+        "reason": "There are two explicit output artifact types (converted CSV, clustering result CSV), and the workflow requires data conversion and clustering output. The experience guidance implies that feature scaling and noise inspection must be realized in the workspace, adding to the artifact and parameterization load. However, there is no evidence of strict format constraints, explicit numeric thresholds, or tight parameter specification beyond the general clustering and conversion steps."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Principle 1: Run clustering only after consistent feature scaling and basic noise inspection",
+          "Caution: Frequent failures include using raw unscaled features"
+        ],
+        "reason": "The experience guidance highlights the need to check for and potentially repair data scaling and noise issues before clustering, which implies a minor to moderate need for data conditioning or representation repair. However, there is no evidence of schema mismatch, missing columns, or ambiguous semantics in the input or output specification."
+      },
+      "E": {
+        "score": 4,
+        "evidence": [
+          "[Abstracted Experience Guidance] block with principles, rationale, switch condition, and caution",
+          "Principle 1: Run clustering only after consistent feature scaling and basic noise inspection",
+          "Principle 2: Check cluster stability under nearby parameter settings",
+          "Switch condition: If cluster assignment changes strongly across close settings, prioritize data conditioning or parameter revision before final output"
+        ],
+        "reason": "The payload contains explicit prior experience in the form of generalizable principles, rationale, and switch conditions that must be abstracted and applied to the current task. The agent cannot simply copy prior steps but must transfer and adapt the principles to the new dataset and clustering context, making experience assimilation and strategy transfer a major difficulty driver."
+      }
+    },
+    "overall_summary": "This task requires moderate planning and action load due to the multi-stage workflow (conversion, scaling, noise inspection, clustering, stability check) and the need to realize multiple artifacts. There is some data conditioning/repair implied by the experience guidance, but no major schema or semantic ambiguity. The central difficulty driver is the need to assimilate and transfer abstracted experience principles to the current clustering task, as the agent must interpret and apply general guidance rather than follow a rote procedure.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2914,
+        "completion_tokens": 894,
+        "total_tokens": 3808
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Principle 1: Run clustering only after consistent feature scaling and basic noise inspection",
+            "Principle 2: Check cluster stability under nearby parameter settings",
+            "Switch condition: If cluster assignment changes strongly across close settings, prioritize data conditioning or parameter revision before final output",
+            "Steps: Convert data from TSV format to CSV format, Train and test on this dataset using the AGNES algorithm"
+          ],
+          "reason": "The task requires a multi-stage workflow: data conversion, feature scaling, noise inspection, clustering, and stability checking. The explicit experience guidance introduces additional steps (scaling, noise inspection, stability checks) beyond a direct clustering run. However, the method (AGNES) is specified, and while parameter sensitivity is mentioned, there is no explicit requirement to choose among multiple fundamentally different methods or to resolve major branching ambiguity. Thus, the planning load is moderate.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: hcluster.csv, hierarchical_output.csv",
+            "milestones: Generate a CSV format file, Generate the prediction result file of the algorithm on the dataset",
+            "Steps: Convert data from TSV format to CSV format, Train and test on this dataset using the AGNES algorithm",
+            "Principle 1: Run clustering only after consistent feature scaling and basic noise inspection"
+          ],
+          "reason": "There are two explicit output artifact types (converted CSV, clustering result CSV), and the workflow requires data conversion and clustering output. The experience guidance implies that feature scaling and noise inspection must be realized in the workspace, adding to the artifact and parameterization load. However, there is no evidence of strict format constraints, explicit numeric thresholds, or tight parameter specification beyond the general clustering and conversion steps.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Principle 1: Run clustering only after consistent feature scaling and basic noise inspection",
+            "Caution: Frequent failures include using raw unscaled features"
+          ],
+          "reason": "The experience guidance highlights the need to check for and potentially repair data scaling and noise issues before clustering, which implies a minor to moderate need for data conditioning or representation repair. However, there is no evidence of schema mismatch, missing columns, or ambiguous semantics in the input or output specification.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 4,
+          "evidence": [
+            "[Abstracted Experience Guidance] block with principles, rationale, switch condition, and caution",
+            "Principle 1: Run clustering only after consistent feature scaling and basic noise inspection",
+            "Principle 2: Check cluster stability under nearby parameter settings",
+            "Switch condition: If cluster assignment changes strongly across close settings, prioritize data conditioning or parameter revision before final output"
+          ],
+          "reason": "The payload contains explicit prior experience in the form of generalizable principles, rationale, and switch conditions that must be abstracted and applied to the current task. The agent cannot simply copy prior steps but must transfer and adapt the principles to the new dataset and clustering context, making experience assimilation and strategy transfer a major difficulty driver.",
+          "subdimension_breakdown": {
+            "E1": 4,
+            "E2": 4
+          }
+        }
+      },
+      "overall_summary": "This task requires moderate planning and action load due to the multi-stage workflow (conversion, scaling, noise inspection, clustering, stability check) and the need to realize multiple artifacts. There is some data conditioning/repair implied by the experience guidance, but no major schema or semantic ambiguity. The central difficulty driver is the need to assimilate and transfer abstracted experience principles to the current clustering task, as the agent must interpret and apply general guidance rather than follow a rote procedure.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-08T20:01:22.401034+00:00"
+  }
+}

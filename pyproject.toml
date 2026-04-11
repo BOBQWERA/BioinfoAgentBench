@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bioinfoagentbench"
+version = "0.1.0"
+description = "Curated repository snapshot for BioinfoAgentBench benchmark assets and PARE scoring."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "openai>=1.40.0",
+  "python-dotenv>=1.0.1",
+  "openpyxl>=3.1.0",
+  "pandas>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.6.0",
+]
+
+[project.scripts]
+pare-eval = "bioinfoagentbench.pare_eval.cli:main"
+pare-eval-batch = "bioinfoagentbench.pare_eval.batch_cli:main"
+biab-standardize = "bioinfoagentbench.benchmarks.standardize:main"
+biab-validate = "bioinfoagentbench.benchmarks.validate:main"
+biab-manifest = "bioinfoagentbench.benchmarks.manifest:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+bioinfoagentbench = ["templates/*.txt"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

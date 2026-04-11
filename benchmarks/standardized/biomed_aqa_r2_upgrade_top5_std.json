@@ -1,0 +1,260 @@
+{
+  "benchmark": "biomed_aqa_r2_upgrade_top5_std",
+  "schema_version": "1.0.0",
+  "count": 5,
+  "records": [
+    {
+      "id": "biomed_aqa_293",
+      "question": "There is an existing dataset line_regression.tsv, with group as grouping information. Perform linear regression using value1 as X and value2 as Y and plot the result. Before regression, repair representation inconsistencies: value1/value2 may mix numeric strings with comma decimals, and group labels may have casing/whitespace variants. Normalize numeric and group representations first.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0293/files/line_regression.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"line_regression.png\", \"path\": \"downloaded_files\\\\index_0293\\\\milestone\\\\line_regression.png\"}], \"milestones\": [\"Generate line regression chart\", \"The content of the line regression chart is correct.\"], \"steps\": [\"Draw a line regression chart\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Fitting & inference",
+        "task_abbr": "line regression",
+        "task": "Fitting & inference",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.62,
+        "milestone_count": 2,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_r1_selection', 'must_have_workflow_memory_reference_index', 'prefer_r2_repair_obvious_tasks', 'targets_are_tsv_or_csv_only']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Mixed numeric formatting + group key normalization in one table.",
+              "intent": "Increase R2 via representation/schema/quality repairs required before computation."
+            },
+            "data_repair_methods": [
+              "Convert comma-decimal tokens in value1/value2 to dot-decimal and parse as float.",
+              "Trim and lowercase group labels to canonical form.",
+              "Drop rows where value1 or value2 remains non-numeric after normalization."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 293,
+              "workflow_memory_Index": 43,
+              "task_abbr": "line regression",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps to fulfill the user's request for performing linear regression analysis and plotting based on the \"line_regression.tsv\" file:\n\n1. **Goal**: Load the data from the TSV file and extract the relevant columns \"group\", \"value1\", and \"value2\".\n    - **Tool**: None (custom code)\n    - **Input**: \"line_regression.tsv\"\n    - **Output**: data (list of tuples containing (group, value1, value2))\n    - **Description**: Read the contents of the line_regression.tsv file and parse it into a list of tuples, where each tuple contains the group identifier, value1, and value2.\n\n2. **Goal**: Check for any missing values or outliers in \"value1\" and \"value2\".\n    - **Tool**: None (custom code)\n    - **Input**: data (list of tuples)\n    - **Output**: cleaned_data (list of tuples)\n    - **Description**: Implement logic to identify and remove any entries with missing values or outliers in the value1 and value2 columns.\n\n3. **Goal**: Perform linear regression analysis for each group in the \"group\" column.\n    - **Tool**: None (custom code)\n    - **Input**: cleaned_data (list of tuples)\n    - **Output**: regression_results (list of tup"
+            },
+            "original_question": "There is an existing dataset line_regression.tsv, the \"group\" column is the grouping information, please perform linear regression analysis and plot using \"value1\" for the X-axis and \"value2\" for the Y-axis."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_296",
+      "question": "There is a gene expression matrix file dendrogram_plot.tsv (Name as gene, M1-M10 as samples). Use complete linkage and Euclidean distance to draw a dendrogram for the 10 samples. Before clustering, repair data representation issues: gene names may contain duplicated aliases and some expression cells may be malformed text tokens. Resolve duplicate gene rows deterministically and coerce numeric cells before distance calculation.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0296/files/dendrogram_plot.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"phylogram.png\", \"path\": \"downloaded_files\\\\index_0296\\\\milestone\\\\phylogram.png\"}], \"milestones\": [\"Generate a phylogram\", \"The content of the phylogram is correct.\"], \"steps\": [\"Draw a phylogram\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Fitting & inference",
+        "task_abbr": "dendrogram plot",
+        "task": "Fitting & inference",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.65,
+        "milestone_count": 2,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_r1_selection', 'must_have_workflow_memory_reference_index', 'prefer_r2_repair_obvious_tasks', 'targets_are_tsv_or_csv_only']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Duplicate row identifiers + malformed numeric cells in matrix representation.",
+              "intent": "Increase R2 via representation/schema/quality repairs required before computation."
+            },
+            "data_repair_methods": [
+              "Canonicalize gene Name by trim; if duplicated, keep the first row with maximal non-missing numeric cells.",
+              "Coerce M1-M10 to numeric after stripping surrounding spaces and placeholder tokens (e.g., NA, null).",
+              "Remove rows with fewer than 2 valid numeric sample values after coercion."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 296,
+              "workflow_memory_Index": 63,
+              "task_abbr": "dendrogram plot",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the gene expression matrix from the TSV file and convert it to CSV format.\n    - **Tool**: None\n    - **Input**: \"dendrogram_plot.tsv\"\n    - **Output**: \"dendrogram_plot.csv\"\n    - **Description**: Read the TSV file and save it as a CSV file for compatibility with the hierarchical clustering tool.\n\n2. **Goal**: Perform hierarchical clustering on the gene expression data.\n    - **Tool**: hierarchical\n    - **Input**: data_csv_file = \"dendrogram_plot.csv\", n_clusters = 10\n    - **Output**: result_csv_file (e.g., \"hierarchical_output.csv\"), silhouette score\n    - **Description**: Use the hierarchical clustering tool to analyze the gene expression data and generate clustering results, which includes a new \"Cluster\" column.\n\n3. **Goal**: Generate a dendrogram based on the clustering results.\n    - **Tool**: None\n    - **Input**: result_csv_file\n    - **Output**: dendrogram_plot (display)\n    - **Description**: Use a plotting library (e.g., Matplotlib) to create and display a dendrogram that visually represents the genetic relationships among the samples based on the clustering resul"
+            },
+            "original_question": "There is a gene expression matrix file dendrogram_plot.tsv, where columns M1 to M10 represent the gene expression levels corresponding to 10 samples, and the \"Name\" column is for genes. Please use the complete clustering method and Euclidean distance metric to draw a dendrogram to show the genetic distance between the 10 samples."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_311",
+      "question": "There is an existing file deviation.tsv. Perform z-score on mpg, sort descending, split high/low by 0, and draw a deviation plot with name on y-axis and normalized mpg on x-axis. Before computation, repair representation issues: mpg may include mixed decimal formats and name may have duplicate variants caused by casing/spaces. Normalize representation and resolve duplicates before z-scoring.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0311/files/deviation.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"deviation_plot.png\", \"path\": \"downloaded_files\\\\index_0311\\\\milestone\\\\deviation_plot.png\"}], \"milestones\": [\"Generate deviation plot\", \"The result file for saving the image is in png format, which is correct.\"], \"steps\": [\"Draw deviation plot\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Other",
+        "task_abbr": "Deviation plot",
+        "task": "Other",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.8,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_r1_selection', 'must_have_workflow_memory_reference_index', 'prefer_r2_repair_obvious_tasks', 'targets_are_tsv_or_csv_only']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Numeric token normalization + duplicate name representation.",
+              "intent": "Increase R2 via representation/schema/quality repairs required before computation."
+            },
+            "data_repair_methods": [
+              "Normalize mpg by converting comma-decimal to dot-decimal, then parse to float.",
+              "Canonicalize name via trim + lowercase for duplicate detection.",
+              "For duplicated canonical names, keep the first row with valid mpg and discard others."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 311,
+              "workflow_memory_Index": 89,
+              "task_abbr": "Deviation plot",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps:\n\n1. **Goal**: Load the data from the file \"deviation.tsv\" and extract the relevant columns \"name\" and \"mpg\".\n    - **Tool**: None (Python code)\n    - **Input**: \"deviation.tsv\"\n    - **Output**: (names, mpg_values) (list of strings, list of floats)\n    - **Description**: Read the contents of the deviation.tsv file and parse the \"name\" and \"mpg\" columns into separate lists.\n\n2. **Goal**: Calculate the z-scores for the extracted \"mpg\" values.\n    - **Tool**: None (Python code)\n    - **Input**: mpg_values (list of floats)\n    - **Output**: z_scores (list of floats)\n    - **Description**: Implement the z-score formula to normalize the \"mpg\" values, resulting in a list of z-scores.\n\n3. **Goal**: Sort the z-scores in descending order and associate them with the corresponding \"name\" values.\n    - **Tool**: None (Python code)\n    - **Input**: z_scores, names (list of floats, list of strings)\n    - **Output**: sorted_z_scores (list of floats), sorted_names (list of strings)\n    - **Description**: Sort the z-scores and their corresponding names based on the z-scores in descending order.\n\n4. **Goal**: Divide the sorte"
+            },
+            "original_question": "{There is an existing data file deviation.tsv. First, perform z-score on the mpg column data and sort the results in descending order. Divide the data into high/low groups with 0 as the boundary value. Use the \"name\" column as the y-axis label and the normalized and sorted \"mpg\" as the x-axis to create a deviation plot.}"
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_317",
+      "question": "For dataset volcano.tsv (Symbol, logFC, P.Value), classify genes into upregulated/downregulated/nonsignificant with p<0.05 and |logFC|>=2, then draw a volcano plot. Before classification, repair representation inconsistencies: Symbol may mix gene symbols and Ensembl IDs with version suffixes, and P.Value may include string forms such as \"<0.001\". Normalize identifiers and p-value tokens deterministically.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0317/files/volcano.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"volcano_volcano.jpg\", \"path\": \"downloaded_files\\\\index_0317\\\\milestone\\\\volcano_volcano.jpg\"}], \"milestones\": [\"Generate a volcano map\", \"The result file for saving the image is in jpg format, which is correct.\"], \"steps\": [\"Draw a volcano map\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Other",
+        "task_abbr": "volcano plot",
+        "task": "Other",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.86,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_r1_selection', 'must_have_workflow_memory_reference_index', 'prefer_r2_repair_obvious_tasks', 'targets_are_tsv_or_csv_only']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Identifier normalization issue + semi-structured p-value tokens.",
+              "intent": "Increase R2 via representation/schema/quality repairs required before computation."
+            },
+            "data_repair_methods": [
+              "If Symbol is ENSG-like with version suffix, strip the version part (e.g., ENSG000001.5 -> ENSG000001).",
+              "Parse P.Value strings in \"<x\" form as numeric x for thresholding.",
+              "Drop rows where logFC or P.Value is not parseable after normalization."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 317,
+              "workflow_memory_Index": 107,
+              "task_abbr": "volcano plot",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps:\n\n1. **Goal**: Filter the dataset to categorize genes based on p-value and logFC thresholds.\n    - **Tool**: None\n    - **Input**: \"volcano.tsv\"\n    - **Output**: A DataFrame containing categorized genes with columns: 'Symbol', 'logFC', 'P.Value', and 'Category' (upregulated, downregulated, no significant difference).\n    - **Description**: Read the \"volcano.tsv\" file, filter the genes based on the criteria (p < 0.05, logFC ≥ 2 for upregulated, logFC ≤ -2 for downregulated), and directly create a DataFrame that includes the gene symbols, their logFC values, p-values, and their respective categories.\n\n2. **Goal**: Generate a volcano plot based on the filtered data.\n    - **Tool**: None\n    - **Input**: The DataFrame from the previous step.\n    - **Output**: A volcano plot image file (e.g., \"volcano_plot.png\").\n    - **Description**: Use a plotting library (e.g., Matplotlib) to create a volcano plot directly from the DataFrame, where the x-axis represents logFC values and the y-axis represents -log10(P.Value). Different colors or markers will be used to distinguish between the three gene categories.\n\nThis stre"
+            },
+            "original_question": "There is an existing dataset volcano.tsv, where the \"Symbol\" column represents genes, \"logFC\" is log2(Fold Change), and the \"P.Value\" column is the p-value. With p<0.05 and a cutoff value of log2FC set to 2, the genes are divided into three groups: significantly upregulated, significantly downregulated, and no significant difference. A volcano plot will be drawn for the three groups."
+          }
+        }
+      }
+    },
+    {
+      "id": "biomed_aqa_324",
+      "question": "There are three files: heatmap_matrix1.tsv (matrix), heatmap_row.tsv (row annotations), and heatmap_col.tsv (column annotations). Draw a heatmap with row/column annotation bars. Before plotting, perform cross-file representation repair: IDs may differ by casing/hyphen/underscore style between files, and annotation files may contain duplicated IDs. Reconcile IDs deterministically and deduplicate annotations before merging.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0324/files/heatmap_matrix1.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0324/files/heatmap_row.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0324/files/heatmap_col.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"heatmap1.jpg\", \"path\": \"downloaded_files\\\\index_0324\\\\milestone\\\\heatmap1.jpg\"}], \"milestones\": [\"Generate heatmap\", \"The content of the heatmap is correct.\"], \"steps\": [\"Draw a heatmap\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Other",
+        "task_abbr": "heatmap",
+        "task": "Other",
+        "question_type": "open",
+        "dataset": "Rep2",
+        "split": "train",
+        "order": 51.93,
+        "milestone_count": 2,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_r1_selection', 'must_have_workflow_memory_reference_index', 'prefer_r2_repair_obvious_tasks', 'targets_are_tsv_or_csv_only']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Cross-file ID alignment + duplicate annotation records.",
+              "intent": "Increase R2 via representation/schema/quality repairs required before computation."
+            },
+            "data_repair_methods": [
+              "Canonicalize row/column IDs by lowercasing and replacing spaces/hyphens with underscores across all files.",
+              "Join row/column annotations to matrix by canonical IDs while preserving matrix order.",
+              "If duplicated annotation IDs exist, keep the first non-empty annotation record."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 324,
+              "workflow_memory_Index": 114,
+              "task_abbr": "heatmap",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps to generate a heatmap based on the provided data files and add corresponding annotation bars to the rows and columns:\n\n1. **Goal**: Generate the heatmap with annotations directly from the files.\n    - **Tool**: None (custom code)\n    - **Input**: \"heatmap_matrix1.tsv\", \"heatmap_row.tsv\", \"heatmap_col.tsv\"\n    - **Output**: None (displays a heatmap)\n    - **Description**: Use a plotting library (e.g., matplotlib or seaborn) to read the data directly from the files and create a heatmap, ensuring to use `tolist()` instead of `to_list()` when processing the DataFrame for row and column annotations.\n\nThis adjustment eliminates the need for separate data loading steps and focuses on directly generating the heatmap, thus streamlining the workflow and reducing potential points of failure.]"
+            },
+            "original_question": "There are three existing data files: heatmap_matrix1.tsv is a data matrix; heatmap_row.tsv is the annotation information file for the first row of heatmap_matrix1.tsv, and heatmap_col.tsv is the annotation information file for the first column of heatmap_matrix1.tsv. Please draw a heatmap based on this information and add the corresponding annotation bars to the rows and columns."
+          }
+        }
+      }
+    }
+  ]
+}

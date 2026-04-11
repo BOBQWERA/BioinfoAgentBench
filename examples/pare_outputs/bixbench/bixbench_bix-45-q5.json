@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-45-q5",
+      "question": "What is the median pairwise difference in RCV scores (fungi - animal) for matched orthologs?",
+      "data": [],
+      "answer": "0.12",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-45-q5",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.05",
+          "0.2",
+          "0.3"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-45-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'What is the median pairwise difference in RCV scores (fungi - animal) for matched orthologs?'",
+          "Requires: identifying matched orthologs, computing pairwise differences, then median"
+        ],
+        "reason": "There is a weak workflow structuring load: the question requires at least two steps (identify matched orthologs, compute differences, then median). However, there is no evidence of branching decision load (no alternative methods or assumptions are presented, and the method is implied to be direct)."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a single numeric value: '0.12'",
+          "No explicit format or parameterization constraints",
+          "No explicit verification checkpoints or strict thresholds"
+        ],
+        "reason": "Artifact realization is minimal (single value), and there is no evidence of strict parameterization or format constraints. The action load is weak, as the output is simple and specification is loose."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided ('data': [])",
+          "No evidence of ambiguity, contradiction, or schema mismatch in the question"
+        ],
+        "reason": "There is a trace load for reflection, as the absence of data could require clarification in a real scenario, but the question itself is semantically clear and does not require repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a weakly multi-step workflow (identify matched orthologs, compute pairwise differences, then median), but there is no evidence of method branching, strict output specification, or semantic/data repair. No transfer or evolution context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2207,
+        "completion_tokens": 529,
+        "total_tokens": 2736
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'What is the median pairwise difference in RCV scores (fungi - animal) for matched orthologs?'",
+            "Requires: identifying matched orthologs, computing pairwise differences, then median"
+          ],
+          "reason": "There is a weak workflow structuring load: the question requires at least two steps (identify matched orthologs, compute differences, then median). However, there is no evidence of branching decision load (no alternative methods or assumptions are presented, and the method is implied to be direct).",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a single numeric value: '0.12'",
+            "No explicit format or parameterization constraints",
+            "No explicit verification checkpoints or strict thresholds"
+          ],
+          "reason": "Artifact realization is minimal (single value), and there is no evidence of strict parameterization or format constraints. The action load is weak, as the output is simple and specification is loose.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided ('data': [])",
+            "No evidence of ambiguity, contradiction, or schema mismatch in the question"
+          ],
+          "reason": "There is a trace load for reflection, as the absence of data could require clarification in a real scenario, but the question itself is semantically clear and does not require repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a weakly multi-step workflow (identify matched orthologs, compute pairwise differences, then median), but there is no evidence of method branching, strict output specification, or semantic/data repair. No transfer or evolution context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:21:31.179259+00:00"
+  }
+}

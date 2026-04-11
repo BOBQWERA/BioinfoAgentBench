@@ -1,0 +1,131 @@
+{
+  "question": {
+    "benchmark": "labbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "labbench_8cd98408-8672-4330-911e-57bff9ec334a",
+      "question": "I have a plasmid pLAB050 with sequence TCGGTCTCCAACGATGTGCTTCAGTATTACATTTTTTGCCTTCAACGCCTTGATTGTTCTATTTTTGCTAATAATAAATCTATTTCATCGGACTAAAAGTCCATTAGTTGTAAGCGGATTTAGCTCAGTTGGGAGAGCGCCAGACTGAAGAAAAACTTCGGTCAAGTCATCTGGAGGTCCTGTGTTCGATCCACAGAATTCGCAGATGGCCGGCATGGTCCCAGCCTCCTCGCTGGCGCCGGCTGGGCAACACCTTCGGGTGGCGAATGGGACTTGAGACGGAAAGTGAAACGTGATTTCATGCGTCATTTTGAACATTTTGTAAATCTTATTTAATAATGTGTGCGGCAATTCACATTTAATTTATGAATGTTTTCTTAACATCGCGGCAACTCAAGAAACGGCAGGTTCGGATCTTAGCTACTAGAGAAAGAGGAGAAATACTAGATGCGTAAAGGCGAAGAGCTGTTCACTGGTGTCGTCCCTATTCTGGTGGAACTGGATGGTGATGTCAACGGTCATAAGTTTTCCGTGCGTGGCGAGGGTGAAGGTGACGCAACTAATGGTAAACTGACGCTGAAGTTCATCTGTACTACTGGTAAACTGCCGGTTCCTTGGCCGACTCTGGTAACGACGCTGACTTATGGTGTTCAGTGCTTTGCTCGTTATCCGGACCATATGAAGCAGCATGACTTCTTCAAGTCCGCCATGCCGGAAGGCTATGTGCAGGAACGCACGATTTCCTTTAAGGATGACGGCACGTACAAAACGCGTGCGGAAGTGAAATTTGAAGGCGATACCCTGGTAAACCGCATTGAGCTGAAAGGCATTGACTTTAAAGAGGACGGCAATATCCTGGGCCATAAGCTGGAATACAATTTTAACAGCCACAATGTTTACATCACCGCCGATAAACAAAAAAATGGCATTAAAGCGAATTTTAAAATTCGCCACAACGTGGAGGATGGCAGCGTGCAGCTGGCTGATCACTACCAGCAAAACACTCCAATCGGTGATGGTCCTGTTCTGCTGCCAGACAATCACTATCTGAGCACGCAAAGCGTTCTGTCTAAAGATCCGAACGAGAAACGCGATCATATGGTTCTGCTGGAGTTCGTAACCGCAGCGGGCATCACGCATGGTATGGATGAACTGTACAAATGACCAGGCATCAAATAAAACGAAAGGCTCAGTCGAAAGACTGGGCCTTTCGTTTTATCTGTTGTTTGTCGGTGAACGCTCTCTACTAGAGTCACACTGGCTCACCTTCGGGTGGGCCTTTCTGCGTTTATACGTCTCAGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCTTTTTTTATTTTTTGTCACTATTGTTATGTAAAATGCCACCTCTGACAGTATGGAACGCAAACTTCTGTCTAGTGGATAGCTGTGAGACCAGACCAATAAAAAACGCCCGGCGGCAACCGAGCGTTCTGAACAAATCCAGATGGAGTTCTGAGGTCATTACTGGATCTATCAACAGGAGTCCAAGCGAGCTCGATATCAAATTACGCCCCGCCCTGCCACTCATCGCAGTACTGTTGTAATTCATTAAGCATTCTGCCGACATGGAAGCCATCACAAACGGCATGATGAACCTGAATCGCCAGCGGCATCAGCACCTTGTCGCCTTGCGTATAATATTTGCCCATGGTGAAAACGGGGGCGAAGAAGTTGTCCATATTGGCCACGTTTAAATCAAAACTGGTGAAACTCACCCAGGGATTGGCTGAAACGAAAAACATATTCTCAATAAACCCTTTAGGGAAATAGGCCAGGTTTTCACCGTAACACGCCACATCTTGCGAATATATGTGTAGAAACTGCCGGAAATCGTCGTGGTATTCACTCCAGAGCGATGAAAACGTTTCAGTTTGCTCATGGAAAACGGTGTAACAAGGGTGAACACTATCCCATATCACCAGCTCACCGTCTTTCATTGCCATACGAAATTCCGGATGAGCATTCATCAGGCGGGCAAGAATGTGAATAAAGGCCGGATAAAACTTGTGCTTATTTTTCTTTACGGTCTTTAAAAAGGCCGTAATATCCAGCTGAACGGTCTGGTTATAGGTACATTGAGCAACTGACTGAAATGCCTCAAAATGTTCTTTACGATGCCATTGGGATATATCAACGGTGGTATATCCAGTGATTTTTTTCTCCATTTTAGCTTCCTTAGCTCCTGAAAATCTCGATAACTCAAAAAATACGCCCGGTAGTGATCTTATTTCATTATGGTGAAAGTTGGAACCTCTTACGTGCCCGATCAATCATGACCAAAATCCCTTAACGTGAGTTTTCGTTCCACTGAGCGTCAGACCCCGTAGAAAAGATCAAAGGATCTTCTTGAGATCCTTTTTTTCTGCGCGTAATCTGCTGCTTGCAAACAAAAAAACCACCGCTACCAGCGGTGGTTTGTTTGCCGGATCAAGAGCTACCAACTCTTTTTCCGAAGGTAACTGGCTTCAGCAGAGCGCAGATACCAAATACTGTTCTTCTAGTGTAGCCGTAGTTAGGCCACCACTTCAAGAACTCTGTAGCACCGCCTACATACCTCGCTCTGCTAATCCTGTTACCAGTGGCTGCTGCCAGTGGCGATAAGTCGTGTCTTACCGGGTTGGACTCAAGACGATAGTTACCGGATAAGGCGCAGCGGTCGGGCTGAACGGGGGGTTCGTGCACACAGCCCAGCTTGGAGCGAACGACCTACACCGAACTGAGATACCTACAGCGTGAGCTATGAGAAAGCGCCACGCTTCCCGAAGGGAGAAAGGCGGACAGGTATCCGGTAAGCGGCAGGGTCGGAACAGGAGAGCGCACGAGGGAGCTTCCAGGGGGAAACGCCTGGTATCTTTATAGTCCTGTCGGGTTTCGCCACCTCTGACTTGAGCGTCGATTTTTGTGATGCTCGTCAGGGGGGCGGAGCCTATGGAAAAACGCCAGCAACGCGGCCTTTTTACGGTTCCTGGCCTTTTGCTGGCCTTTTGCTCACATGTTCTTTCCTGCGTTATCCCCTGATTCTGTGGATAACCGTAG. I also have two DNA oligos with sequences GACTTTCATCACTATCTTTTCCCCCG and AAACCGGGGGAAAAGATAGTGATGAA. I annealed the two oligos together and cloned them into this plasmid using Golden Gate cloning with BsmBI, in order to create a transcriptional unit for expressing a CRISPR guide RNA. Which primer would be most appropriate to use for Sanger sequencing across the gRNA TU?",
+      "data": [],
+      "answer": "GCTGGCCTTTTGCTCACATG",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "LAB-Bench",
+        "source_dataset": "futurehouse/lab-bench",
+        "category": "CloningScenarios",
+        "task_name": "cloningscenarios",
+        "tag": "cloningscenarios",
+        "version": "1.0",
+        "sources": null,
+        "is_opensource": null,
+        "distractors": [
+          "TGGTGAAAGTTGGAACCTCTTA",
+          "CATGTGAGCAAAAGGCCAGC",
+          "TAAGAGGTTCCAACTTTCACCA"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "labbench_8cd98408-8672-4330-911e-57bff9ec334a",
+    "benchmark": "labbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question requires identifying the most appropriate primer for Sanger sequencing across a newly cloned gRNA transcriptional unit.",
+          "User provides plasmid sequence, oligo sequences, and describes a cloning strategy (Golden Gate with BsmBI)."
+        ],
+        "reason": "There is a minor workflow structuring load: the user must map the cloning strategy and oligo insertion to the plasmid context to determine primer placement. However, there is no explicit evidence of multiple branching methods or dependency-constrained step graphs; the task is to select a primer, not to design a full workflow."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Task requires selection of a single primer sequence from possible options.",
+          "No explicit format or parameterization constraints are stated beyond the need for the primer to sequence across the gRNA TU."
+        ],
+        "reason": "Artifact realization is limited to identifying a single primer sequence; there is no evidence of multiple output types or strict format requirements. Parameterization is weak, as there are no explicit thresholds or verification rules."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "All necessary sequence and context information is provided.",
+          "No evidence of ambiguity, contradiction, or schema mismatch."
+        ],
+        "reason": "There is almost no need for semantic or data repair; the question is clear and all required information is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This task involves selecting the most appropriate Sanger sequencing primer for a gRNA transcriptional unit cloned into a plasmid. There is minor planning and action load due to the need to map the cloning context and primer location, but no significant branching, artifact complexity, or repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3963,
+        "completion_tokens": 542,
+        "total_tokens": 4505
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question requires identifying the most appropriate primer for Sanger sequencing across a newly cloned gRNA transcriptional unit.",
+            "User provides plasmid sequence, oligo sequences, and describes a cloning strategy (Golden Gate with BsmBI)."
+          ],
+          "reason": "There is a minor workflow structuring load: the user must map the cloning strategy and oligo insertion to the plasmid context to determine primer placement. However, there is no explicit evidence of multiple branching methods or dependency-constrained step graphs; the task is to select a primer, not to design a full workflow.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Task requires selection of a single primer sequence from possible options.",
+            "No explicit format or parameterization constraints are stated beyond the need for the primer to sequence across the gRNA TU."
+          ],
+          "reason": "Artifact realization is limited to identifying a single primer sequence; there is no evidence of multiple output types or strict format requirements. Parameterization is weak, as there are no explicit thresholds or verification rules.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "All necessary sequence and context information is provided.",
+            "No evidence of ambiguity, contradiction, or schema mismatch."
+          ],
+          "reason": "There is almost no need for semantic or data repair; the question is clear and all required information is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves selecting the most appropriate Sanger sequencing primer for a gRNA transcriptional unit cloned into a plasmid. There is minor planning and action load due to the need to map the cloning context and primer location, but no significant branching, artifact complexity, or repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:45:12.978924+00:00"
+  }
+}

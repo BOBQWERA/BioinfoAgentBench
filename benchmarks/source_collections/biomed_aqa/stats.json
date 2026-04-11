@@ -1,0 +1,37 @@
+{
+  "sheet_name": "Biomed_AQA",
+  "total": 327,
+  "pare_y": 144,
+  "pare_n": 183,
+  "filtered_count": 144,
+  "task_classification": {
+    "O": 36,
+    "P": 6,
+    "M": 47,
+    "S": 22,
+    "V": 33
+  },
+  "task_subclass": {
+    "DNA": 12,
+    "RNA": 14,
+    "scRNA": 10,
+    "Genetic": 2,
+    "Tumor": 4,
+    "Classification": 12,
+    "Regression": 10,
+    "Clustering": 9,
+    "Feature selection": 10,
+    "Deep Learning": 6,
+    "Descriptive statistics": 9,
+    "Inferential statistics": 13,
+    "Basic plot": 9,
+    "Upset": 5,
+    "Fitting & inference": 8,
+    "Surivival": 3,
+    "Other": 8
+  },
+  "question_type": {
+    "clear": 97,
+    "open": 47
+  }
+}

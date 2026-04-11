@@ -1,0 +1,124 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-61-q3",
+      "question": "Using GATK HaplotypeCaller to call all variants from the BAM file, how many true single-nucleotide SNPs are identified in the MDR (SRR35233585) E. coli sample?",
+      "data": [],
+      "answer": "101817",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-61-q3",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "98234",
+          "105432",
+          "95621"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-61-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Using GATK HaplotypeCaller to call all variants from the BAM file",
+          "how many true single-nucleotide SNPs are identified"
+        ],
+        "reason": "The task requires running a standard variant calling workflow (BAM input to variant output) using a specified tool (GATK HaplotypeCaller). The workflow is canonical and does not require explicit step graph inference or branching decisions, as the method and tool are specified. However, there is a minor workflow structuring load in that the user must understand the process of calling SNPs from a BAM file and extracting the relevant count."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "how many true single-nucleotide SNPs are identified",
+          "call all variants from the BAM file"
+        ],
+        "reason": "The output is a single integer (the count of true SNPs), which is a simple artifact. There is some minor load in extracting the correct count of SNPs from the variant call output, but there are no explicit format constraints, parameterization, or strict verification rules stated in the payload."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "how many true single-nucleotide SNPs are identified"
+        ],
+        "reason": "There is a slight ambiguity in the term 'true single-nucleotide SNPs' (e.g., does this mean only SNPs, not indels or MNPs?), but the context and standard usage make the intent clear. No evidence of data or schema repair is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [],
+        "reason": "No prior trajectory, experience, or transfer context is present in the payload."
+      }
+    },
+    "overall_summary": "This is a standard variant calling task with a specified tool and clear output requirement. There is minor workflow structuring and artifact extraction load, and a trace of semantic ambiguity, but no evidence of branching, strict parameterization, repair, or transfer.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2222,
+        "completion_tokens": 567,
+        "total_tokens": 2789
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Using GATK HaplotypeCaller to call all variants from the BAM file",
+            "how many true single-nucleotide SNPs are identified"
+          ],
+          "reason": "The task requires running a standard variant calling workflow (BAM input to variant output) using a specified tool (GATK HaplotypeCaller). The workflow is canonical and does not require explicit step graph inference or branching decisions, as the method and tool are specified. However, there is a minor workflow structuring load in that the user must understand the process of calling SNPs from a BAM file and extracting the relevant count.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "how many true single-nucleotide SNPs are identified",
+            "call all variants from the BAM file"
+          ],
+          "reason": "The output is a single integer (the count of true SNPs), which is a simple artifact. There is some minor load in extracting the correct count of SNPs from the variant call output, but there are no explicit format constraints, parameterization, or strict verification rules stated in the payload.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "how many true single-nucleotide SNPs are identified"
+          ],
+          "reason": "There is a slight ambiguity in the term 'true single-nucleotide SNPs' (e.g., does this mean only SNPs, not indels or MNPs?), but the context and standard usage make the intent clear. No evidence of data or schema repair is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [],
+          "reason": "No prior trajectory, experience, or transfer context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a standard variant calling task with a specified tool and clear output requirement. There is minor workflow structuring and artifact extraction load, and a trace of semantic ambiguity, but no evidence of branching, strict parameterization, repair, or transfer.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:35:29.530969+00:00"
+  }
+}

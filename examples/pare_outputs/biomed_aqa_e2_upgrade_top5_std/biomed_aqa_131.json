@@ -1,0 +1,161 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_e2_upgrade_top5_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_131",
+      "question": "[De-identified Prior Trajectory]\n1) Split tabular dataset into train/test before any learned preprocessing.\n2) Select informative features on training data only and apply identical mapping to test data.\n3) Fit a supervised model and evaluate on held-out data.\n4) If train quality is high but test degrades, check leakage and overfitting controls first.\n5) Lock preprocessing artifacts so training and evaluation use identical feature transformations.\n\n[Transfer Gap Hints]\n- Gap (metric_change): source=classification metrics -> target=mean-squared-error regression metric\n- Gap (subtype_assumption_change): source=discrete class prediction -> target=continuous target prediction\n- Gap (constraint_change): source=classifier optimization -> target=linear-regression optimization with selected features\n\n[Target Task]\nI have a regression dataset {{diabetes.csv}}, the \"Target\" column of the dataset corresponds to the results. First, the dataset needs to be divided into training and testing sets, and feature selection should be performed to select several features that are highly correlated with the label column. Use linear regression for training and test on the testing set using mean squared error for evaluation.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0131/files/diabetes.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\test.csv\"}, {\"name\": \"train_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\train_feature_selected.csv\"}, {\"name\": \"test_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\test_feature_selected.csv\"}, {\"name\": \"linear_regression_predictions.csv\", \"path\": \"downloaded_files\\\\index_0131\\\\milestone\\\\linear_regression_predictions.csv\"}], \"milestones\": [\"Generate the training set train.csv and the test set test.csv files.\", \"Generate the result file feature_selected.csv after feature selection.\", \"Generate the test result file for linear regression, such as linear_regression_predictions.csv.\", \"MSE value: 0.17573731529078207\"], \"steps\": [\"Split the dataset to generate train.csv and test.csv files.\", \"Feature selection, generate the file after feature selection.\", \"Train using linear regression, test on the test set, and generate the result file on the test set.\", \"Mean Squared Error (MSE) value\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Regression",
+        "task_abbr": "Regression",
+        "task": "Regression",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.17,
+        "milestone_count": 4,
+        "step_count": 4,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps_per_record']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 115,
+              "workflow_memory_Index": 243,
+              "task_abbr": "Classfication",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"diabetes.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a testing set, maintaining the \"Target\" column as the label.\n\n2. **Goal**: Perform feature selection based on correlation with the label column.\n    - **Tool**: featureselect\n    - **Input**: train_csv_file, test_csv_file, \"Target\", n (number of features to select)\n    - **Output**: train_result_file, test_result_file\n    - **Description**: This tool will select the top n features correlated with the \"Target\" column from the training set and filter the test set accordingly.\n\n3. **Goal**: Build classifiers using the training set and predict on the test set.\n    - **Tool**: logistic\n    - **Input**: train_result_file, test_result_file, \"Target\"\n    - **Output**: logistic_predictions_file\n    - **Description**: This tool will train a Logistic Regression classifier on the training set and predict the labels for the test set.\n\n4. **Goal**: B"
+            },
+            "original_question": "I have a regression dataset {{diabetes.csv}}, the \"Target\" column of the dataset corresponds to the results. First, the dataset needs to be divided into training and testing sets, and feature selection should be performed to select several features that are highly correlated with the label column. Use linear regression for training and test on the testing set using mean squared error for evaluation."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_131",
+    "benchmark": "biomed_aqa_e2_upgrade_top5_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "\"First, the dataset needs to be divided into training and testing sets, and feature selection should be performed... Use linear regression for training and test on the testing set using mean squared error for evaluation.\"",
+          "Milestone files: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, linear_regression_predictions.csv",
+          "Steps: Split, feature selection, train, test, evaluate",
+          "\"[De-identified Prior Trajectory]... 2) Select informative features on training data only and apply identical mapping to test data. 3) Fit a supervised model and evaluate on held-out data.\"",
+          "\"[Transfer Gap Hints]... source=classification metrics -> target=mean-squared-error regression metric... source=discrete class prediction -> target=continuous target prediction... source=classifier optimization -> target=linear-regression optimization with selected features\""
+        ],
+        "reason": "There is a clear multi-stage workflow (split, feature selection, model training, evaluation) that must be structured in a dependency-constrained order. The transfer gap hints and prior trajectory require the solver to adapt the workflow from classification to regression, but the method for each step is reasonably canonical and does not present strong evidence of major branching decisions that would materially affect correctness. The planning load is moderate due to the need to adapt and sequence steps, but not high because the workflow is mostly specified and standard for regression with feature selection."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Milestone files: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, linear_regression_predictions.csv",
+          "\"Mean Squared Error (MSE) value\"",
+          "Explicit output files for each stage (split, feature selection, prediction)",
+          "Evaluation metric specified: mean squared error"
+        ],
+        "reason": "There are multiple explicit output artifacts (at least five milestone files) of different types (split data, feature-selected data, predictions), and the evaluation metric (MSE) is specified. However, there is no evidence of strict format constraints, explicit parameter thresholds, or tight schema requirements beyond standard CSV outputs and MSE calculation. The artifact realization and parameterization load is moderate."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "\"feature selection should be performed to select several features that are highly correlated with the label column\" (number of features not specified)",
+          "\"Select informative features on training data only and apply identical mapping to test data\" (requires some interpretation of 'informative')"
+        ],
+        "reason": "There is minor ambiguity in how many features to select and what threshold for 'highly correlated' means, but the overall semantics and data representation are clear. No evidence of schema mismatch, missing columns, or contradictory constraints. Some limited clarification is needed for feature selection criteria, but not enough to drive major repair."
+      },
+      "E": {
+        "score": 4,
+        "evidence": [
+          "\"[De-identified Prior Trajectory]...\" (detailed prior workflow steps for classification)",
+          "\"[Transfer Gap Hints]... source=classification metrics -> target=mean-squared-error regression metric... source=discrete class prediction -> target=continuous target prediction... source=classifier optimization -> target=linear-regression optimization with selected features\""
+        ],
+        "reason": "There is explicit prior trajectory text describing a classification workflow, and the transfer gap hints require the solver to abstract and adapt principles from classification to regression (different metric, different model type, different output type). This requires both experience assimilation and strategy transfer, as direct copying of the prior workflow would fail due to changed constraints and targets. The evolution load is high and a major difficulty driver."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning and action load due to a multi-stage regression workflow with explicit output artifacts and evaluation metric, but without strong branching or strict parameterization. There is minor reflection load due to some ambiguity in feature selection criteria. The evolution load is high, as the task explicitly requires transfer and adaptation of a prior classification workflow to a regression context with changed metrics and constraints.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3278,
+        "completion_tokens": 1005,
+        "total_tokens": 4283
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "\"First, the dataset needs to be divided into training and testing sets, and feature selection should be performed... Use linear regression for training and test on the testing set using mean squared error for evaluation.\"",
+            "Milestone files: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, linear_regression_predictions.csv",
+            "Steps: Split, feature selection, train, test, evaluate",
+            "\"[De-identified Prior Trajectory]... 2) Select informative features on training data only and apply identical mapping to test data. 3) Fit a supervised model and evaluate on held-out data.\"",
+            "\"[Transfer Gap Hints]... source=classification metrics -> target=mean-squared-error regression metric... source=discrete class prediction -> target=continuous target prediction... source=classifier optimization -> target=linear-regression optimization with selected features\""
+          ],
+          "reason": "There is a clear multi-stage workflow (split, feature selection, model training, evaluation) that must be structured in a dependency-constrained order. The transfer gap hints and prior trajectory require the solver to adapt the workflow from classification to regression, but the method for each step is reasonably canonical and does not present strong evidence of major branching decisions that would materially affect correctness. The planning load is moderate due to the need to adapt and sequence steps, but not high because the workflow is mostly specified and standard for regression with feature selection.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Milestone files: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, linear_regression_predictions.csv",
+            "\"Mean Squared Error (MSE) value\"",
+            "Explicit output files for each stage (split, feature selection, prediction)",
+            "Evaluation metric specified: mean squared error"
+          ],
+          "reason": "There are multiple explicit output artifacts (at least five milestone files) of different types (split data, feature-selected data, predictions), and the evaluation metric (MSE) is specified. However, there is no evidence of strict format constraints, explicit parameter thresholds, or tight schema requirements beyond standard CSV outputs and MSE calculation. The artifact realization and parameterization load is moderate.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "\"feature selection should be performed to select several features that are highly correlated with the label column\" (number of features not specified)",
+            "\"Select informative features on training data only and apply identical mapping to test data\" (requires some interpretation of 'informative')"
+          ],
+          "reason": "There is minor ambiguity in how many features to select and what threshold for 'highly correlated' means, but the overall semantics and data representation are clear. No evidence of schema mismatch, missing columns, or contradictory constraints. Some limited clarification is needed for feature selection criteria, but not enough to drive major repair.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 4,
+          "evidence": [
+            "\"[De-identified Prior Trajectory]...\" (detailed prior workflow steps for classification)",
+            "\"[Transfer Gap Hints]... source=classification metrics -> target=mean-squared-error regression metric... source=discrete class prediction -> target=continuous target prediction... source=classifier optimization -> target=linear-regression optimization with selected features\""
+          ],
+          "reason": "There is explicit prior trajectory text describing a classification workflow, and the transfer gap hints require the solver to abstract and adapt principles from classification to regression (different metric, different model type, different output type). This requires both experience assimilation and strategy transfer, as direct copying of the prior workflow would fail due to changed constraints and targets. The evolution load is high and a major difficulty driver.",
+          "subdimension_breakdown": {
+            "E1": 4,
+            "E2": 4
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning and action load due to a multi-stage regression workflow with explicit output artifacts and evaluation metric, but without strong branching or strict parameterization. There is minor reflection load due to some ambiguity in feature selection criteria. The evolution load is high, as the task explicitly requires transfer and adaptation of a prior classification workflow to a regression context with changed metrics and constraints.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-08T20:02:25.842039+00:00"
+  }
+}

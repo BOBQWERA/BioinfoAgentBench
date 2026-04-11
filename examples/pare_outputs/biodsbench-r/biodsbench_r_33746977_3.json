@@ -1,0 +1,142 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_33746977_3",
+      "question": "##Question##\nUse the 'ggsurvplot', 'survival', and 'survminer' packages to plot Kaplan-Meier survival curves for the clusters in the 'final_data' data frame. The survival times are provided in the 'survival_times' column and event statuses in the 'event_observed' column. Adjust the plot to show p-values, confidence intervals, and use specific colors for the clusters.\n\n##Task##\n1. Create a survival object.\n2. Fit Kaplan-Meier curves for each cluster. Named \"km_fit\"\n3. Plot the Kaplan-Meier curves with ggsurvplot.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/ACC_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/survival_ACC.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(survival)\\n# Load necessary libraries\\nlibrary(survival)\\nlibrary(survminer)\\n\\n# Create a survival object\\nsurv_obj <- with(final_data, Surv(survival_times, event_observed))\\n\\n# Fit Kaplan-Meier curves for each cluster\\nkm_fit <- survfit(surv_obj ~ Cluster, data = final_data)\\n\\n# Plot the Kaplan-Meier curves\\nggsurvplot(km_fit, data = final_data, pval = TRUE, conf.int = TRUE, legend.labs = c(\\\"Cluster 1\\\", \\\"Cluster 2\\\", \\\"Cluster 3\\\"),\\n           title = \\\"Kaplan-Meier Curves by Clusters\\\",\\n           xlab = \\\"Time (days)\\\", ylab = \\\"Survival Probability\\\",\\n           palette = c(\\\"#E41A1C\\\", \\\"#377EB8\\\", \\\"#4DAF4A\\\"))  # Adjust colors as needed\", \"test_cases\": \"nrow(final_data) == 177\\n\\nlength(km_fit) == 17\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "33746977_3",
+        "study_id": "33746977",
+        "question_id": "3",
+        "analysis_types": "['Survival Outcome Analysis']",
+        "study_type": "Molecular",
+        "study_title": "Analysis of m6A-Related Signatures in the Tumor Immune Microenvironment and Identification of Clinical Prognostic Regulators in Adrenocortical Carcinoma",
+        "dataset_url": "CMOB/ACC",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_33746977_3",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Task requires: (1) create a survival object, (2) fit Kaplan-Meier curves for each cluster, (3) plot with ggsurvplot",
+          "Multiple explicit steps, but all are standard and sequential with no evidence of branching or method ambiguity"
+        ],
+        "reason": "There is a clear multi-step workflow (create survival object, fit model, plot), but the steps are standard and sequential with no evidence of branching or alternative methods. No data-property-dependent assumptions or abstract goals requiring method choice."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Explicit requirements: show p-values, confidence intervals, use specific colors for clusters",
+          "Output is a plot with specific visual and statistical features",
+          "Reference answer includes strict parameterization (legend labels, palette, pval=TRUE, conf.int=TRUE)"
+        ],
+        "reason": "The action load is moderate due to explicit requirements for plot features (p-values, confidence intervals, color palette, legend labels). The output is a single plot, but with several explicit formatting and statistical display constraints."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "All required columns and semantics are specified: 'survival_times', 'event_observed', 'Cluster'",
+          "No evidence of missing fields, ambiguity, or schema mismatch"
+        ],
+        "reason": "There is no evidence of semantic or representational ambiguity. All necessary fields are named and described. No repair or clarification is needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or transfer; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a standard, sequential multi-step workflow for Kaplan-Meier survival analysis and plotting in R, with moderate action load due to explicit plot feature requirements. There is no evidence of branching, ambiguity, or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2734,
+        "completion_tokens": 573,
+        "total_tokens": 3307
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Task requires: (1) create a survival object, (2) fit Kaplan-Meier curves for each cluster, (3) plot with ggsurvplot",
+            "Multiple explicit steps, but all are standard and sequential with no evidence of branching or method ambiguity"
+          ],
+          "reason": "There is a clear multi-step workflow (create survival object, fit model, plot), but the steps are standard and sequential with no evidence of branching or alternative methods. No data-property-dependent assumptions or abstract goals requiring method choice.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Explicit requirements: show p-values, confidence intervals, use specific colors for clusters",
+            "Output is a plot with specific visual and statistical features",
+            "Reference answer includes strict parameterization (legend labels, palette, pval=TRUE, conf.int=TRUE)"
+          ],
+          "reason": "The action load is moderate due to explicit requirements for plot features (p-values, confidence intervals, color palette, legend labels). The output is a single plot, but with several explicit formatting and statistical display constraints.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "All required columns and semantics are specified: 'survival_times', 'event_observed', 'Cluster'",
+            "No evidence of missing fields, ambiguity, or schema mismatch"
+          ],
+          "reason": "There is no evidence of semantic or representational ambiguity. All necessary fields are named and described. No repair or clarification is needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or transfer; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard, sequential multi-step workflow for Kaplan-Meier survival analysis and plotting in R, with moderate action load due to explicit plot feature requirements. There is no evidence of branching, ambiguity, or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:57:07.969428+00:00"
+  }
+}

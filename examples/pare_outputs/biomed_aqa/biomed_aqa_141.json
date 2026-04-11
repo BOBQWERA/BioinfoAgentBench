@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_141",
+      "question": "I have a dataset {parkinsons_updrs.csv}, the \"Target\" column is the predicted result, please use ordinal regression to perform regression training on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0141/files/parkinsons_updrs.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0141\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0141\\\\milestone\\\\test.csv\"}, {\"name\": \"predictions.csv\", \"path\": \"downloaded_files\\\\index_0141\\\\milestone\\\\predictions.csv\"}], \"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the prediction result file for this regression algorithm.\"], \"steps\": [\"Divide the dataset\", \"Train and test using ordered regression algorithms.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Regression",
+        "task_abbr": "有序回归",
+        "task": "Regression",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.27,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_141",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "\"steps\": [\"Divide the dataset\", \"Train and test using ordered regression algorithms.\"]",
+          "\"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the prediction result file for this regression algorithm.\"]"
+        ],
+        "reason": "The task requires decomposing the workflow into at least two dependency-constrained steps: splitting the dataset and performing ordinal regression. However, the method (ordinal regression) is specified, and there is no explicit evidence of major branching or multiple materially different valid routes."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"train.csv\"...}, {\"name\": \"test.csv\"...}, {\"name\": \"predictions.csv\"...}]",
+          "\"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the prediction result file for this regression algorithm.\"]"
+        ],
+        "reason": "There are multiple required output files (train.csv, test.csv, predictions.csv), each with a distinct role. However, there is no explicit evidence of strict format constraints, parameterization, or tight specification beyond standard file generation."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"Target\" column is the predicted result",
+          "No evidence of missing fields, ambiguity, or schema mismatch"
+        ],
+        "reason": "The task is clearly worded and the data structure is specified. There is a minor need to interpret 'Target' as the regression target, but no evidence of ambiguity or need for repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-stage workflow (data split and ordinal regression) with multiple output files, but lacks evidence of major branching, strict parameterization, or semantic/data repair. No transfer or evolution context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2416,
+        "completion_tokens": 583,
+        "total_tokens": 2999
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "\"steps\": [\"Divide the dataset\", \"Train and test using ordered regression algorithms.\"]",
+            "\"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the prediction result file for this regression algorithm.\"]"
+          ],
+          "reason": "The task requires decomposing the workflow into at least two dependency-constrained steps: splitting the dataset and performing ordinal regression. However, the method (ordinal regression) is specified, and there is no explicit evidence of major branching or multiple materially different valid routes.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"train.csv\"...}, {\"name\": \"test.csv\"...}, {\"name\": \"predictions.csv\"...}]",
+            "\"milestones\": [\"Generate train.csv and test.csv files\", \"Generate the prediction result file for this regression algorithm.\"]"
+          ],
+          "reason": "There are multiple required output files (train.csv, test.csv, predictions.csv), each with a distinct role. However, there is no explicit evidence of strict format constraints, parameterization, or tight specification beyond standard file generation.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"Target\" column is the predicted result",
+            "No evidence of missing fields, ambiguity, or schema mismatch"
+          ],
+          "reason": "The task is clearly worded and the data structure is specified. There is a minor need to interpret 'Target' as the regression target, but no evidence of ambiguity or need for repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-stage workflow (data split and ordinal regression) with multiple output files, but lacks evidence of major branching, strict parameterization, or semantic/data repair. No transfer or evolution context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:16:36.792598+00:00"
+  }
+}

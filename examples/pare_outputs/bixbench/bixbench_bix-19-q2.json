@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-19-q2",
+      "question": "What is the Cohen's d effect size for the difference in NeuN counts between KD and CTRL conditions in the dataset?",
+      "data": [],
+      "answer": "(0.215,0.217)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-19-q2",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.667,0.669)",
+          "(0.804,0.806)",
+          "(1.310,1.312)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-19-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: What is the Cohen's d effect size for the difference in NeuN counts between KD and CTRL conditions in the dataset?",
+          "No explicit workflow or method branching described",
+          "Requires identifying KD and CTRL groups and extracting NeuN counts"
+        ],
+        "reason": "There is a minor workflow structuring load: the solver must identify the two groups (KD and CTRL) and extract NeuN counts, then compute Cohen's d. However, the method (Cohen's d) is specified and standard, and there is no evidence of multiple branching methods or dependency-constrained step graphs beyond this basic decomposition."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a numeric range: (0.215,0.217)",
+          "eval_mode: range_verifier",
+          "No explicit format or parameterization constraints beyond Cohen's d"
+        ],
+        "reason": "There is a weak artifact realization load: the output is a numeric range, and the evaluation mode is 'range_verifier', indicating some sensitivity to the output value. However, there are no explicit format constraints, multiple output types, or strict parameterization rules stated."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided (data: [])",
+          "KD and CTRL group labels are standard and unambiguous in context"
+        ],
+        "reason": "There is almost no evidence of semantic or representational repair required. The group labels are standard, and there is no indication of ambiguity or schema mismatch. The absence of data could imply a need for data extraction in a real scenario, but within the payload, no repair is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no evidence of transfer or experience assimilation load; the task is standalone with no prior run or trajectory provided."
+      }
+    },
+    "overall_summary": "This task requires the solver to compute Cohen's d for NeuN counts between two conditions, which involves a minor workflow structuring step (identifying groups and extracting counts) and a weak artifact realization load (numeric range output with some sensitivity). There is almost no need for semantic or representational repair, and no transfer or experience assimilation is required.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2223,
+        "completion_tokens": 633,
+        "total_tokens": 2856
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: What is the Cohen's d effect size for the difference in NeuN counts between KD and CTRL conditions in the dataset?",
+            "No explicit workflow or method branching described",
+            "Requires identifying KD and CTRL groups and extracting NeuN counts"
+          ],
+          "reason": "There is a minor workflow structuring load: the solver must identify the two groups (KD and CTRL) and extract NeuN counts, then compute Cohen's d. However, the method (Cohen's d) is specified and standard, and there is no evidence of multiple branching methods or dependency-constrained step graphs beyond this basic decomposition.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a numeric range: (0.215,0.217)",
+            "eval_mode: range_verifier",
+            "No explicit format or parameterization constraints beyond Cohen's d"
+          ],
+          "reason": "There is a weak artifact realization load: the output is a numeric range, and the evaluation mode is 'range_verifier', indicating some sensitivity to the output value. However, there are no explicit format constraints, multiple output types, or strict parameterization rules stated.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided (data: [])",
+            "KD and CTRL group labels are standard and unambiguous in context"
+          ],
+          "reason": "There is almost no evidence of semantic or representational repair required. The group labels are standard, and there is no indication of ambiguity or schema mismatch. The absence of data could imply a need for data extraction in a real scenario, but within the payload, no repair is required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no evidence of transfer or experience assimilation load; the task is standalone with no prior run or trajectory provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires the solver to compute Cohen's d for NeuN counts between two conditions, which involves a minor workflow structuring step (identifying groups and extracting counts) and a weak artifact realization load (numeric range output with some sensitivity). There is almost no need for semantic or representational repair, and no transfer or experience assimilation is required.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:54:30.101023+00:00"
+  }
+}

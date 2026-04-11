@@ -1,0 +1,163 @@
+{
+  "question": {
+    "benchmark": "autoba",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "autoba_case1.1",
+      "question": "find the differentially expressed genes",
+      "data": [
+        {
+          "type": "input",
+          "value": "autoba/case1.1/data/SRR1374921.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "autoba/case1.1/data/SRR1374922.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "autoba/case1.1/data/SRR1374923.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "autoba/case1.1/data/SRR1374924.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "autoba/case1.1/data/TruSeq3-SE.fa"
+        },
+        {
+          "type": "input",
+          "value": "autoba/case1.1/data/mm39.fa"
+        },
+        {
+          "type": "input",
+          "value": "autoba/case1.1/data/mm39.ncbiRefSeq.gtf"
+        }
+      ],
+      "answer": "",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "AutoBA",
+        "case_name": "case1.1",
+        "task_category": "Bulk RNA-Seq",
+        "task_description": "Find differentially expressed genes",
+        "meta": {
+          "info": "meta-data recorded by users for reference only",
+          "title": "The transcriptional landscape of mouse beta cells compared to human beta cells reveals notable species differences in long non-coding RNA and protein-coding gene expression, ",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25051960/"
+        },
+        "task_type": "code_generation"
+      }
+    }
+  },
+  "result": {
+    "question_id": "autoba_case1.1",
+    "benchmark": "autoba",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "\"find the differentially expressed genes\"",
+          "inputs: 4 FASTQ files, adapter fasta, genome fasta, annotation GTF",
+          "\"Bulk RNA-Seq\" task_category"
+        ],
+        "reason": "The task requires constructing a multi-stage workflow (FASTQ -> alignment -> quantification -> DE analysis), which cannot be solved in a single step. However, there is no explicit evidence of major method branching or ambiguous assumptions that would drive P2 higher. The planning load is moderate due to the need to infer and structure the standard RNA-seq DE pipeline from raw data and reference files."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"find differentially expressed genes\" (implies gene-level output)",
+          "No explicit output format, threshold, or verification constraints",
+          "No explicit mention of multiple output types or strict schema"
+        ],
+        "reason": "The action load is weak to moderate: the output is a gene-level DE list, but there are no explicit requirements for output format, thresholds, or multiple artifact types. The implementation surface is limited to a standard DE result, and parameterization/verification constraints are not specified."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"find differentially expressed genes\" (goal is clear and standard)",
+          "No evidence of ambiguous semantics or data schema mismatch",
+          "All input files are standard for RNA-seq"
+        ],
+        "reason": "There is only trace evidence for reflection load: the task is clearly stated and the data is standard, with no ambiguity or need for repair. No semantic or representational repair is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context in payload"
+        ],
+        "reason": "No evidence of experience assimilation or transfer; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task requires moderate planning to structure a standard RNA-seq DE pipeline from raw data and reference files, but does not present major branching or ambiguity. The action load is weak to moderate, as the output is a standard DE gene list with no strict format or verification constraints. Reflection and evolution loads are minimal or absent.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2442,
+        "completion_tokens": 617,
+        "total_tokens": 3059
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "\"find the differentially expressed genes\"",
+            "inputs: 4 FASTQ files, adapter fasta, genome fasta, annotation GTF",
+            "\"Bulk RNA-Seq\" task_category"
+          ],
+          "reason": "The task requires constructing a multi-stage workflow (FASTQ -> alignment -> quantification -> DE analysis), which cannot be solved in a single step. However, there is no explicit evidence of major method branching or ambiguous assumptions that would drive P2 higher. The planning load is moderate due to the need to infer and structure the standard RNA-seq DE pipeline from raw data and reference files.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"find differentially expressed genes\" (implies gene-level output)",
+            "No explicit output format, threshold, or verification constraints",
+            "No explicit mention of multiple output types or strict schema"
+          ],
+          "reason": "The action load is weak to moderate: the output is a gene-level DE list, but there are no explicit requirements for output format, thresholds, or multiple artifact types. The implementation surface is limited to a standard DE result, and parameterization/verification constraints are not specified.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"find differentially expressed genes\" (goal is clear and standard)",
+            "No evidence of ambiguous semantics or data schema mismatch",
+            "All input files are standard for RNA-seq"
+          ],
+          "reason": "There is only trace evidence for reflection load: the task is clearly stated and the data is standard, with no ambiguity or need for repair. No semantic or representational repair is required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context in payload"
+          ],
+          "reason": "No evidence of experience assimilation or transfer; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires moderate planning to structure a standard RNA-seq DE pipeline from raw data and reference files, but does not present major branching or ambiguity. The action load is weak to moderate, as the output is a standard DE gene list with no strict format or verification constraints. Reflection and evolution loads are minimal or absent.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:35:29.904646+00:00"
+  }
+}

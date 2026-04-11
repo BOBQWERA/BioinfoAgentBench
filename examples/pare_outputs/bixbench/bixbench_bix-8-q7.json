@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-8-q7",
+      "question": "How many genes exhibit both m6a hypermethylation and increased expression in bladder cancer?",
+      "data": [],
+      "answer": "106",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-8-q7",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "12",
+          "562",
+          "383"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-8-q7",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Question: 'How many genes exhibit both m6a hypermethylation and increased expression in bladder cancer?'",
+          "Requires intersection of two gene sets: those with m6a hypermethylation and those with increased expression"
+        ],
+        "reason": "The question requires decomposing the goal into at least two dependent steps: identifying genes with m6a hypermethylation and those with increased expression, then finding their intersection. However, there is no explicit evidence of multiple branching methods or ambiguous assumptions that would drive P2 higher."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Answer is a single integer ('106')",
+          "Eval_mode: 'str_verifier'",
+          "No explicit format or parameter constraints"
+        ],
+        "reason": "The output is a single integer, with no evidence of heterogeneous artifacts or strict format/parameterization requirements. The only action load is producing the correct count."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data or schema provided",
+          "No evidence of ambiguity or need for semantic or representational repair"
+        ],
+        "reason": "There is no evidence of ambiguity, missing fields, or representational inconsistency. The question is clear and does not require repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no transfer or prior experience context in the payload."
+      }
+    },
+    "overall_summary": "This task requires moderate planning to decompose the problem into identifying two gene sets and finding their intersection, but there is no evidence of significant branching or ambiguity. The action load is low, as only a single integer output is required with no strict format or parameterization. There is no evidence of semantic or representational repair, and no transfer or evolution context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2194,
+        "completion_tokens": 524,
+        "total_tokens": 2718
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Question: 'How many genes exhibit both m6a hypermethylation and increased expression in bladder cancer?'",
+            "Requires intersection of two gene sets: those with m6a hypermethylation and those with increased expression"
+          ],
+          "reason": "The question requires decomposing the goal into at least two dependent steps: identifying genes with m6a hypermethylation and those with increased expression, then finding their intersection. However, there is no explicit evidence of multiple branching methods or ambiguous assumptions that would drive P2 higher.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Answer is a single integer ('106')",
+            "Eval_mode: 'str_verifier'",
+            "No explicit format or parameter constraints"
+          ],
+          "reason": "The output is a single integer, with no evidence of heterogeneous artifacts or strict format/parameterization requirements. The only action load is producing the correct count.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data or schema provided",
+            "No evidence of ambiguity or need for semantic or representational repair"
+          ],
+          "reason": "There is no evidence of ambiguity, missing fields, or representational inconsistency. The question is clear and does not require repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no transfer or prior experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires moderate planning to decompose the problem into identifying two gene sets and finding their intersection, but there is no evidence of significant branching or ambiguity. The action load is low, as only a single integer output is required with no strict format or parameterization. There is no evidence of semantic or representational repair, and no transfer or evolution context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:38:32.699250+00:00"
+  }
+}

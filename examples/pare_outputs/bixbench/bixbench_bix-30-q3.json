@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-30-q3",
+      "question": "What is the ratio of significant (p <= 0.05) differentially expressed miRNAs between patient and control groups identified following Bonferroni correction compared to Benjamini-Yekutieli correction? Provide your answer as a ratio in the format \"Bonferroni:Benjamini-Yekutieli\".",
+      "data": [],
+      "answer": "0:0",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-30-q3",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "1:2",
+          "1:3",
+          "2:3"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-30-q3",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "What is the ratio of significant (p <= 0.05) differentially expressed miRNAs between patient and control groups identified following Bonferroni correction compared to Benjamini-Yekutieli correction?",
+          "Provide your answer as a ratio in the format \"Bonferroni:Benjamini-Yekutieli\"."
+        ],
+        "reason": "The question requires applying two different multiple testing correction methods (Bonferroni and Benjamini-Yekutieli) to the same set of p-values, then counting significant miRNAs under each, and finally reporting their ratio. This induces a clear multi-step workflow: (1) identify DE miRNAs, (2) apply Bonferroni correction, (3) apply Benjamini-Yekutieli correction, (4) count significant results for each, (5) compute and format the ratio. However, the methods are specified and there is no evidence of major branching or ambiguous method choice."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Provide your answer as a ratio in the format \"Bonferroni:Benjamini-Yekutieli\".",
+          "str_verifier"
+        ],
+        "reason": "The output must be a ratio in a specific string format, and the answer is subject to a string verifier. There is a moderate artifact realization load due to the need to count and format results from two correction methods, but only one output artifact is required and no explicit parameterization or thresholding beyond standard p <= 0.05 and correction methods."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "p <= 0.05",
+          "Bonferroni correction compared to Benjamini-Yekutieli correction"
+        ],
+        "reason": "The question is clearly worded with explicit correction methods and threshold. There is no evidence of semantic ambiguity or data/representation repair need. The only minor load is the need to interpret the ratio format, but this is specified."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or prior experience context in the payload."
+      }
+    },
+    "overall_summary": "This task requires a moderate level of planning and action load due to the need to apply two multiple testing corrections, count significant results, and format the answer as a ratio. The workflow is multi-step but methodologically specified, with no major branching or ambiguity. Artifact realization is moderate due to the dual correction and formatting requirement. There is minimal reflection or repair load, and no evolution/transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2249,
+        "completion_tokens": 704,
+        "total_tokens": 2953
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "What is the ratio of significant (p <= 0.05) differentially expressed miRNAs between patient and control groups identified following Bonferroni correction compared to Benjamini-Yekutieli correction?",
+            "Provide your answer as a ratio in the format \"Bonferroni:Benjamini-Yekutieli\"."
+          ],
+          "reason": "The question requires applying two different multiple testing correction methods (Bonferroni and Benjamini-Yekutieli) to the same set of p-values, then counting significant miRNAs under each, and finally reporting their ratio. This induces a clear multi-step workflow: (1) identify DE miRNAs, (2) apply Bonferroni correction, (3) apply Benjamini-Yekutieli correction, (4) count significant results for each, (5) compute and format the ratio. However, the methods are specified and there is no evidence of major branching or ambiguous method choice.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Provide your answer as a ratio in the format \"Bonferroni:Benjamini-Yekutieli\".",
+            "str_verifier"
+          ],
+          "reason": "The output must be a ratio in a specific string format, and the answer is subject to a string verifier. There is a moderate artifact realization load due to the need to count and format results from two correction methods, but only one output artifact is required and no explicit parameterization or thresholding beyond standard p <= 0.05 and correction methods.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "p <= 0.05",
+            "Bonferroni correction compared to Benjamini-Yekutieli correction"
+          ],
+          "reason": "The question is clearly worded with explicit correction methods and threshold. There is no evidence of semantic ambiguity or data/representation repair need. The only minor load is the need to interpret the ratio format, but this is specified.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or prior experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a moderate level of planning and action load due to the need to apply two multiple testing corrections, count significant results, and format the answer as a ratio. The workflow is multi-step but methodologically specified, with no major branching or ambiguity. Artifact realization is moderate due to the dual correction and formatting requirement. There is minimal reflection or repair load, and no evolution/transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:06:15.830730+00:00"
+  }
+}

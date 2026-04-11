@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_177",
+      "question": "There is an existing dataset tbl.tsv, where the \"Gender\" column represents gender, with Female indicating girls and Male indicating boys. The \"Admit\" column represents admission status, with Admitted indicating acceptance and Rejected indicating rejection. The \"Freq\" column contains the corresponding counts. Please calculate the admission and rejection ratios for boys and the admission and rejection ratios for girls.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0177/files/tbl.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"proportions_tbl.txt\", \"path\": \"downloaded_files\\\\index_0177\\\\milestone\\\\proportions_tbl.txt\"}], \"milestones\": [\"Generate a cross-tabulation that includes proportions.\"], \"steps\": [\"Cross-tabulation Proportional Analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Descriptive statistics",
+        "task_abbr": "交叉表分析",
+        "task": "Descriptive statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.4,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_177",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Calculate the admission and rejection ratios for boys and the admission and rejection ratios for girls.",
+          "Cross-tabulation Proportional Analysis"
+        ],
+        "reason": "The task requires decomposing the goal into at least two steps: (1) grouping by Gender and Admit, (2) calculating ratios for each group. However, the method is standard and there is no evidence of significant branching or multiple defensible methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "milestone_files: proportions_tbl.txt",
+          "Generate a cross-tabulation that includes proportions."
+        ],
+        "reason": "There is a single output file (proportions_tbl.txt) with a clear structure (cross-tabulation with proportions). No explicit format constraints or strict parameterization are mentioned, so artifact realization and parameterization loads are minor."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The column meanings are explicitly defined in the question.",
+          "No evidence of missing or ambiguous fields."
+        ],
+        "reason": "The semantics of the columns are clearly defined, and there is no evidence of data or representation repair needed. The task is straightforward with no ambiguity or schema mismatch."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience transfer context present."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a standard descriptive statistics task involving cross-tabulation and proportion calculation. The planning and action loads are minor to weak due to the need for basic workflow decomposition and a single output artifact. There is no evidence of semantic or data repair, and no transfer or evolution context is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2388,
+        "completion_tokens": 525,
+        "total_tokens": 2913
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Calculate the admission and rejection ratios for boys and the admission and rejection ratios for girls.",
+            "Cross-tabulation Proportional Analysis"
+          ],
+          "reason": "The task requires decomposing the goal into at least two steps: (1) grouping by Gender and Admit, (2) calculating ratios for each group. However, the method is standard and there is no evidence of significant branching or multiple defensible methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "milestone_files: proportions_tbl.txt",
+            "Generate a cross-tabulation that includes proportions."
+          ],
+          "reason": "There is a single output file (proportions_tbl.txt) with a clear structure (cross-tabulation with proportions). No explicit format constraints or strict parameterization are mentioned, so artifact realization and parameterization loads are minor.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The column meanings are explicitly defined in the question.",
+            "No evidence of missing or ambiguous fields."
+          ],
+          "reason": "The semantics of the columns are clearly defined, and there is no evidence of data or representation repair needed. The task is straightforward with no ambiguity or schema mismatch.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience transfer context present."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a standard descriptive statistics task involving cross-tabulation and proportion calculation. The planning and action loads are minor to weak due to the need for basic workflow decomposition and a single output artifact. There is no evidence of semantic or data repair, and no transfer or evolution context is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:24:22.054330+00:00"
+  }
+}

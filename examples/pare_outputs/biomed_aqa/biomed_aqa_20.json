@@ -1,0 +1,151 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_20",
+      "question": "You are analyzing the sequencing data of a tumor patient. The tumor tissue data for this patient is stored in the following files: {BRAF_edit1.fastq.gz} and {BRAF_edit2.fastq.gz}. The data for the normal tissue is in {BRAF_normal1.fastq.gz} and {BRAF_normal2.fastq.gz}. First, analyze the tumor and normal tissue to obtain BAM files, then use GATK's Mutect2 to identify somatic mutations, and further annotate the mutations using vcf_to_maf.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0020/files/BRAF_edit1.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0020/files/BRAF_edit2.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0020/files/BRAF_normal1.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0020/files/BRAF_normal2.fastq.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"tumor.recal.bam\", \"path\": \"downloaded_files\\\\index_0020\\\\milestone\\\\tumor.recal.bam\"}, {\"name\": \"normal.recal.bam\", \"path\": \"downloaded_files\\\\index_0020\\\\milestone\\\\normal.recal.bam\"}, {\"name\": \"paired.vcf\", \"path\": \"downloaded_files\\\\index_0020\\\\milestone\\\\paired.vcf\"}, {\"name\": \"paired.fil.maf\", \"path\": \"downloaded_files\\\\index_0020\\\\milestone\\\\paired.fil.maf\"}], \"milestones\": [\"Generate tumor bam\", \"Generate contrast bam\", \"Generate VCF\", \"There is a record of the mutation result: chr7-140453136-T-A.\"], \"steps\": [\"Compare and generate a reference BAM (additional steps can include: sort, dedup, gatk-bqsr).\", \"Compare and generate tumor BAM (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "DNA",
+        "task_abbr": "Tumor-paired somatic SNVs",
+        "task": "DNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 11.2,
+        "milestone_count": 4,
+        "step_count": 4
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_20",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "First, analyze the tumor and normal tissue to obtain BAM files, then use GATK's Mutect2 to identify somatic mutations, and further annotate the mutations using vcf_to_maf.",
+          "\"steps\": [\"Compare and generate a reference BAM (additional steps can include: sort, dedup, gatk-bqsr).\", \"Compare and generate tumor BAM (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]",
+          "milestone_files: tumor.recal.bam, normal.recal.bam, paired.vcf, paired.fil.maf"
+        ],
+        "reason": "The task requires a multi-stage workflow: FASTQ to BAM (for both tumor and normal), then somatic variant calling (VCF), then annotation (MAF). The step order is specified, but some steps (e.g., sort, dedup, BQSR) are only suggested as possible, not strictly required, and the tools for alignment are not specified. However, the overall workflow is canonical for somatic SNV calling, and there is no explicit evidence of major method branching or ambiguous goal specification."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: tumor.recal.bam, normal.recal.bam, paired.vcf, paired.fil.maf",
+          "\"steps\": [\"Compare and generate a reference BAM (additional steps can include: sort, dedup, gatk-bqsr).\", ...]",
+          "Explicit file types: BAM, VCF, MAF"
+        ],
+        "reason": "There are multiple heterogeneous output artifacts (BAM, VCF, MAF), each with distinct formats. The answer lists explicit milestone files and steps, but there is no evidence of strict parameterization, explicit thresholds, or tight format verification beyond standard file type expectations."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of missing or ambiguous semantic fields.",
+          "No explicit schema mismatch or data repair required."
+        ],
+        "reason": "The question and data are clear and well-structured. There is no evidence of ambiguity in the problem statement or data representation that would require repair. The only minor trace is the mention of 'additional steps can include', which could be interpreted in more than one way, but this does not rise to the level of a major semantic or representational repair requirement."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context provided."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-stage somatic variant calling workflow with explicit input and output file types. Planning and action loads are moderate due to the need to structure a multi-step pipeline and produce heterogeneous artifacts, but there is no strong evidence of major branching, tight parameterization, or repair requirements. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2714,
+        "completion_tokens": 796,
+        "total_tokens": 3510
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "First, analyze the tumor and normal tissue to obtain BAM files, then use GATK's Mutect2 to identify somatic mutations, and further annotate the mutations using vcf_to_maf.",
+            "\"steps\": [\"Compare and generate a reference BAM (additional steps can include: sort, dedup, gatk-bqsr).\", \"Compare and generate tumor BAM (additional steps can include: sort, dedup, gatk-bqsr).\", \"Identification and generation of VCF\", \"Comment, generate maf\"]",
+            "milestone_files: tumor.recal.bam, normal.recal.bam, paired.vcf, paired.fil.maf"
+          ],
+          "reason": "The task requires a multi-stage workflow: FASTQ to BAM (for both tumor and normal), then somatic variant calling (VCF), then annotation (MAF). The step order is specified, but some steps (e.g., sort, dedup, BQSR) are only suggested as possible, not strictly required, and the tools for alignment are not specified. However, the overall workflow is canonical for somatic SNV calling, and there is no explicit evidence of major method branching or ambiguous goal specification.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: tumor.recal.bam, normal.recal.bam, paired.vcf, paired.fil.maf",
+            "\"steps\": [\"Compare and generate a reference BAM (additional steps can include: sort, dedup, gatk-bqsr).\", ...]",
+            "Explicit file types: BAM, VCF, MAF"
+          ],
+          "reason": "There are multiple heterogeneous output artifacts (BAM, VCF, MAF), each with distinct formats. The answer lists explicit milestone files and steps, but there is no evidence of strict parameterization, explicit thresholds, or tight format verification beyond standard file type expectations.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of missing or ambiguous semantic fields.",
+            "No explicit schema mismatch or data repair required."
+          ],
+          "reason": "The question and data are clear and well-structured. There is no evidence of ambiguity in the problem statement or data representation that would require repair. The only minor trace is the mention of 'additional steps can include', which could be interpreted in more than one way, but this does not rise to the level of a major semantic or representational repair requirement.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-stage somatic variant calling workflow with explicit input and output file types. Planning and action loads are moderate due to the need to structure a multi-step pipeline and produce heterogeneous artifacts, but there is no strong evidence of major branching, tight parameterization, or repair requirements. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:02:40.854966+00:00"
+  }
+}

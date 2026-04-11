@@ -1,0 +1,139 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_189",
+      "question": "There is an existing gene expression matrix file heatmap_matrix.tsv, please perform Spearman correlation analysis on these genes.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0189/files/heatmap_matrix.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"spearman_heatmap.pdf\", \"path\": \"downloaded_files\\\\index_0189\\\\milestone\\\\spearman_heatmap.pdf\"}], \"milestones\": [\"Complete the Spearman correlation analysis\", \"Generate heatmap, and the image content is correct.\"], \"steps\": [\"Conduct Spearman correlation analysis\", \"Draw the corresponding heat map\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Descriptive statistics",
+        "task_abbr": "spearman相关性分析",
+        "task": "Descriptive statistics",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.5200000000001,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_189",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Milestones: 'Complete the Spearman correlation analysis', 'Generate heatmap, and the image content is correct.'",
+          "Steps: 'Conduct Spearman correlation analysis', 'Draw the corresponding heat map'",
+          "Input: gene expression matrix file"
+        ],
+        "reason": "The task requires two sequential steps: performing Spearman correlation analysis and then generating a heatmap from the results. The workflow is linear and standard for this type of analysis, with no explicit evidence of branching decisions or multiple valid methods that would affect correctness. The decomposition into steps is clear but not complex."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone file: 'spearman_heatmap.pdf'",
+          "Explicit output: heatmap image",
+          "No explicit format or parameter constraints"
+        ],
+        "reason": "The action load involves producing a single output artifact (a heatmap PDF) based on the analysis. There is no evidence of multiple heterogeneous output types or strict format/parameterization requirements. The output is specified but not tightly constrained."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Input: 'heatmap_matrix.tsv' (assumed to be a standard gene expression matrix)",
+          "No mention of missing fields, ambiguity, or schema inconsistency"
+        ],
+        "reason": "There is no explicit evidence of semantic or representational ambiguity. The input is a single file with a standard name, and the task is clearly defined. No repair or clarification is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present"
+        ],
+        "reason": "There is no evidence of prior experience or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-step workflow: performing Spearman correlation analysis on a gene expression matrix and generating a heatmap as a PDF. The planning and action loads are minor to moderate due to the clear, linear workflow and single output artifact. There is no evidence of ambiguity, data repair, or transfer/experience requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2358,
+        "completion_tokens": 591,
+        "total_tokens": 2949
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Milestones: 'Complete the Spearman correlation analysis', 'Generate heatmap, and the image content is correct.'",
+            "Steps: 'Conduct Spearman correlation analysis', 'Draw the corresponding heat map'",
+            "Input: gene expression matrix file"
+          ],
+          "reason": "The task requires two sequential steps: performing Spearman correlation analysis and then generating a heatmap from the results. The workflow is linear and standard for this type of analysis, with no explicit evidence of branching decisions or multiple valid methods that would affect correctness. The decomposition into steps is clear but not complex.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone file: 'spearman_heatmap.pdf'",
+            "Explicit output: heatmap image",
+            "No explicit format or parameter constraints"
+          ],
+          "reason": "The action load involves producing a single output artifact (a heatmap PDF) based on the analysis. There is no evidence of multiple heterogeneous output types or strict format/parameterization requirements. The output is specified but not tightly constrained.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Input: 'heatmap_matrix.tsv' (assumed to be a standard gene expression matrix)",
+            "No mention of missing fields, ambiguity, or schema inconsistency"
+          ],
+          "reason": "There is no explicit evidence of semantic or representational ambiguity. The input is a single file with a standard name, and the task is clearly defined. No repair or clarification is required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present"
+          ],
+          "reason": "There is no evidence of prior experience or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-step workflow: performing Spearman correlation analysis on a gene expression matrix and generating a heatmap as a PDF. The planning and action loads are minor to moderate due to the clear, linear workflow and single output artifact. There is no evidence of ambiguity, data repair, or transfer/experience requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:25:23.158906+00:00"
+  }
+}

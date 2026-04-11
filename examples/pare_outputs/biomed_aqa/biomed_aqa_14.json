@@ -1,0 +1,139 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_14",
+      "question": "Perform variant identification on the bam file {MUT_tumor.recal.bam}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0014/files/MUT_tumor.recal.bam"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"tumor.recal.vcf\", \"path\": \"downloaded_files\\\\index_0014\\\\milestone\\\\tumor.recal.vcf\"}, {\"name\": \"tumor.recal.fil.maf\", \"path\": \"downloaded_files\\\\index_0014\\\\milestone\\\\tumor.recal.fil.maf\"}], \"milestones\": [\"Generate VCF\", \"Generate maf, mutation results include records: chr6-49427089-A-G, chr6-49419304-A-G.\"], \"steps\": [\"Identification and generation of VCF\", \"Comment, generate maf\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "DNA",
+        "task_abbr": "HaplotypeCaller",
+        "task": "DNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 11.14,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_14",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Perform variant identification on the bam file {MUT_tumor.recal.bam}",
+          "milestone_files: tumor.recal.vcf, tumor.recal.fil.maf",
+          "milestones: Generate VCF, Generate maf, mutation results include records: chr6-49427089-A-G, chr6-49419304-A-G.",
+          "steps: Identification and generation of VCF, Comment, generate maf"
+        ],
+        "reason": "The task requires decomposing the goal into at least two dependent steps: generating a VCF from a BAM file and then generating a MAF file from the VCF. The workflow is not a single direct statement and involves a dependency chain. However, there is no explicit evidence of major method branching or multiple materially different valid routes; the method is not specified, but the standard approach is implied."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: tumor.recal.vcf, tumor.recal.fil.maf",
+          "milestones: Generate VCF, Generate maf, mutation results include records: chr6-49427089-A-G, chr6-49419304-A-G."
+        ],
+        "reason": "There are two heterogeneous output artifact types (VCF and MAF), and the answer specifies that certain mutation records must be included, indicating some correctness sensitivity. However, there is no explicit evidence of strict format constraints, parameter thresholds, or verification rules beyond the inclusion of specific records."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or schema mismatch in the question or data.",
+          "Input is a single BAM file; output types are standard."
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation issues requiring repair. The task is clearly defined with standard input and output types. No contradictory or missing fields are present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience text, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; the task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning and action load due to the need to decompose the workflow into multiple dependent steps and produce heterogeneous output artifacts. There is minimal reflection load, as the task is well-defined with standard input and output types, and no evolution load due to the absence of transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2402,
+        "completion_tokens": 671,
+        "total_tokens": 3073
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Perform variant identification on the bam file {MUT_tumor.recal.bam}",
+            "milestone_files: tumor.recal.vcf, tumor.recal.fil.maf",
+            "milestones: Generate VCF, Generate maf, mutation results include records: chr6-49427089-A-G, chr6-49419304-A-G.",
+            "steps: Identification and generation of VCF, Comment, generate maf"
+          ],
+          "reason": "The task requires decomposing the goal into at least two dependent steps: generating a VCF from a BAM file and then generating a MAF file from the VCF. The workflow is not a single direct statement and involves a dependency chain. However, there is no explicit evidence of major method branching or multiple materially different valid routes; the method is not specified, but the standard approach is implied.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: tumor.recal.vcf, tumor.recal.fil.maf",
+            "milestones: Generate VCF, Generate maf, mutation results include records: chr6-49427089-A-G, chr6-49419304-A-G."
+          ],
+          "reason": "There are two heterogeneous output artifact types (VCF and MAF), and the answer specifies that certain mutation records must be included, indicating some correctness sensitivity. However, there is no explicit evidence of strict format constraints, parameter thresholds, or verification rules beyond the inclusion of specific records.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or schema mismatch in the question or data.",
+            "Input is a single BAM file; output types are standard."
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation issues requiring repair. The task is clearly defined with standard input and output types. No contradictory or missing fields are present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience text, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning and action load due to the need to decompose the workflow into multiple dependent steps and produce heterogeneous output artifacts. There is minimal reflection load, as the task is well-defined with standard input and output types, and no evolution load due to the absence of transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:02:06.654235+00:00"
+  }
+}

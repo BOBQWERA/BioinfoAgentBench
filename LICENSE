@@ -1,0 +1,22 @@
+BioinfoAgentBench Provisional Research License
+
+Copyright (c) 2026 BioinfoAgentBench authors.
+
+This repository snapshot is released for peer review, reproducibility assessment, and
+non-commercial research use.
+
+You may:
+1. View, download, and run the material for academic or internal evaluation.
+2. Cite the repository and associated manuscript in scholarly work.
+3. Adapt code for non-commercial research, provided attribution is retained.
+
+You may not:
+1. Use the repository or derivative works for commercial purposes.
+2. Re-license or redistribute the material without preserving this notice.
+3. Represent this provisional snapshot as the final public release of BioinfoAgentBench.
+
+Third-party benchmark content, data references, and metadata remain subject to the
+licenses and terms of their original sources.
+
+Contact the corresponding authors before any commercial use or redistribution beyond
+scholarly sharing norms.

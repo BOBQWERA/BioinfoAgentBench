@@ -1,0 +1,137 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_288",
+      "question": "There is a data file pcoa.tsv, in which the \"result\" column contains grouping information. Please perform principal coordinate analysis using the data from columns 2 to 9.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0288/files/pcoa.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"pcoa.png\", \"path\": \"downloaded_files\\\\index_0288\\\\milestone\\\\pcoa.png\"}], \"milestones\": [\"Generate PCoA plot\", \"The content of the PCoA plot is correct.\"], \"steps\": [\"Draw PCoA plot\", \"Check whether the content of the image is correct\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Fitting & inference",
+        "task_abbr": "PCoA",
+        "task": "Fitting & inference",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.57,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_288",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'Please perform principal coordinate analysis using the data from columns 2 to 9.'",
+          "Milestones: ['Generate PCoA plot', 'The content of the PCoA plot is correct.']",
+          "Steps: ['Draw PCoA plot', 'Check whether the content of the image is correct']"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must extract columns 2-9, perform PCoA, and generate a plot. However, the workflow is standard and linear, with no evidence of branching decisions or multiple valid methods that would affect correctness. The grouping information in the 'result' column is not used for the main analysis, only for possible coloring, which is not specified as required."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone file: 'pcoa.png'",
+          "Milestones: ['Generate PCoA plot', 'The content of the PCoA plot is correct.']"
+        ],
+        "reason": "There is a single required output artifact (a PCoA plot image), and the content must be correct. There is no explicit format or parameterization constraint beyond using columns 2-9 for the analysis. No strict schema, threshold, or verification rules are stated."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Columns 2-9 are specified for analysis.",
+          "Grouping information in 'result' column is mentioned but not required for the main analysis."
+        ],
+        "reason": "There is minimal need for semantic or data repair. The columns to use are clearly specified, and the grouping column is not required for the main analysis. No evidence of ambiguity, contradiction, or schema mismatch."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present in the payload."
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience required or described."
+      }
+    },
+    "overall_summary": "This task involves a standard, linear workflow: extracting specified columns from a TSV file, performing PCoA, and generating a plot. There is minor planning and artifact realization load, but no evidence of branching, strict parameterization, semantic ambiguity, or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2364,
+        "completion_tokens": 632,
+        "total_tokens": 2996
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'Please perform principal coordinate analysis using the data from columns 2 to 9.'",
+            "Milestones: ['Generate PCoA plot', 'The content of the PCoA plot is correct.']",
+            "Steps: ['Draw PCoA plot', 'Check whether the content of the image is correct']"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must extract columns 2-9, perform PCoA, and generate a plot. However, the workflow is standard and linear, with no evidence of branching decisions or multiple valid methods that would affect correctness. The grouping information in the 'result' column is not used for the main analysis, only for possible coloring, which is not specified as required.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone file: 'pcoa.png'",
+            "Milestones: ['Generate PCoA plot', 'The content of the PCoA plot is correct.']"
+          ],
+          "reason": "There is a single required output artifact (a PCoA plot image), and the content must be correct. There is no explicit format or parameterization constraint beyond using columns 2-9 for the analysis. No strict schema, threshold, or verification rules are stated.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Columns 2-9 are specified for analysis.",
+            "Grouping information in 'result' column is mentioned but not required for the main analysis."
+          ],
+          "reason": "There is minimal need for semantic or data repair. The columns to use are clearly specified, and the grouping column is not required for the main analysis. No evidence of ambiguity, contradiction, or schema mismatch.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present in the payload."
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience required or described.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard, linear workflow: extracting specified columns from a TSV file, performing PCoA, and generating a plot. There is minor planning and artifact realization load, but no evidence of branching, strict parameterization, semantic ambiguity, or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:34:38.114992+00:00"
+  }
+}

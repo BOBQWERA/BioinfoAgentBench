@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-47-q2",
+      "question": "What is the age of the affected or carrier patient with the highest number of non-reference variants called?",
+      "data": [],
+      "answer": "27.2",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-47-q2",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "23.3",
+          "33.5",
+          "36.3"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-47-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the age of the affected or carrier patient with the highest number of non-reference variants called?"
+        ],
+        "reason": "The question requires identifying patients who are 'affected or carrier', then determining which among them has the highest number of non-reference variants, and finally reporting that patient's age. This implies a minor dependency chain (filter -> aggregate -> select -> report), but there is no evidence of multiple reasonable methods or branching decisions that would materially affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the age of the affected or carrier patient with the highest number of non-reference variants called?",
+          "\"answer\": \"27.2\"",
+          "\"eval_mode\": \"str_verifier\""
+        ],
+        "reason": "The output is a single numeric value (age), with a strict string verifier. There is some minor load in ensuring the correct patient is selected and the age is reported in the expected format, but there are no heterogeneous outputs or complex format constraints."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What is the age of the affected or carrier patient with the highest number of non-reference variants called?"
+        ],
+        "reason": "There is a slight need to clarify what constitutes 'affected or carrier', but the semantics are mostly clear and there is no evidence of data schema mismatch or ambiguity that would require significant repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a minor multi-step workflow (filtering, aggregation, selection, reporting) with a single numeric output and a strict verifier. There is slight semantic clarification needed for 'affected or carrier', but no evidence of branching, complex artifact realization, or repair. No transfer or evolution context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2203,
+        "completion_tokens": 566,
+        "total_tokens": 2769
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the age of the affected or carrier patient with the highest number of non-reference variants called?"
+          ],
+          "reason": "The question requires identifying patients who are 'affected or carrier', then determining which among them has the highest number of non-reference variants, and finally reporting that patient's age. This implies a minor dependency chain (filter -> aggregate -> select -> report), but there is no evidence of multiple reasonable methods or branching decisions that would materially affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the age of the affected or carrier patient with the highest number of non-reference variants called?",
+            "\"answer\": \"27.2\"",
+            "\"eval_mode\": \"str_verifier\""
+          ],
+          "reason": "The output is a single numeric value (age), with a strict string verifier. There is some minor load in ensuring the correct patient is selected and the age is reported in the expected format, but there are no heterogeneous outputs or complex format constraints.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What is the age of the affected or carrier patient with the highest number of non-reference variants called?"
+          ],
+          "reason": "There is a slight need to clarify what constitutes 'affected or carrier', but the semantics are mostly clear and there is no evidence of data schema mismatch or ambiguity that would require significant repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor multi-step workflow (filtering, aggregation, selection, reporting) with a single numeric output and a strict verifier. There is slight semantic clarification needed for 'affected or carrier', but no evidence of branching, complex artifact realization, or repair. No transfer or evolution context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:22:31.930255+00:00"
+  }
+}

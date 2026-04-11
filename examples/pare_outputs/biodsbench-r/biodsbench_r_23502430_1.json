@@ -1,0 +1,144 @@
+{
+  "question": {
+    "benchmark": "biodsbench-r",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_r_23502430_1",
+      "question": "##Question##\nUse the 'pheatmap' package to draw a heatmap visualizing the gene expression matrix for patient groups labeled as 0, 1, and 2. Display only the top 100 genes based on variance. Use the data frame (named as variable 'expression_data_merged') and filter it to include only the relevant patient groups. Select the top 100 genes with the highest variance, transpose the expression data, and plot the heatmap with clustering for both rows and columns.\n\n##Task##\n1. Filter for patient groups 0, 1, and 2. Output as a table named variable \"filtered_data\".\n2. Select the top 100 genes with the highest variance.\n3. Filter the expression data for these top 100 genes. Output as a table named \"top_expression_data\".\n4. Transpose data for heatmap.\n5. Plot the Heatmap plot.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/GBM_mRNA_top.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench-r/workdir/GBM_label_num.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"library(dplyr)\\n# Load necessary libraries\\nlibrary(tidyr)\\nlibrary(dplyr)\\nlibrary(pheatmap)\\n\\n# Filter for patient groups 0, 1, and 2\\nfiltered_data <- expression_data_merged %>%\\n  filter(Label %in% c(0, 1, 2))\\n\\n# Select the top genes based on variance\\ntop_genes <- filtered_data %>%\\n  select(-Sample, -Label) %>%\\n  summarise_all(~ var(.)) %>%\\n  gather(key = \\\"Gene\\\", value = \\\"Variance\\\") %>%\\n  arrange(desc(Variance)) %>%\\n  slice(1:100) %>%\\n  pull(Gene)\\n\\n# Filter the expression data for these top 100 genes\\ntop_expression_data <- expression_data_merged %>%\\n  filter(Label %in% c(0, 1, 2)) %>%\\n  select(Sample, one_of(top_genes))\\n\\n# Transpose data for pheatmap\\ntop_expression_matrix <- as.matrix(top_expression_data[, -1])  # Remove Sample column for matrix\\n\\n#Heatmap plot\\npheatmap(\\n  top_expression_matrix,\\n  cluster_rows = TRUE,\\n  cluster_cols = TRUE,\\n  show_rownames = FALSE,\\n  show_colnames = FALSE,\\n  color = colorRampPalette(c(\\\"blue\\\", \\\"white\\\", \\\"red\\\"))(50),\\n  main = \\\"Heatmap of Top 100 Genes Expression (Patient Groups 0, 1, 2)\\\"\\n)\", \"test_cases\": \"nrow(filtered_data) == 181\\n\\nnrow(top_expression_data) == 181\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "23502430_1",
+        "study_id": "23502430",
+        "question_id": "1",
+        "analysis_types": "['Gene Expression & Differential Analysis', 'Data Integration & Transformation']",
+        "study_type": "Biomarkers",
+        "study_title": "Identification of prognostic gene signatures of glioblastoma: a study based on TCGA data analysis",
+        "dataset_url": "CMOB/GS-GBM",
+        "task_name": "biomedical_data_science_R",
+        "language": "R"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_r_23502430_1",
+    "benchmark": "biodsbench-r",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Task requires: filter for patient groups 0, 1, 2; select top 100 genes by variance; filter data for these genes; transpose; plot heatmap",
+          "No explicit step/tool list, but dependency chain is implied (must filter, then select, then filter again, then transpose, then plot)",
+          "No explicit method branching or alternative approaches described"
+        ],
+        "reason": "There is a clear multi-step workflow with dependency-constrained steps (P1=3), but no evidence of major method branching or multiple defensible approaches (P2=1). The planning load is moderate due to the need to structure the workflow, but not high because the steps are standard and the method is specified."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Requires outputting two tables: 'filtered_data' and 'top_expression_data', and a heatmap plot",
+          "Explicit variable names and output types specified",
+          "No strict format/schema constraints or explicit parameter thresholds beyond 'top 100 by variance'"
+        ],
+        "reason": "There is moderate artifact realization load due to multiple output types (tables and plot) and explicit variable naming, but no evidence of strict format or parameterization constraints (A2=2). The action load is moderate."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of semantic ambiguity or data schema inconsistency",
+          "Input data files are referenced, but no mention of missing fields, contradictions, or need for repair"
+        ],
+        "reason": "There is almost no reflection/repair load; the task is well-specified and data representation appears consistent. Only a trace score is given for R1 due to the need to interpret 'top 100 by variance', but this is routine."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning and action load due to a multi-step workflow (filtering, selecting by variance, transposing, plotting) and the need to produce multiple output artifacts. There is little to no reflection/repair or evolution/transfer load, as the task is well-specified and does not require semantic or data repair, nor does it involve prior experience transfer.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2940,
+        "completion_tokens": 639,
+        "total_tokens": 3579
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Task requires: filter for patient groups 0, 1, 2; select top 100 genes by variance; filter data for these genes; transpose; plot heatmap",
+            "No explicit step/tool list, but dependency chain is implied (must filter, then select, then filter again, then transpose, then plot)",
+            "No explicit method branching or alternative approaches described"
+          ],
+          "reason": "There is a clear multi-step workflow with dependency-constrained steps (P1=3), but no evidence of major method branching or multiple defensible approaches (P2=1). The planning load is moderate due to the need to structure the workflow, but not high because the steps are standard and the method is specified.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Requires outputting two tables: 'filtered_data' and 'top_expression_data', and a heatmap plot",
+            "Explicit variable names and output types specified",
+            "No strict format/schema constraints or explicit parameter thresholds beyond 'top 100 by variance'"
+          ],
+          "reason": "There is moderate artifact realization load due to multiple output types (tables and plot) and explicit variable naming, but no evidence of strict format or parameterization constraints (A2=2). The action load is moderate.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of semantic ambiguity or data schema inconsistency",
+            "Input data files are referenced, but no mention of missing fields, contradictions, or need for repair"
+          ],
+          "reason": "There is almost no reflection/repair load; the task is well-specified and data representation appears consistent. Only a trace score is given for R1 due to the need to interpret 'top 100 by variance', but this is routine.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning and action load due to a multi-step workflow (filtering, selecting by variance, transposing, plotting) and the need to produce multiple output artifacts. There is little to no reflection/repair or evolution/transfer load, as the task is well-specified and does not require semantic or data repair, nor does it involve prior experience transfer.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:54:37.214555+00:00"
+  }
+}

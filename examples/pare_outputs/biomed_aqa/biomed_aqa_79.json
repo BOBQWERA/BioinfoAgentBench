@@ -1,0 +1,143 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_79",
+      "question": "{{genes.tsv},{matrix.mtx},{barcodes.tsv} The three files are the 10X Genomics single-cell transcriptome dataset of peripheral blood mononuclear cells (PBMC). This dataset contains 2,700 single cells. Please preprocess this dataset, filter and select the cells, normalize the data, then use Seurat to cluster the cells, and visualize the clustering data using UMAP nonlinear dimensionality reduction to obtain the top 10 differential genes for each cluster.}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0079/files/genes.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0079/files/matrix.mtx"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0079/files/barcodes.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"QC_metrics.png\", \"path\": \"downloaded_files\\\\index_0079\\\\milestone\\\\QC_metrics.png\"}, {\"name\": \"clusters_Marker.csv\", \"path\": \"downloaded_files\\\\index_0079\\\\milestone\\\\clusters_Marker.csv\"}, {\"name\": \"clusters_umap.png\", \"path\": \"downloaded_files\\\\index_0079\\\\milestone\\\\clusters_umap.png\"}], \"milestones\": [\"Violin plot QC_metrics.png of the standardized Seurat object\", \"Top 10 Differentially Expressed Genes Clusters_Marker.csv\", \"Generate UMAP graph clusters_umap.png\"], \"steps\": [\"Read single-cell transcriptome data, use Seurat for data preprocessing, filter out low-quality cells and low-expressed genes, and perform normalization to obtain the preprocessed Seurat object.\", \"Cell clustering was performed on the preprocessed Seurat object to obtain the top 10 differential genes for each cluster.\", \"Perform UMAP visualization on the differential genes in the top 10.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "scRNA",
+        "task_abbr": "Seruat marker genes",
+        "task": "scRNA",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 13.01,
+        "milestone_count": 3,
+        "step_count": 3
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_79",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Please preprocess this dataset, filter and select the cells, normalize the data, then use Seurat to cluster the cells, and visualize the clustering data using UMAP nonlinear dimensionality reduction to obtain the top 10 differential genes for each cluster.",
+          "steps: [\"Read single-cell transcriptome data, use Seurat for data preprocessing, filter out low-quality cells and low-expressed genes, and perform normalization to obtain the preprocessed Seurat object.\", \"Cell clustering was performed on the preprocessed Seurat object to obtain the top 10 differential genes for each cluster.\", \"Perform UMAP visualization on the differential genes in the top 10.\"]"
+        ],
+        "reason": "The task requires a multi-stage workflow: preprocessing, filtering, normalization, clustering, UMAP visualization, and differential gene identification. The steps are sequential and dependency-constrained, but the method (Seurat) is specified and the workflow is standard for scRNA-seq, so branching decision load is moderate, not high."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: [{\"name\": \"QC_metrics.png\"}, {\"name\": \"clusters_Marker.csv\"}, {\"name\": \"clusters_umap.png\"}]",
+          "Milestones: [\"Violin plot QC_metrics.png of the standardized Seurat object\", \"Top 10 Differentially Expressed Genes Clusters_Marker.csv\", \"Generate UMAP graph clusters_umap.png\"]"
+        ],
+        "reason": "There are multiple heterogeneous output artifacts (PNG plots, CSV tables), each with a specific content expectation (QC metrics, UMAP, marker genes). However, there is no explicit evidence of strict format constraints or parameterization tightness beyond standard expectations."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "question_type: \"clear\"",
+          "No evidence of missing fields, ambiguity, or schema mismatch in the question or data."
+        ],
+        "reason": "The task is clearly worded and the data files are standard 10X Genomics formats. No evidence of semantic or representational repair is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience or transfer context provided."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-stage scRNA-seq analysis workflow using Seurat, with moderate planning and artifact realization load due to sequential steps and multiple output types. There is little evidence of semantic or representational repair, and no transfer/experience assimilation required.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2632,
+        "completion_tokens": 707,
+        "total_tokens": 3339
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Please preprocess this dataset, filter and select the cells, normalize the data, then use Seurat to cluster the cells, and visualize the clustering data using UMAP nonlinear dimensionality reduction to obtain the top 10 differential genes for each cluster.",
+            "steps: [\"Read single-cell transcriptome data, use Seurat for data preprocessing, filter out low-quality cells and low-expressed genes, and perform normalization to obtain the preprocessed Seurat object.\", \"Cell clustering was performed on the preprocessed Seurat object to obtain the top 10 differential genes for each cluster.\", \"Perform UMAP visualization on the differential genes in the top 10.\"]"
+          ],
+          "reason": "The task requires a multi-stage workflow: preprocessing, filtering, normalization, clustering, UMAP visualization, and differential gene identification. The steps are sequential and dependency-constrained, but the method (Seurat) is specified and the workflow is standard for scRNA-seq, so branching decision load is moderate, not high.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: [{\"name\": \"QC_metrics.png\"}, {\"name\": \"clusters_Marker.csv\"}, {\"name\": \"clusters_umap.png\"}]",
+            "Milestones: [\"Violin plot QC_metrics.png of the standardized Seurat object\", \"Top 10 Differentially Expressed Genes Clusters_Marker.csv\", \"Generate UMAP graph clusters_umap.png\"]"
+          ],
+          "reason": "There are multiple heterogeneous output artifacts (PNG plots, CSV tables), each with a specific content expectation (QC metrics, UMAP, marker genes). However, there is no explicit evidence of strict format constraints or parameterization tightness beyond standard expectations.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "question_type: \"clear\"",
+            "No evidence of missing fields, ambiguity, or schema mismatch in the question or data."
+          ],
+          "reason": "The task is clearly worded and the data files are standard 10X Genomics formats. No evidence of semantic or representational repair is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience or transfer context provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-stage scRNA-seq analysis workflow using Seurat, with moderate planning and artifact realization load due to sequential steps and multiple output types. There is little evidence of semantic or representational repair, and no transfer/experience assimilation required.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:07:47.081357+00:00"
+  }
+}

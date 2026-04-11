@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-51-q2",
+      "question": "What is the Akaike Information Criterion (AIC) for the logistic regression model that uses BMI as the sole predictor of treatment response (efficacy PR)?",
+      "data": [],
+      "answer": "(111.80,111.82)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-51-q2",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(104.13,104.15)",
+          "(114.85,114.87)",
+          "(105.16,105.20)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-51-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "logistic regression model that uses BMI as the sole predictor of treatment response (efficacy PR)",
+          "AIC for the logistic regression model"
+        ],
+        "reason": "The task requires fitting a logistic regression with a single predictor and computing AIC, which is a standard, single-step statistical workflow. There is no evidence of branching or multiple reasonable methods, as the model and predictor are fully specified. The workflow is simple and does not require decomposition into a complex step graph."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "AIC for the logistic regression model",
+          "answer is a numeric range (111.80,111.82)",
+          "eval_mode: range_verifier"
+        ],
+        "reason": "The output is a single numeric value (AIC) with a tight range, and the evaluation uses a range verifier. There is some parameterization load due to the need for precise calculation, but only one artifact type is required and no complex format or multi-artifact output is specified."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "model and predictor are fully specified",
+          "no data provided"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair. The question is clearly worded and the model specification is unambiguous. The absence of data means no schema or representation issues can arise."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "no prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or prior experience context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward statistical computation task: fit a logistic regression with a single predictor and compute the AIC. The planning and action loads are minor, as the workflow is standard and the output is a single, tightly specified value. There is no evidence of semantic or data repair, and no transfer or evolution context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2232,
+        "completion_tokens": 563,
+        "total_tokens": 2795
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "logistic regression model that uses BMI as the sole predictor of treatment response (efficacy PR)",
+            "AIC for the logistic regression model"
+          ],
+          "reason": "The task requires fitting a logistic regression with a single predictor and computing AIC, which is a standard, single-step statistical workflow. There is no evidence of branching or multiple reasonable methods, as the model and predictor are fully specified. The workflow is simple and does not require decomposition into a complex step graph.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "AIC for the logistic regression model",
+            "answer is a numeric range (111.80,111.82)",
+            "eval_mode: range_verifier"
+          ],
+          "reason": "The output is a single numeric value (AIC) with a tight range, and the evaluation uses a range verifier. There is some parameterization load due to the need for precise calculation, but only one artifact type is required and no complex format or multi-artifact output is specified.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "model and predictor are fully specified",
+            "no data provided"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair. The question is clearly worded and the model specification is unambiguous. The absence of data means no schema or representation issues can arise.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "no prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or prior experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward statistical computation task: fit a logistic regression with a single predictor and compute the AIC. The planning and action loads are minor, as the workflow is standard and the output is a single, tightly specified value. There is no evidence of semantic or data repair, and no transfer or evolution context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:25:15.259377+00:00"
+  }
+}

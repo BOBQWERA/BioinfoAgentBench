@@ -1,0 +1,147 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_210",
+      "question": "{There are three existing data tables: {feature_infor1.tsv} is a table containing microbial species abundance data, with columns as samples and rows as species; {sample_info1.tsv} is a table containing microbial grouping information, with the column name Group representing the grouping information; {tax_info1.tsv} is a table containing microbial taxonomic information. Please use the LEfSe tool to perform differential analysis of microbial groups based on the grouping information in Group.}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0210/files/feature_infor1.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0210/files/sample_info1.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0210/files/tax_info1.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"out_lefse.tsv\", \"path\": \"downloaded_files\\\\index_0210\\\\milestone\\\\out_lefse.tsv\"}], \"milestones\": [\"Generate a file containing the difference results.\"], \"steps\": [\"Conduct lefse differential analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Inferential statistics",
+        "task_abbr": "LEfSe",
+        "task": "Inferential statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 41.15,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_210",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "\"There are three existing data tables... Please use the LEfSe tool to perform differential analysis of microbial groups based on the grouping information in Group.\"",
+          "feature_infor1.tsv (species abundance), sample_info1.tsv (grouping), tax_info1.tsv (taxonomy)",
+          "\"steps\": [\"Conduct lefse differential analysis\"]"
+        ],
+        "reason": "The task requires integrating three different tables (abundance, grouping, taxonomy) and using the LEfSe tool for differential analysis. While the workflow is standard for LEfSe, the need to align/group samples and features across files and prepare input for LEfSe implies a moderate workflow structuring load. There is no explicit evidence of major method branching or multiple defensible approaches (LEfSe is specified), so P2 remains low."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"out_lefse.tsv\", ...}]",
+          "\"Generate a file containing the difference results.\""
+        ],
+        "reason": "The output is a single result file (out_lefse.tsv) with no explicit format or parameterization constraints stated. There is no evidence of multiple output types, strict schema, or explicit thresholds. The action load is weak, mainly due to the need to generate a specific output file."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "\"feature_infor1.tsv is a table containing microbial species abundance data, with columns as samples and rows as species\"",
+          "\"sample_info1.tsv is a table containing microbial grouping information, with the column name Group representing the grouping information\"",
+          "\"tax_info1.tsv is a table containing microbial taxonomic information\""
+        ],
+        "reason": "There is some minor representational alignment required: matching sample IDs between abundance and grouping tables, and possibly mapping species to taxonomy. However, there is no evidence of ambiguity, missing fields, or schema contradiction. The repair load is weak."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. This is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a standard LEfSe differential analysis workflow using three input tables (abundance, grouping, taxonomy). The main complexity is in integrating the tables and preparing the input for LEfSe, but the workflow is canonical and the output requirements are simple. There is minor representational alignment needed, but no evidence of ambiguity, branching, or strict output constraints. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2473,
+        "completion_tokens": 715,
+        "total_tokens": 3188
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "\"There are three existing data tables... Please use the LEfSe tool to perform differential analysis of microbial groups based on the grouping information in Group.\"",
+            "feature_infor1.tsv (species abundance), sample_info1.tsv (grouping), tax_info1.tsv (taxonomy)",
+            "\"steps\": [\"Conduct lefse differential analysis\"]"
+          ],
+          "reason": "The task requires integrating three different tables (abundance, grouping, taxonomy) and using the LEfSe tool for differential analysis. While the workflow is standard for LEfSe, the need to align/group samples and features across files and prepare input for LEfSe implies a moderate workflow structuring load. There is no explicit evidence of major method branching or multiple defensible approaches (LEfSe is specified), so P2 remains low.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"out_lefse.tsv\", ...}]",
+            "\"Generate a file containing the difference results.\""
+          ],
+          "reason": "The output is a single result file (out_lefse.tsv) with no explicit format or parameterization constraints stated. There is no evidence of multiple output types, strict schema, or explicit thresholds. The action load is weak, mainly due to the need to generate a specific output file.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "\"feature_infor1.tsv is a table containing microbial species abundance data, with columns as samples and rows as species\"",
+            "\"sample_info1.tsv is a table containing microbial grouping information, with the column name Group representing the grouping information\"",
+            "\"tax_info1.tsv is a table containing microbial taxonomic information\""
+          ],
+          "reason": "There is some minor representational alignment required: matching sample IDs between abundance and grouping tables, and possibly mapping species to taxonomy. However, there is no evidence of ambiguity, missing fields, or schema contradiction. The repair load is weak.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. This is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard LEfSe differential analysis workflow using three input tables (abundance, grouping, taxonomy). The main complexity is in integrating the tables and preparing the input for LEfSe, but the workflow is canonical and the output requirements are simple. There is minor representational alignment needed, but no evidence of ambiguity, branching, or strict output constraints. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:27:12.201606+00:00"
+  }
+}

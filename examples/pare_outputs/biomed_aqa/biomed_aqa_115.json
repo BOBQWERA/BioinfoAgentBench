@@ -1,0 +1,141 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_115",
+      "question": "I have a binary classification dataset {{diabetes.csv}}, where the \"Target\" column contains the corresponding classification labels. First, the dataset needs to be divided into a training set and a test set, and feature selection should be performed to select several features that are highly correlated with the label column. Then, based on the training set, five classifiers should be constructed, and the accuracy of the classifiers should be evaluated on the test set. Finally, the classifier with the best classification performance should be selected.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0115/files/diabetes.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\test.csv\"}, {\"name\": \"train_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\train_feature_selected.csv\"}, {\"name\": \"test_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\test_feature_selected.csv\"}, {\"name\": \"decisiontree_predictions.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\decisiontree_predictions.csv\"}, {\"name\": \"gaussianNB_predictions.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\gaussianNB_predictions.csv\"}, {\"name\": \"logistic_predictions.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\logistic_predictions.csv\"}, {\"name\": \"randomforest_predictions.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\randomforest_predictions.csv\"}, {\"name\": \"svm_predictions.csv\", \"path\": \"downloaded_files\\\\index_0115\\\\milestone\\\\svm_predictions.csv\"}], \"milestones\": [\"Generate the training set train.csv and the test set test.csv files.\", \"Generate the result file feature_selected.csv after feature selection.\", \"Generate test result files for several classifiers, such as randomforest_predictions.csv, svm_predictions.csv, and so on.\", \"Each classifier's classification metrics on the test set, such as accuracy, recall, etc. svm_acc: 0.75, logistic_acc: 0.74, gaussian_acc: 0.73, decision_acc: 0.72, randomforest_acc: 0.72 (results when feature selection is set to 5).\", \"svm_acc: 0.75\"], \"steps\": [\"Split the dataset to generate train.csv and test.csv files.\", \"Feature selection, generate the file after feature selection.\", \"Select several classifiers for training, test them on the test set, and generate a results file for the test set.\", \"Evaluate the classification metrics of the test result file\", \"Select the classifier with the best classification performance.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "Classfication",
+        "task": "Classification",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.01,
+        "milestone_count": 5,
+        "step_count": 5
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_115",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "First, the dataset needs to be divided into a training set and a test set, and feature selection should be performed...",
+          "Then, based on the training set, five classifiers should be constructed, and the accuracy of the classifiers should be evaluated on the test set.",
+          "Finally, the classifier with the best classification performance should be selected.",
+          "\"steps\": [\"Split the dataset...\", \"Feature selection...\", \"Select several classifiers for training...\", \"Evaluate the classification metrics...\", \"Select the classifier with the best classification performance.\"]"
+        ],
+        "reason": "The task requires a multi-stage workflow: data splitting, feature selection, training multiple classifiers, evaluation, and selection of the best model. The workflow is dependency-constrained (P1), but the methods for feature selection and classifier choice are not specified in a way that induces high branching (P2). There is some method choice (e.g., which classifiers, which feature selection method), but the payload does not indicate that these choices would materially affect correctness or verifiable outputs beyond standard practice."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"train.csv\"...}, {\"name\": \"test.csv\"...}, {\"name\": \"train_feature_selected.csv\"...}, {\"name\": \"test_feature_selected.csv\"...}, {\"name\": \"decisiontree_predictions.csv\"...}, {\"name\": \"gaussianNB_predictions.csv\"...}, {\"name\": \"logistic_predictions.csv\"...}, {\"name\": \"randomforest_predictions.csv\"...}, {\"name\": \"svm_predictions.csv\"...}]",
+          "Multiple explicit output files for different classifiers and stages (split, feature selection, predictions).",
+          "\"Each classifier's classification metrics on the test set, such as accuracy, recall, etc.\""
+        ],
+        "reason": "There are multiple heterogeneous output files (splits, feature-selected data, predictions for each classifier), and explicit mention of metrics. However, there is no evidence of strict format constraints, explicit parameter thresholds, or tight specification for outputs beyond standard artifact realization."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of missing semantic fields, ambiguity, or schema mismatch in the question or data description.",
+          "The question is clear and the data file is referenced directly."
+        ],
+        "reason": "There is no indication that the semantics of the problem or the data representation require repair. The workflow is standard and the data file is referenced directly, with no mention of ambiguity or inconsistency."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience text, or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience or transfer context provided, so evolution load is absent."
+      }
+    },
+    "overall_summary": "This task involves a standard multi-stage classification workflow with moderate planning and artifact realization load due to multiple steps and output files. There is little evidence of semantic or data repair needs, and no transfer/evolution context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2846,
+        "completion_tokens": 782,
+        "total_tokens": 3628
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "First, the dataset needs to be divided into a training set and a test set, and feature selection should be performed...",
+            "Then, based on the training set, five classifiers should be constructed, and the accuracy of the classifiers should be evaluated on the test set.",
+            "Finally, the classifier with the best classification performance should be selected.",
+            "\"steps\": [\"Split the dataset...\", \"Feature selection...\", \"Select several classifiers for training...\", \"Evaluate the classification metrics...\", \"Select the classifier with the best classification performance.\"]"
+          ],
+          "reason": "The task requires a multi-stage workflow: data splitting, feature selection, training multiple classifiers, evaluation, and selection of the best model. The workflow is dependency-constrained (P1), but the methods for feature selection and classifier choice are not specified in a way that induces high branching (P2). There is some method choice (e.g., which classifiers, which feature selection method), but the payload does not indicate that these choices would materially affect correctness or verifiable outputs beyond standard practice.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"train.csv\"...}, {\"name\": \"test.csv\"...}, {\"name\": \"train_feature_selected.csv\"...}, {\"name\": \"test_feature_selected.csv\"...}, {\"name\": \"decisiontree_predictions.csv\"...}, {\"name\": \"gaussianNB_predictions.csv\"...}, {\"name\": \"logistic_predictions.csv\"...}, {\"name\": \"randomforest_predictions.csv\"...}, {\"name\": \"svm_predictions.csv\"...}]",
+            "Multiple explicit output files for different classifiers and stages (split, feature selection, predictions).",
+            "\"Each classifier's classification metrics on the test set, such as accuracy, recall, etc.\""
+          ],
+          "reason": "There are multiple heterogeneous output files (splits, feature-selected data, predictions for each classifier), and explicit mention of metrics. However, there is no evidence of strict format constraints, explicit parameter thresholds, or tight specification for outputs beyond standard artifact realization.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of missing semantic fields, ambiguity, or schema mismatch in the question or data description.",
+            "The question is clear and the data file is referenced directly."
+          ],
+          "reason": "There is no indication that the semantics of the problem or the data representation require repair. The workflow is standard and the data file is referenced directly, with no mention of ambiguity or inconsistency.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience text, or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience or transfer context provided, so evolution load is absent.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard multi-stage classification workflow with moderate planning and artifact realization load due to multiple steps and output files. There is little evidence of semantic or data repair needs, and no transfer/evolution context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:12:04.150182+00:00"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_28481359_4",
+      "question": "\nUsing the mutation data from `df_mutation` and cancer subtype data from `df_diag`, determine the prevalence of the TP53 gene mutation across different cancer subtypes. \n\nOutput the results as a `pd.Series` named `output_df`, ordered by the count of mutations from largest to smallest.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/diagnosis_outcome_sub.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/gene_expression_rna_sub.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/gene_mutation_dna_sub.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\ndf_mutation = pd.read_csv(\\\"/workdir/gene_mutation_dna_sub.csv\\\")\\ndf_diag = pd.read_csv(\\\"/workdir/diagnosis_outcome_sub.csv\\\")\\npindex = df_mutation[df_mutation[\\\"TP53\\\"] == 1][\\\"sample\\\"]\\noutput_df = df_diag[df_diag[\\\"sample\\\"].isin(pindex)][\\\"cancer type abbreviation\\\"].value_counts()\", \"test_cases\": \"assert len(output_df) == 26\\n\\nassert output_df.iloc[1] == 42\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "28481359_4",
+        "study_id": "28481359",
+        "question_id": "4",
+        "analysis_types": "['Genomic Alteration Profiling', 'Descriptive Statistics']",
+        "study_type": "Pan-Cancer",
+        "study_title": "Mutational landscape of metastatic cancer revealed from prospective clinical sequencing of 10,000 patients",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=msk_impact_2018",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_28481359_4",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Requires joining mutation data (df_mutation) and diagnosis data (df_diag)",
+          "Must filter for TP53 mutations, then aggregate by cancer subtype"
+        ],
+        "reason": "There is a clear need to structure the workflow into at least two steps: filter mutation data for TP53, map to diagnosis data, and aggregate by subtype. However, the method is fairly canonical and there is no evidence of major branching or multiple defensible methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output must be a pd.Series named output_df",
+          "Ordered by count of mutations from largest to smallest"
+        ],
+        "reason": "There is a minor artifact realization load: the output must be a pd.Series with a specific name and ordering. There is no evidence of multiple heterogeneous outputs or strict format verifiers beyond this."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit schema mismatch or ambiguity in question wording",
+          "Data files are referenced by name and expected to be structured"
+        ],
+        "reason": "There is no evidence of semantic or representational ambiguity that would require repair. The task assumes standard, well-structured input files."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided"
+        ],
+        "reason": "There is no transfer or evolution context in the payload."
+      }
+    },
+    "overall_summary": "This task requires a straightforward multi-step workflow: filtering mutation data for TP53, joining with diagnosis data, and aggregating by cancer subtype. The planning and action loads are minor to moderate due to the need for stepwise data manipulation and specific output formatting, but there is no evidence of major branching, strict parameterization, or repair. No evolution/transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2576,
+        "completion_tokens": 536,
+        "total_tokens": 3112
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Requires joining mutation data (df_mutation) and diagnosis data (df_diag)",
+            "Must filter for TP53 mutations, then aggregate by cancer subtype"
+          ],
+          "reason": "There is a clear need to structure the workflow into at least two steps: filter mutation data for TP53, map to diagnosis data, and aggregate by subtype. However, the method is fairly canonical and there is no evidence of major branching or multiple defensible methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output must be a pd.Series named output_df",
+            "Ordered by count of mutations from largest to smallest"
+          ],
+          "reason": "There is a minor artifact realization load: the output must be a pd.Series with a specific name and ordering. There is no evidence of multiple heterogeneous outputs or strict format verifiers beyond this.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit schema mismatch or ambiguity in question wording",
+            "Data files are referenced by name and expected to be structured"
+          ],
+          "reason": "There is no evidence of semantic or representational ambiguity that would require repair. The task assumes standard, well-structured input files.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided"
+          ],
+          "reason": "There is no transfer or evolution context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a straightforward multi-step workflow: filtering mutation data for TP53, joining with diagnosis data, and aggregating by cancer subtype. The planning and action loads are minor to moderate due to the need for stepwise data manipulation and specific output formatting, but there is no evidence of major branching, strict parameterization, or repair. No evolution/transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:42:41.293100+00:00"
+  }
+}

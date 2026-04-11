@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_296",
+      "question": "There is a gene expression matrix file dendrogram_plot.tsv, where columns M1 to M10 represent the gene expression levels corresponding to 10 samples, and the \"Name\" column is for genes. Please use the complete clustering method and Euclidean distance metric to draw a dendrogram to show the genetic distance between the 10 samples.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0296/files/dendrogram_plot.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"phylogram.png\", \"path\": \"downloaded_files\\\\index_0296\\\\milestone\\\\phylogram.png\"}], \"milestones\": [\"Generate a phylogram\", \"The content of the phylogram is correct.\"], \"steps\": [\"Draw a phylogram\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Fitting & inference",
+        "task_abbr": "dendrogram plot",
+        "task": "Fitting & inference",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.65,
+        "milestone_count": 2,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_296",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "The question requires drawing a dendrogram using complete clustering and Euclidean distance on a gene expression matrix.",
+          "Input file has a 'Name' column for genes and columns M1-M10 for samples."
+        ],
+        "reason": "There is a minor workflow structuring load: the user must interpret the matrix orientation, select the correct axis (samples), and apply the specified clustering method and metric. However, the method is fully specified (complete linkage, Euclidean), and there is no evidence of branching or multiple valid approaches. The workflow is standard and linear."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a single image file (phylogram.png).",
+          "No explicit format or parameterization constraints beyond method and metric."
+        ],
+        "reason": "Artifact realization is limited to producing a single dendrogram image. There is no evidence of strict format, schema, or parameterization requirements beyond the clustering method and metric. No explicit verification checkpoints or tight output constraints are present."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Input file structure is described: 'Name' column for genes, M1-M10 for samples.",
+          "No evidence of ambiguity, missing fields, or representational inconsistency."
+        ],
+        "reason": "There is minimal need for semantic or data repair. The matrix orientation is described, and the required columns are specified. No ambiguity or contradiction is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves generating a dendrogram from a gene expression matrix using a fully specified clustering method and metric. The planning and action loads are minor, as the workflow is standard and the output requirements are simple. There is minimal need for semantic or data repair, and no transfer or evolution context is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2388,
+        "completion_tokens": 573,
+        "total_tokens": 2961
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "The question requires drawing a dendrogram using complete clustering and Euclidean distance on a gene expression matrix.",
+            "Input file has a 'Name' column for genes and columns M1-M10 for samples."
+          ],
+          "reason": "There is a minor workflow structuring load: the user must interpret the matrix orientation, select the correct axis (samples), and apply the specified clustering method and metric. However, the method is fully specified (complete linkage, Euclidean), and there is no evidence of branching or multiple valid approaches. The workflow is standard and linear.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a single image file (phylogram.png).",
+            "No explicit format or parameterization constraints beyond method and metric."
+          ],
+          "reason": "Artifact realization is limited to producing a single dendrogram image. There is no evidence of strict format, schema, or parameterization requirements beyond the clustering method and metric. No explicit verification checkpoints or tight output constraints are present.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Input file structure is described: 'Name' column for genes, M1-M10 for samples.",
+            "No evidence of ambiguity, missing fields, or representational inconsistency."
+          ],
+          "reason": "There is minimal need for semantic or data repair. The matrix orientation is described, and the required columns are specified. No ambiguity or contradiction is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves generating a dendrogram from a gene expression matrix using a fully specified clustering method and metric. The planning and action loads are minor, as the workflow is standard and the output requirements are simple. There is minimal need for semantic or data repair, and no transfer or evolution context is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:35:26.929051+00:00"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_237",
+      "question": "There is a data file boxplot.tsv, the Age_Group column represents different age groupings, and Age is the age. Please create a box plot of WBC for each age group.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0237/files/boxplot.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"boxplot-boxplot.jpg\", \"path\": \"downloaded_files\\\\index_0237\\\\milestone\\\\boxplot-boxplot.jpg\"}], \"milestones\": [\"Generate boxplot\", \"The result file for saving the image is correct.\"], \"steps\": [\"Draw a boxplot\", \"Check whether the result file for saving the image is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Basic plot",
+        "task_abbr": "box plot",
+        "task": "Basic plot",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.06,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_237",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Please create a box plot of WBC for each age group.",
+          "boxplot.tsv, the Age_Group column represents different age groupings, and Age is the age."
+        ],
+        "reason": "The task requires grouping data by Age_Group and plotting WBC values, which is a standard two-step workflow (group then plot). There is no evidence of branching decisions or multiple valid methods that would affect correctness. The workflow is simple and canonical for this type of visualization."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "milestone_files includes boxplot-boxplot.jpg",
+          "steps: Draw a boxplot, Check whether the result file for saving the image is correct."
+        ],
+        "reason": "The output is a single image file (boxplot), and the only explicit artifact is the saved plot image. There is a minor format constraint (file must be saved as .jpg with a specific name), but no evidence of multiple heterogeneous outputs or strict parameterization."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The Age_Group column represents different age groupings, and Age is the age."
+        ],
+        "reason": "Column meanings are explicitly stated, and there is no evidence of ambiguity, missing fields, or representational inconsistency. The task is semantically clear and the data appears to be well-structured."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward data visualization task requiring a standard group-by and plot workflow. There is minor planning and artifact realization load due to the need to group by Age_Group and save the plot with a specific filename, but no evidence of branching, ambiguity, or transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2365,
+        "completion_tokens": 551,
+        "total_tokens": 2916
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Please create a box plot of WBC for each age group.",
+            "boxplot.tsv, the Age_Group column represents different age groupings, and Age is the age."
+          ],
+          "reason": "The task requires grouping data by Age_Group and plotting WBC values, which is a standard two-step workflow (group then plot). There is no evidence of branching decisions or multiple valid methods that would affect correctness. The workflow is simple and canonical for this type of visualization.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "milestone_files includes boxplot-boxplot.jpg",
+            "steps: Draw a boxplot, Check whether the result file for saving the image is correct."
+          ],
+          "reason": "The output is a single image file (boxplot), and the only explicit artifact is the saved plot image. There is a minor format constraint (file must be saved as .jpg with a specific name), but no evidence of multiple heterogeneous outputs or strict parameterization.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The Age_Group column represents different age groupings, and Age is the age."
+          ],
+          "reason": "Column meanings are explicitly stated, and there is no evidence of ambiguity, missing fields, or representational inconsistency. The task is semantically clear and the data appears to be well-structured.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward data visualization task requiring a standard group-by and plot workflow. There is minor planning and artifact realization load due to the need to group by Age_Group and save the plot with a specific filename, but no evidence of branching, ambiguity, or transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T11:30:23.705966+00:00"
+  }
+}

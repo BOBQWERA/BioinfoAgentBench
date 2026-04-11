@@ -1,0 +1,126 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-28-q1",
+      "question": "What is the p-value from the Mann-Whitney U test comparing median long branch scores between fungi and animals?",
+      "data": [],
+      "answer": "5.107 x 10^-47",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-28-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "2.3 x 10^-12",
+          "8.9 x 10^-23",
+          "1.2 x 10^-5"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-28-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the p-value from the Mann-Whitney U test comparing median long branch scores between fungi and animals?"
+        ],
+        "reason": "The question specifies a direct statistical test (Mann-Whitney U) and the two groups to compare, so the workflow is mostly linear. However, there is a minor planning load in identifying the two groups and extracting the relevant scores, but no evidence of branching or complex workflow structuring."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the p-value from the Mann-Whitney U test comparing median long branch scores between fungi and animals?",
+          "answer: 5.107 x 10^-47"
+        ],
+        "reason": "The output is a single p-value, with no evidence of multiple artifact types or strict format constraints beyond standard scientific notation. There is some parameterization in the sense that the correct test and grouping must be applied, but no explicit tightness or verification rules are stated."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What is the p-value from the Mann-Whitney U test comparing median long branch scores between fungi and animals?"
+        ],
+        "reason": "There is a trace need to clarify what constitutes 'long branch scores' and ensure the correct grouping, but the question is otherwise well-posed and does not require major semantic or data repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This is a direct statistical test question with minor planning and action load due to group identification and correct test application. There is minimal need for semantic or data repair, and no transfer or evolution context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2227,
+        "completion_tokens": 543,
+        "total_tokens": 2770
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the p-value from the Mann-Whitney U test comparing median long branch scores between fungi and animals?"
+          ],
+          "reason": "The question specifies a direct statistical test (Mann-Whitney U) and the two groups to compare, so the workflow is mostly linear. However, there is a minor planning load in identifying the two groups and extracting the relevant scores, but no evidence of branching or complex workflow structuring.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the p-value from the Mann-Whitney U test comparing median long branch scores between fungi and animals?",
+            "answer: 5.107 x 10^-47"
+          ],
+          "reason": "The output is a single p-value, with no evidence of multiple artifact types or strict format constraints beyond standard scientific notation. There is some parameterization in the sense that the correct test and grouping must be applied, but no explicit tightness or verification rules are stated.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What is the p-value from the Mann-Whitney U test comparing median long branch scores between fungi and animals?"
+          ],
+          "reason": "There is a trace need to clarify what constitutes 'long branch scores' and ensure the correct grouping, but the question is otherwise well-posed and does not require major semantic or data repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct statistical test question with minor planning and action load due to group identification and correct test application. There is minimal need for semantic or data repair, and no transfer or evolution context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:01:50.846304+00:00"
+  }
+}

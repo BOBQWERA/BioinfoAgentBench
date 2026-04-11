@@ -1,0 +1,182 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_r2_upgrade_top5_2_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_190",
+      "question": "There are two datasets: train.tsv (feature matrix) and cl.tsv (class labels). Perform quadratic discriminant analysis on train with labels from cl.tsv. Before fitting, repair cross-file representation issues: sample keys may use different naming conventions, and cl.tsv may contain duplicated or conflicting labels for a sample. Reconcile key mapping and label uniqueness deterministically.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0190/files/train.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0190/files/cl.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"out_lda.tsv\", \"path\": \"downloaded_files\\\\index_0190\\\\milestone\\\\out_lda.tsv\"}], \"milestones\": [\"Complete the second discriminant analysis\"], \"steps\": [\"Perform second-order discriminant analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Descriptive statistics",
+        "task_abbr": "二次判别分析",
+        "task": "Descriptive statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.5300000000001,
+        "milestone_count": 1,
+        "step_count": 1,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_existing_r1_r2_e1_e2_sets', 'must_have_workflow_memory_reference', 'targets_are_tsv_or_csv_only', 'r2_representation_repair_must_dominate']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Cross-file sample-key alignment + duplicate/conflicting label rows.",
+              "intent": "Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation."
+            },
+            "data_repair_methods": [
+              "Canonicalize sample keys in both files (case-fold + trim + symbol normalization).",
+              "If duplicate labels exist for a sample, keep one consistent label row; flag conflicts and drop unresolved samples.",
+              "Inner-join train and cl on reconciled keys and preserve matched sample order for model input."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 190,
+              "workflow_memory_Index": 36,
+              "task_abbr": "二次判别分析",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the datasets from 'train.tsv' and 'cl.tsv' and ensure they are compatible.\n    - **Tool**: None (custom code)\n    - **Input**: \"train.tsv\", \"cl.tsv\"\n    - **Output**: features (list of sample features), labels (list of classification labels)\n    - **Description**: Read the TSV files and extract the features and corresponding labels, ensuring that both datasets have the same number of samples and are correctly matched.\n\n2. **Goal**: Prepare the data for QDA by creating a test dataset from the training data.\n    - **Tool**: None (custom code)\n    - **Input**: features, labels\n    - **Output**: test_csv_file (a CSV file containing the features and labels)\n    - **Description**: Combine the features and labels into a single CSV file format suitable for the QDA tool.\n\n3. **Goal**: Perform Quadratic Discriminant Analysis on the training dataset.\n    - **Tool**: qda\n    - **Input**: test_csv_file (as both train and test for this case), \"Target\" (the column name for labels)\n    - **Output**: result_csv_file (the output file with predictions)\n    - **Description**: Use the QDA tool to t"
+            },
+            "original_question": "There are two existing datasets, train.tsv contains a matrix of sample features, and cl.tsv contains the corresponding sample classification labels. Please perform quadratic discriminant analysis on the train dataset, targeting the classifications specified in cl.tsv, in order to more accurately distinguish between different categories in the feature space."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_190",
+    "benchmark": "biomed_aqa_r2_upgrade_top5_2_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Perform quadratic discriminant analysis on train with labels from cl.tsv.",
+          "repair cross-file representation issues: sample keys may use different naming conventions, and cl.tsv may contain duplicated or conflicting labels for a sample.",
+          "Reconcile key mapping and label uniqueness deterministically.",
+          "\"Canonicalize sample keys in both files (case-fold + trim + symbol normalization).\"",
+          "\"If duplicate labels exist for a sample, keep one consistent label row; flag conflicts and drop unresolved samples.\"",
+          "\"Inner-join train and cl on reconciled keys and preserve matched sample order for model input.\""
+        ],
+        "reason": "The task requires a multi-stage workflow: (1) repair and reconcile sample keys and labels across two files, (2) ensure label uniqueness, (3) align and join data, and (4) perform QDA. The workflow is not a single direct step and requires explicit dependency ordering. However, the repair and QDA steps are specified, and there is no strong evidence of major method branching (the repair rules are deterministic and prescribed). Thus, P1 is moderate, P2 is low."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: out_lda.tsv",
+          "\"Combine the features and labels into a single CSV file format suitable for the QDA tool.\"",
+          "\"result_csv_file (the output file with predictions)\"",
+          "\"Canonicalize sample keys in both files (case-fold + trim + symbol normalization).\"",
+          "\"If duplicate labels exist for a sample, keep one consistent label row; flag conflicts and drop unresolved samples.\""
+        ],
+        "reason": "There are multiple explicit output artifacts (intermediate joined/cleaned data, final QDA output), and the repair process involves explicit format and content constraints (key normalization, label deduplication, conflict resolution). However, only one final milestone file is required, and parameterization/thresholds are specified but not highly complex. Thus, both A1 and A2 are moderate."
+      },
+      "R": {
+        "score": 5,
+        "evidence": [
+          "\"repair cross-file representation issues: sample keys may use different naming conventions, and cl.tsv may contain duplicated or conflicting labels for a sample. Reconcile key mapping and label uniqueness deterministically.\"",
+          "\"Canonicalize sample keys in both files (case-fold + trim + symbol normalization).\"",
+          "\"If duplicate labels exist for a sample, keep one consistent label row; flag conflicts and drop unresolved samples.\"",
+          "\"Inner-join train and cl on reconciled keys and preserve matched sample order for model input.\"",
+          "\"r2_representation_repair_must_dominate\""
+        ],
+        "reason": "The central challenge is explicit and dominant: the task cannot be performed without repairing cross-file representation inconsistencies (naming conventions, duplicates, conflicts). The payload and metadata both state that R2 (representation repair) is the main difficulty driver, and the repair steps are required for logical definability and computability. Both R1 and R2 are maximally loaded."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No explicit prior trajectory or transfer context present."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload. The workflow reference is a standard pipeline excerpt, not a prior run or experience text."
+      }
+    },
+    "overall_summary": "This task is dominated by the need for explicit, deterministic repair of cross-file representation inconsistencies (sample key normalization, label deduplication, and conflict resolution) before performing quadratic discriminant analysis. The planning and action loads are moderate due to the multi-stage workflow and explicit artifact/repair requirements, but the central and maximal difficulty driver is representation repair (R2), as confirmed by both the question and metadata. There is no transfer/experience load.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3049,
+        "completion_tokens": 953,
+        "total_tokens": 4002
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Perform quadratic discriminant analysis on train with labels from cl.tsv.",
+            "repair cross-file representation issues: sample keys may use different naming conventions, and cl.tsv may contain duplicated or conflicting labels for a sample.",
+            "Reconcile key mapping and label uniqueness deterministically.",
+            "\"Canonicalize sample keys in both files (case-fold + trim + symbol normalization).\"",
+            "\"If duplicate labels exist for a sample, keep one consistent label row; flag conflicts and drop unresolved samples.\"",
+            "\"Inner-join train and cl on reconciled keys and preserve matched sample order for model input.\""
+          ],
+          "reason": "The task requires a multi-stage workflow: (1) repair and reconcile sample keys and labels across two files, (2) ensure label uniqueness, (3) align and join data, and (4) perform QDA. The workflow is not a single direct step and requires explicit dependency ordering. However, the repair and QDA steps are specified, and there is no strong evidence of major method branching (the repair rules are deterministic and prescribed). Thus, P1 is moderate, P2 is low.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: out_lda.tsv",
+            "\"Combine the features and labels into a single CSV file format suitable for the QDA tool.\"",
+            "\"result_csv_file (the output file with predictions)\"",
+            "\"Canonicalize sample keys in both files (case-fold + trim + symbol normalization).\"",
+            "\"If duplicate labels exist for a sample, keep one consistent label row; flag conflicts and drop unresolved samples.\""
+          ],
+          "reason": "There are multiple explicit output artifacts (intermediate joined/cleaned data, final QDA output), and the repair process involves explicit format and content constraints (key normalization, label deduplication, conflict resolution). However, only one final milestone file is required, and parameterization/thresholds are specified but not highly complex. Thus, both A1 and A2 are moderate.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 5,
+          "evidence": [
+            "\"repair cross-file representation issues: sample keys may use different naming conventions, and cl.tsv may contain duplicated or conflicting labels for a sample. Reconcile key mapping and label uniqueness deterministically.\"",
+            "\"Canonicalize sample keys in both files (case-fold + trim + symbol normalization).\"",
+            "\"If duplicate labels exist for a sample, keep one consistent label row; flag conflicts and drop unresolved samples.\"",
+            "\"Inner-join train and cl on reconciled keys and preserve matched sample order for model input.\"",
+            "\"r2_representation_repair_must_dominate\""
+          ],
+          "reason": "The central challenge is explicit and dominant: the task cannot be performed without repairing cross-file representation inconsistencies (naming conventions, duplicates, conflicts). The payload and metadata both state that R2 (representation repair) is the main difficulty driver, and the repair steps are required for logical definability and computability. Both R1 and R2 are maximally loaded.",
+          "subdimension_breakdown": {
+            "R1": 5,
+            "R2": 5
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No explicit prior trajectory or transfer context present."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload. The workflow reference is a standard pipeline excerpt, not a prior run or experience text.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is dominated by the need for explicit, deterministic repair of cross-file representation inconsistencies (sample key normalization, label deduplication, and conflict resolution) before performing quadratic discriminant analysis. The planning and action loads are moderate due to the multi-stage workflow and explicit artifact/repair requirements, but the central and maximal difficulty driver is representation repair (R2), as confirmed by both the question and metadata. There is no transfer/experience load.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-09T03:55:28.956784+00:00"
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_29713087_2",
+      "question": "For the significant genes, get the indicator of the mutation type for each patient, the mutation types of interest are:\n- silent\n- missense\n- splice site\n- nonsense\n- frame shift\n\nThe output should be dataframe named `mutation_indicator`, with the columns\n- PATIENT_ID\n- Silent\n- Missense\n- Splice site\n- Nonsense\n- Frame shift\n- Hugo_Symbol\n\nwhere the indicator `1` means mutations, `0` means wild-type.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutsig.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_sv.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\nimport pandas as pd\\n\\n# Load the data\\ndata_mutations = pd.read_csv(\\\"/workdir/data_mutations.csv\\\")\\n\\ndata_mutations = data_mutations[data_mutations[\\\"Hugo_Symbol\\\"].isin(significant_genes)].reset_index(drop=True)\\n\\n# Define the mutation types of interest\\nmutation_types = {\\n    'Silent': 'Silent',\\n    'Missense': 'Missense_Mutation',\\n    'Splice site': 'Splice_Site',\\n    'Nonsense': 'Nonsense_Mutation',\\n    'Frame shift': 'Frame_Shift',\\n}\\n\\n# Initialize the mutation indicator dataframe\\nmutation_indicator = pd.DataFrame(columns=[\\\"PATIENT_ID\\\", \\\"Hugo_Symbol\\\"] + list(mutation_types.keys()))\\n\\n# Populate the mutation indicator dataframe\\nfor patient_id, group in data_mutations.groupby(\\\"Tumor_Sample_Barcode\\\"):\\n    for gene, gene_group in group.groupby(\\\"Hugo_Symbol\\\"):\\n        row = {\\\"PATIENT_ID\\\": patient_id, \\\"Hugo_Symbol\\\": gene}\\n        for mutation_type, classification in mutation_types.items():\\n            row[mutation_type] = int(any(gene_group[\\\"Variant_Classification\\\"] == classification))\\n        mutation_indicator = mutation_indicator._append(row, ignore_index=True)\\n\\n# Save the mutation indicator dataframe to a CSV file\\nmutation_indicator.to_csv(\\\"mutation_indicator.csv\\\", index=False)\\n\\n# Display the first few rows of the mutation indicator dataframe\\nprint(mutation_indicator.head())\", \"test_cases\": \"assert mutation_indicator[\\\"PATIENT_ID\\\"].nunique() == 130\\n\\nassert mutation_indicator[\\\"Hugo_Symbol\\\"].nunique() == 95\\n\\nassert mutation_indicator[\\\"Silent\\\"].sum() == 159\\n\\nassert mutation_indicator[\\\"Missense\\\"].sum() == 624\\n\\nassert mutation_indicator[\\\"Splice site\\\"].sum() == 57\\n\\nassert mutation_indicator[\\\"Nonsense\\\"].sum() == 119\\n\\nassert mutation_indicator[\\\"Frame shift\\\"].sum() == 0\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "29713087_2",
+        "study_id": "29713087",
+        "question_id": "2",
+        "analysis_types": "['Genomic Alteration Profiling', 'Data Integration & Transformation']",
+        "study_type": "Integrative",
+        "study_title": "Molecular subtypes of diffuse large B cell lymphoma are associated with distinct pathogenic mechanisms and outcomes",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=dlbcl_dfci_2018",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_29713087_2",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Multiple input files: data_mutations.csv, data_mutsig.csv, data_sv.csv, data_clinical_sample.csv, data_clinical_patient.csv",
+          "Task requires filtering for 'significant genes' (implies dependency on another file or prior result)",
+          "Mutation type mapping from Variant_Classification to output columns (cross-field mapping)",
+          "No explicit step list; workflow must be inferred"
+        ],
+        "reason": "The task requires integrating multiple files, filtering for significant genes (implying a dependency chain), and mapping mutation types to indicator columns. However, the workflow is relatively standard for mutation indicator matrix construction, and there is no explicit evidence of major method branching or multiple materially different valid approaches."
+      },
+      "A": {
+        "score": 4,
+        "evidence": [
+          "Output must be a dataframe named 'mutation_indicator' with strict column names and order",
+          "Columns: PATIENT_ID, Silent, Missense, Splice site, Nonsense, Frame shift, Hugo_Symbol",
+          "Indicator values must be 1 (mutation) or 0 (wild-type)",
+          "Test cases assert exact counts for unique patients, genes, and sum of each mutation type column",
+          "Explicit output format and value constraints"
+        ],
+        "reason": "There is a high artifact realization and parameterization load: the output must match a strict schema, with exact column names, types, and indicator logic. Test cases enforce exact numeric results for each mutation type, making correctness highly sensitive to implementation details."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Mutation type mapping requires aligning Variant_Classification values to output columns (e.g., 'Missense_Mutation' to 'Missense')",
+          "No explicit evidence of ambiguous or missing fields, but some minor schema alignment is needed"
+        ],
+        "reason": "There is a minor need for representation repair: mapping between input mutation classification values and the required output columns. However, there is no evidence of major ambiguity, missing fields, or contradictory constraints."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves moderate planning due to multi-file integration and dependency on significant gene filtering, high action load due to strict output schema and test case constraints, minor representation repair for mutation type mapping, and no evolution load as there is no transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3053,
+        "completion_tokens": 686,
+        "total_tokens": 3739
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Multiple input files: data_mutations.csv, data_mutsig.csv, data_sv.csv, data_clinical_sample.csv, data_clinical_patient.csv",
+            "Task requires filtering for 'significant genes' (implies dependency on another file or prior result)",
+            "Mutation type mapping from Variant_Classification to output columns (cross-field mapping)",
+            "No explicit step list; workflow must be inferred"
+          ],
+          "reason": "The task requires integrating multiple files, filtering for significant genes (implying a dependency chain), and mapping mutation types to indicator columns. However, the workflow is relatively standard for mutation indicator matrix construction, and there is no explicit evidence of major method branching or multiple materially different valid approaches.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 4,
+          "evidence": [
+            "Output must be a dataframe named 'mutation_indicator' with strict column names and order",
+            "Columns: PATIENT_ID, Silent, Missense, Splice site, Nonsense, Frame shift, Hugo_Symbol",
+            "Indicator values must be 1 (mutation) or 0 (wild-type)",
+            "Test cases assert exact counts for unique patients, genes, and sum of each mutation type column",
+            "Explicit output format and value constraints"
+          ],
+          "reason": "There is a high artifact realization and parameterization load: the output must match a strict schema, with exact column names, types, and indicator logic. Test cases enforce exact numeric results for each mutation type, making correctness highly sensitive to implementation details.",
+          "subdimension_breakdown": {
+            "A1": 4,
+            "A2": 4
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Mutation type mapping requires aligning Variant_Classification values to output columns (e.g., 'Missense_Mutation' to 'Missense')",
+            "No explicit evidence of ambiguous or missing fields, but some minor schema alignment is needed"
+          ],
+          "reason": "There is a minor need for representation repair: mapping between input mutation classification values and the required output columns. However, there is no evidence of major ambiguity, missing fields, or contradictory constraints.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate planning due to multi-file integration and dependency on significant gene filtering, high action load due to strict output schema and test case constraints, minor representation repair for mutation type mapping, and no evolution load as there is no transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:45:59.573694+00:00"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_218",
+      "question": "There is an existing dataset sleep2.tsv, please perform a paired sample t-test analysis on the two groups of data \"extra.1\" and \"extra.2\".",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0218/files/sleep2.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [], \"milestones\": [\"p-value: 0.00283289\", \"There are significant differences.\"], \"steps\": [\"Conduct paired sample t-test analysis\", \"Check whether there are any differences in the results.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Inferential statistics",
+        "task_abbr": "配对样本t检验",
+        "task": "Inferential statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 41.23,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_218",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "perform a paired sample t-test analysis on the two groups of data \"extra.1\" and \"extra.2\"",
+          "steps: [\"Conduct paired sample t-test analysis\", \"Check whether there are any differences in the results.\"]"
+        ],
+        "reason": "The task requires identifying the relevant columns and performing a paired t-test, which is a standard, single-method workflow with minimal decomposition. There is no evidence of branching decisions or multiple valid methods; the method is specified and canonical for the goal."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "milestones: [\"p-value: 0.00283289\", \"There are significant differences.\"]"
+        ],
+        "reason": "The output consists of a p-value and a significance statement, both standard for a t-test. There is no evidence of strict format constraints, multiple artifact types, or explicit parameterization/thresholds beyond the default significance interpretation."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "sleep2.tsv",
+          "\"extra.1\" and \"extra.2\""
+        ],
+        "reason": "There is a minor need to map the column names from the file to the analysis, but there is no evidence of ambiguity, missing fields, or representational inconsistency. The task is clear and the data columns are specified."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [],
+        "reason": "No prior trajectory, experience, or transfer context is present in the payload."
+      }
+    },
+    "overall_summary": "This is a standard, well-specified paired t-test task with minimal planning and action load, and only trace reflection load due to the need to identify columns. There is no evidence of transfer or evolution load.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2337,
+        "completion_tokens": 526,
+        "total_tokens": 2863
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "perform a paired sample t-test analysis on the two groups of data \"extra.1\" and \"extra.2\"",
+            "steps: [\"Conduct paired sample t-test analysis\", \"Check whether there are any differences in the results.\"]"
+          ],
+          "reason": "The task requires identifying the relevant columns and performing a paired t-test, which is a standard, single-method workflow with minimal decomposition. There is no evidence of branching decisions or multiple valid methods; the method is specified and canonical for the goal.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "milestones: [\"p-value: 0.00283289\", \"There are significant differences.\"]"
+          ],
+          "reason": "The output consists of a p-value and a significance statement, both standard for a t-test. There is no evidence of strict format constraints, multiple artifact types, or explicit parameterization/thresholds beyond the default significance interpretation.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "sleep2.tsv",
+            "\"extra.1\" and \"extra.2\""
+          ],
+          "reason": "There is a minor need to map the column names from the file to the analysis, but there is no evidence of ambiguity, missing fields, or representational inconsistency. The task is clear and the data columns are specified.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [],
+          "reason": "No prior trajectory, experience, or transfer context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a standard, well-specified paired t-test task with minimal planning and action load, and only trace reflection load due to the need to identify columns. There is no evidence of transfer or evolution load.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:28:00.191209+00:00"
+  }
+}

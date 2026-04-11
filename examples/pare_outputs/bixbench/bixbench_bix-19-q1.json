@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-19-q1",
+      "question": "Using the NeuN count data, calculate the effect size (Cohen's d) for the difference between KD and CTRL conditions (using pooled standard deviation), then perform a power analysis for a two-sample t-test to determine how many samples per group would be required to detect a statistically significant difference with 80% power at α = 0.05. Return the number of samples per group as your final answer.",
+      "data": [],
+      "answer": "337",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-19-q1",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "16",
+          "167",
+          "674"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-19-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "calculate the effect size (Cohen's d) for the difference between KD and CTRL conditions (using pooled standard deviation)",
+          "then perform a power analysis for a two-sample t-test",
+          "determine how many samples per group would be required to detect a statistically significant difference with 80% power at α = 0.05"
+        ],
+        "reason": "The task requires a multi-stage workflow: first, compute Cohen's d using pooled standard deviation, then use that effect size in a power analysis for a two-sample t-test. The dependency chain is explicit, but the methods are standard and there is no evidence of major branching or multiple defensible methods that would affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Return the number of samples per group as your final answer.",
+          "statistically significant difference with 80% power at α = 0.05",
+          "effect size (Cohen's d) ... using pooled standard deviation"
+        ],
+        "reason": "The output is a single numeric value, but the process requires correct calculation of effect size and power analysis with explicit parameters (80% power, α = 0.05, pooled SD). There is moderate parameterization and specification tightness, but only one output type and no evidence of strict format or multiple artifact types."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "KD and CTRL conditions",
+          "NeuN count data"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation issues. The group labels and required calculations are clear. No schema repair or clarification is needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-stage statistical workflow (effect size calculation followed by power analysis) with explicit parameterization but no evidence of major branching, ambiguity, or transfer context. The main complexity comes from chaining the required calculations and adhering to the specified statistical parameters.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2259,
+        "completion_tokens": 590,
+        "total_tokens": 2849
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "calculate the effect size (Cohen's d) for the difference between KD and CTRL conditions (using pooled standard deviation)",
+            "then perform a power analysis for a two-sample t-test",
+            "determine how many samples per group would be required to detect a statistically significant difference with 80% power at α = 0.05"
+          ],
+          "reason": "The task requires a multi-stage workflow: first, compute Cohen's d using pooled standard deviation, then use that effect size in a power analysis for a two-sample t-test. The dependency chain is explicit, but the methods are standard and there is no evidence of major branching or multiple defensible methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Return the number of samples per group as your final answer.",
+            "statistically significant difference with 80% power at α = 0.05",
+            "effect size (Cohen's d) ... using pooled standard deviation"
+          ],
+          "reason": "The output is a single numeric value, but the process requires correct calculation of effect size and power analysis with explicit parameters (80% power, α = 0.05, pooled SD). There is moderate parameterization and specification tightness, but only one output type and no evidence of strict format or multiple artifact types.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "KD and CTRL conditions",
+            "NeuN count data"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation issues. The group labels and required calculations are clear. No schema repair or clarification is needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-stage statistical workflow (effect size calculation followed by power analysis) with explicit parameterization but no evidence of major branching, ambiguity, or transfer context. The main complexity comes from chaining the required calculations and adhering to the specified statistical parameters.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:54:11.585485+00:00"
+  }
+}

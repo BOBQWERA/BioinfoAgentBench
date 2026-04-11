@@ -1,0 +1,143 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_68",
+      "question": "Calculate the expression profile for RNA-seq sequencing data of individuals {reads_1.fastq.gz} and {reads_2.fastq.gz}",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0068/files/reads_1.fastq.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0068/files/reads_2.fastq.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"expression.txt\", \"path\": \"downloaded_files\\\\index_0068\\\\milestone\\\\expression.txt\"}], \"milestones\": [\"Generate expression results\"], \"steps\": [\"Calculate expression levels and generate expression files.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "Kallisto",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.32,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_68",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Calculate the expression profile for RNA-seq sequencing data of individuals {reads_1.fastq.gz} and {reads_2.fastq.gz}",
+          "input files: reads_1.fastq.gz, reads_2.fastq.gz",
+          "answer milestone: Generate expression results",
+          "step: Calculate expression levels and generate expression files."
+        ],
+        "reason": "The task requires converting raw FASTQ files to an expression profile, which implies a multi-stage workflow (e.g., alignment/quantification, summarization). However, the method is not specified, and the answer only mentions a single step and milestone, suggesting a standard pipeline is expected. There is no explicit evidence of branching decisions or multiple valid methods that would materially affect correctness, but the need to infer a standard RNA-seq quantification workflow from raw reads to expression.txt gives moderate workflow structuring load."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "output: expression.txt",
+          "step: Calculate expression levels and generate expression files."
+        ],
+        "reason": "The output is a single expression.txt file, which is a standard artifact for RNA-seq quantification. There is no explicit format or parameterization constraint, but the action requires generating a non-trivial artifact from raw sequencing data. No explicit thresholds, schema, or strict verification rules are given, so parameterization/spec tightness is low."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of ambiguous semantics or data schema mismatch.",
+          "Input files are standard FASTQ, output is a standard expression file."
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The task is clearly defined and uses standard file types. No missing fields, contradictions, or schema inconsistencies are present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task requires a standard RNA-seq quantification workflow from raw FASTQ files to an expression profile, which induces moderate planning and artifact realization load due to the need to infer and execute a multi-stage process. There is no evidence of branching method decisions, strict parameterization, semantic ambiguity, or transfer/experience requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2367,
+        "completion_tokens": 660,
+        "total_tokens": 3027
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Calculate the expression profile for RNA-seq sequencing data of individuals {reads_1.fastq.gz} and {reads_2.fastq.gz}",
+            "input files: reads_1.fastq.gz, reads_2.fastq.gz",
+            "answer milestone: Generate expression results",
+            "step: Calculate expression levels and generate expression files."
+          ],
+          "reason": "The task requires converting raw FASTQ files to an expression profile, which implies a multi-stage workflow (e.g., alignment/quantification, summarization). However, the method is not specified, and the answer only mentions a single step and milestone, suggesting a standard pipeline is expected. There is no explicit evidence of branching decisions or multiple valid methods that would materially affect correctness, but the need to infer a standard RNA-seq quantification workflow from raw reads to expression.txt gives moderate workflow structuring load.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "output: expression.txt",
+            "step: Calculate expression levels and generate expression files."
+          ],
+          "reason": "The output is a single expression.txt file, which is a standard artifact for RNA-seq quantification. There is no explicit format or parameterization constraint, but the action requires generating a non-trivial artifact from raw sequencing data. No explicit thresholds, schema, or strict verification rules are given, so parameterization/spec tightness is low.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of ambiguous semantics or data schema mismatch.",
+            "Input files are standard FASTQ, output is a standard expression file."
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/representation repair needs. The task is clearly defined and uses standard file types. No missing fields, contradictions, or schema inconsistencies are present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a standard RNA-seq quantification workflow from raw FASTQ files to an expression profile, which induces moderate planning and artifact realization load due to the need to infer and execute a multi-stage process. There is no evidence of branching method decisions, strict parameterization, semantic ambiguity, or transfer/experience requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:06:58.558721+00:00"
+  }
+}

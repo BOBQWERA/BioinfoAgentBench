@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-11-q5",
+      "question": "What is the p-value from the Mann-Whitney U test comparing treeness values between animals and fungi?",
+      "data": [],
+      "answer": "0.0",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-11-q5",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.0341",
+          "0.0478",
+          "0.1205"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-11-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the p-value from the Mann-Whitney U test comparing treeness values between animals and fungi?"
+        ],
+        "reason": "The question requires applying a specific statistical test (Mann-Whitney U) to compare two groups (animals and fungi) on a variable (treeness values). This implies a basic workflow: select the relevant data for each group and apply the test. However, the method is fully specified and there is no evidence of branching or complex workflow structuring beyond this standard two-group comparison."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the p-value from the Mann-Whitney U test comparing treeness values between animals and fungi?",
+          "\"answer\": \"0.0\"",
+          "\"task_type\": \"mcq\""
+        ],
+        "reason": "The output is a single p-value, and the answer is selected from multiple choices. There is no evidence of heterogeneous artifact types or strict format constraints beyond reporting a numeric value. No explicit parameterization or threshold is specified beyond the test itself."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided in payload (\"data\": [])"
+        ],
+        "reason": "There is a trace of representational ambiguity due to the absence of data, but the question itself is semantically clear and does not require repair for definability. No evidence of schema mismatch or ambiguity in the question wording."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no evidence of transfer or prior experience context in the payload."
+      }
+    },
+    "overall_summary": "This is a standard statistical test application with a clearly specified method and output. There is minor workflow and artifact realization load, but no evidence of branching, strict parameterization, semantic ambiguity, or transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2209,
+        "completion_tokens": 551,
+        "total_tokens": 2760
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the p-value from the Mann-Whitney U test comparing treeness values between animals and fungi?"
+          ],
+          "reason": "The question requires applying a specific statistical test (Mann-Whitney U) to compare two groups (animals and fungi) on a variable (treeness values). This implies a basic workflow: select the relevant data for each group and apply the test. However, the method is fully specified and there is no evidence of branching or complex workflow structuring beyond this standard two-group comparison.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the p-value from the Mann-Whitney U test comparing treeness values between animals and fungi?",
+            "\"answer\": \"0.0\"",
+            "\"task_type\": \"mcq\""
+          ],
+          "reason": "The output is a single p-value, and the answer is selected from multiple choices. There is no evidence of heterogeneous artifact types or strict format constraints beyond reporting a numeric value. No explicit parameterization or threshold is specified beyond the test itself.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided in payload (\"data\": [])"
+          ],
+          "reason": "There is a trace of representational ambiguity due to the absence of data, but the question itself is semantically clear and does not require repair for definability. No evidence of schema mismatch or ambiguity in the question wording.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no evidence of transfer or prior experience context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a standard statistical test application with a clearly specified method and output. There is minor workflow and artifact realization load, but no evidence of branching, strict parameterization, semantic ambiguity, or transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:47:35.965473+00:00"
+  }
+}

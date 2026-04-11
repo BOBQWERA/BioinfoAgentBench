@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-29-q2",
+      "question": "What is the independent effect of each additional ongoing medical condition (MHONGO) on the odds of higher COVID-19 severity, when controlling for BCG vaccination status and patient interaction variables, as predicted by an ordinal regression model? (Express as percentage (0-100%) increase in odds)",
+      "data": [],
+      "answer": "33-36% increase",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-29-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "14-16% decrease",
+          "No significant change in severity odds",
+          "50-53% increase"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-29-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "ordinal regression model",
+          "controlling for BCG vaccination status and patient interaction variables",
+          "independent effect of each additional ongoing medical condition (MHONGO)"
+        ],
+        "reason": "The question requires decomposing the goal into fitting an ordinal regression model with specific covariates and interpreting the effect of a predictor while controlling for others. However, the workflow is standard for regression analysis and does not require inferring a complex dependency graph or making major branching decisions. The method (ordinal regression) is specified, and the covariates to control for are named, so branching is limited."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Express as percentage (0-100%) increase in odds",
+          "ordinal regression model"
+        ],
+        "reason": "The output is a single effect size expressed as a percentage increase in odds, derived from a regression coefficient. There is some parameterization load in converting the model output (log-odds) to a percentage, but there are no explicit format constraints, multiple output types, or strict verification rules stated."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No explicit ambiguity or contradiction in question wording"
+        ],
+        "reason": "There is no evidence of semantic or data repair required. The question is clearly worded, and no data or schema issues are present or implied. The only minor load is the need to clarify that the effect is per additional condition, but this is explicit in the question."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text provided"
+        ],
+        "reason": "There is no evidence of transfer or reuse of prior experience; the task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a standard application of ordinal regression to estimate the effect of a predictor while controlling for covariates, with moderate planning and minor action load due to the need to interpret and convert model output. There is minimal reflection or evolution load, as the question is clear and no transfer context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2251,
+        "completion_tokens": 590,
+        "total_tokens": 2841
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "ordinal regression model",
+            "controlling for BCG vaccination status and patient interaction variables",
+            "independent effect of each additional ongoing medical condition (MHONGO)"
+          ],
+          "reason": "The question requires decomposing the goal into fitting an ordinal regression model with specific covariates and interpreting the effect of a predictor while controlling for others. However, the workflow is standard for regression analysis and does not require inferring a complex dependency graph or making major branching decisions. The method (ordinal regression) is specified, and the covariates to control for are named, so branching is limited.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Express as percentage (0-100%) increase in odds",
+            "ordinal regression model"
+          ],
+          "reason": "The output is a single effect size expressed as a percentage increase in odds, derived from a regression coefficient. There is some parameterization load in converting the model output (log-odds) to a percentage, but there are no explicit format constraints, multiple output types, or strict verification rules stated.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No explicit ambiguity or contradiction in question wording"
+          ],
+          "reason": "There is no evidence of semantic or data repair required. The question is clearly worded, and no data or schema issues are present or implied. The only minor load is the need to clarify that the effect is per additional condition, but this is explicit in the question.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text provided"
+          ],
+          "reason": "There is no evidence of transfer or reuse of prior experience; the task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard application of ordinal regression to estimate the effect of a predictor while controlling for covariates, with moderate planning and minor action load due to the need to interpret and convert model output. There is minimal reflection or evolution load, as the question is clear and no transfer context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:03:40.692271+00:00"
+  }
+}

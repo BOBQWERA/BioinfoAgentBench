@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-38-q1",
+      "question": "What is the fold-change in median tree length between fungi and animals after calculating tree lengths with PhyKIT?",
+      "data": [],
+      "answer": "2x larger in fungi",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-38-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "1.5x larger in fungi",
+          "3x larger in fungi",
+          "No significant difference"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-38-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "calculate tree lengths with PhyKIT",
+          "fold-change in median tree length between fungi and animals"
+        ],
+        "reason": "The question requires at least two steps: (1) calculating tree lengths for both fungi and animals using PhyKIT, and (2) comparing the medians to compute fold-change. However, the workflow is relatively standard and does not require complex branching or multiple dependency-constrained steps. There is no explicit evidence of multiple reasonable methods or branching decisions that would materially affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "fold-change in median tree length",
+          "after calculating tree lengths with PhyKIT"
+        ],
+        "reason": "The task requires producing a single quantitative comparison (fold-change) after generating intermediate values (tree lengths, medians). There is no evidence of heterogeneous output types or strict format constraints, and the answer is a simple comparative statement. No explicit parameterization or tight specification is present."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "fungi and animals",
+          "calculate tree lengths with PhyKIT"
+        ],
+        "reason": "There is a minor need to clarify which trees correspond to fungi and animals, but the question is otherwise well-posed and does not require significant semantic or data repair. No evidence of schema mismatch or ambiguity that would block computation."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a straightforward two-step workflow: calculating tree lengths for two groups and comparing their medians. There is minor planning and action load due to the need to process two groups and compute a fold-change, but no evidence of complex branching, strict output specification, or semantic/data repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2214,
+        "completion_tokens": 563,
+        "total_tokens": 2777
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "calculate tree lengths with PhyKIT",
+            "fold-change in median tree length between fungi and animals"
+          ],
+          "reason": "The question requires at least two steps: (1) calculating tree lengths for both fungi and animals using PhyKIT, and (2) comparing the medians to compute fold-change. However, the workflow is relatively standard and does not require complex branching or multiple dependency-constrained steps. There is no explicit evidence of multiple reasonable methods or branching decisions that would materially affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "fold-change in median tree length",
+            "after calculating tree lengths with PhyKIT"
+          ],
+          "reason": "The task requires producing a single quantitative comparison (fold-change) after generating intermediate values (tree lengths, medians). There is no evidence of heterogeneous output types or strict format constraints, and the answer is a simple comparative statement. No explicit parameterization or tight specification is present.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "fungi and animals",
+            "calculate tree lengths with PhyKIT"
+          ],
+          "reason": "There is a minor need to clarify which trees correspond to fungi and animals, but the question is otherwise well-posed and does not require significant semantic or data repair. No evidence of schema mismatch or ambiguity that would block computation.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward two-step workflow: calculating tree lengths for two groups and comparing their medians. There is minor planning and action load due to the need to process two groups and compute a fold-change, but no evidence of complex branching, strict output specification, or semantic/data repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:14:21.336741+00:00"
+  }
+}

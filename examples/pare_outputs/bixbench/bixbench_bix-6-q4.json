@@ -1,0 +1,136 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-6-q4",
+      "question": "What is the Spearman correlation coefficient between replicates for genes identified in chronic round 1 of T cell exposure?",
+      "data": [],
+      "answer": "(0.001,0.09)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-6-q4",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.1,0.3)",
+          "(0.4,0.5)",
+          "(0.5,1)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-6-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the Spearman correlation coefficient between replicates for genes identified in chronic round 1 of T cell exposure?",
+          "No explicit workflow or step list provided",
+          "Requires identifying relevant genes and computing correlation between replicates"
+        ],
+        "reason": "There is a minor workflow structuring load: the question requires identifying a gene set (from 'chronic round 1 of T cell exposure') and then computing a Spearman correlation between replicates for those genes. However, there is no explicit evidence of complex dependency chains or major branching decisions; the method (Spearman correlation) is specified and the goal is concrete."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Answer is a numeric range: (0.001,0.09)",
+          "eval_mode: range_verifier",
+          "No explicit format or multi-artifact output required"
+        ],
+        "reason": "There is a weak artifact realization load: the output is a numeric range, and the evaluation mode is 'range_verifier', indicating some correctness sensitivity to the output value. However, there is no evidence of multiple output types, strict format constraints, or complex parameterization."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data or files provided",
+          "Question is clear and unambiguous",
+          "No evidence of schema mismatch or semantic ambiguity"
+        ],
+        "reason": "There is almost no reflection load. The question is clearly worded, and there is no evidence of ambiguity or data/representation repair needs. The absence of data means no schema alignment or repair is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no evidence of transfer or evolution load, as there is no prior experience or trajectory provided in the payload."
+      }
+    },
+    "overall_summary": "This task involves a minor workflow structuring load (identifying a gene set and computing a correlation), and a weak artifact realization load due to the numeric range output and range verifier. There is almost no reflection or evolution load, as the question is clear and no prior experience is referenced.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2220,
+        "completion_tokens": 590,
+        "total_tokens": 2810
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the Spearman correlation coefficient between replicates for genes identified in chronic round 1 of T cell exposure?",
+            "No explicit workflow or step list provided",
+            "Requires identifying relevant genes and computing correlation between replicates"
+          ],
+          "reason": "There is a minor workflow structuring load: the question requires identifying a gene set (from 'chronic round 1 of T cell exposure') and then computing a Spearman correlation between replicates for those genes. However, there is no explicit evidence of complex dependency chains or major branching decisions; the method (Spearman correlation) is specified and the goal is concrete.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Answer is a numeric range: (0.001,0.09)",
+            "eval_mode: range_verifier",
+            "No explicit format or multi-artifact output required"
+          ],
+          "reason": "There is a weak artifact realization load: the output is a numeric range, and the evaluation mode is 'range_verifier', indicating some correctness sensitivity to the output value. However, there is no evidence of multiple output types, strict format constraints, or complex parameterization.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data or files provided",
+            "Question is clear and unambiguous",
+            "No evidence of schema mismatch or semantic ambiguity"
+          ],
+          "reason": "There is almost no reflection load. The question is clearly worded, and there is no evidence of ambiguity or data/representation repair needs. The absence of data means no schema alignment or repair is required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no evidence of transfer or evolution load, as there is no prior experience or trajectory provided in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a minor workflow structuring load (identifying a gene set and computing a correlation), and a weak artifact realization load due to the numeric range output and range verifier. There is almost no reflection or evolution load, as the question is clear and no prior experience is referenced.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:33:42.841351+00:00"
+  }
+}

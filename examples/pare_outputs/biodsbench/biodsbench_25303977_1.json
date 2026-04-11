@@ -1,0 +1,150 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_25303977_1",
+      "question": "comparing Reference_Allele, Tumor_Seq_Allele1, Tumor_Seq_Allele2, decide for each patient, which types of gene subtitution mutation occurred, e.g., A>C means A subsituted by C, and the ratio of each type for the patient. \n\nGive me the top-5 most frequent substitution types and their number of counts across all patients, save the results as a pd.DataFrame named \"most_frequent_substitution\". It has two columns: `substitution_type` and `count`, sorted from the top to the bottom, from the most frequent to the least.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import pandas as pd\\nimport matplotlib.pyplot as plt\\n\\n# Load the data\\ndata_mutations = pd.read_csv('/workdir/data_mutations.csv')\\n\\n# Define a function to determine the substitution type\\ndef determine_substitution(ref, alt1, alt2):\\n    substitutions = []\\n    if ref != alt1:\\n        substitutions.append(f\\\"{ref}>{alt1}\\\")\\n    if ref != alt2:\\n        substitutions.append(f\\\"{ref}>{alt2}\\\")\\n    return substitutions\\n\\n# Apply the function to determine the substitution types\\ndata_mutations['substitution_type'] = data_mutations.apply(\\n    lambda row: determine_substitution(row['Reference_Allele'], row['Tumor_Seq_Allele1'], row['Tumor_Seq_Allele2']),\\n    axis=1\\n)\\n\\n# Explode the list of substitutions into separate rows\\nsubstitutions_exploded = data_mutations.explode('substitution_type')\\n\\n# Count the occurrences of each substitution type\\nsubstitution_counts = substitutions_exploded['substitution_type'].value_counts().reset_index()\\nsubstitution_counts.columns = ['substitution_type', 'count']\\n\\n# Get the top-5 most frequent substitution types\\nmost_frequent_substitution = substitution_counts.head(5)\\n\\n# Save the results to a DataFrame\\nmost_frequent_substitution = pd.DataFrame(most_frequent_substitution)\\n\\n# Save the results to a CSV file\\nmost_frequent_substitution.to_csv('most_frequent_substitution.csv', index=False)\\n\\n# Display the results\\nprint(most_frequent_substitution)\\n\", \"test_cases\": \"assert most_frequent_substitution.shape == (5,2)\\n\\n\\nassert len(set(most_frequent_substitution.iloc[0].values.tolist()) - set(['C>T', 43637])) == 0\\n\\n\\nassert len(set(most_frequent_substitution.iloc[1].values.tolist()) - set(['G>A', 42492])) == 0\\n\\n\\nassert len(set(most_frequent_substitution.iloc[2].values.tolist()) - set(['GG>AA', 2796])) == 0\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "25303977_1",
+        "study_id": "25303977",
+        "question_id": "1",
+        "analysis_types": "['Genomic Alteration Profiling', 'Descriptive Statistics']",
+        "study_type": "Genomics",
+        "study_title": "Mutational landscape of aggressive cutaneous squamous cell carcinoma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=cscc_hgsc_bcm_2014",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_25303977_1",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "comparing Reference_Allele, Tumor_Seq_Allele1, Tumor_Seq_Allele2, decide for each patient, which types of gene subtitution mutation occurred",
+          "the ratio of each type for the patient",
+          "Give me the top-5 most frequent substitution types and their number of counts across all patients"
+        ],
+        "reason": "The task requires decomposing the workflow into several steps: extracting substitution types per patient from three columns, aggregating counts, and then ranking and selecting the top-5. There is a clear dependency chain (mutation extraction -> counting -> ranking), but the method for determining substitution types is relatively direct and there is no explicit evidence of major branching or multiple defensible methods that would affect correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "save the results as a pd.DataFrame named \"most_frequent_substitution\". It has two columns: `substitution_type` and `count`, sorted from the top to the bottom, from the most frequent to the least.",
+          "top-5 most frequent substitution types and their number of counts across all patients",
+          "assert most_frequent_substitution.shape == (5,2)",
+          "assert len(set(most_frequent_substitution.iloc[0].values.tolist()) - set(['C>T', 43637])) == 0"
+        ],
+        "reason": "There is a moderate artifact realization load: the output must be a DataFrame with a specific schema, sorted order, and exact counts. There are explicit test cases verifying both structure and content. However, only one output artifact is required, and the format constraints, while present, are not extremely strict or numerous."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "comparing Reference_Allele, Tumor_Seq_Allele1, Tumor_Seq_Allele2, decide for each patient, which types of gene subtitution mutation occurred, e.g., A>C means A subsituted by C",
+          "the ratio of each type for the patient"
+        ],
+        "reason": "There is some minor ambiguity in how to interpret substitutions (e.g., handling of Tumor_Seq_Allele1 vs Tumor_Seq_Allele2, and whether to count both or just one per mutation), but the example and test cases clarify the expected output. No evidence of data schema mismatch or major semantic contradiction."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning and action load due to the need to extract, aggregate, and rank gene substitution types from mutation data, with explicit output schema and content requirements. There is minor ambiguity in mutation type extraction, but test cases clarify expectations. No evidence of experience transfer or major semantic/data repair is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3006,
+        "completion_tokens": 791,
+        "total_tokens": 3797
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "comparing Reference_Allele, Tumor_Seq_Allele1, Tumor_Seq_Allele2, decide for each patient, which types of gene subtitution mutation occurred",
+            "the ratio of each type for the patient",
+            "Give me the top-5 most frequent substitution types and their number of counts across all patients"
+          ],
+          "reason": "The task requires decomposing the workflow into several steps: extracting substitution types per patient from three columns, aggregating counts, and then ranking and selecting the top-5. There is a clear dependency chain (mutation extraction -> counting -> ranking), but the method for determining substitution types is relatively direct and there is no explicit evidence of major branching or multiple defensible methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "save the results as a pd.DataFrame named \"most_frequent_substitution\". It has two columns: `substitution_type` and `count`, sorted from the top to the bottom, from the most frequent to the least.",
+            "top-5 most frequent substitution types and their number of counts across all patients",
+            "assert most_frequent_substitution.shape == (5,2)",
+            "assert len(set(most_frequent_substitution.iloc[0].values.tolist()) - set(['C>T', 43637])) == 0"
+          ],
+          "reason": "There is a moderate artifact realization load: the output must be a DataFrame with a specific schema, sorted order, and exact counts. There are explicit test cases verifying both structure and content. However, only one output artifact is required, and the format constraints, while present, are not extremely strict or numerous.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "comparing Reference_Allele, Tumor_Seq_Allele1, Tumor_Seq_Allele2, decide for each patient, which types of gene subtitution mutation occurred, e.g., A>C means A subsituted by C",
+            "the ratio of each type for the patient"
+          ],
+          "reason": "There is some minor ambiguity in how to interpret substitutions (e.g., handling of Tumor_Seq_Allele1 vs Tumor_Seq_Allele2, and whether to count both or just one per mutation), but the example and test cases clarify the expected output. No evidence of data schema mismatch or major semantic contradiction.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning and action load due to the need to extract, aggregate, and rank gene substitution types from mutation data, with explicit output schema and content requirements. There is minor ambiguity in mutation type extraction, but test cases clarify expectations. No evidence of experience transfer or major semantic/data repair is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:47:25.912919+00:00"
+  }
+}

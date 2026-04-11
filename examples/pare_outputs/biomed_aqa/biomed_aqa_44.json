@@ -1,0 +1,147 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_44",
+      "question": "Currently, there is a standardized expression profile data {exp_COAD.csv} and preprocessed grouping information {group_COAD.csv}. Please select the genes most relevant to the grouping information and perform gene set functional enrichment analysis.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0044/files/exp_COAD.csv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0044/files/group_COAD.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"DEG_COAD.csv\", \"path\": \"downloaded_files\\\\index_0044\\\\milestone\\\\DEG_COAD.csv\"}, {\"name\": \"KEGG.tsv\", \"path\": \"downloaded_files\\\\index_0044\\\\milestone\\\\KEGG.tsv\"}, {\"name\": \"GO.tsv\", \"path\": \"downloaded_files\\\\index_0044\\\\milestone\\\\GO.tsv\"}], \"milestones\": [\"Generate differential genes\", \"Generate functional enrichment results\"], \"steps\": [\"Calculate differential genes\", \"Gene Set Functional Enrichment Analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "O",
+        "task_subclass": "RNA",
+        "task_abbr": "WGCNA",
+        "task": "RNA",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 12.08,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_44",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Please select the genes most relevant to the grouping information and perform gene set functional enrichment analysis.",
+          "milestones: [\"Generate differential genes\", \"Generate functional enrichment results\"]",
+          "steps: [\"Calculate differential genes\", \"Gene Set Functional Enrichment Analysis\"]",
+          "input files: exp_COAD.csv, group_COAD.csv",
+          "milestone_files: DEG_COAD.csv, KEGG.tsv, GO.tsv"
+        ],
+        "reason": "The task requires a multi-stage workflow: first, selecting relevant genes (likely differential expression analysis), then performing gene set enrichment. The workflow is not fully specified (methods for gene selection and enrichment are not fixed), but the standard pipeline is implied. There is some branching decision load due to unspecified methods, but not enough evidence for high branching (no explicit mention of multiple valid routes with materially different outputs)."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "milestone_files: DEG_COAD.csv, KEGG.tsv, GO.tsv",
+          "Multiple output types: differential gene list (CSV), enrichment results (TSV)",
+          "Explicit file outputs required"
+        ],
+        "reason": "There are multiple required output artifacts of different types (gene list, enrichment tables), and the answer specifies file names and formats. However, there is no evidence of strict format constraints, explicit parameter thresholds, or tight verification rules, so the artifact realization and parameterization load is moderate."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "No explicit schema mismatch or ambiguity in input files",
+          "Grouping information and expression data are both described as standardized/preprocessed"
+        ],
+        "reason": "There is little evidence of semantic or representational ambiguity. The data is described as standardized and preprocessed, and the grouping information is provided. However, the method for 'selecting the genes most relevant' is not fully specified, which introduces minor semantic openness, but not enough for high repair load."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a standard two-stage bioinformatics workflow: gene selection based on grouping and subsequent gene set enrichment analysis. The planning and action loads are moderate due to the need to structure a multi-step workflow and produce multiple output files, but there is no evidence of high branching, strict parameterization, or repair requirements. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2450,
+        "completion_tokens": 699,
+        "total_tokens": 3149
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Please select the genes most relevant to the grouping information and perform gene set functional enrichment analysis.",
+            "milestones: [\"Generate differential genes\", \"Generate functional enrichment results\"]",
+            "steps: [\"Calculate differential genes\", \"Gene Set Functional Enrichment Analysis\"]",
+            "input files: exp_COAD.csv, group_COAD.csv",
+            "milestone_files: DEG_COAD.csv, KEGG.tsv, GO.tsv"
+          ],
+          "reason": "The task requires a multi-stage workflow: first, selecting relevant genes (likely differential expression analysis), then performing gene set enrichment. The workflow is not fully specified (methods for gene selection and enrichment are not fixed), but the standard pipeline is implied. There is some branching decision load due to unspecified methods, but not enough evidence for high branching (no explicit mention of multiple valid routes with materially different outputs).",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "milestone_files: DEG_COAD.csv, KEGG.tsv, GO.tsv",
+            "Multiple output types: differential gene list (CSV), enrichment results (TSV)",
+            "Explicit file outputs required"
+          ],
+          "reason": "There are multiple required output artifacts of different types (gene list, enrichment tables), and the answer specifies file names and formats. However, there is no evidence of strict format constraints, explicit parameter thresholds, or tight verification rules, so the artifact realization and parameterization load is moderate.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "No explicit schema mismatch or ambiguity in input files",
+            "Grouping information and expression data are both described as standardized/preprocessed"
+          ],
+          "reason": "There is little evidence of semantic or representational ambiguity. The data is described as standardized and preprocessed, and the grouping information is provided. However, the method for 'selecting the genes most relevant' is not fully specified, which introduces minor semantic openness, but not enough for high repair load.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-stage bioinformatics workflow: gene selection based on grouping and subsequent gene set enrichment analysis. The planning and action loads are moderate due to the need to structure a multi-step workflow and produce multiple output files, but there is no evidence of high branching, strict parameterization, or repair requirements. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:04:48.348391+00:00"
+  }
+}

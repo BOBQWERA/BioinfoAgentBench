@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-4-q2",
+      "question": "What is the median DVMC value for animal genes using PhyKIT's DVMC function?",
+      "data": [],
+      "answer": "0.57",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-4-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.31",
+          "0.65",
+          "0.82"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-4-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "What is the median DVMC value for animal genes using PhyKIT's DVMC function?",
+          "No explicit multi-stage workflow or branching described"
+        ],
+        "reason": "The question asks for a single statistic (median DVMC) using a specified function (PhyKIT's DVMC) on a defined subset (animal genes). There is no evidence of a dependency-constrained step graph or method branching; the workflow is direct and the method is specified."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Answer is a single numeric value: '0.57'",
+          "No explicit format, threshold, or verification constraints"
+        ],
+        "reason": "The output is a single number with no explicit format or parameterization requirements. There is no evidence of artifact heterogeneity or strict specification."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of semantic ambiguity or data/schema repair required",
+          "Question is clearly defined and unambiguous"
+        ],
+        "reason": "There is no indication that the question or data requires clarification, repair, or schema alignment."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer requirement."
+      }
+    },
+    "overall_summary": "This is a straightforward question requiring the extraction of a single statistic using a specified function on a defined subset. There is minimal planning or action load, and no evidence of semantic repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2203,
+        "completion_tokens": 463,
+        "total_tokens": 2666
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "What is the median DVMC value for animal genes using PhyKIT's DVMC function?",
+            "No explicit multi-stage workflow or branching described"
+          ],
+          "reason": "The question asks for a single statistic (median DVMC) using a specified function (PhyKIT's DVMC) on a defined subset (animal genes). There is no evidence of a dependency-constrained step graph or method branching; the workflow is direct and the method is specified.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Answer is a single numeric value: '0.57'",
+            "No explicit format, threshold, or verification constraints"
+          ],
+          "reason": "The output is a single number with no explicit format or parameterization requirements. There is no evidence of artifact heterogeneity or strict specification.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of semantic ambiguity or data/schema repair required",
+            "Question is clearly defined and unambiguous"
+          ],
+          "reason": "There is no indication that the question or data requires clarification, repair, or schema alignment.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer requirement.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward question requiring the extraction of a single statistic using a specified function on a defined subset. There is minimal planning or action load, and no evidence of semantic repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:16:11.703150+00:00"
+  }
+}

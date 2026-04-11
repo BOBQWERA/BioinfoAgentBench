@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-30-q5",
+      "question": "How many miRNAs remain statistically significant (p <= 0.05) differentially expressed between patient and control groups after applying all three methods of multiple testing correction (Benjamini-Hochberg, Benjamini-Yekutieli, and Bonferroni)?",
+      "data": [],
+      "answer": "0",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-30-q5",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "49",
+          "175",
+          "18"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-30-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "after applying all three methods of multiple testing correction (Benjamini-Hochberg, Benjamini-Yekutieli, and Bonferroni)",
+          "statistically significant (p <= 0.05) differentially expressed between patient and control groups"
+        ],
+        "reason": "The question requires a workflow that includes differential expression analysis followed by the application of three different multiple testing correction methods. The steps must be performed in a dependency-constrained order (DE analysis, then correction, then significance filtering). However, the methods to use for DE analysis and the order of correction are standard and not ambiguous, so branching is limited."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "How many miRNAs remain statistically significant (p <= 0.05) ... after applying all three methods",
+          "str_verifier"
+        ],
+        "reason": "The output is a single number, but the process requires generating and filtering results for each correction method, then determining the intersection or final count. The specification of p <= 0.05 and the use of three correction methods add moderate parameterization and realization load, but the final artifact is simple and the verifier is standard."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit ambiguity or data/representation repair required; question is clearly worded."
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation issues. The question is specific about the corrections and threshold, and there is no indication of missing or inconsistent data."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context provided."
+      }
+    },
+    "overall_summary": "This task requires a standard multi-step workflow involving differential expression analysis and the application of three multiple testing correction methods, with moderate planning and action load due to the need to apply and compare multiple corrections. There is minimal reflection or repair required, and no evidence of experience transfer.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2230,
+        "completion_tokens": 586,
+        "total_tokens": 2816
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "after applying all three methods of multiple testing correction (Benjamini-Hochberg, Benjamini-Yekutieli, and Bonferroni)",
+            "statistically significant (p <= 0.05) differentially expressed between patient and control groups"
+          ],
+          "reason": "The question requires a workflow that includes differential expression analysis followed by the application of three different multiple testing correction methods. The steps must be performed in a dependency-constrained order (DE analysis, then correction, then significance filtering). However, the methods to use for DE analysis and the order of correction are standard and not ambiguous, so branching is limited.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "How many miRNAs remain statistically significant (p <= 0.05) ... after applying all three methods",
+            "str_verifier"
+          ],
+          "reason": "The output is a single number, but the process requires generating and filtering results for each correction method, then determining the intersection or final count. The specification of p <= 0.05 and the use of three correction methods add moderate parameterization and realization load, but the final artifact is simple and the verifier is standard.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit ambiguity or data/representation repair required; question is clearly worded."
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation issues. The question is specific about the corrections and threshold, and there is no indication of missing or inconsistent data.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires a standard multi-step workflow involving differential expression analysis and the application of three multiple testing correction methods, with moderate planning and action load due to the need to apply and compare multiple corrections. There is minimal reflection or repair required, and no evidence of experience transfer.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:06:36.922313+00:00"
+  }
+}

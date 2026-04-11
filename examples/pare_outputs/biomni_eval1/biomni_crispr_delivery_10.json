@@ -1,0 +1,120 @@
+{
+  "question": {
+    "benchmark": "biomni_eval1",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomni_crispr_delivery_10",
+      "question": "Given the case description, identify the MOST relevant CRISPR delivery method from the options below:\n\na. Plasmid Transfection\nb. Lentivirus/Retrovirus\nc. RNP/mRNA electroporation\nd. RNP/mRNA microinjection\ne. mRNA LNP\nf. AAV\n\nCategory: Cell line\nCase Description: I hope to edit HEK293T cell line\n\nPlease provide your response as follows:\n- Most relevant method (select one letter a-f): \n",
+      "data": [],
+      "answer": "a",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "Biomni",
+        "source_dataset": "biomni/Eval1",
+        "task_name": "crispr_delivery",
+        "task_instance_id": 10,
+        "split": "val",
+        "global_instance_id": 273
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomni_crispr_delivery_10",
+    "benchmark": "biomni_eval1",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Identify the MOST relevant CRISPR delivery method from the options below",
+          "Case Description: I hope to edit HEK293T cell line"
+        ],
+        "reason": "The task requires selecting one method from a fixed list based on a simple case description. There is a minor planning load in mapping the cell line to the most relevant method, but no evidence of multi-stage workflow structuring or significant branching decision load. Only a single, direct selection is required."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Please provide your response as follows: - Most relevant method (select one letter a-f):"
+        ],
+        "reason": "The action required is to select a single letter corresponding to the chosen method. There is only one output type (a single letter), and no explicit format or parameterization constraints beyond this. No evidence of artifact heterogeneity or strict verification."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "Case Description: I hope to edit HEK293T cell line"
+        ],
+        "reason": "The case description is clear and unambiguous, and the options are well-defined. There is no evidence of semantic ambiguity, missing fields, or representational inconsistency that would require repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task is a straightforward single-choice selection based on a clear case description and a fixed set of options. There is minimal planning and action load, and no evidence of semantic or representational repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2257,
+        "completion_tokens": 517,
+        "total_tokens": 2774
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Identify the MOST relevant CRISPR delivery method from the options below",
+            "Case Description: I hope to edit HEK293T cell line"
+          ],
+          "reason": "The task requires selecting one method from a fixed list based on a simple case description. There is a minor planning load in mapping the cell line to the most relevant method, but no evidence of multi-stage workflow structuring or significant branching decision load. Only a single, direct selection is required.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Please provide your response as follows: - Most relevant method (select one letter a-f):"
+          ],
+          "reason": "The action required is to select a single letter corresponding to the chosen method. There is only one output type (a single letter), and no explicit format or parameterization constraints beyond this. No evidence of artifact heterogeneity or strict verification.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "Case Description: I hope to edit HEK293T cell line"
+          ],
+          "reason": "The case description is clear and unambiguous, and the options are well-defined. There is no evidence of semantic ambiguity, missing fields, or representational inconsistency that would require repair.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is a straightforward single-choice selection based on a clear case description and a fixed set of options. There is minimal planning and action load, and no evidence of semantic or representational repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T11:42:11.921516+00:00"
+  }
+}

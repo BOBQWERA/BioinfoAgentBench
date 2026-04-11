@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-31-q2",
+      "question": "By performing a sex-specific (M vs F) differential expression analysis (abs lfc>0.5, basemean>10 and using lfc shrinkage) of protein-coding genes, what is the log2 fold change of FAM138A?",
+      "data": [],
+      "answer": "(-0.45, -0.35)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-31-q2",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(1.20, 1.30)",
+          "(0.10, 0.20)",
+          "(-1.5, -1.4)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-31-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "sex-specific (M vs F) differential expression analysis",
+          "abs lfc>0.5, basemean>10 and using lfc shrinkage",
+          "log2 fold change of FAM138A"
+        ],
+        "reason": "The task requires structuring a workflow for differential expression analysis with explicit filtering (abs lfc>0.5, basemean>10) and lfc shrinkage, which implies a multi-step process (data selection, normalization, DE analysis, filtering, shrinkage, gene lookup). However, the method is standard and there is no explicit evidence of major branching or multiple defensible methods that would change correctness."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "log2 fold change of FAM138A",
+          "abs lfc>0.5, basemean>10 and using lfc shrinkage",
+          "range_verifier"
+        ],
+        "reason": "The output is a numeric value (log2 fold change) for a specific gene, with explicit parameter constraints (abs lfc>0.5, basemean>10, lfc shrinkage). The use of a range_verifier suggests some output format/precision expectation, but only a single output type is required and the specification is moderately tight."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No schema or representation ambiguity indicated"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/schema repair needs. The question is clearly worded and the required output is well-defined. The absence of data means no representational repair is possible or required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience or trajectory in the payload."
+      }
+    },
+    "overall_summary": "This task involves a moderately complex workflow for differential expression analysis with explicit filtering and shrinkage, requiring some planning and parameterization, but does not present major branching, repair, or transfer challenges. Output realization is moderately specified, and there is no evidence of semantic or representational ambiguity or experience transfer.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2258,
+        "completion_tokens": 618,
+        "total_tokens": 2876
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "sex-specific (M vs F) differential expression analysis",
+            "abs lfc>0.5, basemean>10 and using lfc shrinkage",
+            "log2 fold change of FAM138A"
+          ],
+          "reason": "The task requires structuring a workflow for differential expression analysis with explicit filtering (abs lfc>0.5, basemean>10) and lfc shrinkage, which implies a multi-step process (data selection, normalization, DE analysis, filtering, shrinkage, gene lookup). However, the method is standard and there is no explicit evidence of major branching or multiple defensible methods that would change correctness.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "log2 fold change of FAM138A",
+            "abs lfc>0.5, basemean>10 and using lfc shrinkage",
+            "range_verifier"
+          ],
+          "reason": "The output is a numeric value (log2 fold change) for a specific gene, with explicit parameter constraints (abs lfc>0.5, basemean>10, lfc shrinkage). The use of a range_verifier suggests some output format/precision expectation, but only a single output type is required and the specification is moderately tight.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No schema or representation ambiguity indicated"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/schema repair needs. The question is clearly worded and the required output is well-defined. The absence of data means no representational repair is possible or required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience or trajectory in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderately complex workflow for differential expression analysis with explicit filtering and shrinkage, requiring some planning and parameterization, but does not present major branching, repair, or transfer challenges. Output realization is moderately specified, and there is no evidence of semantic or representational ambiguity or experience transfer.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:07:23.533968+00:00"
+  }
+}

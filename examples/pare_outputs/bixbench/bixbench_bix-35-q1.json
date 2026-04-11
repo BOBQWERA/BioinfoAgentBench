@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-35-q1",
+      "question": "Calculate the evolutionary rate for the BUSCO gene 156083at2759 using PhyKIT's evoluionary_rate function. What is the gene's evolutionary rate in animals?",
+      "data": [],
+      "answer": "0.0471",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-35-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.0823",
+          "0.1205",
+          "0.0098"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-35-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Calculate the evolutionary rate for the BUSCO gene 156083at2759 using PhyKIT's evoluionary_rate function.",
+          "What is the gene's evolutionary rate in animals?"
+        ],
+        "reason": "The task is a direct calculation using a specified function (PhyKIT's evolutionary_rate) for a given gene. There is no evidence of a multi-stage workflow or branching decision load; the method and tool are explicitly specified, and the output is a single value."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "What is the gene's evolutionary rate in animals?",
+          "answer: 0.0471",
+          "distractors: [\"0.0823\", \"0.1205\", \"0.0098\"]"
+        ],
+        "reason": "The output is a single numeric value, and the answer is compared against distractors, indicating some correctness sensitivity. However, there is no explicit mention of format constraints, parameterization, or strict verification rules beyond matching the correct value."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of ambiguous wording, missing fields, or data/schema inconsistency."
+        ],
+        "reason": "The question is clearly worded, the gene and function are specified, and there is no indication of semantic or representational ambiguity or need for repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience or transfer context; this is a standalone task."
+      }
+    },
+    "overall_summary": "This is a direct, single-step calculation task with a specified tool and gene. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2225,
+        "completion_tokens": 539,
+        "total_tokens": 2764
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Calculate the evolutionary rate for the BUSCO gene 156083at2759 using PhyKIT's evoluionary_rate function.",
+            "What is the gene's evolutionary rate in animals?"
+          ],
+          "reason": "The task is a direct calculation using a specified function (PhyKIT's evolutionary_rate) for a given gene. There is no evidence of a multi-stage workflow or branching decision load; the method and tool are explicitly specified, and the output is a single value.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "What is the gene's evolutionary rate in animals?",
+            "answer: 0.0471",
+            "distractors: [\"0.0823\", \"0.1205\", \"0.0098\"]"
+          ],
+          "reason": "The output is a single numeric value, and the answer is compared against distractors, indicating some correctness sensitivity. However, there is no explicit mention of format constraints, parameterization, or strict verification rules beyond matching the correct value.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of ambiguous wording, missing fields, or data/schema inconsistency."
+          ],
+          "reason": "The question is clearly worded, the gene and function are specified, and there is no indication of semantic or representational ambiguity or need for repair.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience or transfer context; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct, single-step calculation task with a specified tool and gene. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:11:13.419757+00:00"
+  }
+}

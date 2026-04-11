@@ -1,0 +1,139 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_305",
+      "question": "There is a data table {TCGA_LIHC_survival.txt} that contains information related to patient survival. The column named OS.time represents the survival time of the patients, the column named OS indicates the survival event status of the patients, and the column named gender is a variable that affects survival. Please use the tool survival_curve to plot the survival curve based on this information.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0305/files/TCGA_LIHC_survival.txt"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"out_survival.pdf\", \"path\": \"downloaded_files\\\\index_0305\\\\milestone\\\\out_survival.pdf\"}], \"milestones\": [\"Generate survival curve\", \"The result file for saving the image is correct.\"], \"steps\": [\"Draw survival curves\", \"The result file for saving the image is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Surivival",
+        "task_abbr": "Survival plot",
+        "task": "Surivival",
+        "question_type": "clear",
+        "dataset": "Rep4",
+        "split": "train",
+        "order": 51.74,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_305",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "The question requires plotting a survival curve using three columns: OS.time, OS, and gender.",
+          "The tool 'survival_curve' is specified, but the exact workflow is not detailed.",
+          "There is an implicit dependency: extract/interpret columns, then plot."
+        ],
+        "reason": "There is a minor workflow structuring load: the user must map the data columns to the tool's expected input and understand the dependency between survival time, event status, and grouping by gender. However, the method is mostly specified (use 'survival_curve'), and there is no explicit evidence of major branching or multiple valid methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output is a single PDF file (out_survival.pdf) containing the survival curve.",
+          "The answer and milestones specify the output file and its correctness.",
+          "No explicit parameterization or strict format constraints beyond file name and type."
+        ],
+        "reason": "There is a weak artifact realization load: the user must generate a specific output file in PDF format, but only one artifact type is required and there are no strict parameter or format constraints beyond the file name."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Column names and their meanings are explicitly provided.",
+          "No evidence of missing fields, ambiguity, or schema mismatch."
+        ],
+        "reason": "There is almost no reflection/repair load: the data columns are clearly described, and there is no indication of ambiguity or representational inconsistency."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This task involves generating a survival curve from a clearly described data table using a specified tool. There is minor workflow structuring and artifact realization load, but no significant branching, parameterization, repair, or transfer requirements. The task is straightforward with clear input and output expectations.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2407,
+        "completion_tokens": 584,
+        "total_tokens": 2991
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "The question requires plotting a survival curve using three columns: OS.time, OS, and gender.",
+            "The tool 'survival_curve' is specified, but the exact workflow is not detailed.",
+            "There is an implicit dependency: extract/interpret columns, then plot."
+          ],
+          "reason": "There is a minor workflow structuring load: the user must map the data columns to the tool's expected input and understand the dependency between survival time, event status, and grouping by gender. However, the method is mostly specified (use 'survival_curve'), and there is no explicit evidence of major branching or multiple valid methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output is a single PDF file (out_survival.pdf) containing the survival curve.",
+            "The answer and milestones specify the output file and its correctness.",
+            "No explicit parameterization or strict format constraints beyond file name and type."
+          ],
+          "reason": "There is a weak artifact realization load: the user must generate a specific output file in PDF format, but only one artifact type is required and there are no strict parameter or format constraints beyond the file name.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Column names and their meanings are explicitly provided.",
+            "No evidence of missing fields, ambiguity, or schema mismatch."
+          ],
+          "reason": "There is almost no reflection/repair load: the data columns are clearly described, and there is no indication of ambiguity or representational inconsistency.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves generating a survival curve from a clearly described data table using a specified tool. There is minor workflow structuring and artifact realization load, but no significant branching, parameterization, repair, or transfer requirements. The task is straightforward with clear input and output expectations.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:36:15.833202+00:00"
+  }
+}

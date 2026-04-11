@@ -1,0 +1,143 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_171",
+      "question": "I have a labeled dataset for cell segmentation stored at {train.tar.gz}. Please build a segmentation model for inflammatory cells and then make predictions on the test set stored at {test.tar.gz}.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0171/files/train.tar.gz"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0171/files/test.tar.gz"
+        }
+      ],
+      "answer": "{\"milestone_files\": [], \"milestones\": [\"Successfully built a cell segmentation model\", \"Generate correct cell segmentation results.\"], \"steps\": [\"Build a cell segmentation model\", \"Use the constructed cell segmentation model to perform.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Deep Learning",
+        "task_abbr": "Deep Learning",
+        "task": "Deep Learning",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.57,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_171",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "\"build a segmentation model for inflammatory cells\"",
+          "\"make predictions on the test set\"",
+          "Milestones: [\"Successfully built a cell segmentation model\", \"Generate correct cell segmentation results.\"]",
+          "Steps: [\"Build a cell segmentation model\", \"Use the constructed cell segmentation model to perform.\"]"
+        ],
+        "reason": "The task requires decomposing the workflow into at least two dependent stages: model training (using labeled data) and prediction (on test data). However, there is no explicit evidence of major method branching or multiple materially different valid approaches that would affect correctness; the method is open but not strongly ambiguous. Thus, P1 is moderate due to the dependency chain, and P2 is low."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"train.tar.gz\" and \"test.tar.gz\" as input files",
+          "Milestones and steps reference model and prediction outputs"
+        ],
+        "reason": "There is a requirement to produce at least two types of artifacts: a trained segmentation model and prediction results. However, there are no explicit format constraints, verification checkpoints, or strict parameterization rules stated in the payload. Thus, artifact realization load is present but not high, and parameterization/spec tightness is weak."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"labeled dataset for cell segmentation\"",
+          "No mention of missing fields, ambiguity, or schema mismatch"
+        ],
+        "reason": "The task is semantically clear and the data is described as labeled for cell segmentation. There is no evidence of ambiguity, missing fields, or representational inconsistency. Only a trace load is present due to the open-endedness of the model-building instruction, but this does not rise to the level of requiring repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a standard two-stage workflow: training a segmentation model and making predictions. The planning load is moderate due to the need to structure the workflow, but there is little evidence of method branching or ambiguity. Action load is weak to moderate, as at least two artifact types are required but without strict format or parameter constraints. Reflection and evolution loads are minimal to absent, as the task is semantically clear and there is no transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2361,
+        "completion_tokens": 676,
+        "total_tokens": 3037
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "\"build a segmentation model for inflammatory cells\"",
+            "\"make predictions on the test set\"",
+            "Milestones: [\"Successfully built a cell segmentation model\", \"Generate correct cell segmentation results.\"]",
+            "Steps: [\"Build a cell segmentation model\", \"Use the constructed cell segmentation model to perform.\"]"
+          ],
+          "reason": "The task requires decomposing the workflow into at least two dependent stages: model training (using labeled data) and prediction (on test data). However, there is no explicit evidence of major method branching or multiple materially different valid approaches that would affect correctness; the method is open but not strongly ambiguous. Thus, P1 is moderate due to the dependency chain, and P2 is low.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"train.tar.gz\" and \"test.tar.gz\" as input files",
+            "Milestones and steps reference model and prediction outputs"
+          ],
+          "reason": "There is a requirement to produce at least two types of artifacts: a trained segmentation model and prediction results. However, there are no explicit format constraints, verification checkpoints, or strict parameterization rules stated in the payload. Thus, artifact realization load is present but not high, and parameterization/spec tightness is weak.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"labeled dataset for cell segmentation\"",
+            "No mention of missing fields, ambiguity, or schema mismatch"
+          ],
+          "reason": "The task is semantically clear and the data is described as labeled for cell segmentation. There is no evidence of ambiguity, missing fields, or representational inconsistency. Only a trace load is present due to the open-endedness of the model-building instruction, but this does not rise to the level of requiring repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-stage workflow: training a segmentation model and making predictions. The planning load is moderate due to the need to structure the workflow, but there is little evidence of method branching or ambiguity. Action load is weak to moderate, as at least two artifact types are required but without strict format or parameter constraints. Reflection and evolution loads are minimal to absent, as the task is semantically clear and there is no transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:23:23.163544+00:00"
+  }
+}

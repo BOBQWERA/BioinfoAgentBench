@@ -1,0 +1,137 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_152",
+      "question": "I have a dataset {hcluster.tsv}, the first column is the ID column, and the other columns are feature columns. Please use HClust for clustering analysis.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0152/files/hcluster.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"hcluster.csv\", \"path\": \"downloaded_files\\\\index_0152\\\\milestone\\\\hcluster.csv\"}, {\"name\": \"hierarchical_output.csv\", \"path\": \"downloaded_files\\\\index_0152\\\\milestone\\\\hierarchical_output.csv\"}], \"milestones\": [\"Generate hcluster.csv file\", \"Generate the result file for HClust clustering\"], \"steps\": [\"Convert the TSV file to CSV format.\", \"Clustering prediction using the HClust algorithm\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Clustering",
+        "task_abbr": "HClust聚类",
+        "task": "Clustering",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.38,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_152",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Milestones: [\"Generate hcluster.csv file\", \"Generate the result file for HClust clustering\"]",
+          "Steps: [\"Convert the TSV file to CSV format.\", \"Clustering prediction using the HClust algorithm\"]"
+        ],
+        "reason": "There is a clear two-step workflow: file format conversion followed by clustering. The steps are sequential and dependency-constrained (must convert before clustering), but there is no evidence of significant method branching or multiple reasonable approaches that would affect correctness. The method (HClust) is specified, and the workflow is straightforward."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone files: [\"hcluster.csv\", \"hierarchical_output.csv\"]",
+          "Explicit file format conversion (TSV to CSV)",
+          "Output is a clustering result file"
+        ],
+        "reason": "There are two output files of different types (converted data and clustering result), but both are standard and there is no evidence of strict format constraints or parameterization tightness. No explicit thresholds, schema, or verification rules are mentioned."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Input file format and column roles are clearly described",
+          "No evidence of schema mismatch or ambiguity"
+        ],
+        "reason": "The problem is clearly defined with no ambiguity in semantics or data representation. The only minor load is the need to recognize the first column as ID and the rest as features, but this is explicitly stated."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no evidence of transfer or reuse of prior experience; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a simple two-step workflow: converting a TSV file to CSV and performing HClust clustering. The planning and action loads are minor to moderate due to the sequential steps and two output files, but there is no evidence of significant branching, strict parameterization, or repair needs. No transfer or evolution load is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2394,
+        "completion_tokens": 593,
+        "total_tokens": 2987
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Milestones: [\"Generate hcluster.csv file\", \"Generate the result file for HClust clustering\"]",
+            "Steps: [\"Convert the TSV file to CSV format.\", \"Clustering prediction using the HClust algorithm\"]"
+          ],
+          "reason": "There is a clear two-step workflow: file format conversion followed by clustering. The steps are sequential and dependency-constrained (must convert before clustering), but there is no evidence of significant method branching or multiple reasonable approaches that would affect correctness. The method (HClust) is specified, and the workflow is straightforward.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone files: [\"hcluster.csv\", \"hierarchical_output.csv\"]",
+            "Explicit file format conversion (TSV to CSV)",
+            "Output is a clustering result file"
+          ],
+          "reason": "There are two output files of different types (converted data and clustering result), but both are standard and there is no evidence of strict format constraints or parameterization tightness. No explicit thresholds, schema, or verification rules are mentioned.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Input file format and column roles are clearly described",
+            "No evidence of schema mismatch or ambiguity"
+          ],
+          "reason": "The problem is clearly defined with no ambiguity in semantics or data representation. The only minor load is the need to recognize the first column as ID and the rest as features, but this is explicitly stated.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no evidence of transfer or reuse of prior experience; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a simple two-step workflow: converting a TSV file to CSV and performing HClust clustering. The planning and action loads are minor to moderate due to the sequential steps and two output files, but there is no evidence of significant branching, strict parameterization, or repair needs. No transfer or evolution load is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:18:26.299291+00:00"
+  }
+}

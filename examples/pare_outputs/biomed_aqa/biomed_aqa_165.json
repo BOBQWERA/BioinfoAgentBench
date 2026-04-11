@@ -1,0 +1,137 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_165",
+      "question": "I have a dataset {lung_cancer.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform local linear embedding dimensionality reduction on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0165/files/lung_cancer.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"lung_cancer_lle_result.csv\", \"path\": \"downloaded_files\\\\index_0165\\\\milestone\\\\lung_cancer_lle_result.csv\"}], \"milestones\": [\"Generate the result file under this algorithm.\"], \"steps\": [\"Use local linear embedding (LLE) for dimensionality reduction analysis (e.g., selecting the neighbor parameter as 10 and the reduced dimension as 2).\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "局部线性嵌入",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.51,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_165",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'perform local linear embedding dimensionality reduction on this dataset.'",
+          "Target column specified; features are all other columns"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must select features (all columns except 'Target'), apply LLE, and output the result. However, the method (LLE) is fully specified, and there is no evidence of branching or multiple reasonable methods. The step graph is simple and mostly linear."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output file: 'lung_cancer_lle_result.csv'",
+          "Milestone: 'Generate the result file under this algorithm.'",
+          "Step: 'Use local linear embedding (LLE) for dimensionality reduction analysis (e.g., selecting the neighbor parameter as 10 and the reduced dimension as 2).' (parameters suggested but not strictly required)"
+        ],
+        "reason": "There is a minor artifact realization load: the output must be a CSV file with the LLE result. Parameterization is suggested (neighbors=10, dim=2) but not strictly enforced, so spec tightness is weak."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Target column is explicitly specified",
+          "No evidence of missing/ambiguous fields or schema mismatch"
+        ],
+        "reason": "There is almost no repair load: the problem is clearly defined, and the data schema is specified. No evidence of ambiguity or need for data/representation repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "No transfer or evolution context is present in the payload."
+      }
+    },
+    "overall_summary": "This task requires applying a specified dimensionality reduction method (LLE) to a dataset, with the target and feature columns clearly defined. There is minor workflow structuring and artifact realization load, but no significant branching, repair, or transfer load. The task is straightforward with only weak planning and action complexity.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2385,
+        "completion_tokens": 584,
+        "total_tokens": 2969
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'perform local linear embedding dimensionality reduction on this dataset.'",
+            "Target column specified; features are all other columns"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must select features (all columns except 'Target'), apply LLE, and output the result. However, the method (LLE) is fully specified, and there is no evidence of branching or multiple reasonable methods. The step graph is simple and mostly linear.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output file: 'lung_cancer_lle_result.csv'",
+            "Milestone: 'Generate the result file under this algorithm.'",
+            "Step: 'Use local linear embedding (LLE) for dimensionality reduction analysis (e.g., selecting the neighbor parameter as 10 and the reduced dimension as 2).' (parameters suggested but not strictly required)"
+          ],
+          "reason": "There is a minor artifact realization load: the output must be a CSV file with the LLE result. Parameterization is suggested (neighbors=10, dim=2) but not strictly enforced, so spec tightness is weak.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Target column is explicitly specified",
+            "No evidence of missing/ambiguous fields or schema mismatch"
+          ],
+          "reason": "There is almost no repair load: the problem is clearly defined, and the data schema is specified. No evidence of ambiguity or need for data/representation repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "No transfer or evolution context is present in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires applying a specified dimensionality reduction method (LLE) to a dataset, with the target and feature columns clearly defined. There is minor workflow structuring and artifact realization load, but no significant branching, repair, or transfer load. The task is straightforward with only weak planning and action complexity.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:21:49.297037+00:00"
+  }
+}

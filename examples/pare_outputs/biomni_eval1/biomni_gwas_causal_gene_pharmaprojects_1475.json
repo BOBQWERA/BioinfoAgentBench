@@ -1,0 +1,124 @@
+{
+  "question": {
+    "benchmark": "biomni_eval1",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomni_gwas_causal_gene_pharmaprojects_1475",
+      "question": "Your task is to identify likely causal genes within a locus for a given GWAS phenotype. From the list, provide only the likely causal gene (matching one of the given genes). \nIdentify the causal gene.\nGWAS phenotype: Lymphoma, Large B-Cell, Diffuse\nGenes in locus: {C2orf74},{CCT4},{COMMD1},{FAM161A},{PEX13},{PUS10},{SANBR},{USP34},{XPO1}\n",
+      "data": [],
+      "answer": "XPO1",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "Biomni",
+        "source_dataset": "biomni/Eval1",
+        "task_name": "gwas_causal_gene_pharmaprojects",
+        "task_instance_id": 1475,
+        "split": "val",
+        "global_instance_id": 193
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomni_gwas_causal_gene_pharmaprojects_1475",
+    "benchmark": "biomni_eval1",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Task: identify likely causal gene within a locus for a GWAS phenotype from a provided gene list",
+          "No explicit workflow or dependency chain; selection is from a fixed set"
+        ],
+        "reason": "The task requires selecting a single gene from a provided list as the likely causal gene for a GWAS phenotype. There is a minor planning load in mapping the phenotype to the gene list and making a selection, but there is no evidence of a multi-stage workflow or significant branching. The method for determining 'likely causal' is unspecified, but the answer must be one of the listed genes, limiting branching."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Output: a single gene name from the provided list",
+          "No explicit format or parameter constraints"
+        ],
+        "reason": "The action required is to output a single gene name, with no evidence of multiple artifact types, strict format, or parameterization. The output is simple and tightly scoped."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Task wording: 'likely causal gene' is somewhat open but not ambiguous in context",
+          "Gene list is provided and unambiguous"
+        ],
+        "reason": "There is a trace of semantic openness in 'likely causal gene', but the task is otherwise well-defined with a fixed gene list and phenotype. No evidence of data or schema repair is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context in payload"
+        ],
+        "reason": "No evidence of experience assimilation or transfer; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves selecting a likely causal gene for a GWAS phenotype from a provided list. The planning load is minor, as the task is a direct selection with no explicit workflow or branching. Action and reflection loads are minimal, with a simple output and only trace semantic openness. There is no evidence of experience transfer or evolution load.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2264,
+        "completion_tokens": 572,
+        "total_tokens": 2836
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Task: identify likely causal gene within a locus for a GWAS phenotype from a provided gene list",
+            "No explicit workflow or dependency chain; selection is from a fixed set"
+          ],
+          "reason": "The task requires selecting a single gene from a provided list as the likely causal gene for a GWAS phenotype. There is a minor planning load in mapping the phenotype to the gene list and making a selection, but there is no evidence of a multi-stage workflow or significant branching. The method for determining 'likely causal' is unspecified, but the answer must be one of the listed genes, limiting branching.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Output: a single gene name from the provided list",
+            "No explicit format or parameter constraints"
+          ],
+          "reason": "The action required is to output a single gene name, with no evidence of multiple artifact types, strict format, or parameterization. The output is simple and tightly scoped.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Task wording: 'likely causal gene' is somewhat open but not ambiguous in context",
+            "Gene list is provided and unambiguous"
+          ],
+          "reason": "There is a trace of semantic openness in 'likely causal gene', but the task is otherwise well-defined with a fixed gene list and phenotype. No evidence of data or schema repair is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context in payload"
+          ],
+          "reason": "No evidence of experience assimilation or transfer; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves selecting a likely causal gene for a GWAS phenotype from a provided list. The planning load is minor, as the task is a direct selection with no explicit workflow or branching. Action and reflection loads are minimal, with a simple output and only trace semantic openness. There is no evidence of experience transfer or evolution load.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:41:42.352878+00:00"
+  }
+}

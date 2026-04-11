@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_164",
+      "question": "I have a dataset {heart_disease.csv}, the \"Target\" column is the target column, and the other columns are feature columns. Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0164/files/heart_disease.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"heart_disease_tsne_result.csv\", \"path\": \"downloaded_files\\\\index_0164\\\\milestone\\\\heart_disease_tsne_result.csv\"}], \"milestones\": [\"Generate the dimensionality reduction result file under this algorithm.\"], \"steps\": [\"Use the t-SNE dimensionality reduction algorithm for analysis (for example, choose the number of reduced dimensions to be 2).\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Feature selection",
+        "task_abbr": "t-分布随机邻域嵌入",
+        "task": "Feature selection",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.5,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_164",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Question: 'Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset.'",
+          "Dataset: {heart_disease.csv}, 'Target' column is target, others are features"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must select features (excluding 'Target') and apply t-SNE, which is a standard two-stage process (feature selection, then dimensionality reduction). However, the method is specified (t-SNE), and there is no evidence of branching decision load (no alternative methods or major parameter choices that affect correctness are required by the payload)."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Milestone file: 'heart_disease_tsne_result.csv'",
+          "Output: dimensionality reduction result file",
+          "Step: 'choose the number of reduced dimensions to be 2 (for example)'"
+        ],
+        "reason": "There is a weak artifact realization load: the output is a single CSV file with t-SNE results, and the format is implied but not strictly specified. There is a minor parameterization load due to the example of choosing 2 dimensions, but this is not enforced as a strict requirement."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Explicitly states which column is target and which are features"
+        ],
+        "reason": "There is almost no repair load: the question is clear about which columns to use, and there is no evidence of schema mismatch, ambiguity, or need for semantic clarification."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience transfer context present"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a standard application of t-SNE for dimensionality reduction on a clearly specified dataset. There is minor workflow structuring and artifact realization load, but no significant branching, repair, or transfer complexity. The requirements are explicit and the output is straightforward.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2389,
+        "completion_tokens": 588,
+        "total_tokens": 2977
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Question: 'Please perform t-distributed stochastic neighbor embedding for dimensionality reduction on this dataset.'",
+            "Dataset: {heart_disease.csv}, 'Target' column is target, others are features"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must select features (excluding 'Target') and apply t-SNE, which is a standard two-stage process (feature selection, then dimensionality reduction). However, the method is specified (t-SNE), and there is no evidence of branching decision load (no alternative methods or major parameter choices that affect correctness are required by the payload).",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Milestone file: 'heart_disease_tsne_result.csv'",
+            "Output: dimensionality reduction result file",
+            "Step: 'choose the number of reduced dimensions to be 2 (for example)'"
+          ],
+          "reason": "There is a weak artifact realization load: the output is a single CSV file with t-SNE results, and the format is implied but not strictly specified. There is a minor parameterization load due to the example of choosing 2 dimensions, but this is not enforced as a strict requirement.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Explicitly states which column is target and which are features"
+          ],
+          "reason": "There is almost no repair load: the question is clear about which columns to use, and there is no evidence of schema mismatch, ambiguity, or need for semantic clarification.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience transfer context present"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard application of t-SNE for dimensionality reduction on a clearly specified dataset. There is minor workflow structuring and artifact realization load, but no significant branching, repair, or transfer complexity. The requirements are explicit and the output is straightforward.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:21:34.414246+00:00"
+  }
+}

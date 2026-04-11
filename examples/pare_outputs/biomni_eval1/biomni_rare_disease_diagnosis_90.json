@@ -1,0 +1,122 @@
+{
+  "question": {
+    "benchmark": "biomni_eval1",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomni_rare_disease_diagnosis_90",
+      "question": "\nTask: given a patient's phenotypes and a list of candidate genes, diagnose the rare disease that the patient has.\nPhenotypes: HP:0002650, HP:0000175, HP:0007099, HP:0004322, HP:0001263, HP:0009473\nCandidate genes: ['ENSG00000154864']\n\nOutput format: {'disease_name': XXX, 'OMIM_ID': XXX}\n        ",
+      "data": [],
+      "answer": "{\"disease_name\": \"Gordon syndrome\", \"OMIM_ID\": \"114300\"}",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "Biomni",
+        "source_dataset": "biomni/Eval1",
+        "task_name": "rare_disease_diagnosis",
+        "task_instance_id": 90,
+        "split": "val",
+        "global_instance_id": 243
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomni_rare_disease_diagnosis_90",
+    "benchmark": "biomni_eval1",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Task: given a patient's phenotypes and a list of candidate genes, diagnose the rare disease that the patient has.",
+          "Phenotypes: HP:0002650, HP:0000175, HP:0007099, HP:0004322, HP:0001263, HP:0009473",
+          "Candidate genes: ['ENSG00000154864']"
+        ],
+        "reason": "There is a minor workflow structuring load: the task requires mapping phenotypes and gene(s) to a disease, which may involve at least two conceptual steps (phenotype-gene-disease mapping). However, only one candidate gene is provided, and the output is a single disease, so there is no strong evidence of branching or complex dependency chains."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output format: {'disease_name': XXX, 'OMIM_ID': XXX}"
+        ],
+        "reason": "The output requires a specific dictionary format with two fields, but there is no evidence of multiple heterogeneous artifact types or strict parameterization beyond the required keys."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Phenotypes and candidate gene are provided in standard identifiers (HPO, Ensembl)."
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation issues. The input is well-structured and uses standard identifiers. No repair or clarification is needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text is present."
+        ],
+        "reason": "There is no evidence of transfer or reuse of prior experience; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves mapping a set of HPO-coded phenotypes and a single candidate gene to a rare disease, outputting a dictionary with disease name and OMIM ID. The planning and action loads are minor due to the simple input and output structure, with no evidence of branching or complex artifact realization. There is no need for semantic or data repair, and no transfer or evolution load is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2266,
+        "completion_tokens": 593,
+        "total_tokens": 2859
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Task: given a patient's phenotypes and a list of candidate genes, diagnose the rare disease that the patient has.",
+            "Phenotypes: HP:0002650, HP:0000175, HP:0007099, HP:0004322, HP:0001263, HP:0009473",
+            "Candidate genes: ['ENSG00000154864']"
+          ],
+          "reason": "There is a minor workflow structuring load: the task requires mapping phenotypes and gene(s) to a disease, which may involve at least two conceptual steps (phenotype-gene-disease mapping). However, only one candidate gene is provided, and the output is a single disease, so there is no strong evidence of branching or complex dependency chains.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output format: {'disease_name': XXX, 'OMIM_ID': XXX}"
+          ],
+          "reason": "The output requires a specific dictionary format with two fields, but there is no evidence of multiple heterogeneous artifact types or strict parameterization beyond the required keys.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Phenotypes and candidate gene are provided in standard identifiers (HPO, Ensembl)."
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation issues. The input is well-structured and uses standard identifiers. No repair or clarification is needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text is present."
+          ],
+          "reason": "There is no evidence of transfer or reuse of prior experience; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves mapping a set of HPO-coded phenotypes and a single candidate gene to a rare disease, outputting a dictionary with disease name and OMIM ID. The planning and action loads are minor due to the simple input and output structure, with no evidence of branching or complex artifact realization. There is no need for semantic or data repair, and no transfer or evolution load is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:41:58.842269+00:00"
+  }
+}

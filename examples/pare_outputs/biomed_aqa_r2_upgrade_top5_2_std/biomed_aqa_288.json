@@ -1,0 +1,174 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_r2_upgrade_top5_2_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_288",
+      "question": "For file pcoa.tsv, where result is grouping info, perform principal coordinate analysis using columns 2 to 9. Before distance/ordination, repair representation issues: numeric feature columns may contain mixed decimal formats and out-of-range placeholders, and result labels may include trailing spaces/case variants. Normalize feature tokens and group labels before PCoA.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0288/files/pcoa.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"pcoa.png\", \"path\": \"downloaded_files\\\\index_0288\\\\milestone\\\\pcoa.png\"}], \"milestones\": [\"Generate PCoA plot\", \"The content of the PCoA plot is correct.\"], \"steps\": [\"Draw PCoA plot\", \"Check whether the content of the image is correct\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Fitting & inference",
+        "task_abbr": "PCoA",
+        "task": "Fitting & inference",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.57,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "R2",
+          "selection_basis": "['must_not_overlap_existing_r1_r2_e1_e2_sets', 'must_have_workflow_memory_reference', 'targets_are_tsv_or_csv_only', 'r2_representation_repair_must_dominate']",
+          "edit_context": {
+            "r2_mechanism": {
+              "representation_problem": "Numeric token normalization + group label canonicalization in ordination input.",
+              "intent": "Increase R2 via explicit, detectable, and repairable representation inconsistencies before computation."
+            },
+            "data_repair_methods": [
+              "Convert comma-decimal numbers to dot-decimal and parse columns 2-9 strictly as numeric.",
+              "Treat placeholder tokens (e.g., -, inf, nan strings) as missing and remove rows with unresolved numeric fields.",
+              "Canonicalize result labels by trimming whitespace and case-folding before grouping overlays."
+            ],
+            "workflow_reference": {
+              "workflow_memory_index": 288,
+              "workflow_memory_Index": 61,
+              "task_abbr": "PCoA",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following steps:\n\n1. **Goal**: Load the data from the file \"pcoa.tsv\" and extract the relevant columns (2 to 9) and the \"result\" column for grouping.\n    - **Tool**: None (Python code)\n    - **Input**: \"pcoa.tsv\"\n    - **Output**: (data_matrix, groups)\n    - **Description**: Read the contents of the pcoa.tsv file, parse the numerical data from columns 2 to 9 into a list (data_matrix), and extract the \"result\" column into a separate list (groups).\n\n2. **Goal**: Perform principal coordinate analysis (PCA) on the data_matrix directly without cleaning.\n    - **Tool**: None (Python code)\n    - **Input**: data_matrix\n    - **Output**: pca_results\n    - **Description**: Implement PCA algorithm to reduce the dimensionality of the data_matrix, resulting in a list of principal components (pca_results). Add debug print statements to confirm the shape and content of data_matrix before PCA is performed.\n\n3. **Goal**: Visualize the PCA results using a scatter plot, differentiating the groups.\n    - **Tool**: None (Python code)\n    - **Input**: pca_results, groups\n    - **Output**: \"pca_scatter_plot.png\"\n    - **Description**: Use a plott"
+            },
+            "original_question": "There is a data file pcoa.tsv, in which the \"result\" column contains grouping information. Please perform principal coordinate analysis using the data from columns 2 to 9."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_288",
+    "benchmark": "biomed_aqa_r2_upgrade_top5_2_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"perform principal coordinate analysis using columns 2 to 9\"",
+          "\"repair representation issues: numeric feature columns may contain mixed decimal formats and out-of-range placeholders, and result labels may include trailing spaces/case variants\"",
+          "\"Normalize feature tokens and group labels before PCoA\""
+        ],
+        "reason": "The task requires a standard workflow: data cleaning/normalization, extraction of columns, and PCoA computation. The need to repair representation issues adds a minor dependency chain (clean before compute), but there is no evidence of significant branching or multiple valid methods that would affect correctness. The workflow is linear and canonical for this type of analysis."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"pcoa.png\"...}]",
+          "\"Generate PCoA plot\"",
+          "\"Check whether the content of the image is correct.\"",
+          "\"columns 2 to 9\"",
+          "\"Normalize feature tokens and group labels before PCoA\""
+        ],
+        "reason": "The main artifact is a PCoA plot (image file), and the output must reflect correct content after normalization. There is some format/parameterization load due to the need to select specific columns and normalize tokens, but only one output type is required and no strict schema or parameter thresholds are specified."
+      },
+      "R": {
+        "score": 5,
+        "evidence": [
+          "\"repair representation issues: numeric feature columns may contain mixed decimal formats and out-of-range placeholders, and result labels may include trailing spaces/case variants\"",
+          "\"Normalize feature tokens and group labels before PCoA\"",
+          "\"Convert comma-decimal numbers to dot-decimal and parse columns 2-9 strictly as numeric.\"",
+          "\"Treat placeholder tokens (e.g., -, inf, nan strings) as missing and remove rows with unresolved numeric fields.\"",
+          "\"Canonicalize result labels by trimming whitespace and case-folding before grouping overlays.\"",
+          "\"r2_representation_repair_must_dominate\""
+        ],
+        "reason": "The payload explicitly centers on representation repair as the dominant challenge: numeric columns have mixed formats and placeholders, and group labels have whitespace/case inconsistencies. The task cannot be computed correctly without substantial data/schema repair, and the benchmark builder intent is to maximize R2. Both R1 (semantic repair of group labels) and R2 (representation repair of numeric columns) are stacked and central."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No explicit prior trajectory or transfer context in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The workflow reference is a generic memory excerpt, not a prior run or experience text requiring abstraction or mapping."
+      }
+    },
+    "overall_summary": "This task is dominated by representation repair (R), as the payload explicitly requires normalization of numeric and label fields before analysis, and the benchmark builder intent is to maximize R2. Planning and action loads are present but moderate, reflecting a standard linear workflow with minor cleaning and output requirements. There is no transfer/evolution load.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3022,
+        "completion_tokens": 806,
+        "total_tokens": 3828
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"perform principal coordinate analysis using columns 2 to 9\"",
+            "\"repair representation issues: numeric feature columns may contain mixed decimal formats and out-of-range placeholders, and result labels may include trailing spaces/case variants\"",
+            "\"Normalize feature tokens and group labels before PCoA\""
+          ],
+          "reason": "The task requires a standard workflow: data cleaning/normalization, extraction of columns, and PCoA computation. The need to repair representation issues adds a minor dependency chain (clean before compute), but there is no evidence of significant branching or multiple valid methods that would affect correctness. The workflow is linear and canonical for this type of analysis.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"pcoa.png\"...}]",
+            "\"Generate PCoA plot\"",
+            "\"Check whether the content of the image is correct.\"",
+            "\"columns 2 to 9\"",
+            "\"Normalize feature tokens and group labels before PCoA\""
+          ],
+          "reason": "The main artifact is a PCoA plot (image file), and the output must reflect correct content after normalization. There is some format/parameterization load due to the need to select specific columns and normalize tokens, but only one output type is required and no strict schema or parameter thresholds are specified.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 5,
+          "evidence": [
+            "\"repair representation issues: numeric feature columns may contain mixed decimal formats and out-of-range placeholders, and result labels may include trailing spaces/case variants\"",
+            "\"Normalize feature tokens and group labels before PCoA\"",
+            "\"Convert comma-decimal numbers to dot-decimal and parse columns 2-9 strictly as numeric.\"",
+            "\"Treat placeholder tokens (e.g., -, inf, nan strings) as missing and remove rows with unresolved numeric fields.\"",
+            "\"Canonicalize result labels by trimming whitespace and case-folding before grouping overlays.\"",
+            "\"r2_representation_repair_must_dominate\""
+          ],
+          "reason": "The payload explicitly centers on representation repair as the dominant challenge: numeric columns have mixed formats and placeholders, and group labels have whitespace/case inconsistencies. The task cannot be computed correctly without substantial data/schema repair, and the benchmark builder intent is to maximize R2. Both R1 (semantic repair of group labels) and R2 (representation repair of numeric columns) are stacked and central.",
+          "subdimension_breakdown": {
+            "R1": 4,
+            "R2": 5
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No explicit prior trajectory or transfer context in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The workflow reference is a generic memory excerpt, not a prior run or experience text requiring abstraction or mapping.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is dominated by representation repair (R), as the payload explicitly requires normalization of numeric and label fields before analysis, and the benchmark builder intent is to maximize R2. Planning and action loads are present but moderate, reflecting a standard linear workflow with minor cleaning and output requirements. There is no transfer/evolution load.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-09T03:55:56.280558+00:00"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_227",
+      "question": "There is a data file boxplot.tsv, the \"Age_Group\" column is different age groupings, and \"Age\" is the age. Please use ANOVA to analyze whether there are differences in \"WBC\" among the age groups.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0227/files/boxplot.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [], \"milestones\": [\"p-value: 0.001684964\"], \"steps\": [\"Conduct ANOVA analysis\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Inferential statistics",
+        "task_abbr": "anova",
+        "task": "Inferential statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 41.32,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_227",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Please use ANOVA to analyze whether there are differences in \"WBC\" among the age groups.",
+          "boxplot.tsv, the \"Age_Group\" column is different age groupings, and \"Age\" is the age."
+        ],
+        "reason": "The task requires extracting relevant columns and applying a standard ANOVA test. There is a minor workflow structuring load (extracting groupings and values), but the method (ANOVA) is specified and there is no evidence of branching or multiple defensible methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "milestones: [\"p-value: 0.001684964\"]",
+          "steps: [\"Conduct ANOVA analysis\"]"
+        ],
+        "reason": "The output is a single p-value, and the action is to conduct ANOVA. There is a minor artifact realization load (extracting the correct value), but no evidence of strict format, multiple output types, or tight parameterization."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"Age_Group\" column is different age groupings, and \"Age\" is the age.",
+          "No evidence of missing or ambiguous fields."
+        ],
+        "reason": "The columns are described clearly and the task is well-defined. There is only a trace need to clarify which columns to use, but no evidence of ambiguity, contradiction, or schema repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present."
+        ],
+        "reason": "There is no evidence of transfer or prior experience context."
+      }
+    },
+    "overall_summary": "This is a straightforward ANOVA task with a single data file and clear instructions. There is minor workflow structuring and artifact realization load, but no significant branching, specification tightness, or repair required. No transfer or evolution context is present.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2325,
+        "completion_tokens": 549,
+        "total_tokens": 2874
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Please use ANOVA to analyze whether there are differences in \"WBC\" among the age groups.",
+            "boxplot.tsv, the \"Age_Group\" column is different age groupings, and \"Age\" is the age."
+          ],
+          "reason": "The task requires extracting relevant columns and applying a standard ANOVA test. There is a minor workflow structuring load (extracting groupings and values), but the method (ANOVA) is specified and there is no evidence of branching or multiple defensible methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "milestones: [\"p-value: 0.001684964\"]",
+            "steps: [\"Conduct ANOVA analysis\"]"
+          ],
+          "reason": "The output is a single p-value, and the action is to conduct ANOVA. There is a minor artifact realization load (extracting the correct value), but no evidence of strict format, multiple output types, or tight parameterization.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"Age_Group\" column is different age groupings, and \"Age\" is the age.",
+            "No evidence of missing or ambiguous fields."
+          ],
+          "reason": "The columns are described clearly and the task is well-defined. There is only a trace need to clarify which columns to use, but no evidence of ambiguity, contradiction, or schema repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present."
+          ],
+          "reason": "There is no evidence of transfer or prior experience context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward ANOVA task with a single data file and clear instructions. There is minor workflow structuring and artifact realization load, but no significant branching, specification tightness, or repair required. No transfer or evolution context is present.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:29:03.499798+00:00"
+  }
+}

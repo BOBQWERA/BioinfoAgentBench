@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-37-q4",
+      "question": "What is the log2 fold change value (rounded to 2 decimal places) for ENO1 when comparing tumor samples to normal samples in the proteomics dataset?",
+      "data": [],
+      "answer": "2.27",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-37-q4",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "4.81",
+          "0.226",
+          "-2.27"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-37-q4",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the log2 fold change value (rounded to 2 decimal places) for ENO1 when comparing tumor samples to normal samples in the proteomics dataset?"
+        ],
+        "reason": "The question requires comparing two groups (tumor vs normal) and calculating a log2 fold change for a specific protein (ENO1), which implies at least a two-step process: (1) subgroup selection and (2) fold change calculation. However, the method is standard and there is no evidence of multiple branching methods or dependency-constrained step graphs beyond this basic workflow."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "log2 fold change value (rounded to 2 decimal places)",
+          "str_verifier"
+        ],
+        "reason": "There is a single numeric output (log2 fold change), but the requirement to round to 2 decimal places and the use of a string verifier indicate some parameterization and output format constraint. However, there is only one artifact type and the specification is not highly strict."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data or schema provided",
+          "No explicit ambiguity or contradiction in question wording"
+        ],
+        "reason": "There is no evidence of semantic or representational ambiguity that would require repair. The question is clear and the required output is well-defined. The absence of data means no schema alignment or data repair is possible or needed."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience or trajectory in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward single-output calculation task with minor workflow structuring (group comparison and fold change calculation) and a small degree of output specification (rounding, string verification). There is no evidence of ambiguity, data repair, or experience transfer.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2216,
+        "completion_tokens": 558,
+        "total_tokens": 2774
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the log2 fold change value (rounded to 2 decimal places) for ENO1 when comparing tumor samples to normal samples in the proteomics dataset?"
+          ],
+          "reason": "The question requires comparing two groups (tumor vs normal) and calculating a log2 fold change for a specific protein (ENO1), which implies at least a two-step process: (1) subgroup selection and (2) fold change calculation. However, the method is standard and there is no evidence of multiple branching methods or dependency-constrained step graphs beyond this basic workflow.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "log2 fold change value (rounded to 2 decimal places)",
+            "str_verifier"
+          ],
+          "reason": "There is a single numeric output (log2 fold change), but the requirement to round to 2 decimal places and the use of a string verifier indicate some parameterization and output format constraint. However, there is only one artifact type and the specification is not highly strict.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data or schema provided",
+            "No explicit ambiguity or contradiction in question wording"
+          ],
+          "reason": "There is no evidence of semantic or representational ambiguity that would require repair. The question is clear and the required output is well-defined. The absence of data means no schema alignment or data repair is possible or needed.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience or trajectory in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward single-output calculation task with minor workflow structuring (group comparison and fold change calculation) and a small degree of output specification (rounding, string verification). There is no evidence of ambiguity, data repair, or experience transfer.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T12:14:07.501937+00:00"
+  }
+}

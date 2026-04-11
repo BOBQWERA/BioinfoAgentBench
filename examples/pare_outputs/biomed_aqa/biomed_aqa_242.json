@@ -1,0 +1,135 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_242",
+      "question": "There is a data file histogram.tsv, where the \"type\" column contains grouping information. Please draw a histogram between the two groups based on the values in the \"value\" column.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0242/files/histogram.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"histograms_histogram.jpg\", \"path\": \"downloaded_files\\\\index_0242\\\\milestone\\\\histograms_histogram.jpg\"}], \"milestones\": [\"Generate histogram\", \"The result file for saving the image is in jpg format, which is correct.\"], \"steps\": [\"Draw a histogram\", \"Check whether the file format of the saved image result is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Basic plot",
+        "task_abbr": "Histogram",
+        "task": "Basic plot",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 51.11,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_242",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "The question requires drawing a histogram between two groups based on the 'type' and 'value' columns.",
+          "The workflow involves reading a file, grouping data, and plotting."
+        ],
+        "reason": "There is a minor workflow structuring load: the user must extract groupings from the 'type' column and plot the 'value' column accordingly. However, the task is a standard, single-stage plotting task with no explicit branching or multiple valid methods that would affect correctness."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Output artifact is a jpg image file: 'histograms_histogram.jpg'.",
+          "Milestone requires checking that the file format is correct."
+        ],
+        "reason": "There is a minor artifact realization load: the output must be a histogram image in jpg format, and the file format must be verified. However, only one output type is required, and there are no strict parameterization or format constraints beyond the file type."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "The question specifies which columns to use and the grouping variable.",
+          "No evidence of missing fields, ambiguity, or schema mismatch."
+        ],
+        "reason": "There is almost no repair load: the task is clearly specified, and the data columns are named. No semantic or representational repair is required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load."
+      }
+    },
+    "overall_summary": "This is a straightforward plotting task with minor workflow structuring and artifact realization load. The requirements are clear, with no evidence of ambiguity, repair, or transfer context. The main complexity is in extracting groupings and ensuring the output is in the correct image format.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2368,
+        "completion_tokens": 547,
+        "total_tokens": 2915
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "The question requires drawing a histogram between two groups based on the 'type' and 'value' columns.",
+            "The workflow involves reading a file, grouping data, and plotting."
+          ],
+          "reason": "There is a minor workflow structuring load: the user must extract groupings from the 'type' column and plot the 'value' column accordingly. However, the task is a standard, single-stage plotting task with no explicit branching or multiple valid methods that would affect correctness.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Output artifact is a jpg image file: 'histograms_histogram.jpg'.",
+            "Milestone requires checking that the file format is correct."
+          ],
+          "reason": "There is a minor artifact realization load: the output must be a histogram image in jpg format, and the file format must be verified. However, only one output type is required, and there are no strict parameterization or format constraints beyond the file type.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "The question specifies which columns to use and the grouping variable.",
+            "No evidence of missing fields, ambiguity, or schema mismatch."
+          ],
+          "reason": "There is almost no repair load: the task is clearly specified, and the data columns are named. No semantic or representational repair is required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward plotting task with minor workflow structuring and artifact realization load. The requirements are clear, with no evidence of ambiguity, repair, or transfer context. The main complexity is in extracting groupings and ensuring the output is in the correct image format.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:30:56.415740+00:00"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-38-q2",
+      "question": "What is the variance in tree length values among animal single-copy orthologs using PhyKIT's tree_length function?",
+      "data": [],
+      "answer": "0.55",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-38-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.23",
+          "0.89",
+          "1.24"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-38-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "\"variance in tree length values among animal single-copy orthologs\"",
+          "\"using PhyKIT's tree_length function\""
+        ],
+        "reason": "The question requires extracting tree length values for a set of animal single-copy orthologs and then computing their variance, which implies at least a two-step process (obtain values, then compute variance). However, the method (PhyKIT's tree_length) is specified, and there is no evidence of branching or multiple defensible methods. No explicit dependency-constrained step graph is required beyond this standard two-stage process."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "\"variance in tree length values\"",
+          "\"using PhyKIT's tree_length function\"",
+          "\"answer\": \"0.55\""
+        ],
+        "reason": "The output is a single numeric value (variance), with no evidence of heterogeneous artifact types or strict format constraints. There is no explicit parameterization or threshold specification, and the answer is a single value, not a complex artifact. The action load is minor and routine."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "\"using PhyKIT's tree_length function\"",
+          "\"animal single-copy orthologs\""
+        ],
+        "reason": "There is a slight need to clarify what constitutes 'animal single-copy orthologs' and to ensure the correct input set, but the question is otherwise well-specified and does not require major semantic or data repair. No evidence of schema mismatch or ambiguity that would make the task undefined."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone."
+      }
+    },
+    "overall_summary": "This task involves a standard two-step process: extracting tree length values for a defined set of orthologs using a specified function, then computing their variance. There is minimal planning and action load, with only minor need for clarification of the input set. No evidence of transfer or repair complexity.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2208,
+        "completion_tokens": 603,
+        "total_tokens": 2811
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "\"variance in tree length values among animal single-copy orthologs\"",
+            "\"using PhyKIT's tree_length function\""
+          ],
+          "reason": "The question requires extracting tree length values for a set of animal single-copy orthologs and then computing their variance, which implies at least a two-step process (obtain values, then compute variance). However, the method (PhyKIT's tree_length) is specified, and there is no evidence of branching or multiple defensible methods. No explicit dependency-constrained step graph is required beyond this standard two-stage process.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "\"variance in tree length values\"",
+            "\"using PhyKIT's tree_length function\"",
+            "\"answer\": \"0.55\""
+          ],
+          "reason": "The output is a single numeric value (variance), with no evidence of heterogeneous artifact types or strict format constraints. There is no explicit parameterization or threshold specification, and the answer is a single value, not a complex artifact. The action load is minor and routine.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "\"using PhyKIT's tree_length function\"",
+            "\"animal single-copy orthologs\""
+          ],
+          "reason": "There is a slight need to clarify what constitutes 'animal single-copy orthologs' and to ensure the correct input set, but the question is otherwise well-specified and does not require major semantic or data repair. No evidence of schema mismatch or ambiguity that would make the task undefined.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context. The task is standalone.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a standard two-step process: extracting tree length values for a defined set of orthologs using a specified function, then computing their variance. There is minimal planning and action load, with only minor need for clarification of the input set. No evidence of transfer or repair complexity.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:14:38.761204+00:00"
+  }
+}

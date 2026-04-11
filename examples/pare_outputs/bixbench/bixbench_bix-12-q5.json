@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-12-q5",
+      "question": "What is the maximum number of parsimony informative sites in any animal gene alignment?",
+      "data": [],
+      "answer": "29",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-12-q5",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "24",
+          "36",
+          "48"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-12-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the maximum number of parsimony informative sites in any animal gene alignment?",
+          "No explicit workflow or step chain described",
+          "No method specified, but the question is abstract and could be approached in more than one way"
+        ],
+        "reason": "The question is abstract and requires the respondent to consider the concept of 'maximum number of parsimony informative sites' across all possible animal gene alignments, which may induce some planning to define the scope and method. However, there is no explicit evidence of a multi-stage workflow or branching decision points; the planning load is weak but present due to the need to interpret the abstract goal."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Answer is a single integer ('29')",
+          "No explicit format or parameterization constraints",
+          "No mention of output files, tables, or strict verification"
+        ],
+        "reason": "The action load is minimal: the required output is a single integer, with no evidence of multiple artifact types, format constraints, or parameter sensitivity."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No input data provided",
+          "No evidence of semantic ambiguity or data repair required"
+        ],
+        "reason": "There is no evidence of semantic or representational repair needed. The question is abstract but not ambiguous in a way that would require clarification or data/schema repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present"
+        ],
+        "reason": "No evidence of experience assimilation or transfer; this is a standalone question."
+      }
+    },
+    "overall_summary": "This is a single-answer, abstract conceptual question about the maximum number of parsimony informative sites in animal gene alignments. There is minor planning load due to the need to interpret the abstract goal, but no explicit workflow, branching, or repair requirements. Action and reflection loads are minimal, and there is no transfer or evolution context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2193,
+        "completion_tokens": 551,
+        "total_tokens": 2744
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the maximum number of parsimony informative sites in any animal gene alignment?",
+            "No explicit workflow or step chain described",
+            "No method specified, but the question is abstract and could be approached in more than one way"
+          ],
+          "reason": "The question is abstract and requires the respondent to consider the concept of 'maximum number of parsimony informative sites' across all possible animal gene alignments, which may induce some planning to define the scope and method. However, there is no explicit evidence of a multi-stage workflow or branching decision points; the planning load is weak but present due to the need to interpret the abstract goal.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Answer is a single integer ('29')",
+            "No explicit format or parameterization constraints",
+            "No mention of output files, tables, or strict verification"
+          ],
+          "reason": "The action load is minimal: the required output is a single integer, with no evidence of multiple artifact types, format constraints, or parameter sensitivity.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No input data provided",
+            "No evidence of semantic ambiguity or data repair required"
+          ],
+          "reason": "There is no evidence of semantic or representational repair needed. The question is abstract but not ambiguous in a way that would require clarification or data/schema repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present"
+          ],
+          "reason": "No evidence of experience assimilation or transfer; this is a standalone question.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a single-answer, abstract conceptual question about the maximum number of parsimony informative sites in animal gene alignments. There is minor planning load due to the need to interpret the abstract goal, but no explicit workflow, branching, or repair requirements. Action and reflection loads are minimal, and there is no transfer or evolution context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:48:51.903013+00:00"
+  }
+}

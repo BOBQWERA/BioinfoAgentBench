@@ -1,0 +1,148 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_27959731_5",
+      "question": "Using the clinical outcome data, visualize the distribution of response by number of cycles completed across patients. Focus on the following three response groups:\n- Group1: Patients with complete remission or complete remission (with incomplete count recovery).\n- Group2: Patients with partial response or stable disease.\n- Group3: Patients with progressive disease or not evaluable.\n\nCreate a bar plots where the x-axis is the group and y-axis is the median number of cycles of completed with the 95% confidence interval error bars.\n\nReturn the mean of cycle completed for the three groups: `mean_c1`, `mean_c2`, `mean_c3` for the above three groups, respectively.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"import seaborn as sns\\nimport matplotlib.pyplot as plt\\nimport pandas as pd\\n\\ndf_clinical = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\n\\n# Define the response groups\\ncomplete_response = [\\\"CR\\\", \\\"CRi\\\"]\\npartial_response = [\\\"PR\\\", \\\"SD\\\"]\\nprogressive_response = [\\\"PD\\\", \\\"Not evaluable\\\"]\\n\\n# Create a new column to categorize the responses\\ndef categorize_response(response):\\n    if response in complete_response:\\n        return \\\"Complete Response/Remission\\\"\\n    elif response in partial_response:\\n        return \\\"Partial Response/Stable Disease\\\"\\n    elif response in progressive_response:\\n        return \\\"Progressive Disease/Not Evaluable\\\"\\n    else:\\n        return \\\"Other\\\"\\n\\ndf_clinical['Response Group'] = df_clinical['MORPHOLOGIC_RESPONSE'].apply(categorize_response)\\n\\n# Filter the data to include only the relevant response groups\\nfiltered_df = df_clinical[df_clinical['Response Group'] != \\\"Other\\\"]\\ngrouped_df = filtered_df.groupby('Response Group')['CYCLES_COMPLETED'].median().reset_index()\\n\\n# Create the bar plot with 95% confidence interval error bars\\nplt.figure(figsize=(12, 8))\\nsns.barplot(data=filtered_df, x='Response Group', y='CYCLES_COMPLETED', ci=95, palette='Set2')\\n\\n# Set plot title and labels\\nplt.title('Distribution of Response by Number of Cycles Completed')\\nplt.xlabel('Response Group')\\nplt.ylabel('Median Number of Cycles Completed')\\n\\n# Show the plot\\nplt.show()\\n\\nmean_c1 = filtered_df[filtered_df[\\\"Response Group\\\"] == \\\"Complete Response/Remission\\\"][\\\"CYCLES_COMPLETED\\\"].mean()\\nmean_c2 = filtered_df[filtered_df[\\\"Response Group\\\"] == \\\"Partial Response/Stable Disease\\\"][\\\"CYCLES_COMPLETED\\\"].mean()\\nmean_c3 = filtered_df[filtered_df[\\\"Response Group\\\"] == \\\"Progressive Disease/Not Evaluable\\\"][\\\"CYCLES_COMPLETED\\\"].mean()\", \"test_cases\": \"assert round(mean_c1, 2) == 4.63\\n\\nassert round(mean_c2, 2) == 3.10\\n\\nassert round(mean_c3, 2) == 1.53\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "27959731_5",
+        "study_id": "27959731",
+        "question_id": "5",
+        "analysis_types": "['Clinical Feature Engineering', 'Descriptive Statistics']",
+        "study_type": "Molecular",
+        "study_title": "TP53 and Decitabine in Acute Myeloid Leukemia and Myelodysplastic Syndromes",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=mnm_washu_2016",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_27959731_5",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Requires grouping patients into three custom response groups based on clinical outcome data",
+          "Must compute both a visualization (bar plot with CI) and summary statistics (means for each group)",
+          "Mapping of response codes (CR, CRi, PR, SD, PD, Not evaluable) to groups is not directly given in the data, must be inferred from question"
+        ],
+        "reason": "There is a moderate planning load due to the need to map clinical response codes to custom groups, aggregate data accordingly, and produce both a plot and summary statistics. However, the workflow is relatively standard for clinical data analysis and does not require complex branching or multiple fundamentally different methods."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Requires creation of a bar plot with 95% confidence interval error bars",
+          "Requires calculation and return of three specific mean values (mean_c1, mean_c2, mean_c3)",
+          "Explicit output structure: plot with labeled axes, specific groupings, and summary statistics"
+        ],
+        "reason": "There is a moderate action load due to the need to generate both a specific plot (with error bars and groupings) and precise summary statistics. The requirements for output format and calculation are clear but not unusually strict or heterogeneous."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Response group definitions require mapping from clinical codes to custom groupings",
+          "No explicit evidence of data schema mismatch or ambiguity in the files themselves"
+        ],
+        "reason": "There is a minor to weak reflection load due to the need to formalize the mapping from clinical response codes to the three specified groups. However, there is no evidence of data inconsistency, missing fields, or representational ambiguity beyond this mapping."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload"
+        ],
+        "reason": "There is no evidence of experience assimilation or strategy transfer requirements."
+      }
+    },
+    "overall_summary": "This task involves moderate planning and action loads due to the need to map clinical response codes to custom groups, aggregate and visualize data, and compute summary statistics. There is a minor reflection load for formalizing group definitions, but no evidence of data repair or transfer learning requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3108,
+        "completion_tokens": 635,
+        "total_tokens": 3743
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Requires grouping patients into three custom response groups based on clinical outcome data",
+            "Must compute both a visualization (bar plot with CI) and summary statistics (means for each group)",
+            "Mapping of response codes (CR, CRi, PR, SD, PD, Not evaluable) to groups is not directly given in the data, must be inferred from question"
+          ],
+          "reason": "There is a moderate planning load due to the need to map clinical response codes to custom groups, aggregate data accordingly, and produce both a plot and summary statistics. However, the workflow is relatively standard for clinical data analysis and does not require complex branching or multiple fundamentally different methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Requires creation of a bar plot with 95% confidence interval error bars",
+            "Requires calculation and return of three specific mean values (mean_c1, mean_c2, mean_c3)",
+            "Explicit output structure: plot with labeled axes, specific groupings, and summary statistics"
+          ],
+          "reason": "There is a moderate action load due to the need to generate both a specific plot (with error bars and groupings) and precise summary statistics. The requirements for output format and calculation are clear but not unusually strict or heterogeneous.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Response group definitions require mapping from clinical codes to custom groupings",
+            "No explicit evidence of data schema mismatch or ambiguity in the files themselves"
+          ],
+          "reason": "There is a minor to weak reflection load due to the need to formalize the mapping from clinical response codes to the three specified groups. However, there is no evidence of data inconsistency, missing fields, or representational ambiguity beyond this mapping.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload"
+          ],
+          "reason": "There is no evidence of experience assimilation or strategy transfer requirements.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves moderate planning and action loads due to the need to map clinical response codes to custom groups, aggregate and visualize data, and compute summary statistics. There is a minor reflection load for formalizing group definitions, but no evidence of data repair or transfer learning requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:47:09.073384+00:00"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-34-q5",
+      "question": "What is the ratio of median mean patristic distances between fungi and animals?",
+      "data": [],
+      "answer": "1.95",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-34-q5",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "1.23",
+          "2.67",
+          "3.42"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-34-q5",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "What is the ratio of median mean patristic distances between fungi and animals?"
+        ],
+        "reason": "The question requires computing the median of mean patristic distances for two groups (fungi and animals) and then taking their ratio. This implies a two-stage process: (1) compute mean patristic distances for each group, (2) compute the median for each group, and (3) calculate the ratio. However, the workflow is relatively standard and does not require complex branching or multiple defensible methods."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "answer: '1.95'",
+          "What is the ratio of median mean patristic distances between fungi and animals?"
+        ],
+        "reason": "The output is a single numeric value (the ratio), with no explicit format or strict parameterization constraints. There is some minor load in ensuring the correct calculation and possibly rounding, but no evidence of multiple artifact types or strict verification."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What is the ratio of median mean patristic distances between fungi and animals?"
+        ],
+        "reason": "There is a slight potential for ambiguity in the phrasing ('median mean patristic distances'), but it is not sufficient to require major semantic or data repair. No evidence of schema mismatch or representational inconsistency."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a straightforward two-stage calculation (median of means, then ratio) with a single numeric output and minimal ambiguity. There is no evidence of complex planning, strict artifact realization, or semantic/data repair beyond minor interpretation. No transfer or evolution context is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2200,
+        "completion_tokens": 554,
+        "total_tokens": 2754
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "What is the ratio of median mean patristic distances between fungi and animals?"
+          ],
+          "reason": "The question requires computing the median of mean patristic distances for two groups (fungi and animals) and then taking their ratio. This implies a two-stage process: (1) compute mean patristic distances for each group, (2) compute the median for each group, and (3) calculate the ratio. However, the workflow is relatively standard and does not require complex branching or multiple defensible methods.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "answer: '1.95'",
+            "What is the ratio of median mean patristic distances between fungi and animals?"
+          ],
+          "reason": "The output is a single numeric value (the ratio), with no explicit format or strict parameterization constraints. There is some minor load in ensuring the correct calculation and possibly rounding, but no evidence of multiple artifact types or strict verification.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What is the ratio of median mean patristic distances between fungi and animals?"
+          ],
+          "reason": "There is a slight potential for ambiguity in the phrasing ('median mean patristic distances'), but it is not sufficient to require major semantic or data repair. No evidence of schema mismatch or representational inconsistency.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a straightforward two-stage calculation (median of means, then ratio) with a single numeric output and minimal ambiguity. There is no evidence of complex planning, strict artifact realization, or semantic/data repair beyond minor interpretation. No transfer or evolution context is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:10:43.924896+00:00"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-6-q1",
+      "question": "Which condition showed the strongest evidence of pathway enrichment when using the minimum p-value across replicates in over-representation analysis?",
+      "data": [],
+      "answer": "chronic round 2",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-6-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "acute T cells",
+          "chronic round 3",
+          "chronic round 1"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-6-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Which condition showed the strongest evidence of pathway enrichment when using the minimum p-value across replicates in over-representation analysis?"
+        ],
+        "reason": "The question requires identifying the condition with the strongest pathway enrichment, which implies at least two steps: (1) performing over-representation analysis for each condition/replicate, (2) aggregating results using the minimum p-value across replicates. However, the method is mostly specified (minimum p-value), and there is no explicit evidence of major branching or complex workflow structuring beyond this."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Which condition showed the strongest evidence of pathway enrichment when using the minimum p-value across replicates in over-representation analysis?",
+          "answer: 'chronic round 2'",
+          "task_type: 'mcq'"
+        ],
+        "reason": "The output is a single categorical answer (condition), so artifact realization is simple. There is some parameterization load due to the need to use the minimum p-value across replicates, but no explicit format or threshold constraints are stated. The MCQ format further reduces artifact complexity."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Which condition showed the strongest evidence of pathway enrichment when using the minimum p-value across replicates in over-representation analysis?"
+        ],
+        "reason": "There is a minor need to clarify that 'minimum p-value across replicates' is the aggregation method, but the question is otherwise well-posed and does not show evidence of semantic ambiguity or data/representation repair needs."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This MCQ task requires identifying the condition with the strongest pathway enrichment using a specified aggregation method (minimum p-value across replicates). The planning and action loads are minor to weak due to the need for a two-step process and parameterization, but the task is otherwise straightforward with no evidence of major branching, artifact complexity, or repair. No transfer or evolution load is present.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2214,
+        "completion_tokens": 619,
+        "total_tokens": 2833
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Which condition showed the strongest evidence of pathway enrichment when using the minimum p-value across replicates in over-representation analysis?"
+          ],
+          "reason": "The question requires identifying the condition with the strongest pathway enrichment, which implies at least two steps: (1) performing over-representation analysis for each condition/replicate, (2) aggregating results using the minimum p-value across replicates. However, the method is mostly specified (minimum p-value), and there is no explicit evidence of major branching or complex workflow structuring beyond this.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Which condition showed the strongest evidence of pathway enrichment when using the minimum p-value across replicates in over-representation analysis?",
+            "answer: 'chronic round 2'",
+            "task_type: 'mcq'"
+          ],
+          "reason": "The output is a single categorical answer (condition), so artifact realization is simple. There is some parameterization load due to the need to use the minimum p-value across replicates, but no explicit format or threshold constraints are stated. The MCQ format further reduces artifact complexity.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Which condition showed the strongest evidence of pathway enrichment when using the minimum p-value across replicates in over-representation analysis?"
+          ],
+          "reason": "There is a minor need to clarify that 'minimum p-value across replicates' is the aggregation method, but the question is otherwise well-posed and does not show evidence of semantic ambiguity or data/representation repair needs.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This MCQ task requires identifying the condition with the strongest pathway enrichment using a specified aggregation method (minimum p-value across replicates). The planning and action loads are minor to weak due to the need for a two-step process and parameterization, but the task is otherwise straightforward with no evidence of major branching, artifact complexity, or repair. No transfer or evolution load is present.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:33:10.674540+00:00"
+  }
+}

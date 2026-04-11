@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-25-q1",
+      "question": "What is the median treeness/RCV value for fungal genes?",
+      "data": [],
+      "answer": "0.26",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-25-q1",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.18",
+          "0.34",
+          "0.42"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-25-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "What is the median treeness/RCV value for fungal genes?"
+        ],
+        "reason": "The question asks for a single summary statistic (median) of a specific value (treeness/RCV) for a defined group (fungal genes). There is a trace of workflow structuring in that the user must conceptually filter for fungal genes and then compute a median, but this is a standard, direct operation with no evidence of branching or dependency-constrained step graph. No evidence of multiple reasonable methods or branching decisions."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "What is the median treeness/RCV value for fungal genes?",
+          "\"answer\": \"0.26\"",
+          "\"distractors\": [\"0.18\", \"0.34\", \"0.42\"]"
+        ],
+        "reason": "The output is a single numeric value, with no evidence of heterogeneous artifact types or strict format constraints. No explicit parameterization or thresholding is required beyond the standard definition of median. The MCQ format and presence of distractors do not increase artifact or parameterization load."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "What is the median treeness/RCV value for fungal genes?"
+        ],
+        "reason": "There is a trace of possible ambiguity in the term 'treeness/RCV', but no evidence that the semantics are undefined or that data/representation repair is required. The group (fungal genes) is clearly specified. No evidence of missing fields, schema mismatch, or contradictory constraints."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present in the payload."
+        ],
+        "reason": "There is no explicit transfer or reuse of prior experience, no trajectory, and no evidence of changed constraints or schema."
+      }
+    },
+    "overall_summary": "This is a straightforward MCQ asking for a single summary statistic (median) for a defined group, with minimal planning, action, or reflection load and no evidence of transfer or evolution context. All dimensions are at trace or absent levels due to lack of explicit complexity or ambiguity in the payload.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2198,
+        "completion_tokens": 589,
+        "total_tokens": 2787
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "What is the median treeness/RCV value for fungal genes?"
+          ],
+          "reason": "The question asks for a single summary statistic (median) of a specific value (treeness/RCV) for a defined group (fungal genes). There is a trace of workflow structuring in that the user must conceptually filter for fungal genes and then compute a median, but this is a standard, direct operation with no evidence of branching or dependency-constrained step graph. No evidence of multiple reasonable methods or branching decisions.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "What is the median treeness/RCV value for fungal genes?",
+            "\"answer\": \"0.26\"",
+            "\"distractors\": [\"0.18\", \"0.34\", \"0.42\"]"
+          ],
+          "reason": "The output is a single numeric value, with no evidence of heterogeneous artifact types or strict format constraints. No explicit parameterization or thresholding is required beyond the standard definition of median. The MCQ format and presence of distractors do not increase artifact or parameterization load.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "What is the median treeness/RCV value for fungal genes?"
+          ],
+          "reason": "There is a trace of possible ambiguity in the term 'treeness/RCV', but no evidence that the semantics are undefined or that data/representation repair is required. The group (fungal genes) is clearly specified. No evidence of missing fields, schema mismatch, or contradictory constraints.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present in the payload."
+          ],
+          "reason": "There is no explicit transfer or reuse of prior experience, no trajectory, and no evidence of changed constraints or schema.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward MCQ asking for a single summary statistic (median) for a defined group, with minimal planning, action, or reflection load and no evidence of transfer or evolution context. All dimensions are at trace or absent levels due to lack of explicit complexity or ambiguity in the payload.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-07T11:59:39.550567+00:00"
+  }
+}

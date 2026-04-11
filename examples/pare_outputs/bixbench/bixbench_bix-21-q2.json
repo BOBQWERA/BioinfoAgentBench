@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-21-q2",
+      "question": "What is the median saturation value for fungal genes?",
+      "data": [],
+      "answer": "0.62",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-21-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "0.45",
+          "0.38",
+          "0.75"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-21-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "What is the median saturation value for fungal genes?"
+        ],
+        "reason": "The question asks for a single summary statistic (median) for a specified subset (fungal genes). There is a trace of workflow structuring in that the subset must be identified before calculating the median, but this is a standard, direct operation with no evidence of branching or complex dependency chains."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "answer: '0.62'",
+          "task_type: 'mcq'",
+          "distractors: ['0.45', '0.38', '0.75']"
+        ],
+        "reason": "The output is a single value selected from multiple choice options, with no evidence of heterogeneous artifacts or strict format constraints. There is minimal parameterization or specification tightness beyond selecting the correct value."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No data or schema provided",
+          "Question is unambiguous and well-posed"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data/schema repair needs. The question is clear and does not require clarification or data alignment."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward multiple-choice question requiring the extraction of a single summary statistic for a specified subset. There is minimal planning or action load, and no evidence of semantic or representational repair or experience transfer.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2194,
+        "completion_tokens": 477,
+        "total_tokens": 2671
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "What is the median saturation value for fungal genes?"
+          ],
+          "reason": "The question asks for a single summary statistic (median) for a specified subset (fungal genes). There is a trace of workflow structuring in that the subset must be identified before calculating the median, but this is a standard, direct operation with no evidence of branching or complex dependency chains.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "answer: '0.62'",
+            "task_type: 'mcq'",
+            "distractors: ['0.45', '0.38', '0.75']"
+          ],
+          "reason": "The output is a single value selected from multiple choice options, with no evidence of heterogeneous artifacts or strict format constraints. There is minimal parameterization or specification tightness beyond selecting the correct value.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No data or schema provided",
+            "Question is unambiguous and well-posed"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data/schema repair needs. The question is clear and does not require clarification or data alignment.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward multiple-choice question requiring the extraction of a single summary statistic for a specified subset. There is minimal planning or action load, and no evidence of semantic or representational repair or experience transfer.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T11:57:19.763162+00:00"
+  }
+}

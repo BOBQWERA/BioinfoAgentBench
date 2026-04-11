@@ -1,0 +1,128 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-42-q1",
+      "question": "How many patients have no missing data for vital status, gene expression data, and methylation data?",
+      "data": [],
+      "answer": "267",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-42-q1",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "447",
+          "328",
+          "39"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-42-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "How many patients have no missing data for vital status, gene expression data, and methylation data?"
+        ],
+        "reason": "The question requires identifying patients with complete data across three fields, which implies a need to check all three data types for missingness. However, there is no explicit evidence of a complex dependency graph or multiple branching methods; the workflow is a straightforward intersection/filter operation."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "How many patients have no missing data for vital status, gene expression data, and methylation data?",
+          "\"answer\": \"267\"",
+          "\"eval_mode\": \"str_verifier\""
+        ],
+        "reason": "The output is a single integer (count), and the evaluation is via string verifier, indicating a strict output format. There is some parameterization in defining 'no missing data' across three fields, but no evidence of multiple output types or complex format constraints."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "How many patients have no missing data for vital status, gene expression data, and methylation data?"
+        ],
+        "reason": "There is a minor need to clarify what constitutes 'no missing data' (e.g., how missingness is encoded), but there is no evidence of ambiguity, contradiction, or schema inconsistency in the payload."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present in the payload."
+        ],
+        "reason": "There is no evidence of prior experience, trajectory, or transfer context."
+      }
+    },
+    "overall_summary": "This task involves filtering patients with complete data across three fields and reporting a single count. The planning and action loads are minor to moderate due to the need to check multiple fields for missingness and strict output format, but there is no evidence of complex branching, repair, or transfer requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2195,
+        "completion_tokens": 550,
+        "total_tokens": 2745
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "How many patients have no missing data for vital status, gene expression data, and methylation data?"
+          ],
+          "reason": "The question requires identifying patients with complete data across three fields, which implies a need to check all three data types for missingness. However, there is no explicit evidence of a complex dependency graph or multiple branching methods; the workflow is a straightforward intersection/filter operation.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "How many patients have no missing data for vital status, gene expression data, and methylation data?",
+            "\"answer\": \"267\"",
+            "\"eval_mode\": \"str_verifier\""
+          ],
+          "reason": "The output is a single integer (count), and the evaluation is via string verifier, indicating a strict output format. There is some parameterization in defining 'no missing data' across three fields, but no evidence of multiple output types or complex format constraints.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "How many patients have no missing data for vital status, gene expression data, and methylation data?"
+          ],
+          "reason": "There is a minor need to clarify what constitutes 'no missing data' (e.g., how missingness is encoded), but there is no evidence of ambiguity, contradiction, or schema inconsistency in the payload.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present in the payload."
+          ],
+          "reason": "There is no evidence of prior experience, trajectory, or transfer context.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves filtering patients with complete data across three fields and reporting a single count. The planning and action loads are minor to moderate due to the need to check multiple fields for missingness and strict output format, but there is no evidence of complex branching, repair, or transfer requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T12:19:01.605328+00:00"
+  }
+}

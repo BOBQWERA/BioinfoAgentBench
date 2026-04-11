@@ -1,0 +1,123 @@
+{
+  "question": {
+    "benchmark": "biochatter",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biochatter_api_calling_scanpy_tl_leiden",
+      "question": "Perform Leiden clustering on the data with resolution 0.5.\n\n[template_input]\n{\"prompt\": {\"explicit_variable_names\": \"Perform Leiden clustering on the data with resolution 0.5.\"}}",
+      "data": [],
+      "answer": "{\"parts_of_query\": [\"sc.tl.leiden\\\\(\", \"resolution=0.5\", \"\\\\)\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biochatter",
+        "module": "api_calling",
+        "case_name": "scanpy:tl:leiden",
+        "yaml_file": "benchmark_api_calling_data.yaml",
+        "task_type": "api calling"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biochatter_api_calling_scanpy_tl_leiden",
+    "benchmark": "biochatter",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Perform Leiden clustering on the data with resolution 0.5.",
+          "api_calling",
+          "scanpy:tl:leiden"
+        ],
+        "reason": "The task is a direct invocation of a single Scanpy API function with a specified parameter. There is no evidence of a multi-stage workflow or branching decisions; the method and parameter are fully specified. The only trace of planning is the need to map the instruction to the correct API call."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "Perform Leiden clustering on the data with resolution 0.5.",
+          "has_file: true"
+        ],
+        "reason": "The action is to realize a single API call with a specific parameter. There is a minor artifact realization load in ensuring the correct function and parameterization, but no evidence of multiple output types, strict format constraints, or complex verification. The explicit parameter (resolution=0.5) adds a weak parameterization load."
+      },
+      "R": {
+        "score": 0,
+        "evidence": [
+          "No evidence of ambiguity, missing fields, or representational inconsistency."
+        ],
+        "reason": "The instruction is clear and unambiguous, with no need for semantic or data repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or transfer context present."
+        ],
+        "reason": "There is no evidence of prior experience or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This is a straightforward API invocation task with a single explicit parameter. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2212,
+        "completion_tokens": 500,
+        "total_tokens": 2712
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Perform Leiden clustering on the data with resolution 0.5.",
+            "api_calling",
+            "scanpy:tl:leiden"
+          ],
+          "reason": "The task is a direct invocation of a single Scanpy API function with a specified parameter. There is no evidence of a multi-stage workflow or branching decisions; the method and parameter are fully specified. The only trace of planning is the need to map the instruction to the correct API call.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "Perform Leiden clustering on the data with resolution 0.5.",
+            "has_file: true"
+          ],
+          "reason": "The action is to realize a single API call with a specific parameter. There is a minor artifact realization load in ensuring the correct function and parameterization, but no evidence of multiple output types, strict format constraints, or complex verification. The explicit parameter (resolution=0.5) adds a weak parameterization load.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 1
+          }
+        },
+        "R": {
+          "score": 0,
+          "evidence": [
+            "No evidence of ambiguity, missing fields, or representational inconsistency."
+          ],
+          "reason": "The instruction is clear and unambiguous, with no need for semantic or data repair.",
+          "subdimension_breakdown": {
+            "R1": 0,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or transfer context present."
+          ],
+          "reason": "There is no evidence of prior experience or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a straightforward API invocation task with a single explicit parameter. There is minimal planning or action load, and no evidence of semantic/data repair or experience transfer requirements.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T10:38:05.581046+00:00"
+  }
+}

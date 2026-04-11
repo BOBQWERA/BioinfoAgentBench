@@ -1,0 +1,163 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_e1_upgrade_top5_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_116",
+      "question": "[Abstracted Experience Guidance]\n- Principle 1: Split before any learned preprocessing to protect the test boundary, because leakage can falsely inflate classification quality.\n- Principle 2: Treat class balance and metric choice together; evaluate with imbalance-aware metrics when class frequencies are skewed.\n- Decision rationale: Generalization quality is trustworthy only when feature processing is fitted on training data and transferred unchanged to test data.\n- Switch condition: If class imbalance is substantial, prefer class-weighting or threshold-aware tuning; otherwise default optimization is usually sufficient.\n- Caution: A frequent failure mode is fitting scalers/encoders on full data prior to split.\n\n[Target Task]\nI have a binary classification dataset {{diabetes.csv}}, where the \"Target\" column corresponds to the classification labels. Split the dataset into training and testing sets, and use the training set to build a classifier that achieves better prediction performance on the testing set.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0116/files/diabetes.csv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"train.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\train.csv\"}, {\"name\": \"test.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\test.csv\"}, {\"name\": \"train_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\train_feature_selected.csv\"}, {\"name\": \"test_feature_selected.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\test_feature_selected.csv\"}, {\"name\": \"decisiontree_predictions.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\decisiontree_predictions.csv\"}, {\"name\": \"gaussianNB_predictions.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\gaussianNB_predictions.csv\"}, {\"name\": \"logistic_predictions.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\logistic_predictions.csv\"}, {\"name\": \"randomforest_predictions.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\randomforest_predictions.csv\"}, {\"name\": \"svm_predictions.csv\", \"path\": \"downloaded_files\\\\index_0116\\\\milestone\\\\svm_predictions.csv\"}], \"milestones\": [\"Generate the training set train.csv and the test set test.csv files.\", \"Generate the result file feature_selected.csv after feature selection.\", \"Generate test result files for several classifiers, such as randomforest_predictions.csv, svm_predictions.csv, and so on.\", \"Each classifier's classification metrics on the test set, such as accuracy, recall, etc. svm_acc: 0.75, logistic_acc: 0.74, gaussian_acc: 0.73, decision_acc: 0.72, randomforest_acc: 0.72 (results when feature selection is set to 5).\", \"svm_acc: 0.75\"], \"steps\": [\"Split the dataset to generate train.csv and test.csv files.\", \"Feature selection, generate the file after feature selection.\", \"Select several classifiers for training, test them on the test set, and generate a results file for the test set.\", \"Evaluate the classification metrics of the test result file\", \"Select the classifier with the best classification performance.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "Classfication",
+        "task": "Classification",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.02,
+        "milestone_count": 5,
+        "step_count": 5,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E1",
+          "selection_basis": "['targets_not_overlap_r1_r2_e2_sets', 'targets_are_tsv_or_csv_only', 'source_target_same_family']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 115,
+              "workflow_memory_Index": 243,
+              "task_abbr": "Classfication",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Split the dataset into training and testing sets.\n    - **Tool**: split_data_tool\n    - **Input**: \"diabetes.csv\"\n    - **Output**: train_csv_file, test_csv_file\n    - **Description**: This tool will split the original dataset into a training set and a testing set, maintaining the \"Target\" column as the label.\n\n2. **Goal**: Perform feature selection based on correlation with the label column.\n    - **Tool**: featureselect\n    - **Input**: train_csv_file, test_csv_file, \"Target\", n (number of features to select)\n    - **Output**: train_result_file, test_result_file\n    - **Description**: This tool will select the top n features correlated with the \"Target\" column from the training set and filter the test set accordingly.\n\n3. **Goal**: Build classifiers using the training set and predict on the test set.\n    - **Tool**: logistic\n    - **Input**: train_result_file, test_result_file, \"Target\"\n    - **Output**: logistic_predictions_file\n    - **Description**: This tool will train a Logistic Regression classifier on the training set and predict the labels for the test set.\n\n4. **Goal**: B"
+            },
+            "original_question": "I have a binary classification dataset {{diabetes.csv}}, where the \"Target\" column corresponds to the classification labels. Split the dataset into training and testing sets, and use the training set to build a classifier that achieves better prediction performance on the testing set."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_116",
+    "benchmark": "biomed_aqa_e1_upgrade_top5_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Milestones and steps: split dataset, feature selection, train/test multiple classifiers, evaluate metrics, select best classifier",
+          "Multiple intermediate/final artifact types: train.csv, test.csv, feature_selected.csv, multiple *_predictions.csv",
+          "Abstracted experience guidance includes principles about split-before-preprocessing and metric/class balance decisions"
+        ],
+        "reason": "The task requires structuring a multi-stage workflow (split, feature selection, multiple classifiers, evaluation, selection), and the experience guidance introduces some method choice (e.g., metric selection if class imbalance is present), but the main pipeline is standard and the branching is not the dominant difficulty driver."
+      },
+      "A": {
+        "score": 4,
+        "evidence": [
+          "Milestone files: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, multiple *_predictions.csv",
+          "Explicit output structure: separate files for each classifier's predictions",
+          "Metrics required: accuracy, recall, etc., for each classifier",
+          "Explicit numeric results: e.g., svm_acc: 0.75, logistic_acc: 0.74, etc.",
+          "Milestones specify both intermediate and final outputs with format constraints"
+        ],
+        "reason": "There is a high artifact realization load due to the requirement for multiple, heterogeneous output files (splits, feature-selected sets, predictions for each classifier) and explicit metric reporting. The outputs are tightly specified in both structure and content, making A1 and A2 both high."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Experience guidance warns about leakage and class imbalance, but the dataset and schema are specified (diabetes.csv, 'Target' column)",
+          "No explicit schema mismatch or ambiguity in the payload",
+          "No contradictory or missing fields"
+        ],
+        "reason": "There is minor semantic repair load due to the need to interpret and apply the experience guidance (e.g., avoid leakage, handle class imbalance), but the data and schema are otherwise well-defined and do not require repair."
+      },
+      "E": {
+        "score": 4,
+        "evidence": [
+          "Abstracted Experience Guidance block with principles, rationale, switch condition, and caution",
+          "Agent must assimilate general principles (e.g., split before preprocessing, metric/class balance coupling) and apply them to the new task",
+          "Switch condition requires mapping experience to current data (class imbalance handling)"
+        ],
+        "reason": "The presence of explicit, abstracted experience guidance with principles and rationale requires the agent to transfer and adapt strategy, not just copy steps. Both E1 and E2 are high because the agent must generalize and map experience to the current task context."
+      }
+    },
+    "overall_summary": "This task involves a multi-stage classification workflow with explicit experience guidance requiring transfer and adaptation of principles. The main difficulty drivers are the high artifact realization/specification load (A) and the need to assimilate and transfer abstracted experience (E). Planning is moderately complex due to the multi-step workflow and some method branching, while repair is minor as the data and schema are well-defined.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3410,
+        "completion_tokens": 795,
+        "total_tokens": 4205
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Milestones and steps: split dataset, feature selection, train/test multiple classifiers, evaluate metrics, select best classifier",
+            "Multiple intermediate/final artifact types: train.csv, test.csv, feature_selected.csv, multiple *_predictions.csv",
+            "Abstracted experience guidance includes principles about split-before-preprocessing and metric/class balance decisions"
+          ],
+          "reason": "The task requires structuring a multi-stage workflow (split, feature selection, multiple classifiers, evaluation, selection), and the experience guidance introduces some method choice (e.g., metric selection if class imbalance is present), but the main pipeline is standard and the branching is not the dominant difficulty driver.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 4,
+          "evidence": [
+            "Milestone files: train.csv, test.csv, train_feature_selected.csv, test_feature_selected.csv, multiple *_predictions.csv",
+            "Explicit output structure: separate files for each classifier's predictions",
+            "Metrics required: accuracy, recall, etc., for each classifier",
+            "Explicit numeric results: e.g., svm_acc: 0.75, logistic_acc: 0.74, etc.",
+            "Milestones specify both intermediate and final outputs with format constraints"
+          ],
+          "reason": "There is a high artifact realization load due to the requirement for multiple, heterogeneous output files (splits, feature-selected sets, predictions for each classifier) and explicit metric reporting. The outputs are tightly specified in both structure and content, making A1 and A2 both high.",
+          "subdimension_breakdown": {
+            "A1": 4,
+            "A2": 4
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Experience guidance warns about leakage and class imbalance, but the dataset and schema are specified (diabetes.csv, 'Target' column)",
+            "No explicit schema mismatch or ambiguity in the payload",
+            "No contradictory or missing fields"
+          ],
+          "reason": "There is minor semantic repair load due to the need to interpret and apply the experience guidance (e.g., avoid leakage, handle class imbalance), but the data and schema are otherwise well-defined and do not require repair.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 4,
+          "evidence": [
+            "Abstracted Experience Guidance block with principles, rationale, switch condition, and caution",
+            "Agent must assimilate general principles (e.g., split before preprocessing, metric/class balance coupling) and apply them to the new task",
+            "Switch condition requires mapping experience to current data (class imbalance handling)"
+          ],
+          "reason": "The presence of explicit, abstracted experience guidance with principles and rationale requires the agent to transfer and adapt strategy, not just copy steps. Both E1 and E2 are high because the agent must generalize and map experience to the current task context.",
+          "subdimension_breakdown": {
+            "E1": 4,
+            "E2": 4
+          }
+        }
+      },
+      "overall_summary": "This task involves a multi-stage classification workflow with explicit experience guidance requiring transfer and adaptation of principles. The main difficulty drivers are the high artifact realization/specification load (A) and the need to assimilate and transfer abstracted experience (E). Planning is moderately complex due to the multi-step workflow and some method branching, while repair is minor as the data and schema are well-defined.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-08T19:59:56.935462+00:00"
+  }
+}

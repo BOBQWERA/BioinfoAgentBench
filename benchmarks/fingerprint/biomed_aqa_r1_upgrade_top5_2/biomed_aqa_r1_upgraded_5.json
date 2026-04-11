@@ -1,0 +1,165 @@
+{
+  "benchmark": "biomed_aqa",
+  "edit_target": "R1",
+  "file_scope_constraint": "target questions use .tsv/.csv input files",
+  "source_file": "benchmarks_pare/standardized/biomed_aqa.json",
+  "selection_basis": "new round of R1 upgrades (non-overlap with existing R/E upgrade sets)",
+  "selection_constraints": [
+    "non_overlap_with_existing_r1_r2_e1_e2_upgrade_sets",
+    "r1_semantic_anchor_missing_or_ambiguous_but_repairable",
+    "keep_workflow_and_artifact_burden_stable"
+  ],
+  "count": 5,
+  "records": [
+    {
+      "id": "biomed_aqa_115",
+      "original_question": "I have a binary classification dataset {{diabetes.csv}}, where the \"Target\" column contains the corresponding classification labels. First, the dataset needs to be divided into a training set and a test set, and feature selection should be performed to select several features that are highly correlated with the label column. Then, based on the training set, five classifiers should be constructed, and the accuracy of the classifiers should be evaluated on the test set. Finally, the classifier with the best classification performance should be selected.",
+      "rewritten_question": "I have a binary classification dataset {{diabetes.csv}} with Target as label. Split into train/test, perform feature selection, train five classifiers, and pick the best one. In this task, \"best classification performance\" is intentionally under-specified: it may refer to highest accuracy, or to the best balance between sensitivity and specificity under class imbalance. Formalize one criterion before model comparison and keep it consistent.",
+      "r1_mechanism": {
+        "missing_semantic_anchor": "best-model criterion semantics (accuracy vs balance-sensitive criterion)",
+        "intent": "Increase R1 by introducing a local, repairable semantic under-specification before computation."
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0115/files/diabetes.csv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Classification",
+        "task_abbr": "Classfication",
+        "task": "Classification",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.01,
+        "milestone_count": 5,
+        "step_count": 5
+      }
+    },
+    {
+      "id": "biomed_aqa_145",
+      "original_question": "I have a clustering dataset {{breast.csv}}, please use clustering algorithms to divide them into n classes and select a better algorithm through the silhouette coefficient.",
+      "rewritten_question": "I have a clustering dataset {{breast.csv}}. Use clustering algorithms to divide samples into n classes and choose a better algorithm via silhouette coefficient. The semantic meaning of n is intentionally under-specified: it can mean a pre-fixed domain class count or the data-driven cluster count selected by optimization. Choose one interpretation of n explicitly and evaluate algorithms under that definition.",
+      "r1_mechanism": {
+        "missing_semantic_anchor": "meaning of n classes (predefined class count vs data-driven cluster count)",
+        "intent": "Increase R1 by introducing a local, repairable semantic under-specification before computation."
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0145/files/breast.csv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "M",
+        "task_subclass": "Clustering",
+        "task_abbr": "Clustering",
+        "task": "Clustering",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 31.31,
+        "milestone_count": 3,
+        "step_count": 3
+      }
+    },
+    {
+      "id": "biomed_aqa_177",
+      "original_question": "There is an existing dataset tbl.tsv, where the \"Gender\" column represents gender, with Female indicating girls and Male indicating boys. The \"Admit\" column represents admission status, with Admitted indicating acceptance and Rejected indicating rejection. The \"Freq\" column contains the corresponding counts. Please calculate the admission and rejection ratios for boys and the admission and rejection ratios for girls.",
+      "rewritten_question": "For dataset tbl.tsv (Gender, Admit, Freq), calculate admission and rejection ratios for boys and girls. The ratio denominator is intentionally ambiguous: ratios may be computed within each gender (conditional on gender) or within each admission status (conditional on outcome). Formalize one denominator convention before computing all ratios.",
+      "r1_mechanism": {
+        "missing_semantic_anchor": "ratio denominator semantics in contingency analysis",
+        "intent": "Increase R1 by introducing a local, repairable semantic under-specification before computation."
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0177/files/tbl.tsv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Descriptive statistics",
+        "task_abbr": "交叉表分析",
+        "task": "Descriptive statistics",
+        "question_type": "clear",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.4,
+        "milestone_count": 1,
+        "step_count": 1
+      }
+    },
+    {
+      "id": "biomed_aqa_186",
+      "original_question": "There is an existing gene expression matrix file heatmap_matrix.tsv, with the first column \"Gene\" as the gene names. Please perform a Pearson correlation analysis on these genes.",
+      "rewritten_question": "Given heatmap_matrix.tsv where the first column Gene stores gene names, perform Pearson correlation analysis on these genes. The analysis target is intentionally under-specified: correlation can be defined between genes across samples, or between samples across genes. Choose one target object explicitly and keep matrix orientation consistent with that choice.",
+      "r1_mechanism": {
+        "missing_semantic_anchor": "correlation target orientation (gene-gene vs sample-sample)",
+        "intent": "Increase R1 by introducing a local, repairable semantic under-specification before computation."
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0186/files/heatmap_matrix.tsv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Descriptive statistics",
+        "task_abbr": "pearson相关性分析",
+        "task": "Descriptive statistics",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.49,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    },
+    {
+      "id": "biomed_aqa_189",
+      "original_question": "There is an existing gene expression matrix file heatmap_matrix.tsv, please perform Spearman correlation analysis on these genes.",
+      "rewritten_question": "Given heatmap_matrix.tsv, perform Spearman correlation analysis on these genes. The phrase \"on these genes\" is intentionally under-specified in ranking semantics: one interpretation ranks values within each gene across samples, while another ranks values within each sample across genes before correlation. Select one ranking axis formalization and apply it consistently.",
+      "r1_mechanism": {
+        "missing_semantic_anchor": "ranking-axis semantics for Spearman computation",
+        "intent": "Increase R1 by introducing a local, repairable semantic under-specification before computation."
+      },
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0189/files/heatmap_matrix.tsv"
+        }
+      ],
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Descriptive statistics",
+        "task_abbr": "spearman相关性分析",
+        "task": "Descriptive statistics",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.5200000000001,
+        "milestone_count": 2,
+        "step_count": 2
+      }
+    }
+  ]
+}

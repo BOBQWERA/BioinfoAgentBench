@@ -1,0 +1,130 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-13-q1",
+      "question": "What percentage of the genes significantly differentially expressed (logfold cutoff either > 1.5 or < -1.5 and FDR<0.05) in strain JBX97 are also significantly differentially expressed in strain JBX99, and not in any other strain (all relative to JBX1)?",
+      "data": [],
+      "answer": "10.6%",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-13-q1",
+        "split": "train",
+        "eval_mode": "str_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "29.8%",
+          "0.9%",
+          "31.8%"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-13-q1",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "What percentage of the genes significantly differentially expressed (logfold cutoff either > 1.5 or < -1.5 and FDR<0.05) in strain JBX97 are also significantly differentially expressed in strain JBX99, and not in any other strain (all relative to JBX1)?"
+        ],
+        "reason": "The question requires identifying genes meeting specific DE criteria in JBX97, then determining overlap with JBX99, and ensuring exclusivity (not in any other strain), all relative to JBX1. This induces a multi-stage workflow: (1) DE gene identification per strain, (2) intersection and exclusivity filtering, (3) percentage calculation. However, the workflow is relatively standard for DE overlap analysis, and there is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness. Thus, P1 is moderate due to dependency-constrained steps, but P2 remains low."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "logfold cutoff either > 1.5 or < -1.5 and FDR<0.05",
+          "What percentage ...",
+          "eval_mode: str_verifier"
+        ],
+        "reason": "The action load is weak to moderate. There is a single numeric output (percentage), and the only explicit format constraint is that the answer must be a string (as per str_verifier). There are explicit thresholds for logfold and FDR, but no evidence of multiple output types, complex artifact structure, or strict schema. Parameterization is present but not highly complex."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No data provided",
+          "No evidence of ambiguous or contradictory semantics"
+        ],
+        "reason": "There is little evidence of semantic or representational repair required. The question is clearly worded, and the criteria are explicit. No schema mismatch or ambiguity is present. The absence of data means no representational repair is possible or required."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no evidence of transfer or evolution load, as no prior experience or trajectory is provided."
+      }
+    },
+    "overall_summary": "This question requires a moderate level of planning due to the need to structure a multi-step workflow for DE gene overlap and exclusivity analysis, but does not show evidence of major method branching or ambiguity. Action load is weak to moderate, with explicit thresholds but only a single output type and minimal format constraints. Reflection and evolution loads are minimal or absent due to clear semantics and lack of transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2248,
+        "completion_tokens": 709,
+        "total_tokens": 2957
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "What percentage of the genes significantly differentially expressed (logfold cutoff either > 1.5 or < -1.5 and FDR<0.05) in strain JBX97 are also significantly differentially expressed in strain JBX99, and not in any other strain (all relative to JBX1)?"
+          ],
+          "reason": "The question requires identifying genes meeting specific DE criteria in JBX97, then determining overlap with JBX99, and ensuring exclusivity (not in any other strain), all relative to JBX1. This induces a multi-stage workflow: (1) DE gene identification per strain, (2) intersection and exclusivity filtering, (3) percentage calculation. However, the workflow is relatively standard for DE overlap analysis, and there is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness. Thus, P1 is moderate due to dependency-constrained steps, but P2 remains low.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "logfold cutoff either > 1.5 or < -1.5 and FDR<0.05",
+            "What percentage ...",
+            "eval_mode: str_verifier"
+          ],
+          "reason": "The action load is weak to moderate. There is a single numeric output (percentage), and the only explicit format constraint is that the answer must be a string (as per str_verifier). There are explicit thresholds for logfold and FDR, but no evidence of multiple output types, complex artifact structure, or strict schema. Parameterization is present but not highly complex.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No data provided",
+            "No evidence of ambiguous or contradictory semantics"
+          ],
+          "reason": "There is little evidence of semantic or representational repair required. The question is clearly worded, and the criteria are explicit. No schema mismatch or ambiguity is present. The absence of data means no representational repair is possible or required.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no evidence of transfer or evolution load, as no prior experience or trajectory is provided.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This question requires a moderate level of planning due to the need to structure a multi-step workflow for DE gene overlap and exclusivity analysis, but does not show evidence of major method branching or ambiguity. Action load is weak to moderate, with explicit thresholds but only a single output type and minimal format constraints. Reflection and evolution loads are minimal or absent due to clear semantics and lack of transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:49:24.135702+00:00"
+  }
+}

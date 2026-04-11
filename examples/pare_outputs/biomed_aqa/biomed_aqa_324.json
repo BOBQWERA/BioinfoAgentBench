@@ -1,0 +1,145 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_324",
+      "question": "There are three existing data files: heatmap_matrix1.tsv is a data matrix; heatmap_row.tsv is the annotation information file for the first row of heatmap_matrix1.tsv, and heatmap_col.tsv is the annotation information file for the first column of heatmap_matrix1.tsv. Please draw a heatmap based on this information and add the corresponding annotation bars to the rows and columns.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0324/files/heatmap_matrix1.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0324/files/heatmap_row.tsv"
+        },
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0324/files/heatmap_col.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"heatmap1.jpg\", \"path\": \"downloaded_files\\\\index_0324\\\\milestone\\\\heatmap1.jpg\"}], \"milestones\": [\"Generate heatmap\", \"The content of the heatmap is correct.\"], \"steps\": [\"Draw a heatmap\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "V",
+        "task_subclass": "Other",
+        "task_abbr": "heatmap",
+        "task": "Other",
+        "question_type": "open",
+        "dataset": "Rep2",
+        "split": "train",
+        "order": 51.93,
+        "milestone_count": 2,
+        "step_count": 1
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_324",
+    "benchmark": "biomed_aqa",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "Three input files: heatmap_matrix1.tsv, heatmap_row.tsv, heatmap_col.tsv",
+          "Instruction: 'draw a heatmap ... and add the corresponding annotation bars to the rows and columns.'"
+        ],
+        "reason": "There is a minor workflow structuring load: the user must combine a data matrix with two annotation files to produce a heatmap with annotated rows and columns. However, the task is direct and does not require decomposition into a complex dependency graph, nor is there evidence of multiple materially different methods or branching decisions."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Output: 'heatmap1.jpg'",
+          "Instruction: 'draw a heatmap ... and add the corresponding annotation bars to the rows and columns.'",
+          "Milestones: 'Generate heatmap', 'The content of the heatmap is correct.'"
+        ],
+        "reason": "There is moderate artifact realization load: the output is a figure (heatmap1.jpg) that must visually integrate the data matrix and two annotation files as annotation bars. The format is specified (image file), and the integration of annotations adds some complexity, but there are no explicit parameterization or strict format constraints beyond this."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No explicit mention of data schema mismatch, ambiguity, or need for repair.",
+          "Input files are described as matrix and annotation files."
+        ],
+        "reason": "There is only trace evidence for reflection load: the files are described as matrix and annotation files, but there is no indication of ambiguity, missing fields, or representational inconsistency that would require repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task requires integrating a data matrix with two annotation files to produce a heatmap with annotated rows and columns. The planning load is minor, as the workflow is straightforward and does not require complex decomposition or branching. The main complexity lies in the artifact realization, as the output must visually and correctly integrate the data and annotations into a single image file. There is little evidence of semantic or representational repair, and no transfer or evolution load.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2457,
+        "completion_tokens": 648,
+        "total_tokens": 3105
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "Three input files: heatmap_matrix1.tsv, heatmap_row.tsv, heatmap_col.tsv",
+            "Instruction: 'draw a heatmap ... and add the corresponding annotation bars to the rows and columns.'"
+          ],
+          "reason": "There is a minor workflow structuring load: the user must combine a data matrix with two annotation files to produce a heatmap with annotated rows and columns. However, the task is direct and does not require decomposition into a complex dependency graph, nor is there evidence of multiple materially different methods or branching decisions.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Output: 'heatmap1.jpg'",
+            "Instruction: 'draw a heatmap ... and add the corresponding annotation bars to the rows and columns.'",
+            "Milestones: 'Generate heatmap', 'The content of the heatmap is correct.'"
+          ],
+          "reason": "There is moderate artifact realization load: the output is a figure (heatmap1.jpg) that must visually integrate the data matrix and two annotation files as annotation bars. The format is specified (image file), and the integration of annotations adds some complexity, but there are no explicit parameterization or strict format constraints beyond this.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No explicit mention of data schema mismatch, ambiguity, or need for repair.",
+            "Input files are described as matrix and annotation files."
+          ],
+          "reason": "There is only trace evidence for reflection load: the files are described as matrix and annotation files, but there is no indication of ambiguity, missing fields, or representational inconsistency that would require repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task requires integrating a data matrix with two annotation files to produce a heatmap with annotated rows and columns. The planning load is minor, as the workflow is straightforward and does not require complex decomposition or branching. The main complexity lies in the artifact realization, as the output must visually and correctly integrate the data and annotations into a single image file. There is little evidence of semantic or representational repair, and no transfer or evolution load.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:38:21.863307+00:00"
+  }
+}

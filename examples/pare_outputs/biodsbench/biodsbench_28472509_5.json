@@ -1,0 +1,156 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_28472509_5",
+      "question": "for data_cna, can you help me make a transpose so it has columns starting from \"Sample_ID\" and the the remained columns are names of genes?\n\nOutput:\n- data_cna_transposed: pd.DataFrame",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_cna.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\n\\nimport pandas as pd\\nimport os\\n\\n# Load the data\\ndata_cna = pd.read_csv(os.path.join(\\\"/workdir\\\", \\\"data_cna.csv\\\"))\\n\\n# Transpose the data so that columns start from \\\"sample ID\\\" and the remaining columns are names of genes\\ndata_cna_transposed = data_cna.set_index(\\\"Hugo_Symbol\\\").transpose().reset_index().rename(columns={\\\"index\\\": \\\"Sample_ID\\\"})\\n\\n# Display the transposed data\\nprint(data_cna_transposed.head())\", \"test_cases\": \"import pandas as pd\\ndata_cna = pd.read_csv('/workdir/data_cna.csv')\\n\\nassert data_cna_transposed.shape[0] in [data_cna.shape[1] - 1, data_cna.shape[1]], \\\"Row count mismatch after transposition\\\"\\n\\nassert data_cna_transposed.shape[1] == data_cna.shape[0] + 1, \\\"Column count mismatch after transposition\\\"\\n\\n\\nassert \\\"Sample_ID\\\" in data_cna_transposed.columns, \\\"'Sample_ID' column missing after transposition\\\"\\n\\n\\nassert data_cna_transposed.columns[1] == data_cna.iloc[0, 0], \\\"First gene column name mismatch after transposition\\\"\\n\\n\\nassert data_cna_transposed.iloc[0, 1] == data_cna.iloc[0, 1], \\\"First value mismatch after transposition\\\"\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "28472509_5",
+        "study_id": "28472509",
+        "question_id": "5",
+        "analysis_types": "['Data Integration & Transformation']",
+        "study_type": "Genomics",
+        "study_title": "Multicenter phase II study of temozolomide and myeloablative chemotherapy with autologous stem cell transplant for newly diagnosed anaplastic oligodendroglioma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=odg_msk_2017",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_28472509_5",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 2,
+        "evidence": [
+          "for data_cna, can you help me make a transpose so it has columns starting from \"Sample_ID\" and the the remained columns are names of genes?",
+          "Output: - data_cna_transposed: pd.DataFrame"
+        ],
+        "reason": "The task requires transforming the data_cna DataFrame so that columns start with 'Sample_ID' and the remaining columns are gene names. This involves a basic workflow structuring step (setting index, transposing, renaming), but there is no evidence of significant branching or multiple valid methods that would affect correctness. The workflow is simple and mostly linear."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Output: - data_cna_transposed: pd.DataFrame",
+          "assert data_cna_transposed.shape[0] in [data_cna.shape[1] - 1, data_cna.shape[1]], \"Row count mismatch after transposition\"",
+          "assert data_cna_transposed.shape[1] == data_cna.shape[0] + 1, \"Column count mismatch after transposition\"",
+          "assert \"Sample_ID\" in data_cna_transposed.columns, \"'Sample_ID' column missing after transposition\"",
+          "assert data_cna_transposed.columns[1] == data_cna.iloc[0, 0], \"First gene column name mismatch after transposition\"",
+          "assert data_cna_transposed.iloc[0, 1] == data_cna.iloc[0, 1], \"First value mismatch after transposition\""
+        ],
+        "reason": "There is a moderate artifact realization and parameterization load: the output must be a DataFrame with a specific structure, and several explicit assertions check for column names, order, and value correctness. The format and structure are tightly specified by the test cases, but only one output artifact is required."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "No evidence of missing or ambiguous semantic fields.",
+          "No schema mismatch or data repair required is indicated."
+        ],
+        "reason": "There is almost no reflection/repair load. The task is clearly defined, and the data is assumed to be in a standard format. No ambiguity or representational inconsistency is present."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context is present in the payload."
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer is present."
+      }
+    },
+    "overall_summary": "This task is a straightforward data transformation with a moderate action load due to explicit output structure and verification requirements. Planning is minor, with a simple workflow and no significant branching. Reflection and evolution loads are negligible due to clear semantics and lack of transfer context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2812,
+        "completion_tokens": 736,
+        "total_tokens": 3548
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 2,
+          "evidence": [
+            "for data_cna, can you help me make a transpose so it has columns starting from \"Sample_ID\" and the the remained columns are names of genes?",
+            "Output: - data_cna_transposed: pd.DataFrame"
+          ],
+          "reason": "The task requires transforming the data_cna DataFrame so that columns start with 'Sample_ID' and the remaining columns are gene names. This involves a basic workflow structuring step (setting index, transposing, renaming), but there is no evidence of significant branching or multiple valid methods that would affect correctness. The workflow is simple and mostly linear.",
+          "subdimension_breakdown": {
+            "P1": 2,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Output: - data_cna_transposed: pd.DataFrame",
+            "assert data_cna_transposed.shape[0] in [data_cna.shape[1] - 1, data_cna.shape[1]], \"Row count mismatch after transposition\"",
+            "assert data_cna_transposed.shape[1] == data_cna.shape[0] + 1, \"Column count mismatch after transposition\"",
+            "assert \"Sample_ID\" in data_cna_transposed.columns, \"'Sample_ID' column missing after transposition\"",
+            "assert data_cna_transposed.columns[1] == data_cna.iloc[0, 0], \"First gene column name mismatch after transposition\"",
+            "assert data_cna_transposed.iloc[0, 1] == data_cna.iloc[0, 1], \"First value mismatch after transposition\""
+          ],
+          "reason": "There is a moderate artifact realization and parameterization load: the output must be a DataFrame with a specific structure, and several explicit assertions check for column names, order, and value correctness. The format and structure are tightly specified by the test cases, but only one output artifact is required.",
+          "subdimension_breakdown": {
+            "A1": 2,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "No evidence of missing or ambiguous semantic fields.",
+            "No schema mismatch or data repair required is indicated."
+          ],
+          "reason": "There is almost no reflection/repair load. The task is clearly defined, and the data is assumed to be in a standard format. No ambiguity or representational inconsistency is present.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context is present in the payload."
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer is present.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task is a straightforward data transformation with a moderate action load due to explicit output structure and verification requirements. Planning is minor, with a simple workflow and no significant branching. Reflection and evolution loads are negligible due to clear semantics and lack of transfer context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:49:10.334696+00:00"
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-20-q2",
+      "question": "In samples lacking both BLM Mutation Status (Control) and 'Mother/Father' (Parents), what proportion of somatic CHIP variants (VAF < 0.3) can be classified as benign? The proportion of somatic CHIP variants should be calculated after filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls.",
+      "data": [],
+      "answer": "(0.9, 1.0)",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-20-q2",
+        "split": "train",
+        "eval_mode": "range_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "(0.1, 0.2)",
+          "(0.3, 0.4)",
+          "(0.0, 0.1)"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-20-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls",
+          "samples lacking both BLM Mutation Status (Control) and 'Mother/Father' (Parents)",
+          "proportion of somatic CHIP variants (VAF < 0.3) can be classified as benign"
+        ],
+        "reason": "The question requires a multi-step workflow: (1) select samples based on two metadata fields, (2) filter variants by region and reference status, (3) filter by VAF, (4) classify as benign, and (5) compute a proportion. However, the workflow is relatively standard for variant filtering and classification, and there is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness. Thus, P1 is moderate due to the dependency chain, but P2 remains low."
+      },
+      "A": {
+        "score": 2,
+        "evidence": [
+          "proportion of somatic CHIP variants (VAF < 0.3) can be classified as benign",
+          "after filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls",
+          "range_verifier"
+        ],
+        "reason": "The main output is a proportion (numeric value or range), and the filtering steps are explicitly stated. There is some parameterization (VAF < 0.3, region filters), but no evidence of multiple heterogeneous output types or strict format constraints beyond the numeric range. The presence of a range_verifier suggests some output checking, but not high artifact or parameterization load."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "samples lacking both BLM Mutation Status (Control) and 'Mother/Father' (Parents)",
+          "filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls"
+        ],
+        "reason": "There is some minor ambiguity in how to operationalize the sample selection criteria and the variant region filters, but the question is mostly well-specified. No evidence of schema mismatch, missing fields, or contradictory constraints. R1 is weak due to possible need to clarify sample/variant definitions, but R2 is absent."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a moderately complex multi-step filtering and calculation workflow, with explicit filtering and selection criteria but no major ambiguity or branching. Output requirements are clear and not highly parameterized. There is minor potential for semantic clarification, but no evidence of schema repair or transfer learning context.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2277,
+        "completion_tokens": 727,
+        "total_tokens": 3004
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls",
+            "samples lacking both BLM Mutation Status (Control) and 'Mother/Father' (Parents)",
+            "proportion of somatic CHIP variants (VAF < 0.3) can be classified as benign"
+          ],
+          "reason": "The question requires a multi-step workflow: (1) select samples based on two metadata fields, (2) filter variants by region and reference status, (3) filter by VAF, (4) classify as benign, and (5) compute a proportion. However, the workflow is relatively standard for variant filtering and classification, and there is no explicit evidence of major method branching or multiple defensible approaches that would affect correctness. Thus, P1 is moderate due to the dependency chain, but P2 remains low.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 1
+          }
+        },
+        "A": {
+          "score": 2,
+          "evidence": [
+            "proportion of somatic CHIP variants (VAF < 0.3) can be classified as benign",
+            "after filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls",
+            "range_verifier"
+          ],
+          "reason": "The main output is a proportion (numeric value or range), and the filtering steps are explicitly stated. There is some parameterization (VAF < 0.3, region filters), but no evidence of multiple heterogeneous output types or strict format constraints beyond the numeric range. The presence of a range_verifier suggests some output checking, but not high artifact or parameterization load.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "samples lacking both BLM Mutation Status (Control) and 'Mother/Father' (Parents)",
+            "filtering out intronic, intergenic, UTR regions, and reference (non-variant) calls"
+          ],
+          "reason": "There is some minor ambiguity in how to operationalize the sample selection criteria and the variant region filters, but the question is mostly well-specified. No evidence of schema mismatch, missing fields, or contradictory constraints. R1 is weak due to possible need to clarify sample/variant definitions, but R2 is absent.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderately complex multi-step filtering and calculation workflow, with explicit filtering and selection criteria but no major ambiguity or branching. Output requirements are clear and not highly parameterized. There is minor potential for semantic clarification, but no evidence of schema repair or transfer learning context.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T11:56:25.691678+00:00"
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "question": {
+    "benchmark": "biomed_aqa_e2_upgrade_top5_2_std",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biomed_aqa_194",
+      "question": "[De-identified Prior Trajectory]\n1) Validate key analysis columns and clean invalid entries before inference.\n2) Run a nonparametric group-comparison test with explicit null-hypothesis setup.\n3) Inspect whether sample-size/group-balance assumptions are acceptable.\n4) If assumptions are weak, prefer conservative interpretation and avoid over-claiming significance.\n5) Report statistical outputs with clear mapping between tested variable and conclusion.\n\n[Transfer Gap Hints]\n- Gap (subtype_assumption_change): source=cross-sectional group-difference test -> target=time-to-event hazard model\n- Gap (metric_change): source=rank-based group significance -> target=hazard ratio and survival-risk significance\n- Gap (schema_change): source=single response + group columns -> target=time/event/covariate survival schema\n\n[Target Task]\nThere is an existing dataset cox_forest.tsv, where the \"time\" column represents survival time and \"status\" represents survival status. Please perform a multivariate Cox analysis on the variables \"age\" and \"sex\".",
+      "data": [
+        {
+          "type": "input",
+          "value": "biomed_aqa/downloaded_files/index_0194/files/cox_forest.tsv"
+        }
+      ],
+      "answer": "{\"milestone_files\": [{\"name\": \"cox_forest_cox.png\", \"path\": \"downloaded_files\\\\index_0194\\\\milestone\\\\cox_forest_cox.png\"}], \"milestones\": [\"Generate forest plot\", \"The result file for saving the image is correct.\"], \"steps\": [\"Draw a forest plot\", \"Check whether the result file for saving the image is correct.\"]}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "biomed-aqa-dataset",
+        "source_url": "https://huggingface.co/datasets/BOBQWERA/biomed-aqa-dataset",
+        "task_classification": "S",
+        "task_subclass": "Inferential statistics",
+        "task_abbr": "生存分析-cox回归",
+        "task": "Inferential statistics",
+        "question_type": "open",
+        "dataset": "Rep1",
+        "split": "train",
+        "order": 40.5700000000001,
+        "milestone_count": 2,
+        "step_count": 2,
+        "bench_builder": {
+          "source_benchmark": "biomed_aqa",
+          "edit_target": "E2",
+          "selection_basis": "['same_broad_class_but_different_subtype', 'targets_not_overlap_existing_r1_r2_e1_e2_sets', 'targets_are_tsv_or_csv_only', 'at_least_two_explicit_transfer_gaps']",
+          "edit_context": {
+            "workflow_reference": {
+              "workflow_memory_index": 225,
+              "workflow_memory_Index": 8,
+              "task_abbr": "Kruskal-Wallis H检验",
+              "workflow_excerpt": "Refer workflow: [The workflow can be constituted using the following tools in sequence:\n1. **Goal**: Load the data from the \"boxplot.tsv\" file and extract the \"Age_Group\" and \"WBC\" columns.\n    - **Tool**: None (This will be done using Python code)\n    - **Input**: \"boxplot.tsv\"\n    - **Output**: A structured list of \"WBC\" values grouped by \"Age_Group\".\n    - **Description**: Read the TSV file and directly prepare the data for analysis.\n\n2. **Goal**: Perform the Kruskal-Wallis H test on the grouped \"WBC\" values.\n    - **Tool**: None (This will be done using Python code)\n    - **Input**: The structured list of \"WBC\" values grouped by \"Age_Group\".\n    - **Output**: H statistic and p-value.\n    - **Description**: Use the Kruskal-Wallis H test to determine if there are significant differences in WBC counts across the different age groups.\n\n3. **Goal**: Interpret the results of the Kruskal-Wallis H test.\n    - **Tool**: None (This will be done using Python code)\n    - **Input**: H statistic and p-value from the previous step.\n    - **Output**: A summary report including the test statistic, p-value, and interpretation of the results.\n    - **Description**: Document the findings of the st"
+            },
+            "original_question": "There is an existing dataset cox_forest.tsv, where the \"time\" column represents survival time and \"status\" represents survival status. Please perform a multivariate Cox analysis on the variables \"age\" and \"sex\"."
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "question_id": "biomed_aqa_194",
+    "benchmark": "biomed_aqa_e2_upgrade_top5_2_std",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 4,
+        "evidence": [
+          "\"[De-identified Prior Trajectory]\" describes a multi-step workflow for a different analysis type (nonparametric group-comparison test), not directly applicable to Cox regression.",
+          "\"[Transfer Gap Hints]\" explicitly state: (subtype_assumption_change), (metric_change), (schema_change), requiring adaptation of workflow and method.",
+          "Target task requires multivariate Cox analysis (time-to-event hazard model) on \"age\" and \"sex\" with survival schema (\"time\", \"status\").",
+          "No explicit step-by-step Cox workflow is provided; the agent must infer and adapt the workflow topology from prior group-comparison context to survival analysis."
+        ],
+        "reason": "The task requires the agent to plan a new workflow by adapting a prior group-comparison analysis trajectory to a Cox regression context, with explicit transfer gaps in method, metric, and schema. The agent must decompose the goal into a dependency-constrained step graph (P1) and make branching decisions about how to map prior steps to the new analysis type (P2). The explicit transfer gaps and lack of a direct Cox workflow make planning a major difficulty driver."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "\"milestone_files\": [{\"name\": \"cox_forest_cox.png\"...}]\" requires generating a forest plot image as output.",
+          "\"milestones\": [\"Generate forest plot\", ...]\" and \"steps\": [\"Draw a forest plot\", ...]\" specify the need for a specific output artifact (image file).",
+          "The output format (image file) is specified, but there is no evidence of strict parameterization, thresholds, or explicit verification checkpoints."
+        ],
+        "reason": "There is a clear requirement to produce a specific output artifact (forest plot image), which adds moderate artifact realization load (A1). However, there is no evidence of strict parameterization or tight specification (A2), so the action load is moderate but not high."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "\"[Transfer Gap Hints]\" include (schema_change): source=single response + group columns -> target=time/event/covariate survival schema.",
+          "The target data file (cox_forest.tsv) is described as having \"time\" and \"status\" columns, but there is no evidence of missing, inconsistent, or ambiguous fields in the target schema.",
+          "No explicit contradictory or ambiguous constraints in the target task wording."
+        ],
+        "reason": "There is some representational repair implied by the schema change between the prior and target tasks, but the target schema is described clearly and there is no evidence of ambiguity or contradiction. Thus, the reflection load is weak to moderate, mainly due to the need to align the prior and target schemas."
+      },
+      "E": {
+        "score": 5,
+        "evidence": [
+          "\"[De-identified Prior Trajectory]\" provides a stepwise workflow for a different analysis type (nonparametric group-comparison test).",
+          "\"[Transfer Gap Hints]\" explicitly enumerate three transfer gaps: (subtype_assumption_change), (metric_change), (schema_change).",
+          "The agent must abstract generalizable principles from the prior trajectory and adapt them to a new analysis type (Cox regression), with changed schema and metrics."
+        ],
+        "reason": "The task is centrally about transfer: the agent must assimilate experience from a prior workflow, recognize explicit transfer gaps, and adapt strategy to a new analysis type with different schema and metrics. Both E1 and E2 are maximally loaded, making evolution the central difficulty driver."
+      }
+    },
+    "overall_summary": "This task is dominated by the need to transfer and adapt a prior group-comparison workflow to a Cox regression context, with explicit transfer gaps in method, metric, and schema. Planning is high due to the need to infer and adapt the workflow topology and make branching decisions. Action load is moderate due to the requirement to produce a specific output artifact (forest plot image), but without strict parameterization. Reflection load is weak to moderate, as schema alignment is needed but the target schema is clear. Evolution is the central difficulty driver, as the task explicitly requires strategy transfer and adaptation across substantial methodological and representational gaps.",
+    "confidence": 0.98,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3086,
+        "completion_tokens": 1037,
+        "total_tokens": 4123
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 4,
+          "evidence": [
+            "\"[De-identified Prior Trajectory]\" describes a multi-step workflow for a different analysis type (nonparametric group-comparison test), not directly applicable to Cox regression.",
+            "\"[Transfer Gap Hints]\" explicitly state: (subtype_assumption_change), (metric_change), (schema_change), requiring adaptation of workflow and method.",
+            "Target task requires multivariate Cox analysis (time-to-event hazard model) on \"age\" and \"sex\" with survival schema (\"time\", \"status\").",
+            "No explicit step-by-step Cox workflow is provided; the agent must infer and adapt the workflow topology from prior group-comparison context to survival analysis."
+          ],
+          "reason": "The task requires the agent to plan a new workflow by adapting a prior group-comparison analysis trajectory to a Cox regression context, with explicit transfer gaps in method, metric, and schema. The agent must decompose the goal into a dependency-constrained step graph (P1) and make branching decisions about how to map prior steps to the new analysis type (P2). The explicit transfer gaps and lack of a direct Cox workflow make planning a major difficulty driver.",
+          "subdimension_breakdown": {
+            "P1": 4,
+            "P2": 4
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "\"milestone_files\": [{\"name\": \"cox_forest_cox.png\"...}]\" requires generating a forest plot image as output.",
+            "\"milestones\": [\"Generate forest plot\", ...]\" and \"steps\": [\"Draw a forest plot\", ...]\" specify the need for a specific output artifact (image file).",
+            "The output format (image file) is specified, but there is no evidence of strict parameterization, thresholds, or explicit verification checkpoints."
+          ],
+          "reason": "There is a clear requirement to produce a specific output artifact (forest plot image), which adds moderate artifact realization load (A1). However, there is no evidence of strict parameterization or tight specification (A2), so the action load is moderate but not high.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "\"[Transfer Gap Hints]\" include (schema_change): source=single response + group columns -> target=time/event/covariate survival schema.",
+            "The target data file (cox_forest.tsv) is described as having \"time\" and \"status\" columns, but there is no evidence of missing, inconsistent, or ambiguous fields in the target schema.",
+            "No explicit contradictory or ambiguous constraints in the target task wording."
+          ],
+          "reason": "There is some representational repair implied by the schema change between the prior and target tasks, but the target schema is described clearly and there is no evidence of ambiguity or contradiction. Thus, the reflection load is weak to moderate, mainly due to the need to align the prior and target schemas.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 5,
+          "evidence": [
+            "\"[De-identified Prior Trajectory]\" provides a stepwise workflow for a different analysis type (nonparametric group-comparison test).",
+            "\"[Transfer Gap Hints]\" explicitly enumerate three transfer gaps: (subtype_assumption_change), (metric_change), (schema_change).",
+            "The agent must abstract generalizable principles from the prior trajectory and adapt them to a new analysis type (Cox regression), with changed schema and metrics."
+          ],
+          "reason": "The task is centrally about transfer: the agent must assimilate experience from a prior workflow, recognize explicit transfer gaps, and adapt strategy to a new analysis type with different schema and metrics. Both E1 and E2 are maximally loaded, making evolution the central difficulty driver.",
+          "subdimension_breakdown": {
+            "E1": 5,
+            "E2": 5
+          }
+        }
+      },
+      "overall_summary": "This task is dominated by the need to transfer and adapt a prior group-comparison workflow to a Cox regression context, with explicit transfer gaps in method, metric, and schema. Planning is high due to the need to infer and adapt the workflow topology and make branching decisions. Action load is moderate due to the requirement to produce a specific output artifact (forest plot image), but without strict parameterization. Reflection load is weak to moderate, as schema alignment is needed but the target schema is clear. Evolution is the central difficulty driver, as the task explicitly requires strategy transfer and adaptation across substantial methodological and representational gaps.",
+      "confidence": 0.98
+    },
+    "scored_at": "2026-03-09T04:02:41.245296+00:00"
+  }
+}

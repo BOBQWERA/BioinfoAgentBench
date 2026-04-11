@@ -1,0 +1,156 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_30742119_3",
+      "question": "For patient with response and without response to PD-L1, compare the mutation frequency of the genes: BRAF/PTPN11, PTEN, MTOR, PIK3CA, NF1, ATRX, TP53. Get their significance with two-tailed Fisher’s exact test. Save the pvalue results as a dict named `results` with keys the gene name, the values the pvalues, keys are:\n['BRAF', 'PTPN11', 'PTEN', 'MTOR', 'PIK3CA', 'NF1', 'ATRX', 'TP53']",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_timeline_status.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_timeline_treatment.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\nimport pandas as pd\\nfrom scipy.stats import fisher_exact\\nimport matplotlib.pyplot as plt\\n\\n# Load the data\\ndata_clinical_patient = pd.read_csv(\\\"/workdir/data_clinical_patient.csv\\\")\\ndata_clinical_sample = pd.read_csv(\\\"/workdir/data_clinical_sample.csv\\\")\\ndata_mutations = pd.read_csv(\\\"/workdir/data_mutations.csv\\\")\\n\\n\\n# Merge clinical and sample data\\nclinical_sample_merged = pd.merge(data_clinical_patient, data_clinical_sample, on=\\\"PATIENT_ID\\\")\\n\\n# Filter for patients with and without response to PD-L1\\nresponders = clinical_sample_merged[clinical_sample_merged[\\\"RESPONSE\\\"] == \\\"Yes\\\"]\\nnon_responders = clinical_sample_merged[clinical_sample_merged[\\\"RESPONSE\\\"] == \\\"No\\\"]\\nn_responders = responders[\\\"PATIENT_ID\\\"].nunique()\\nn_non_responders = non_responders[\\\"PATIENT_ID\\\"].nunique()\\n\\n# List of genes to analyze\\ngenes = [\\\"BRAF\\\", \\\"PTPN11\\\", \\\"PTEN\\\", \\\"MTOR\\\", \\\"PIK3CA\\\", \\\"NF1\\\", \\\"ATRX\\\", \\\"TP53\\\"]\\n\\n# Initialize results dictionary\\nresults = {}\\n\\n# Perform Fisher's exact test for each gene\\nfor gene in genes:\\n    # Get mutation data for the gene\\n    gene_mutations = data_mutations[data_mutations[\\\"Hugo_Symbol\\\"] == gene]\\n\\n    \\n    # Get mutation counts for responders and non-responders\\n    responders_mutations = gene_mutations[gene_mutations[\\\"Tumor_Sample_Barcode\\\"].isin(responders[\\\"SAMPLE_ID\\\"])]\\n    n_respnders_mutated = data_clinical_sample[data_clinical_sample[\\\"SAMPLE_ID\\\"].isin(responders_mutations['Tumor_Sample_Barcode'])][\\\"PATIENT_ID\\\"].nunique()\\n    \\n    non_responders_mutations = gene_mutations[gene_mutations[\\\"Tumor_Sample_Barcode\\\"].isin(non_responders[\\\"SAMPLE_ID\\\"])]\\n    n_non_respnders_mutated = data_clinical_sample[data_clinical_sample[\\\"SAMPLE_ID\\\"].isin(non_responders_mutations['Tumor_Sample_Barcode'])][\\\"PATIENT_ID\\\"].nunique()\\n\\n    \\n    # Create contingency table\\n    contingency_table = [\\n        [n_respnders_mutated, n_responders - n_respnders_mutated],\\n        [n_non_respnders_mutated, n_non_responders - n_non_respnders_mutated]\\n    ]\\n    \\n    # Perform Fisher's exact test\\n    _, p_value = fisher_exact(contingency_table, alternative='two-sided')\\n    \\n    # Store results\\n    results[gene] = p_value\\n\\n# Print results\\nfor gene, p_value in results.items():\\n    print(f\\\"Gene: {gene}, P-value: {p_value}\\\")\\n\\n# Plot the results\\ngenes = list(results.keys())\\np_values = list(results.values())\\n\\nplt.figure(figsize=(10, 6))\\nplt.barh(genes, p_values, color='skyblue')\\nplt.xlabel('P-value')\\nplt.ylabel('Gene')\\nplt.title('Mutation Frequency Significance (Fisher\\\\'s Exact Test)')\\nplt.axvline(x=0.05, color='red', linestyle='--', label='Significance Threshold (0.05)')\\nplt.legend()\\nplt.savefig(\\\"mutation_frequency_significance.png\\\")\\nplt.show()\", \"test_cases\": \"assert min(list(results.values())) < 0.1\\n\\nimport pandas as pd\\nres = pd.Series(results)\\nassert res.index[res.argmin()] == 'BRAF'\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "30742119_3",
+        "study_id": "30742119",
+        "question_id": "3",
+        "analysis_types": "['Genomic Alteration Profiling', 'Clinical Feature Engineering', 'Descriptive Statistics']",
+        "study_type": "Integrative",
+        "study_title": "Immune and genomic correlates of response to anti-PD-1 immunotherapy in glioblastoma",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=gbm_columbia_2019",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_30742119_3",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_timeline_status.csv, data_timeline_treatment.csv",
+          "Task requires comparing mutation frequency for 8 genes between responders and non-responders",
+          "Requires merging clinical and mutation data to define response groups and mutation status per gene"
+        ],
+        "reason": "There is a clear multi-stage workflow: merging clinical and mutation data, defining response groups, extracting mutation status for each gene, and performing statistical tests. However, the method (Fisher's exact test) and gene list are fully specified, and there is no explicit evidence of major method branching or ambiguous assumptions that would drive P2 higher."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Output must be a dict named results with gene names as keys and p-values as values",
+          "Explicit output schema: keys are ['BRAF', 'PTPN11', 'PTEN', 'MTOR', 'PIK3CA', 'NF1', 'ATRX', 'TP53']",
+          "Test cases require correct p-value calculation and correct gene key for minimum p-value"
+        ],
+        "reason": "There is moderate artifact realization load: the output must be a specific dict structure, and test cases check both value correctness and key mapping. However, there are no highly strict format constraints or parameterization rules beyond the Fisher's exact test and gene list."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "Multiple input files with likely need for merging (clinical and mutation data)",
+          "No explicit mention of schema mismatch or ambiguous field definitions"
+        ],
+        "reason": "There is some minor representational repair implied by the need to merge clinical and mutation data to define response groups and mutation status, but there is no explicit evidence of semantic ambiguity or schema contradiction."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning and action load due to the need to merge multiple clinical and mutation data files, define response groups, and compute gene-wise Fisher's exact tests with a specified output schema. There is minor representational repair implied by data merging, but no explicit ambiguity or schema contradiction. No experience transfer is required.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 3503,
+        "completion_tokens": 655,
+        "total_tokens": 4158
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "Multiple input files: data_mutations.csv, data_clinical_sample.csv, data_clinical_patient.csv, data_timeline_status.csv, data_timeline_treatment.csv",
+            "Task requires comparing mutation frequency for 8 genes between responders and non-responders",
+            "Requires merging clinical and mutation data to define response groups and mutation status per gene"
+          ],
+          "reason": "There is a clear multi-stage workflow: merging clinical and mutation data, defining response groups, extracting mutation status for each gene, and performing statistical tests. However, the method (Fisher's exact test) and gene list are fully specified, and there is no explicit evidence of major method branching or ambiguous assumptions that would drive P2 higher.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Output must be a dict named results with gene names as keys and p-values as values",
+            "Explicit output schema: keys are ['BRAF', 'PTPN11', 'PTEN', 'MTOR', 'PIK3CA', 'NF1', 'ATRX', 'TP53']",
+            "Test cases require correct p-value calculation and correct gene key for minimum p-value"
+          ],
+          "reason": "There is moderate artifact realization load: the output must be a specific dict structure, and test cases check both value correctness and key mapping. However, there are no highly strict format constraints or parameterization rules beyond the Fisher's exact test and gene list.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 2
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "Multiple input files with likely need for merging (clinical and mutation data)",
+            "No explicit mention of schema mismatch or ambiguous field definitions"
+          ],
+          "reason": "There is some minor representational repair implied by the need to merge clinical and mutation data to define response groups and mutation status, but there is no explicit evidence of semantic ambiguity or schema contradiction.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 2
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "No evidence of experience assimilation or strategy transfer load; this is a standalone task.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning and action load due to the need to merge multiple clinical and mutation data files, define response groups, and compute gene-wise Fisher's exact tests with a specified output schema. There is minor representational repair implied by data merging, but no explicit ambiguity or schema contradiction. No experience transfer is required.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:52:00.100327+00:00"
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "question": {
+    "benchmark": "biodsbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "biodsbench_29713087_3",
+      "question": "For the significantly mutated genes, get the number of muations in terms of Synonymous and Nonsynonymous mutations, respectively. Save the output as a DataFrame named \"mutation_count\", with columns\n- Hugo_Symbol\n- `Syn`: in {0,1} for True or False of Synonymous mutation for that gene\n- `Non_syn`: {0,1} for True or False of Nonsynonymous mutation for that gene\n\nplot it in a stacked bar plot.",
+      "data": [
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutations.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_mutsig.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_sv.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_sample.csv"
+        },
+        {
+          "type": "input",
+          "value": "biodsbench/workdir/data_clinical_patient.csv"
+        }
+      ],
+      "answer": "{\"reference_answer\": \"\\nimport pandas as pd\\nimport matplotlib.pyplot as plt\\n\\n# Load the data\\ndata_mutations = pd.read_csv(\\\"/workdir/data_mutations.csv\\\")\\n\\n# Filter the data for significant genes\\nfiltered_data = data_mutations[data_mutations['Hugo_Symbol'].isin(significant_genes)]\\n\\n# Count the number of Synonymous and Nonsynonymous mutations\\nmutation_count = filtered_data.groupby(['Hugo_Symbol', 'Variant_Classification']).size().unstack(fill_value=0)\\nmutation_count = mutation_count.rename(columns={\\\"Silent\\\": \\\"Syn\\\", \\\"Missense_Mutation\\\": \\\"Non_syn\\\"})\\n\\n# Ensure the DataFrame has the required columns\\nmutation_count = mutation_count[['Syn', 'Non_syn']].reset_index()\\n\\n# Save the DataFrame\\nmutation_count.to_csv(\\\"mutation_count.csv\\\", index=False)\\n\\n# Plot the data\\nmutation_count.set_index('Hugo_Symbol').plot(kind='bar', stacked=True)\\nplt.title('Number of Synonymous and Nonsynonymous Mutations')\\nplt.xlabel('Hugo Symbol')\\nplt.ylabel('Count')\\nplt.xticks(rotation=45)\\nplt.legend(title='Mutation Type')\\nplt.tight_layout()\\nplt.savefig(\\\"mutation_count_plot.png\\\")\\nplt.show()\", \"test_cases\": \"assert mutation_count[[\\\"Syn\\\",\\\"Non_syn\\\"]].shape == (95, 2)\\n\\nassert mutation_count[\\\"Syn\\\"].sum() == 215\\n\\nassert mutation_count[\\\"Non_syn\\\"].sum() == 772\"}",
+      "has_file": true,
+      "metadata": {
+        "source_repo": "BioDSBench",
+        "source_dataset": "zifeng-ai/BioDSBench",
+        "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSBench",
+        "arxiv": "2410.21591",
+        "unique_question_id": "29713087_3",
+        "study_id": "29713087",
+        "question_id": "3",
+        "analysis_types": "['Descriptive Statistics']",
+        "study_type": "Integrative",
+        "study_title": "Molecular subtypes of diffuse large B cell lymphoma are associated with distinct pathogenic mechanisms and outcomes",
+        "dataset_url": "https://www.cbioportal.org/study/summary?id=dlbcl_dfci_2018",
+        "task_name": "biomedical_data_science_python",
+        "language": "python"
+      }
+    }
+  },
+  "result": {
+    "question_id": "biodsbench_29713087_3",
+    "benchmark": "biodsbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 3,
+        "evidence": [
+          "For the significantly mutated genes, get the number of muations in terms of Synonymous and Nonsynonymous mutations, respectively.",
+          "Save the output as a DataFrame named \"mutation_count\", with columns - Hugo_Symbol - `Syn`: in {0,1} for True or False of Synonymous mutation for that gene - `Non_syn`: {0,1} for True or False of Nonsynonymous mutation for that gene",
+          "plot it in a stacked bar plot.",
+          "Multiple input files: data_mutations.csv, data_mutsig.csv, data_sv.csv, data_clinical_sample.csv, data_clinical_patient.csv"
+        ],
+        "reason": "The task requires chaining at least two steps: identifying significantly mutated genes (likely from data_mutsig.csv) and then counting mutation types from data_mutations.csv, followed by formatting and plotting. The workflow is not a single direct statement and involves a dependency chain, but the method for determining 'significantly mutated genes' is likely standard and not highly branching. No explicit evidence of multiple materially different valid methods."
+      },
+      "A": {
+        "score": 3,
+        "evidence": [
+          "Save the output as a DataFrame named \"mutation_count\", with columns - Hugo_Symbol - `Syn`: in {0,1} for True or False of Synonymous mutation for that gene - `Non_syn`: {0,1} for True or False of Nonsynonymous mutation for that gene",
+          "plot it in a stacked bar plot.",
+          "assert mutation_count[[\"Syn\",\"Non_syn\"]].shape == (95, 2)",
+          "assert mutation_count[\"Syn\"].sum() == 215",
+          "assert mutation_count[\"Non_syn\"].sum() == 772"
+        ],
+        "reason": "There are two main artifact types: a DataFrame with a specific schema and a plot. The DataFrame has explicit column and value constraints, and the test cases enforce shape and sum checks, indicating moderate parameterization and output specification. However, the format and verification requirements are not extremely strict or numerous."
+      },
+      "R": {
+        "score": 2,
+        "evidence": [
+          "For the significantly mutated genes",
+          "Multiple input files, but only some are relevant to the main computation"
+        ],
+        "reason": "There is some minor semantic openness in what constitutes 'significantly mutated genes' (presumably from data_mutsig.csv), but the context and standard practice likely resolve this. No evidence of schema mismatch, contradiction, or need for major repair. No explicit ambiguity or missing fields that would make the task undefined."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory, experience, or transfer context present in the payload"
+        ],
+        "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload."
+      }
+    },
+    "overall_summary": "This task involves a moderate planning and action load due to the need to chain multiple steps (gene selection, mutation counting, formatting, and plotting) and to meet explicit output constraints. There is minor semantic openness regarding the definition of 'significantly mutated genes,' but not enough to drive high reflection load. No evidence of experience transfer requirements.",
+    "confidence": 0.95,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2901,
+        "completion_tokens": 833,
+        "total_tokens": 3734
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 3,
+          "evidence": [
+            "For the significantly mutated genes, get the number of muations in terms of Synonymous and Nonsynonymous mutations, respectively.",
+            "Save the output as a DataFrame named \"mutation_count\", with columns - Hugo_Symbol - `Syn`: in {0,1} for True or False of Synonymous mutation for that gene - `Non_syn`: {0,1} for True or False of Nonsynonymous mutation for that gene",
+            "plot it in a stacked bar plot.",
+            "Multiple input files: data_mutations.csv, data_mutsig.csv, data_sv.csv, data_clinical_sample.csv, data_clinical_patient.csv"
+          ],
+          "reason": "The task requires chaining at least two steps: identifying significantly mutated genes (likely from data_mutsig.csv) and then counting mutation types from data_mutations.csv, followed by formatting and plotting. The workflow is not a single direct statement and involves a dependency chain, but the method for determining 'significantly mutated genes' is likely standard and not highly branching. No explicit evidence of multiple materially different valid methods.",
+          "subdimension_breakdown": {
+            "P1": 3,
+            "P2": 2
+          }
+        },
+        "A": {
+          "score": 3,
+          "evidence": [
+            "Save the output as a DataFrame named \"mutation_count\", with columns - Hugo_Symbol - `Syn`: in {0,1} for True or False of Synonymous mutation for that gene - `Non_syn`: {0,1} for True or False of Nonsynonymous mutation for that gene",
+            "plot it in a stacked bar plot.",
+            "assert mutation_count[[\"Syn\",\"Non_syn\"]].shape == (95, 2)",
+            "assert mutation_count[\"Syn\"].sum() == 215",
+            "assert mutation_count[\"Non_syn\"].sum() == 772"
+          ],
+          "reason": "There are two main artifact types: a DataFrame with a specific schema and a plot. The DataFrame has explicit column and value constraints, and the test cases enforce shape and sum checks, indicating moderate parameterization and output specification. However, the format and verification requirements are not extremely strict or numerous.",
+          "subdimension_breakdown": {
+            "A1": 3,
+            "A2": 3
+          }
+        },
+        "R": {
+          "score": 2,
+          "evidence": [
+            "For the significantly mutated genes",
+            "Multiple input files, but only some are relevant to the main computation"
+          ],
+          "reason": "There is some minor semantic openness in what constitutes 'significantly mutated genes' (presumably from data_mutsig.csv), but the context and standard practice likely resolve this. No evidence of schema mismatch, contradiction, or need for major repair. No explicit ambiguity or missing fields that would make the task undefined.",
+          "subdimension_breakdown": {
+            "R1": 2,
+            "R2": 1
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory, experience, or transfer context present in the payload"
+          ],
+          "reason": "There is no explicit prior experience, trajectory, or transfer context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This task involves a moderate planning and action load due to the need to chain multiple steps (gene selection, mutation counting, formatting, and plotting) and to meet explicit output constraints. There is minor semantic openness regarding the definition of 'significantly mutated genes,' but not enough to drive high reflection load. No evidence of experience transfer requirements.",
+      "confidence": 0.95
+    },
+    "scored_at": "2026-03-07T10:52:16.376280+00:00"
+  }
+}

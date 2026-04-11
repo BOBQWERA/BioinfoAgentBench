@@ -1,0 +1,134 @@
+{
+  "question": {
+    "benchmark": "bixbench",
+    "schema_version": "1.0.0",
+    "record": {
+      "id": "bixbench_bix-42-q2",
+      "question": "What is the skewness of the distribution of RNA expression data (highly/minimally right or left skewed, or approximately normal)?",
+      "data": [],
+      "answer": "Highly right-skewed",
+      "has_file": false,
+      "metadata": {
+        "source_repo": "BixBench",
+        "source_dataset": "futurehouse/BixBench",
+        "question_id": "bix-42-q2",
+        "split": "train",
+        "eval_mode": "llm_verifier",
+        "capsule_id": null,
+        "task_type": "mcq",
+        "distractors": [
+          "Highly left-skewed",
+          "Minimally left-skewed",
+          "Normally distributed"
+        ]
+      }
+    }
+  },
+  "result": {
+    "question_id": "bixbench_bix-42-q2",
+    "benchmark": "bixbench",
+    "model": "gpt-4.1",
+    "scoring_mode": "single_round",
+    "scores": {
+      "P": {
+        "score": 1,
+        "evidence": [
+          "Question: 'What is the skewness of the distribution of RNA expression data (highly/minimally right or left skewed, or approximately normal)?'",
+          "Task type: 'mcq'",
+          "No explicit workflow or dependency chain required"
+        ],
+        "reason": "The question is a direct multiple-choice query about a general property of RNA expression data distributions. There is no evidence of a required workflow structuring or branching decision; the answer is expected to be selected from provided options based on general knowledge or a single-step reasoning process."
+      },
+      "A": {
+        "score": 1,
+        "evidence": [
+          "Task type: 'mcq'",
+          "No explicit output format or artifact constraints",
+          "No parameterization or threshold specification"
+        ],
+        "reason": "The action required is simply to select one of the provided multiple-choice options. There is no evidence of artifact heterogeneity, format strictness, or parameterization burden."
+      },
+      "R": {
+        "score": 1,
+        "evidence": [
+          "Question is clear and unambiguous",
+          "No data or schema provided or requiring repair"
+        ],
+        "reason": "There is no evidence of semantic ambiguity or data representation issues. The question is straightforward and does not require clarification or repair."
+      },
+      "E": {
+        "score": 0,
+        "evidence": [
+          "No prior trajectory or experience text present"
+        ],
+        "reason": "There is no transfer or evolution context in the payload."
+      }
+    },
+    "overall_summary": "This is a direct multiple-choice question about the general skewness of RNA expression data. There is minimal planning, action, or reflection load, and no evidence of evolution/transfer context. The task is straightforward, with no workflow, artifact, or repair complexity.",
+    "confidence": 1.0,
+    "token_usage": {
+      "total": {
+        "prompt_tokens": 2220,
+        "completion_tokens": 521,
+        "total_tokens": 2741
+      }
+    },
+    "raw_round1": null,
+    "raw_round2": {
+      "scores": {
+        "P": {
+          "score": 1,
+          "evidence": [
+            "Question: 'What is the skewness of the distribution of RNA expression data (highly/minimally right or left skewed, or approximately normal)?'",
+            "Task type: 'mcq'",
+            "No explicit workflow or dependency chain required"
+          ],
+          "reason": "The question is a direct multiple-choice query about a general property of RNA expression data distributions. There is no evidence of a required workflow structuring or branching decision; the answer is expected to be selected from provided options based on general knowledge or a single-step reasoning process.",
+          "subdimension_breakdown": {
+            "P1": 1,
+            "P2": 0
+          }
+        },
+        "A": {
+          "score": 1,
+          "evidence": [
+            "Task type: 'mcq'",
+            "No explicit output format or artifact constraints",
+            "No parameterization or threshold specification"
+          ],
+          "reason": "The action required is simply to select one of the provided multiple-choice options. There is no evidence of artifact heterogeneity, format strictness, or parameterization burden.",
+          "subdimension_breakdown": {
+            "A1": 1,
+            "A2": 0
+          }
+        },
+        "R": {
+          "score": 1,
+          "evidence": [
+            "Question is clear and unambiguous",
+            "No data or schema provided or requiring repair"
+          ],
+          "reason": "There is no evidence of semantic ambiguity or data representation issues. The question is straightforward and does not require clarification or repair.",
+          "subdimension_breakdown": {
+            "R1": 1,
+            "R2": 0
+          }
+        },
+        "E": {
+          "score": 0,
+          "evidence": [
+            "No prior trajectory or experience text present"
+          ],
+          "reason": "There is no transfer or evolution context in the payload.",
+          "subdimension_breakdown": {
+            "E1": 0,
+            "E2": 0
+          }
+        }
+      },
+      "overall_summary": "This is a direct multiple-choice question about the general skewness of RNA expression data. There is minimal planning, action, or reflection load, and no evidence of evolution/transfer context. The task is straightforward, with no workflow, artifact, or repair complexity.",
+      "confidence": 1.0
+    },
+    "scored_at": "2026-03-07T12:19:15.821248+00:00"
+  }
+}
