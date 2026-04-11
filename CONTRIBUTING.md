@@ -1,14 +1,13 @@
 # Contributing
 
-This repository is organized as a release snapshot rather than an active monorepo. Keep
-changes scoped, reproducible, and easy to audit.
+This repository is maintained as a public release repository rather than an active
+monorepo. Keep changes scoped, reproducible, and easy to audit.
 
 ## Before opening a pull request
 
 1. Install the repository in editable mode: `pip install -e .[dev]`
 2. Run `pytest`
 3. Run `biab-validate`
-4. If you changed supplementary-table scripts, rebuild the affected outputs under `paper/supplementary/`
 
 ## Expectations
 

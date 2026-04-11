@@ -6,4 +6,4 @@ This directory contains release-friendly metadata for the Frontier Tier.
 - `open_data_pilot_cases.csv`: pilot open-data case list used in the manuscript workflow
 
 The full notebook execution environments for the Frontier Tier are not present in this
-workspace snapshot and are therefore not bundled here.
+public release and are therefore not bundled here.

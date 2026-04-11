@@ -19,11 +19,11 @@ This repository is intentionally narrower than the full internal manuscript work
 - supplementary-table rebuild scripts under `scripts/paper/`
 - large figure drafts and duplicated workspace artifacts
 - temporary rebalance directories and scratch notebooks
-- full Frontier notebook environments not present in this workspace snapshot
+- full Frontier notebook environments not present in this public release
 
 ## Release philosophy
 
-This snapshot is designed to be honest and uploadable:
+This release is designed to be honest and uploadable:
 
 - every committed directory is meant to be inspectable on GitHub,
 - large unpublished or infrastructure-bound assets are not silently referenced as if they

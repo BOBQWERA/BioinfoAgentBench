@@ -19,5 +19,5 @@ committed supplementary outputs.
 The public release intentionally omits the internal supplementary-table rebuild scripts
 that previously lived under `scripts/paper/`.
 
-`Table_S1.xlsx` in this snapshot originates from a curated canonical workbook because the
+`Table_S1.xlsx` in this release originates from a curated canonical workbook because the
 legacy raw workbook carries unstable mojibake labels from an earlier export step.
