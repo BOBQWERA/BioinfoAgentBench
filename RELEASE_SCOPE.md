@@ -8,7 +8,7 @@ This repository is intentionally narrower than the full internal manuscript work
 - Source collection subsets under `benchmarks/source_collections/`
 - Fingerprint upgrade packs under `benchmarks/fingerprint/`
 - PARE scoring engine and benchmark utilities under `src/bioinfoagentbench/`
-- Paper result summaries and supplementary-table generation assets under `paper/`
+- Paper result summaries and committed supplementary assets under `paper/`
 - Static PARE visualizer and committed example outputs
 
 ## Excluded
@@ -16,6 +16,7 @@ This repository is intentionally narrower than the full internal manuscript work
 - `.env` and any credential-bearing configuration
 - large raw task inputs from `data/`
 - internal fetch scripts tied to unpublished infrastructure
+- supplementary-table rebuild scripts under `scripts/paper/`
 - large figure drafts and duplicated workspace artifacts
 - temporary rebalance directories and scratch notebooks
 - full Frontier notebook environments not present in this workspace snapshot

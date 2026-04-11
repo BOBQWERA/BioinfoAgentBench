@@ -12,3 +12,4 @@ outputs/
 dist/
 build/
 *.egg-info/
+scripts/paper/

@@ -2,8 +2,8 @@
 
 BioinfoAgentBench is a black-box benchmarking framework for heterogeneous bioinformatics
 agents. This repository snapshot is organized for GitHub release and manuscript support:
-it separates benchmark assets, PARE scoring code, supplementary-table builders, example
-outputs, and frontier curation metadata into a clean, reviewable structure.
+it separates benchmark assets, PARE scoring code, example outputs, and frontier curation
+metadata into a clean, reviewable structure.
 
 ## What this snapshot contains
 
@@ -56,11 +56,26 @@ Regenerate the benchmark manifest:
 biab-manifest
 ```
 
-Rebuild all supplementary tables:
+Launch the visualizer locally:
 
 ```bash
-python scripts/paper/build_all.py
+cd tools/pare_visualizer
+python -m http.server 8090
 ```
+
+Then open `http://127.0.0.1:8090`.
+
+## Online visualizer
+
+The repository includes a GitHub Pages workflow at
+`.github/workflows/deploy-visualizer.yml`. After pushing the repository to GitHub:
+
+1. Open `Settings -> Pages`.
+2. Set `Source` to `GitHub Actions`.
+3. Push to `main` or manually run the `Deploy PARE Visualizer` workflow from `Actions`.
+
+The workflow rebuilds `tools/pare_visualizer/data/scores_index.json` from
+`examples/pare_outputs/` and publishes `tools/pare_visualizer/` as a static site.
 
 ## Repository layout
 
