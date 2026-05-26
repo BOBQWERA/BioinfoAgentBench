@@ -1,23 +1,25 @@
-BioinfoAgentBench Provisional Research License
+MIT License
 
 Copyright (c) 2026 BioinfoAgentBench authors.
 
-This repository release is provided for peer review, reproducibility assessment, and
-non-commercial research use.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-You may:
-1. View, download, and run the material for academic or internal evaluation.
-2. Cite the repository and associated manuscript in scholarly work.
-3. Adapt code for non-commercial research, provided attribution is retained.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-You may not:
-1. Use the repository or derivative works for commercial purposes.
-2. Re-license or redistribute the material without preserving this notice.
-3. Represent this provisional release as the final definitive release of
-   BioinfoAgentBench.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-Third-party benchmark content, data references, and metadata remain subject to the
-licenses and terms of their original sources.
-
-Contact the corresponding authors before any commercial use or redistribution beyond
-scholarly sharing norms.
+Source benchmark data, literature-derived resources, third-party benchmark
+content, data references, and metadata remain subject to the terms and licenses
+of their original providers.
