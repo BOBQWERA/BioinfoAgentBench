@@ -4,7 +4,9 @@ BioinfoAgentBench provides a unified framework for evaluating bioinformatics age
 
 ## Benchmark overview
 
-[Framework overview (Figure 1)](paper/figures/Figure_1.pdf)
+![Framework overview (Figure 1)](paper/figures/Figure_1.png)
+
+[Download PDF](paper/figures/Figure_1.pdf?raw=true)
 
 | Tier | Scale | Focus |
 |---|---:|---|
