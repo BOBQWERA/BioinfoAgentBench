@@ -1,59 +1,16 @@
 [build-system]
-requires = ["setuptools>=68.0"]
+requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "bioinfoagentbench"
 version = "0.1.0"
-description = "Public release repository for the BioinfoAgentBench unified black-box evaluation framework and PARE evaluation utilities."
-readme = "README.md"
-license = {file = "LICENSE"}
+description = "Task loading, scoring and metrics for BioinfoAgentBench"
 requires-python = ">=3.10"
-classifiers = [
-  "License :: OSI Approved :: MIT License",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-]
-dependencies = [
-  "openai>=1.40.0",
-  "python-dotenv>=1.0.1",
-  "openpyxl>=3.1.0",
-  "pandas>=2.0.0",
-]
-
-[project.optional-dependencies]
-dev = [
-  "pytest>=8.0.0",
-  "ruff>=0.6.0",
-]
+dependencies = []
 
 [project.scripts]
-pare-eval = "bioinfoagentbench.pare_eval.cli:main"
-pare-eval-batch = "bioinfoagentbench.pare_eval.batch_cli:main"
-biab-standardize = "bioinfoagentbench.benchmarks.standardize:main"
-biab-validate = "bioinfoagentbench.benchmarks.validate:main"
-biab-manifest = "bioinfoagentbench.benchmarks.manifest:main"
-
-[tool.setuptools]
-package-dir = {"" = "src"}
+bioinfoagentbench = "bioinfoagentbench.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.setuptools.package-data]
-bioinfoagentbench = ["templates/*.txt"]
-
-[tool.pytest.ini_options]
-addopts = "-q"
-testpaths = ["tests"]
-
-[tool.ruff]
-line-length = 100
-target-version = "py310"
-
-[tool.ruff.lint]
-select = ["E", "F", "I", "B", "UP"]
-ignore = ["E501"]

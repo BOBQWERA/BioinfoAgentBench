@@ -1,0 +1,110 @@
+[
+  {
+    "anchor_id": "A01",
+    "estimand": "Unique participants with CGM data in the public subset",
+    "reference_value": 38,
+    "reference_95_ci": "Not specified",
+    "tolerance": "Exact count",
+    "weight": 1,
+    "kind": "sample_size",
+    "ci_lower": null,
+    "ci_upper": null,
+    "tolerance_absolute": null
+  },
+  {
+    "anchor_id": "A02",
+    "estimand": "Glucose-response curves for the seven unmitigated standard meals",
+    "reference_value": 393,
+    "reference_95_ci": "Not specified",
+    "tolerance": "Exact count",
+    "weight": 1,
+    "kind": "sample_size",
+    "ci_lower": null,
+    "ci_upper": null,
+    "tolerance_absolute": null
+  },
+  {
+    "anchor_id": "A03",
+    "estimand": "Potatoes: Pearson correlation of first versus second peak glucose increment; paired participants, n=21",
+    "reference_value": 0.6909911814,
+    "reference_95_ci": "[0.369533, 0.864735]",
+    "tolerance": 0.4952016496,
+    "weight": 1,
+    "kind": "correlation",
+    "ci_lower": 0.3695330714,
+    "ci_upper": 0.864734721,
+    "tolerance_absolute": 0.4952016496
+  },
+  {
+    "anchor_id": "A04",
+    "estimand": "Within-participant Rice minus Beans mean peak glucose increment (mg/dL); 21 pairs",
+    "reference_value": 39.2518017663,
+    "reference_95_ci": "[30.6632, 47.8404]",
+    "tolerance": 17.1772122957,
+    "weight": 1,
+    "kind": "mean_difference_mg_dl",
+    "ci_lower": 30.6631956184,
+    "ci_upper": 47.8404079141,
+    "tolerance_absolute": 17.1772122957
+  },
+  {
+    "anchor_id": "A05",
+    "estimand": "Potatoes: participant-mean peak increment, insulin-resistant minus insulin-sensitive (mg/dL); SSPG groups, n=14 versus 17",
+    "reference_value": 22.9003192008,
+    "reference_95_ci": "[4.76207, 41.0386]",
+    "tolerance": 36.2764959992,
+    "weight": 2,
+    "kind": "mean_difference_mg_dl",
+    "ci_lower": 4.7620712012,
+    "ci_upper": 41.0385672003,
+    "tolerance_absolute": 36.2764959992
+  },
+  {
+    "anchor_id": "A06",
+    "estimand": "Potatoes: OLS coefficient of insulin resistance for peak increment (mg/dL), adjusted for BMI, age and sex; n=29",
+    "reference_value": 38.9480203973,
+    "reference_95_ci": "[17.4817, 60.4144]",
+    "tolerance": 42.93273471,
+    "weight": 2,
+    "kind": "adjusted_coefficient_mg_dl",
+    "ci_lower": 17.4816530423,
+    "ci_upper": 60.4143877523,
+    "tolerance_absolute": 42.93273471
+  },
+  {
+    "anchor_id": "A07",
+    "estimand": "Pasta: participant-mean peak increment, insulin-resistant minus insulin-sensitive (mg/dL); n=13 versus 9",
+    "reference_value": 19.7260427339,
+    "reference_95_ci": "[-0.461107, 39.9132]",
+    "tolerance": 40.3742991893,
+    "weight": 1,
+    "kind": "mean_difference_mg_dl",
+    "ci_lower": -0.4611068608,
+    "ci_upper": 39.9131923285,
+    "tolerance_absolute": 40.3742991893
+  },
+  {
+    "anchor_id": "A08",
+    "estimand": "Potatoes: participant-mean peak increment, dysfunctional minus normal beta-cell function (mg/dL); DI groups, n=11 versus 8",
+    "reference_value": 26.7850824792,
+    "reference_95_ci": "[5.73288, 47.8373]",
+    "tolerance": 42.1044051555,
+    "weight": 2,
+    "kind": "mean_difference_mg_dl",
+    "ci_lower": 5.7328799014,
+    "ci_upper": 47.8372850569,
+    "tolerance_absolute": 42.1044051555
+  },
+  {
+    "anchor_id": "A09",
+    "estimand": "Spearman correlation between participant-level Potatoes/Grapes peak-increment ratio and SSPG; n=31",
+    "reference_value": 0.6728500891,
+    "reference_95_ci": "[0.40884, 0.802562]",
+    "tolerance": 0.3937219199,
+    "weight": 2,
+    "kind": "spearman_rho",
+    "ci_lower": 0.4088397341,
+    "ci_upper": 0.8025616541,
+    "tolerance_absolute": 0.3937219199
+  }
+]

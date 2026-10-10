@@ -1,0 +1,69 @@
+{
+  "sample": {
+    "observations": 2310,
+    "patients": 139,
+    "eyes": 229,
+    "visits_per_eye_min": 6,
+    "visits_per_eye_max": 20
+  },
+  "overall": {
+    "basal_ocr": {
+      "estimate": 0.18761216279017845,
+      "standard_error": 0.03432722413942513,
+      "ci_95_lower": 0.1203308034769052,
+      "ci_95_upper": 0.25489352210345173,
+      "p_value": 4.6185258106050215e-08,
+      "converged": true,
+      "label": "Basal OCR"
+    },
+    "atp_linked_ocr": {
+      "estimate": 0.20050328167783357,
+      "standard_error": 0.03428793692699082,
+      "ci_95_lower": 0.13329892530093157,
+      "ci_95_upper": 0.2677076380547356,
+      "p_value": 4.986162409428009e-09,
+      "converged": true,
+      "label": "ATP-linked OCR"
+    },
+    "maximal_ocr": {
+      "estimate": 0.12419067251060088,
+      "standard_error": 0.032131710783099156,
+      "ci_95_lower": 0.06121251937572654,
+      "ci_95_upper": 0.1871688256454752,
+      "p_value": 0.0001110663917101245,
+      "converged": true,
+      "label": "Maximal OCR"
+    },
+    "reserve_capacity": {
+      "estimate": 0.11343967443672894,
+      "standard_error": 0.03485974225045253,
+      "ci_95_lower": 0.04511457962584198,
+      "ci_95_upper": 0.1817647692476159,
+      "p_value": 0.0011372251440467432,
+      "converged": true,
+      "label": "Reserve capacity"
+    }
+  },
+  "subgroups": {
+    "NTG": {
+      "estimate": 0.17107158122229085,
+      "standard_error": 0.04607044210896666,
+      "ci_95_lower": 0.0807735146887162,
+      "ci_95_upper": 0.2613696477558655,
+      "p_value": 0.00020460559224602624,
+      "converged": true,
+      "patients": 85,
+      "eyes": 144
+    },
+    "HTG": {
+      "estimate": 0.1861021551376292,
+      "standard_error": 0.05145505354086342,
+      "ci_95_lower": 0.0852502501975369,
+      "ci_95_upper": 0.2869540600777215,
+      "p_value": 0.0002982783855261463,
+      "converged": true,
+      "patients": 54,
+      "eyes": 85
+    }
+  }
+}

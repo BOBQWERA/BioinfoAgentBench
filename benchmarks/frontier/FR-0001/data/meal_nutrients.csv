@@ -1,0 +1,8 @@
+meal,source_food_name,food_mass_g,energy_kcal,total_fat_g,total_carbohydrate_g,total_protein_g,starch_g,dietary_fiber_g,total_sugars_g
+Pasta,"macaroni noodles, white, cooked in unsalted water",161.986,255.938,1.506,49.989,9.395,42.133,2.916,0.907
+Rice,"rice, jasmine, cooked in unsalted water",177.434,230.664,0.497,49.983,4.773,40.81,0.603,0.053
+Potatoes,Trader Joe's hash brown potatoes,148.189,214.53,0.261,49.916,4.302,38.9,5.156,2.487
+Grapes,"grapes, fresh",276.179,190.564,0.442,49.988,1.988,0.0,2.486,42.753
+Beans,"beans, black, canned - drained, low sodium",191.935,268.709,1.19,49.999,15.796,29.558,20.153,0.71
+Berries,mixed berries,471.632,207.597,1.938,50.001,3.98,0.122,16.174,28.238
+Bread,trader joes buttermilk bread,109.232,324.862,9.593,49.946,8.968,37.56,2.728,5.737

@@ -1,0 +1,327 @@
+{
+  "data_checks": {
+    "all_curves": 588,
+    "cgm_rows": 23520,
+    "participants_in_metadata": 74,
+    "participants_with_cgm": 38,
+    "standard_meal_curves": 393,
+    "standard_meal_participant_food_rows": 219,
+    "time_max": 170,
+    "time_min": -25,
+    "time_points_per_curve": 40
+  },
+  "meal_peak_increment_summary": {
+    "Beans": {
+      "count": 34,
+      "mean": 32.690959076587134,
+      "two_se": 5.472807556097891
+    },
+    "Berries": {
+      "count": 39,
+      "mean": 35.19824746580104,
+      "two_se": 4.63021482843644
+    },
+    "Bread": {
+      "count": 67,
+      "mean": 60.657127104294474,
+      "two_se": 6.973792218988445
+    },
+    "Grapes": {
+      "count": 65,
+      "mean": 59.237312654369354,
+      "two_se": 6.145682733412418
+    },
+    "Pasta": {
+      "count": 46,
+      "mean": 49.69572233880391,
+      "two_se": 7.70614186385456
+    },
+    "Potatoes": {
+      "count": 60,
+      "mean": 60.02213088728446,
+      "two_se": 6.840207152010833
+    },
+    "Rice": {
+      "count": 82,
+      "mean": 66.95457728672811,
+      "two_se": 6.309012516675289
+    }
+  },
+  "paired_meal_peak_increment_contrasts": {
+    "rice_minus_beans": {
+      "ci95_lower": 30.663195618418015,
+      "ci95_upper": 47.840407914139064,
+      "contrast": "Rice minus Beans",
+      "mean_difference": 39.25180176627854,
+      "mean_high": 71.6503868817444,
+      "mean_low": 32.39858511546587,
+      "n_pairs": 21,
+      "paired_p": 7.023477267225714e-09,
+      "paired_t": 9.533307537239665
+    },
+    "rice_minus_berries": {
+      "ci95_lower": 23.756467374667476,
+      "ci95_upper": 43.80074062943385,
+      "contrast": "Rice minus Berries",
+      "mean_difference": 33.77860400205066,
+      "mean_high": 68.80184659667708,
+      "mean_low": 35.02324259462642,
+      "n_pairs": 22,
+      "paired_p": 6.406734283566514e-07,
+      "paired_t": 7.009129405231361
+    },
+    "rice_minus_potatoes": {
+      "ci95_lower": 2.4638808501970626,
+      "ci95_upper": 17.711684111542503,
+      "contrast": "Rice minus Potatoes",
+      "mean_difference": 10.087782480869784,
+      "mean_high": 68.24629829074051,
+      "mean_low": 58.158515809870714,
+      "n_pairs": 36,
+      "paired_p": 0.010977734229360134,
+      "paired_t": 2.6861950986468326
+    }
+  },
+  "paired_mitigator_peak_increment_contrasts": {
+    "Rice+Fat": {
+      "ci95_lower": -14.430789805610267,
+      "ci95_upper": 1.7556821854142486,
+      "contrast": "Rice+Fat minus Rice",
+      "mean_difference": -6.337553810098009,
+      "mean_high": 65.7826368490666,
+      "mean_low": 72.12019065916462,
+      "n_pairs": 22,
+      "paired_p": 0.11833420507168411,
+      "paired_t": -1.6284789733667173
+    },
+    "Rice+Fiber": {
+      "ci95_lower": -19.654828354443133,
+      "ci95_upper": 2.0830297075712174,
+      "contrast": "Rice+Fiber minus Rice",
+      "mean_difference": -8.785899323435958,
+      "mean_high": 63.14134225311905,
+      "mean_low": 71.92724157655502,
+      "n_pairs": 23,
+      "paired_p": 0.10781146378562115,
+      "paired_t": -1.67641539770929
+    },
+    "Rice+Protein": {
+      "ci95_lower": -20.71692105163695,
+      "ci95_upper": -2.1784682593782208,
+      "contrast": "Rice+Protein minus Rice",
+      "mean_difference": -11.447694655507586,
+      "mean_high": 60.47954692104745,
+      "mean_low": 71.92724157655502,
+      "n_pairs": 23,
+      "paired_p": 0.017805382137247163,
+      "paired_t": -2.561277998944948
+    }
+  },
+  "physiology_peak_increment_contrasts": {
+    "grapes_IR_vs_IS": {
+      "ci95_lower": -22.684002300011603,
+      "ci95_upper": 10.056543520002482,
+      "contrast": "IR minus IS",
+      "mann_whitney_exact_p": 0.7100929293889183,
+      "mann_whitney_u": 109.0,
+      "mean_difference": -6.313729390004561,
+      "mean_high": 57.4952881950802,
+      "mean_low": 63.80901758508476,
+      "mean_ratio": 0.9010527096489825,
+      "n_high": 14,
+      "n_low": 17,
+      "welch_df": 26.355308543458122,
+      "welch_p": 0.4352815837823405,
+      "welch_t": -0.7922620822947163
+    },
+    "grapes_beta_dysfunctional_vs_normal": {
+      "ci95_lower": -27.7653304095059,
+      "ci95_upper": 16.091567888024123,
+      "contrast": "dysfunctional minus normal",
+      "mann_whitney_exact_p": 0.6574052022968432,
+      "mann_whitney_u": 38.0,
+      "mean_difference": -5.836881260740888,
+      "mean_high": 54.96017266206898,
+      "mean_low": 60.797053922809866,
+      "mean_ratio": 0.9039940114836551,
+      "n_high": 11,
+      "n_low": 8,
+      "welch_df": 11.365508088093081,
+      "welch_p": 0.5709126874119174,
+      "welch_t": -0.5835643757700064
+    },
+    "pasta_IR_vs_IS": {
+      "ci95_lower": -0.4611068607890054,
+      "ci95_upper": 39.913192328515336,
+      "contrast": "IR minus IS",
+      "mann_whitney_exact_p": 0.051352981383941135,
+      "mann_whitney_u": 88.0,
+      "mean_difference": 19.726042733863167,
+      "mean_high": 58.76029030943626,
+      "mean_low": 39.03424757557309,
+      "mean_ratio": 1.5053521960599379,
+      "n_high": 13,
+      "n_low": 9,
+      "welch_df": 19.721956628801458,
+      "welch_p": 0.054953854012457386,
+      "welch_t": 2.0401604878060065
+    },
+    "pasta_beta_dysfunctional_vs_normal": {
+      "ci95_lower": -21.005770388794645,
+      "ci95_upper": 34.22294836559098,
+      "contrast": "dysfunctional minus normal",
+      "mann_whitney_exact_p": 0.6608058608058608,
+      "mann_whitney_u": 26.0,
+      "mean_difference": 6.608588988398168,
+      "mean_high": 55.92354039444874,
+      "mean_low": 49.314951406050575,
+      "mean_ratio": 1.1340078171016374,
+      "n_high": 11,
+      "n_low": 4,
+      "welch_df": 7.337208960011644,
+      "welch_p": 0.591727984255904,
+      "welch_t": 0.5606652518604165
+    },
+    "potatoes_IR_vs_IS": {
+      "ci95_lower": 4.762071201183776,
+      "ci95_upper": 41.03856720033558,
+      "contrast": "IR minus IS",
+      "mann_whitney_exact_p": 0.0052968120731183175,
+      "mann_whitney_u": 188.0,
+      "mean_difference": 22.900319200759675,
+      "mean_high": 71.29343019639828,
+      "mean_low": 48.3931109956386,
+      "mean_ratio": 1.4732144458086927,
+      "n_high": 14,
+      "n_low": 17,
+      "welch_df": 27.751234306027506,
+      "welch_p": 0.015213784088337191,
+      "welch_t": 2.587247065424469
+    },
+    "potatoes_beta_dysfunctional_vs_normal": {
+      "ci95_lower": 5.732879901435211,
+      "ci95_upper": 47.83728505688711,
+      "contrast": "dysfunctional minus normal",
+      "mann_whitney_exact_p": 0.015744489428699954,
+      "mann_whitney_u": 73.0,
+      "mean_difference": 26.78508247916116,
+      "mean_high": 71.00209349894308,
+      "mean_low": 44.21701101978192,
+      "mean_ratio": 1.6057642038983138,
+      "n_high": 11,
+      "n_low": 8,
+      "welch_df": 15.62783289558923,
+      "welch_p": 0.015937439605579962,
+      "welch_t": 2.7024220141637385
+    },
+    "rice_IR_vs_IS": {
+      "ci95_lower": -10.600059577417731,
+      "ci95_upper": 26.738470517834962,
+      "contrast": "IR minus IS",
+      "mann_whitney_exact_p": 0.20010542549890878,
+      "mann_whitney_u": 152.0,
+      "mean_difference": 8.069205470208615,
+      "mean_high": 70.57645108437427,
+      "mean_low": 62.507245614165655,
+      "mean_ratio": 1.1290923218728413,
+      "n_high": 14,
+      "n_low": 17,
+      "welch_df": 28.761988789744994,
+      "welch_p": 0.3838647448274455,
+      "welch_t": 0.8843043538191817
+    },
+    "rice_beta_dysfunctional_vs_normal": {
+      "ci95_lower": -13.226649202513723,
+      "ci95_upper": 27.311313061078476,
+      "contrast": "dysfunctional minus normal",
+      "mann_whitney_exact_p": 0.3950411473631288,
+      "mann_whitney_u": 55.0,
+      "mean_difference": 7.042331929282376,
+      "mean_high": 64.010280026818,
+      "mean_low": 56.96794809753562,
+      "mean_ratio": 1.1236191957840065,
+      "n_high": 11,
+      "n_low": 8,
+      "welch_df": 15.945501324780219,
+      "welch_p": 0.4719744814771113,
+      "welch_t": 0.7367526107933026
+    }
+  },
+  "potato_IR_adjusted_for_BMI_age_sex": {
+    "ci95_lower": 17.481653042325576,
+    "ci95_upper": 60.41438775231994,
+    "coefficient": 38.94802039732276,
+    "df": 24,
+    "n": 29,
+    "p": 0.0010017914064673447,
+    "standard_error": 10.400882947495408,
+    "t": 3.744684042108335
+  },
+  "potato_grape_ratio_SSPG_spearman": {
+    "bootstrap_ci95_lower": 0.40883973414016755,
+    "bootstrap_ci95_upper": 0.8025616540667346,
+    "n": 31,
+    "p": 3.368372671607028e-05,
+    "rho": 0.672850089113543
+  },
+  "replicate_peak_increment_correlations": {
+    "Beans": {
+      "fisher_ci95_lower": -0.14835752386572268,
+      "fisher_ci95_upper": 0.7969254010265389,
+      "n_pairs": 13,
+      "pearson_p": 0.13393708350478203,
+      "pearson_r": 0.438469510279674
+    },
+    "Berries": {
+      "fisher_ci95_lower": 0.3635065762393788,
+      "fisher_ci95_upper": 0.8992168534352724,
+      "n_pairs": 16,
+      "pearson_p": 0.0013862760902148003,
+      "pearson_r": 0.7280271335918069
+    },
+    "Bread": {
+      "fisher_ci95_lower": 0.176570957295565,
+      "fisher_ci95_upper": 0.7524561871120137,
+      "n_pairs": 27,
+      "pearson_p": 0.005267557099652655,
+      "pearson_r": 0.5215867496836128
+    },
+    "Grapes": {
+      "fisher_ci95_lower": 0.15021859933234857,
+      "fisher_ci95_upper": 0.7404686162569778,
+      "n_pairs": 27,
+      "pearson_p": 0.007684586832474825,
+      "pearson_r": 0.5015987191935263
+    },
+    "Pasta": {
+      "fisher_ci95_lower": 0.3734043340149782,
+      "fisher_ci95_upper": 0.8863192336886141,
+      "n_pairs": 18,
+      "pearson_p": 0.000841670337581544,
+      "pearson_r": 0.715534365205889
+    },
+    "Potatoes": {
+      "fisher_ci95_lower": 0.36953307137247565,
+      "fisher_ci95_upper": 0.8647347210011076,
+      "n_pairs": 21,
+      "pearson_p": 0.0005236174488177877,
+      "pearson_r": 0.690991181447306
+    },
+    "Rice": {
+      "fisher_ci95_lower": 0.08301890567912101,
+      "fisher_ci95_upper": 0.7080997750806921,
+      "n_pairs": 27,
+      "pearson_p": 0.018845288924641965,
+      "pearson_r": 0.4488717125154585
+    }
+  },
+  "spiker_counts": {
+    "Beans": 0,
+    "Berries": 0,
+    "Bread": 10,
+    "Grapes": 8,
+    "Pasta": 2,
+    "Potatoes": 5,
+    "Rice": 13
+  }
+}

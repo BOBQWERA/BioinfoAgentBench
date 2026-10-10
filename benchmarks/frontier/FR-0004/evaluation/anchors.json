@@ -1,0 +1,74 @@
+[
+  {
+    "anchor_id": "A1",
+    "estimand": "adjusted difference in VF MD yearly slope (dB/year) per 1-SD higher basal PBMC OCR in the entire treated POAG cohort",
+    "reference_value": 0.186,
+    "reference_95_ci": "[0.1174, 0.2546]",
+    "tolerance": 0.1372,
+    "weight": 2,
+    "kind": "effect",
+    "ci_lower": 0.1174,
+    "ci_upper": 0.2546,
+    "tolerance_absolute": 0.1372
+  },
+  {
+    "anchor_id": "A2",
+    "estimand": "adjusted difference in VF MD yearly slope (dB/year) per 1-SD higher basal PBMC OCR among NTG eyes",
+    "reference_value": 0.176,
+    "reference_95_ci": "[0.08388, 0.26812]",
+    "tolerance": 0.18424,
+    "weight": 1,
+    "kind": "effect",
+    "ci_lower": 0.08388,
+    "ci_upper": 0.26812,
+    "tolerance_absolute": 0.18424
+  },
+  {
+    "anchor_id": "A3",
+    "estimand": "adjusted difference in VF MD yearly slope (dB/year) per 1-SD higher basal PBMC OCR among HTG eyes",
+    "reference_value": 0.197,
+    "reference_95_ci": "[0.07744, 0.31656]",
+    "tolerance": 0.23912,
+    "weight": 1,
+    "kind": "effect",
+    "ci_lower": 0.07744,
+    "ci_upper": 0.31656,
+    "tolerance_absolute": 0.23912
+  },
+  {
+    "anchor_id": "A4",
+    "estimand": "adjusted difference in VF MD yearly slope (dB/year) per 1-SD higher ATP-linked PBMC OCR in the entire treated POAG cohort",
+    "reference_value": 0.199,
+    "reference_95_ci": "[0.13236, 0.26564]",
+    "tolerance": 0.13328,
+    "weight": 1,
+    "kind": "effect",
+    "ci_lower": 0.13236,
+    "ci_upper": 0.26564,
+    "tolerance_absolute": 0.13328
+  },
+  {
+    "anchor_id": "A5",
+    "estimand": "adjusted difference in VF MD yearly slope (dB/year) per 1-SD higher maximal PBMC OCR in the entire treated POAG cohort",
+    "reference_value": 0.123,
+    "reference_95_ci": "[0.05244, 0.19356]",
+    "tolerance": 0.14112,
+    "weight": 1,
+    "kind": "effect",
+    "ci_lower": 0.05244,
+    "ci_upper": 0.19356,
+    "tolerance_absolute": 0.14112
+  },
+  {
+    "anchor_id": "A6",
+    "estimand": "adjusted difference in VF MD yearly slope (dB/year) per 1-SD higher PBMC reserve capacity in the entire treated POAG cohort",
+    "reference_value": 0.108,
+    "reference_95_ci": "[0.03744, 0.17856]",
+    "tolerance": 0.14112,
+    "weight": 1,
+    "kind": "effect",
+    "ci_lower": 0.03744,
+    "ci_upper": 0.17856,
+    "tolerance_absolute": 0.14112
+  }
+]

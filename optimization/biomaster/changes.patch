@@ -1,0 +1,58 @@
+diff --git a/agents/Biomaster.py b/agents/Biomaster.py
+--- a/agents/Biomaster.py
++++ b/agents/Biomaster.py
+@@ -525,6 +525,34 @@ class Biomaster:
+                 all_files.append(file_path)
+         return all_files
+ 
++    def _execution_evidence(self, step, result):
++        """Expose observed execution and declared outputs to the existing checker."""
++        evidence = {
++            "exit_code": result.returncode,
++            "stdout_tail": result.stdout.decode("utf-8", errors="replace")[-5000:],
++            "stderr_tail": result.stderr.decode("utf-8", errors="replace")[-5000:],
++            "files": [],
++        }
++        filenames = step.get("output_filename", [])
++        if isinstance(filenames, str):
++            filenames = [filenames]
++        for declared in filenames[:12]:
++            if not isinstance(declared, str):
++                continue
++            path = declared.split(":", 1)[0].strip()
++            item = {"path": path, "exists": os.path.isfile(path)}
++            try:
++                if item["exists"]:
++                    item["bytes"] = os.path.getsize(path)
++                    with open(path, "rb") as stream:
++                        head = stream.read(1200)
++                    if b"\x00" not in head:
++                        item["preview"] = head.decode("utf-8", errors="replace")
++            except OSError as exc:
++                item["read_error"] = type(exc).__name__
++            evidence["files"].append(item)
++        return json.dumps(evidence, ensure_ascii=False)
++
+     def execute_TASK(self, datalist):
+         PLAN_results_dict = self.load_progress(self.output_dir, f"PLAN.json")
+         PLAN_results_dict = self.normalize_keys(PLAN_results_dict)
+@@ -646,7 +674,7 @@ class Biomaster:
+                     "input": json.dumps({
+                         "task": step,
+                         "pre debug": PRE_DEBUG_output,
+-                        "result": result_stderr if result.returncode != 0 else result_stdout,
++                        "result": self._execution_evidence(step, result),
+                         "related_docs": related_docs_content,
+                         "id": ids,
+                         "shell": TASK_results,
+@@ -734,8 +762,8 @@ class Biomaster:
+                     Json_Error = True
+ 
+             if retry_count >= self.repeat:
+-                print(f"Step {i} failed after {self.repeat} retries. Moving to next step.")
+-                break
++                print(f"Step {i} failed after {self.repeat} retries. Continuing with failure recorded.")
++                continue
+         
+         return PLAN_results_dict
+ 

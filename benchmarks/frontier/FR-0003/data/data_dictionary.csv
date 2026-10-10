@@ -1,0 +1,54 @@
+file,variable,type,unit_or_scale,allowed_values_or_observed_range,missing_encoding,description
+sample_metadata.csv,sample_id,string,identifier,S001-S065,NA,De-identified biopsy sample identifier
+sample_metadata.csv,visit_week,integer,weeks,0|12|24|52,NA,Nominal visit week relative to baseline
+sample_metadata.csv,patient_id,string,identifier,22 observed identifiers within 1-22,NA,Participant identifier linking repeated biopsies from the same person
+sample_metadata.csv,center,categorical,none,BERLIN|VIENNA,NA,Study center
+sample_metadata.csv,treatment_arm,categorical,none,Placebo|Felzartamab,NA,Randomized treatment assignment at the participant level
+sample_metadata.csv,visit,categorical,none,Baseline|Week12|Week24|Week52,NA,Visit label
+sample_metadata.csv,female_gender,binary,indicator,0|1,NA,1 indicates female
+sample_metadata.csv,age_at_transplant_years,continuous,years,4.8-58.8,NA,Recipient age at transplantation
+sample_metadata.csv,donor_age_years,continuous,years,3-63,NA,Donor age
+sample_metadata.csv,hla_abdr_mismatch_count,integer,count,1-5,NA,Number of HLA-A/B/DR mismatches
+sample_metadata.csv,living_donor_transplant,binary,indicator,0|1,NA,1 indicates a living-donor transplant
+sample_metadata.csv,age_at_screening_years,continuous,years,26.0-74.4,NA,Recipient age at trial screening
+sample_metadata.csv,years_transplant_to_screening,continuous,years,0.8-25.8,NA,Time from transplantation to trial screening
+sample_metadata.csv,screening_egfr_ml_min_1_73m2,continuous,mL/min/1.73m2,22.02-91.32,NA,Estimated glomerular filtration rate at screening
+sample_metadata.csv,screening_protein_creatinine_mg_g,continuous,mg/g,0-7746,NA,Urine protein/creatinine ratio at screening
+sample_metadata.csv,dsa_hla_class_i_only,binary,indicator,0|1,NA,HLA class I donor-specific antibodies only at screening
+sample_metadata.csv,dsa_hla_class_ii_only,binary,indicator,0|1,NA,HLA class II donor-specific antibodies only at screening
+sample_metadata.csv,dsa_hla_class_i_and_ii,binary,indicator,0|1,NA,Both HLA class I and II donor-specific antibodies at screening
+sample_metadata.csv,anti_dq_dsa,binary,indicator,0|1,NA,Anti-HLA-DQ donor-specific antibodies at screening
+sample_metadata.csv,dsa_count,integer,count,1-3,NA,Number of donor-specific antibodies at screening
+sample_metadata.csv,cortex_probability,continuous,probability,0.005-0.966,NA,Probability of cortical tissue in the biopsy estimated from expression
+sample_metadata.csv,banff_abmr_activity,binary,indicator,0|1,NA,Presence of ABMR activity under Banff 2019
+sample_metadata.csv,banff_active_abmr,binary,indicator,0|1,NA,Active ABMR under Banff 2019
+sample_metadata.csv,banff_chronic_active_abmr,binary,indicator,0|1,NA,Chronic active ABMR under Banff 2019
+sample_metadata.csv,banff_borderline_lesion,binary,indicator,0|1,NA,Banff borderline lesion
+sample_metadata.csv,microvascular_inflammation_score,integer,score,0-5,NA,Total histological microvascular inflammation score; missing in 2 samples
+molecular_scores.csv,sample_id,string,identifier,S001-S065,NA,Sample identifier linking to sample_metadata.csv
+molecular_scores.csv,dd_cfdna_percent,continuous,percent,0-5.58,NA,Percentage of donor-derived cell-free DNA
+molecular_scores.csv,dd_cfdna_copies_per_ml,continuous,copies/mL,0-361,NA,Concentration of donor-derived cell-free DNA
+molecular_scores.csv,abmr_probability,continuous,probability,0.022-0.968,NA,ABMR probability from the expression classifier
+molecular_scores.csv,glomerulitis_gt0_probability,continuous,probability,0.111-0.954,NA,Probability of a glomerulitis score greater than 0 from the expression classifier
+molecular_scores.csv,peritubular_capillaritis_gt0_probability,continuous,probability,0.069-0.887,NA,Probability of a peritubular capillaritis score greater than 0 from the expression classifier
+molecular_scores.csv,nk_cell_burden_score,continuous,PBT score,0.217-2.438,NA,NK-cell burden transcript score
+molecular_scores.csv,dsa_selective_transcript_score,continuous,PBT score,-0.091-1.085,NA,Kidney-derived DSA-selective transcript score
+molecular_scores.csv,tcmr_probability,continuous,probability,0.003-0.227,NA,TCMR probability from the expression classifier
+molecular_scores.csv,interstitial_inflammation_gt1_probability,continuous,probability,0.009-0.707,NA,Probability of an interstitial inflammation score greater than 1 from the expression classifier
+molecular_scores.csv,tubulitis_gt1_probability,continuous,probability,0.013-0.499,NA,Probability of a tubulitis score greater than 1 from the expression classifier
+molecular_scores.csv,t_cell_burden_score,continuous,PBT score,0.254-3.328,NA,T-cell burden transcript score
+molecular_scores.csv,cytotoxic_t_cell_score,continuous,PBT score,0.200-2.111,NA,Cytotoxic T-cell-associated transcript score
+molecular_scores.csv,alternatively_activated_macrophage_score,continuous,PBT score,-0.450-1.360,NA,Alternatively activated macrophage transcript score
+molecular_scores.csv,constitutive_macrophage_score,continuous,PBT score,-0.149-1.331,NA,Constitutive macrophage transcript score
+molecular_scores.csv,fibrosis_gt1_probability,continuous,probability,0.099-0.985,NA,Probability of a fibrosis score greater than 1 from the expression classifier
+molecular_scores.csv,atrophy_gt1_probability,continuous,probability,0.065-0.983,NA,Probability of an atrophy score greater than 1 from the expression classifier
+molecular_scores.csv,normal_kidney_transcript_score,continuous,PBT score,-1.440-0.056,NA,Normal kidney parenchymal transcript score excluding solute carriers
+molecular_scores.csv,normal_kidney_solute_carrier_score,continuous,PBT score,-2.727-0.110,NA,Normal kidney solute-carrier transcript score
+molecular_scores.csv,injury_repair_associated_score,continuous,PBT score,-0.867-1.624,NA,Injury-repair-associated transcript score
+molecular_scores.csv,injury_repair_day3_score,continuous,PBT score,-0.660-0.331,NA,Injury-repair-induced day 3 transcript score
+molecular_scores.csv,injury_repair_day5_score,continuous,PBT score,-0.051-0.793,NA,Injury-repair-induced day 5 transcript score
+expression_log2.csv.gz,probe_id,string,identifier,49495 unique probe-set IDs,NA,PrimeView U219 probe-set identifier
+expression_log2.csv.gz,S001-S065,continuous,normalized log2 intensity,2.081502-14.795668,NA,Probe-set expression intensity for each sample
+feature_annotation.csv.gz,probe_id,string,identifier,49495 unique probe-set IDs,NA,Probe-set identifier linking to the expression matrix
+feature_annotation.csv.gz,gene_symbol,string,HGNC-like symbol,19461 unique nonmissing symbols,NA,Gene symbol; annotation missing for 622 probe sets
+feature_annotation.csv.gz,gene_name,string,name,free text,NA,Full gene name; annotation missing for 622 probe sets

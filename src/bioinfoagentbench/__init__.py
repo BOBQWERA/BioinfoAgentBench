@@ -1,5 +1,1 @@
-"""BioinfoAgentBench repository package."""
-
-__all__ = ["__version__"]
-
-__version__ = "0.1.0"
+"""Task loading, evidence-backed scoring and benchmark metrics."""

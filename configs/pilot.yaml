@@ -1,0 +1,37 @@
+# Shared model, resource and task settings.
+evaluation_month: "2026-09"
+
+model:
+  name: gpt-5.6-terra
+  api: OpenAI Responses API
+  reasoning_effort: low
+  temperature: 1.0
+
+task_budget:
+  timeout_seconds: 3600
+  max_model_requests: 200
+
+container:
+  runtime: Docker Engine
+  version: "24.0.2"
+  edition: Community
+  cpus: 4
+  memory_gib: 16
+
+host:
+  cpu: "2 × Intel Xeon Platinum 8375C, 2.90 GHz"
+  cpu_cores: 64
+  cpu_threads: 128
+  gpu: "8 × NVIDIA A100 80GB PCIe"
+  operating_system: Ubuntu 18.04.6 LTS
+  architecture: x86_64
+  kernel: "4.15.0-213-generic"
+
+tasks:
+  baseline:
+    definitions: benchmarks/baseline/tasks.jsonl
+    selected_ids: benchmarks/baseline/pilot_ids.txt
+  fingerprint:
+    definitions: benchmarks/fingerprint/tasks.jsonl
+  frontier:
+    definitions: benchmarks/frontier/tasks.jsonl

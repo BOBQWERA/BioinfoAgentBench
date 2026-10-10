@@ -1,0 +1,346 @@
+{
+  "P1": {
+    "dimension": "Planning",
+    "name": "Breaking tasks",
+    "task_requirement": "Decomposing a goal into the necessary steps and their dependencies.",
+    "levels": [
+      {
+        "load": 0,
+        "criterion": "The necessary workflow is already specified, or the objective is a single direct operation. Only implementation within that operation remains.",
+        "decision_boundary": "Routine reading, indexing, installation, variable passing and saving do not constitute an additional workflow decision. A missing analytical connection is required for level 1.",
+        "example": "Produce a specified grouped scatter plot; the input, grouping variable and output are given. Reading and saving the data require no further analytical plan."
+      },
+      {
+        "load": 1,
+        "criterion": "The main analytical route is fixed, but one necessary connection is missing. Supplying that connection is sufficient without reorganizing the main route.",
+        "decision_boundary": "The missing work connects already determined stages. Having to determine the necessary stages and their dependencies is level 2.",
+        "example": "A scoring procedure and a group-comparison method are specified. Add the missing step that converts scores into groups using the supplied grouping rule."
+      },
+      {
+        "load": 2,
+        "criterion": "Only the objective or part of the route is given. The necessary analytical stages and their dependencies must be determined; the available conditions permit a valid route to be organized.",
+        "decision_boundary": "Determining a sufficient route is level 2. Resolving a specific arrangement constraint, such as where stages may run or which work can be shared, is level 3. Additional routine preparation does not establish that distinction.",
+        "example": "Given sequences and a database to check, organize identification of the relevant objects, localization of differences and comparison with database records."
+      },
+      {
+        "load": 3,
+        "criterion": "Known constraints make the usual ordering or organization insufficient. The workflow must specify where an operation occurs, which stages can share work or must remain separate, and how that arrangement satisfies the constraints.",
+        "decision_boundary": "The constraints and facts needed to arrange the route are already known. Acquiring previously unavailable information that determines subsequent stages is level 4. A linear workflow can meet level 3.",
+        "example": "Data must remain at separate institutions, but the final analysis combines their results. Determine which analyses run locally and when compatible summaries are combined."
+      },
+      {
+        "load": 4,
+        "criterion": "Information needed to determine later stages has not yet been obtained, and the task does not supply the branching rule. The workflow must obtain that information and use it to decide which stages to perform, omit or reorganize.",
+        "decision_boundary": "A diagnostic result determines the subsequent route. Level 5 additionally requires planning decisions that change which future evidence can be obtained. Executing a fully specified conditional workflow does not establish either requirement.",
+        "example": "Whether two batches can be analyzed together is unresolved. Arrange the checks that determine compatibility, then select and organize the pooled or separate analysis accordingly."
+      },
+      {
+        "load": 5,
+        "criterion": "Earlier analytical or evidence-acquisition choices change which later evidence is obtainable. An adaptive workflow must resolve these dependencies, preserve viable alternatives and define revision or stopping decisions under the stated constraints.",
+        "decision_boundary": "The added demand is to plan how choices alter future access to decisive evidence, beyond using a diagnostic result to select a route at level 4. More stages, branches or a larger dataset alone do not establish this requirement.",
+        "example": "A fixed annotation budget must support both cell-type identification and validation of downstream contrasts. Which identities are resolved determines which validation requests are meaningful. Allocate initial requests and reserves, then revise the remaining workflow as labels arrive."
+      }
+    ]
+  },
+  "P2": {
+    "dimension": "Planning",
+    "name": "Choosing methods",
+    "task_requirement": "Selecting analytical methods appropriate to the goal and the available data.",
+    "levels": [
+      {
+        "load": 0,
+        "criterion": "The scientific method and its consequential analytical conventions are specified, or no substantive method choice is required.",
+        "decision_boundary": "Implementing a prescribed method does not itself establish method-selection demand. Supplying an unspecified routine convention or applying a supplied method-selection rule is level 1.",
+        "example": "Calculate a Pearson correlation for the two named variables using the stated inclusion rule."
+      },
+      {
+        "load": 1,
+        "criterion": "A method is selected by applying a supplied rule, or an unspecified routine implementation convention must be supplied without changing the meaning of the analytical objective.",
+        "decision_boundary": "A choice that changes the scientific interpretation and must be justified from the objective and data is level 2. Selecting an entry from an explicit decision table remains level 1.",
+        "example": "Apply a provided table that maps the data type to the required test, or use a conventional quantile implementation for a requested five-number summary."
+      },
+      {
+        "load": 2,
+        "criterion": "A consequential analytical choice remains open. An appropriate method or convention can be matched directly to the available objective and data conditions.",
+        "decision_boundary": "Directly matching known conditions to a suitable strategy is level 2. Resolving an evidence-based trade-off between what strategies preserve and sacrifice is level 3.",
+        "example": "Define an appropriate significance criterion for a supplied comparison; a list of p-values alone does not determine which results qualify as significant."
+      },
+      {
+        "load": 3,
+        "criterion": "Documented applicability conditions or trade-offs prevent an unqualified use of a common method. The strategy must specify what is retained, what is sacrificed and which assumptions allow the objective to be addressed.",
+        "decision_boundary": "The relevant facts are available, but their implications must be weighed. Level 4 requires obtaining a missing diagnostic fact that changes the choice. The number of candidate methods is not the distinction.",
+        "example": "Choose an interval-estimation strategy for a small sample with dependent observations, explaining how dependence is handled and which assumptions the resulting interval requires."
+      },
+      {
+        "load": 4,
+        "criterion": "A key fact determining method applicability is unknown. Discriminating diagnostic evidence must be obtained before selecting, replacing or qualifying the analytical strategy; the method-selection rule is not supplied.",
+        "decision_boundary": "The diagnostic evidence resolves the applicability of candidate strategies. Level 5 requires constructing or materially reformulating a strategy when those candidates cannot meet the objective. A prescribed grid search does not by itself establish level 4.",
+        "example": "The validity of the analysis depends on an unresolved observation-dependence structure. Obtain evidence that distinguishes plausible structures, then select a method and delimit its valid interpretation."
+      },
+      {
+        "load": 5,
+        "criterion": "Available candidate strategies do not adequately address the stated objective under the established evidence conditions. A strategy must be constructed or materially reformulated, with explicit assumptions, identifiable quantities and criteria for judging whether it answers the target question.",
+        "decision_boundary": "The analytical formulation itself must change; choosing or restricting a suitable candidate after diagnosis is level 4. The task has a specified scientific target, and this level does not require a claim of methodological novelty.",
+        "example": "None of the supplied analysis specifications estimates the requested cohort contrast when outcome ascertainment differs by site and observations are dependent. Formulate how those features enter the analysis and state which part of the contrast remains identifiable."
+      }
+    ]
+  },
+  "A1": {
+    "dimension": "Acting",
+    "name": "Generating results",
+    "task_requirement": "Translating analytical requirements into the required deliverables.",
+    "levels": [
+      {
+        "load": 0,
+        "criterion": "The task requires reading or interpreting an existing result, making a knowledge judgment or proposing a plan; no new computational or analytical result must be produced.",
+        "decision_boundary": "Explaining an existing result is level 0 even when the underlying analysis was complex. Performing a new standard calculation or transformation on an available analysis object is level 1.",
+        "example": "Read a reported effect estimate from a supplied results table, or explain why an analysis plan is inappropriate without executing a replacement analysis."
+      },
+      {
+        "load": 1,
+        "criterion": "An appropriate analysis object is already available. A direct calculation, standard fit, retrieval or transformation produces a result that answers the question; routine reading and plotting do not change this requirement.",
+        "decision_boundary": "A standard analysis result does not by itself establish level 2. Level 2 requires constructing the scientific result object and its internal correspondences beyond simply returning a standard call's output.",
+        "example": "Perform PCA on an available expression matrix, fit a specified Cox model, or filter a results table using a supplied threshold."
+      },
+      {
+        "load": 2,
+        "criterion": "Inputs must be organized into the scientific result object required by the task while preserving its internal correspondences. Returning the direct output of a standard analysis call is insufficient.",
+        "decision_boundary": "The requirement concerns the meaning and correspondence of the constructed object. Ordinary merging by an existing key, averaging followed by a ratio, fitting followed by plotting or adding similar samples does not alone establish this level.",
+        "example": "Construct a patient-level mutation profile from different variant classes, retaining the correspondence among patients, categories and the denominator used for each reported frequency."
+      },
+      {
+        "load": 3,
+        "criterion": "Parts of the result are linked by computational relationships that must hold jointly. Their correspondence or computational connection must be implemented to obtain the required analytical product.",
+        "decision_boundary": "Constructing a result object is level 2; implementing a relationship without which its computed parts are mutually inconsistent is level 3. A specified iterative state-update or reconstruction mechanism is level 4.",
+        "example": "Construct sample stability from repeated clustering results by establishing label correspondence across runs before combining cluster assignments. Directly counting the numerical labels would not define the requested stability."
+      },
+      {
+        "load": 4,
+        "criterion": "The task requires implementation of a specified state-update or reconstruction mechanism. Correct results depend on how the computational state is advanced according to that mechanism.",
+        "decision_boundary": "The specified mechanism, rather than ordinary batch repetition, must generate the result. Level 5 adds coupling in which an update changes the representation or admissible operations required by later updates. Writing code alone is insufficient.",
+        "example": "Implement supplied initialization, recurrence and stopping rules that update weights, recompute the next allocation from those weights and produce the final numerical result."
+      },
+      {
+        "load": 5,
+        "criterion": "The required implementation couples state updates with changes to the computational representation or admissible operations. Affected relationships must be rebuilt while the specified scientific invariants remain valid throughout the coupled mechanism.",
+        "decision_boundary": "Beyond advancing the state at level 4, the implementation must maintain correctness as the structure governing subsequent computation changes. This requirement must be part of the requested implementation, not inferred from the internals of a standard tool.",
+        "example": "Implement a supplied lineage-splitting model in which each split changes the clone graph and abundance constraints, requiring transition rates to be rebuilt. Preserve total abundance and parent-child consistency after each topology change."
+      }
+    ]
+  },
+  "A2": {
+    "dimension": "Acting",
+    "name": "Following rules",
+    "task_requirement": "Implementing the task's specifications and parameter requirements correctly.",
+    "levels": [
+      {
+        "load": 0,
+        "criterion": "There are no additional execution specifications beyond the ordinary definition of the requested object and operation.",
+        "decision_boundary": "Naming the target paper, variable, gene set or cohort defines the object and does not by itself add a special execution rule. An additional local parameter, filter or output convention is level 1.",
+        "example": "Report the conclusion of the named paper using that paper as the source; no additional analytical or output specification is imposed."
+      },
+      {
+        "load": 1,
+        "criterion": "A local parameter, direct field filter, fixed mapping, grouping operation or output convention is sufficient to implement the specified rule.",
+        "decision_boundary": "Ordinary grouping, same-key merging, fixed label replacement and set intersection remain local rule implementation. Level 2 requires joint eligibility, pairing or allocation that these operations alone do not establish.",
+        "example": "Set k to 3, use a 95% interval, select a specified database version or retain only records with the given variant class."
+      },
+      {
+        "load": 2,
+        "criterion": "Permissible inclusion, counting or assignment is determined by relationships among observations. The specified joint eligibility, pairing or unique-allocation rule must be implemented.",
+        "decision_boundary": "The relationship can be determined from the available data and rules. Level 3 concerns a selection, transformation or correspondence state created during execution and subsequently reused. A rule's scientific importance alone does not increase its level.",
+        "example": "Include a pair only if both members qualify. When several partners are eligible, assign them using the supplied priority rule while ensuring that each observation is used at most once."
+      },
+      {
+        "load": 3,
+        "criterion": "A selection, transformation or correspondence state created during the current execution determines later operations. Its provenance and scope must be retained so that the correct state is reused for the correct objects.",
+        "decision_boundary": "This is reuse of execution-derived state, beyond a static relationship at level 2. Level 4 requires distinct states for evaluation contexts with different permissible information. A model's ordinary prediction operation alone does not establish level 3.",
+        "example": "Select features using the training set and apply that same feature selection to the test set, without selecting features again from test-set information."
+      },
+      {
+        "load": 4,
+        "criterion": "Different evaluation contexts have different permissible information. Each context requires its own fitted, transformed or selected state, with information and states isolated from contexts where they are not admissible.",
+        "decision_boundary": "Separate admissible scopes must be maintained, rather than merely repeating a fixed program with different seeds. Level 5 additionally requires tracing and invalidating dependent states when the admissibility of previously used information changes.",
+        "example": "For nested evaluation, repeat feature selection and fitting within each inner training split while keeping the corresponding outer test set outside every selection and fitting step."
+      },
+      {
+        "load": 5,
+        "criterion": "The admissibility of previously used information changes during execution, affecting dependent selections, transformations or predictions. Compliance requires tracing those dependencies, invalidating affected states and reconstructing states only within the revised permissible scopes.",
+        "decision_boundary": "Level 4 separates states under established scope rules. Level 5 adds propagation of a change in admissibility through derived states; more folds, time points or repeated fits alone do not establish this requirement.",
+        "example": "A sequential benchmark releases versioned label revisions under a specified as-of-time policy. Identify affected fitted objects, rebuild states only for predictions allowed to use the revision and retain the original states for earlier predictions."
+      }
+    ]
+  },
+  "R1": {
+    "dimension": "Rectifying",
+    "name": "Clarifying instructions",
+    "task_requirement": "Identifying and resolving unclear or unreasonable instructions and flawed analytical premises.",
+    "levels": [
+      {
+        "load": 0,
+        "criterion": "The available task materials show no instruction or analytical premise that requires correction. The requested analysis can proceed under its stated meaning.",
+        "decision_boundary": "A hypothetical error or a flaw in material unused by a valid solution does not establish rectification demand. A required local clarification or an explicit check that confirms validity is level 1.",
+        "example": "Apply an appropriate analysis to compatible data under a clear, valid instruction, with no additional error-checking task."
+      },
+      {
+        "load": 1,
+        "criterion": "A local naming, reference or wording issue has an unambiguous correction that does not change the scientific objective or conclusion boundary; alternatively, a supplied check confirms that the instruction is valid.",
+        "decision_boundary": "The intended meaning is already clear. A substantive invalid premise or an unsupported requirement that changes what can be concluded is level 2.",
+        "example": "Correct the capitalization of a uniquely identifiable target field whose intended meaning is unambiguous."
+      },
+      {
+        "load": 2,
+        "criterion": "A substantive instruction or premise is incorrect or unsupported. A direct criterion is sufficient to identify what fails, how to correct it, what information is missing or where the analysis must stop.",
+        "decision_boundary": "A direct criterion determines the repair. Deriving the error mechanism and its effect on the permissible conclusions is level 3. File length, concealment or the cost of recomputation does not determine the level.",
+        "example": "A count-comparison result is requested without the necessary denominators. Identify the missing population counts and explain why the requested unique result cannot yet be obtained."
+      },
+      {
+        "load": 3,
+        "criterion": "The correction cannot be determined by applying a single explicit rule. Relationships in the analysis or materials must be used to derive why the error arises and what it affects, establishing the correction or the conclusions that can be retained.",
+        "decision_boundary": "The demand is to derive the mechanism and scope of the flaw. If an explicit fact already makes the repair principle direct, level 2 can suffice. Competing supported interpretations with no given priority are considered at level 4.",
+        "example": "Reconstruct how an outcome-dependent sampling procedure changes the claimed independent validation, then determine which comparisons remain interpretable after accounting for that selection."
+      },
+      {
+        "load": 4,
+        "criterion": "The target, definition or interpretation governing the repair cannot be chosen directly. Materials support competing interpretations or requirements, whose evidence must be compared to establish an adopted interpretation, a conditional conclusion or an incompatibility among requirements.",
+        "decision_boundary": "The competing interpretations must have material support. Missing information alone does not establish this level. Level 5 requires designing and using an additional discriminating check when comparison of the available evidence is insufficient for the required repair.",
+        "example": "Two sourced endpoint definitions refer to different analytical objects, with no supplied priority rule. Determine what each definition supports and delimit the conclusions that can be made under each interpretation."
+      },
+      {
+        "load": 5,
+        "criterion": "Competing explanations of an invalid premise imply different repairs, and existing evidence does not discriminate between them. The task requires designing and using a discriminating check, connecting its result to a justified correction and delimiting any remaining uncertainty.",
+        "decision_boundary": "Level 4 compares supported interpretations using the available evidence. Level 5 requires determining what additional evidence can distinguish the explanations and using it for the repair. Mere absence of information or execution of a prescribed check is insufficient.",
+        "example": "An apparent survival benefit could result from outcome-dependent cohort selection or event-time recoding. Use permitted source-record access to design checks that distinguish those explanations and establish which comparison, if any, remains supported."
+      }
+    ]
+  },
+  "R2": {
+    "dimension": "Rectifying",
+    "name": "Checking data",
+    "task_requirement": "Identifying and resolving conflicts and inconsistencies across data.",
+    "levels": [
+      {
+        "load": 0,
+        "criterion": "Data relationships are compatible. Normal reading, a routine transformation or a valid inclusion rule is sufficient; no hidden meaning or correspondence remains to be restored.",
+        "decision_boundary": "Different row orders in legitimately keyed tables do not automatically imply an error. Ordinary joining or filtering of compatible records does not establish restoration demand.",
+        "example": "Compute a correlation for already aligned samples, or read unequal-length set columns as their nonempty member lists."
+      },
+      {
+        "load": 1,
+        "criterion": "An explicit representation, encoding or missing-value issue has a conventional treatment. No hidden identity, unit relationship or observation meaning must be reconstructed.",
+        "decision_boundary": "An explicit missing value differs from a recorded number that an accompanying validity flag shows is not a measurement. Restoring that observation meaning is level 2; missingness frequency alone does not determine the level.",
+        "example": "Convert numeric strings into numbers, or perform and describe complete-observation analysis when the required variable is explicitly missing."
+      },
+      {
+        "load": 2,
+        "criterion": "An actual identity, unit, duplication or observation-validity relationship must be restored. Reliable identifiers, unit descriptions or validity flags directly determine the correction, or identify the specific evidence still required for it.",
+        "decision_boundary": "The reliable mapping or interpretation is directly available. Inferring a correspondence or statistical unit from indirect evidence is level 3. A supplied correction rule does not mean that an actual misalignment has already been repaired.",
+        "example": "Realign mismatched samples using reliable identifiers, or use an explicit unevaluable-status flag to distinguish a placeholder zero from a measured zero."
+      },
+      {
+        "load": 3,
+        "criterion": "No complete direct correspondence can be applied. Record content, hierarchy, collection design or provenance must be combined to infer how observations correspond, should be combined or represent the intended statistical object.",
+        "decision_boundary": "A relationship must be inferred from indirect evidence, rather than recovered by a reliable direct mapping. A one-to-many structure alone does not determine the level. Competing evidence-supported restorations are considered at level 4.",
+        "example": "Use collection batches and specimen records to infer sample correspondence, or reconstruct equal-patient contributions from records containing different numbers of tissue fragments per patient."
+      },
+      {
+        "load": 4,
+        "criterion": "Evidence supports more than one restoration, with no existing reliable rule that selects one directly. Sources must be checked to reject unsupported correspondences and identify records that can be uniquely restored, conditionally retained or excluded.",
+        "decision_boundary": "Supported competing correspondences are required; an absent identifier alone is insufficient. Level 5 requires joint reconstruction when the admissible restoration of one relationship depends on how other unresolved relationships are restored.",
+        "example": "Two reliable specimen lists assign some records to different samples. Compare their provenance and content, retain demonstrable correspondences and identify the records that cannot be uniquely restored."
+      },
+      {
+        "load": 5,
+        "criterion": "Identity, scale or observation relationships are interdependent, so they cannot be restored separately. Joint constraints must be used to reconstruct a globally consistent system, distinguish identifiable from ambiguous restorations and propagate unresolved alternatives to the reported result.",
+        "decision_boundary": "The added demand is joint identifiability: resolving one relation changes which restorations of another are admissible. More conflicting files or records alone do not distinguish this level from level 4.",
+        "example": "Reused sample identifiers and unresolved aliquot-to-patient links must be reconstructed jointly using shared molecular fingerprints and specimen lineage. Identify globally consistent assignments and report how any unresolved alternatives affect patient-level estimates."
+      }
+    ]
+  },
+  "E1": {
+    "dimension": "Evolving",
+    "name": "Using experience",
+    "task_requirement": "Recognizing when prior experience applies and using it to solve the current problem.",
+    "levels": [
+      {
+        "load": 0,
+        "criterion": "No specific prior experience is materially relevant to the current task's central problem. Available material consists only of general knowledge or instructions for the current operation.",
+        "decision_boundary": "A contextualized principle from prior experience can qualify without a narrative log. General tool knowledge, an upstream data file, an unrelated history or a current error message alone does not establish a relevant experience-use requirement.",
+        "example": "Solve a statistical problem using ordinary subject knowledge when no relevant prior procedure and feedback are supplied."
+      },
+      {
+        "load": 1,
+        "criterion": "The task explicitly identifies the relevant prior experience, explains its correspondence to the current problem and specifies how it is to be used. Direct adoption is sufficient.",
+        "decision_boundary": "The applicability link and current use are supplied. Recognizing that link independently, while the experience principle itself is clear, is level 2.",
+        "example": "The instruction states that the current conditions match the prior case and explicitly requires reuse of the previously established processing rule."
+      },
+      {
+        "load": 2,
+        "criterion": "The experience principle is clear, but its relevance to the current task must be recognized independently. Once the correspondence is identified, the principle can be used directly.",
+        "decision_boundary": "Recognition of a clear applicability link is sufficient. Level 3 requires assessing whether the scientific conditions on which the experience depends hold in the current material. Abstract wording alone does not establish that additional demand.",
+        "example": "Recognize from a prior error-and-correction record that its explicitly established rule prevents the same kind of failure in the current problem."
+      },
+      {
+        "load": 3,
+        "criterion": "Surface similarity is insufficient to establish applicability. Current materials must be used to determine whether the scientific conditions underlying the prior experience hold, and which part of the experience can therefore be retained.",
+        "decision_boundary": "The experience can be complete and reliable; the required judgment concerns its scientific applicability. Level 4 requires resolving which of several relevant principles governs the current case or its distinct parts.",
+        "example": "Prior experience uses patients as the counting unit. Current materials contain both patient and event records; determine whether the target is event frequency or the proportion of affected patients before applying that experience."
+      },
+      {
+        "load": 4,
+        "criterion": "Different relevant experiences imply different actions. Their applicability conditions and the current evidence must determine which principle governs the problem, or which parts of the problem each principle can address.",
+        "decision_boundary": "Reliable experiences with different conditions can establish this demand. Level 5 additionally requires separating what the historical evidence supports from competing explanations when method and condition changes are confounded. Unrelated extra experiences do not increase the level.",
+        "example": "Prior missing-data practices distinguish a confirmed absence from an unknown result. Current records contain both states; use their provenance to determine where each practice applies instead of uniformly imputing zero or uniformly excluding records."
+      },
+      {
+        "load": 5,
+        "criterion": "Historical changes in method and scientific conditions are confounded, leaving competing explanations for the observed feedback. Using experience requires identifying which conclusions those histories jointly support, separating transferable principles from unidentifiable explanations and restricting their current use accordingly.",
+        "decision_boundary": "Level 4 selects among applicable experience principles. Level 5 must establish which purported principles are supported by the historical evidence itself. The histories may all be accurate; their comparability, rather than unreliable wording, creates the demand.",
+        "example": "Two protocols were used in different tissues and at different sequencing depths. Use the supplied overlap and control records to establish which parts of the prior performance support reuse, while retaining uncertainty where protocol and condition effects cannot be separated."
+      }
+    ]
+  },
+  "E2": {
+    "dimension": "Evolving",
+    "name": "Adapting strategies",
+    "task_requirement": "Adapting a useful previous strategy when the current task has different conditions or constraints.",
+    "levels": [
+      {
+        "load": 0,
+        "criterion": "There is no useful prior strategy linked to the current task, or the change in conditions does not alter how the prior strategy can be used.",
+        "decision_boundary": "Changing a filename or increasing data volume within the same applicable structure does not by itself require adaptation. Recognizing and reusing an unchanged strategy can require E1 without requiring E2.",
+        "example": "Apply the same valid processing strategy to another file with the same scientific structure and relevant conditions."
+      },
+      {
+        "load": 1,
+        "criterion": "Both the changed condition and the corresponding modification are explicitly provided. Implementing the specified substitution is sufficient.",
+        "decision_boundary": "The adaptation has already been determined by the task. Independently determining a necessary change to a specific part of an otherwise valid strategy is level 2.",
+        "example": "The task supplies the new units, the exact conversion and the required replacement of the old parameter. Apply that replacement."
+      },
+      {
+        "load": 2,
+        "criterion": "The prior strategy's scientific object and computational approach remain valid, but a particular part of its application must be adjusted independently to accommodate the changed conditions.",
+        "decision_boundary": "A local change restores the existing strategy's valid use. Reconstructing the computation that expresses the retained principle is level 3. Merely skipping an already completed step does not establish substantive adaptation.",
+        "example": "The previous split strategy assumed one record per person. With repeated records, determine that records must first be organized by person before applying the same person-level split."
+      },
+      {
+        "load": 3,
+        "criterion": "A useful prior principle remains valid, but the current representation, observational unit or target makes its former operation invalid. The computation expressing that principle must be reconstructed for the current task.",
+        "decision_boundary": "The operation itself changes, beyond replacing an input or modifying a local setting at level 2. Level 4 requires a new derivation because the requested quantity or available evidence changes what the strategy can establish.",
+        "example": "Prior experience counts exclusive intersections from a membership-indicator matrix. Current inputs are member lists for each set; reconstruct member ownership over their union before applying the exclusive-intersection principle."
+      },
+      {
+        "load": 4,
+        "criterion": "The current target quantity or available evidence changes the range of questions the previous strategy can answer. The prior relationship must support a new derivation that establishes what can be calculated and how.",
+        "decision_boundary": "The change is in what is inferred from the prior relationship, beyond rebuilding its representation at level 3. Level 5 requires revising the transferred relationship or its use in response to discriminating evidence from the new setting.",
+        "example": "Prior experience gives confidence bounds for survival probability at a specified time. With the current survival curve and its bounds supplied, derive the median-survival interval by inversion, identifying cases where finite endpoints are unsupported."
+      },
+      {
+        "load": 5,
+        "criterion": "Discriminating evidence from the new setting changes the justified scope or form of a transferred strategy. The task requires identifying where the old relationship fails, reconstructing a supported replacement or restricted use, and applying the revised strategy to the current target.",
+        "decision_boundary": "Level 4 derives a new result from a usable prior relationship. Level 5 revises that relationship or its scope using target-setting feedback. The feedback may be supplied; new experiments, repeated failures or routine hyperparameter tuning are not defining requirements.",
+        "example": "A previous calibration relates marker measurements to cell fractions. Target-tissue validation records show condition-dependent departures. Determine where the old relationship remains valid, reconstruct the calibration from the supplied evidence and report fractions within its supported domain."
+      }
+    ]
+  }
+}

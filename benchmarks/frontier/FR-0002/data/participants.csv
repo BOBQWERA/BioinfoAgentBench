@@ -1,0 +1,100 @@
+participant_id,study_arm,living_with_hiv,age_years,race_ethnicity,baseline_cd4_available,baseline_cd4_cells_per_mm3
+P001,doxy_pep,1,50,Non-Hispanic White,,
+P002,doxy_pep,0,62,Non-Hispanic White,,
+P003,doxy_pep,0,42,Asian/Pacific Islander,,
+P004,standard_care,1,53,Black/African American,1.0,1035.0
+P005,doxy_pep,0,29,Non-Hispanic White,,
+P006,doxy_pep,1,63,Non-Hispanic White,1.0,490.0
+P007,doxy_pep,1,54,Hispanic White,1.0,746.0
+P008,doxy_pep,0,38,Hispanic White,,
+P009,doxy_pep,1,61,Unknown,1.0,726.0
+P010,doxy_pep,1,38,Hispanic White,1.0,378.0
+P011,doxy_pep,1,60,Black/African American,1.0,547.0
+P012,doxy_pep,1,68,Non-Hispanic White,1.0,621.0
+P013,doxy_pep,1,36,Hispanic White,1.0,501.0
+P014,standard_care,1,49,Black/African American,1.0,726.0
+P015,standard_care,1,30,Hispanic White,1.0,934.0
+P016,doxy_pep,0,50,Hispanic White,,
+P017,doxy_pep,1,57,Non-Hispanic White,1.0,468.0
+P018,standard_care,1,37,Non-Hispanic White,1.0,1084.0
+P019,doxy_pep,1,43,Hispanic White,1.0,812.0
+P020,doxy_pep,1,43,Other/Multiracial,1.0,418.0
+P021,standard_care,1,37,Non-Hispanic White,1.0,434.0
+P022,standard_care,1,61,Non-Hispanic White,1.0,743.0
+P023,standard_care,0,28,Asian/Pacific Islander,,
+P024,standard_care,0,23,Non-Hispanic White,,
+P025,doxy_pep,0,29,Hispanic White,,
+P026,doxy_pep,0,57,Hispanic White,,
+P027,doxy_pep,0,59,Non-Hispanic White,,
+P028,standard_care,0,51,Non-Hispanic White,,
+P029,doxy_pep,0,55,Non-Hispanic White,,
+P030,doxy_pep,0,29,Asian/Pacific Islander,,
+P031,standard_care,0,57,Non-Hispanic White,,
+P032,standard_care,0,33,Non-Hispanic White,,
+P033,doxy_pep,0,38,Non-Hispanic White,,
+P034,doxy_pep,0,29,Non-Hispanic White,,
+P035,standard_care,0,48,Other/Multiracial,,
+P036,doxy_pep,0,32,Other/Multiracial,,
+P037,doxy_pep,0,47,Hispanic White,,
+P038,doxy_pep,0,33,Hispanic White,,
+P039,doxy_pep,0,33,Non-Hispanic White,,
+P040,doxy_pep,1,64,Other/Multiracial,,
+P041,standard_care,1,31,Non-Hispanic White,,
+P042,doxy_pep,1,35,Black/African American,,
+P043,standard_care,1,39,Unknown,,
+P044,standard_care,1,38,Non-Hispanic White,,
+P045,doxy_pep,1,74,Non-Hispanic White,,
+P046,doxy_pep,1,47,Non-Hispanic White,1.0,407.0
+P047,doxy_pep,0,28,Non-Hispanic White,,
+P048,standard_care,1,56,Non-Hispanic White,,
+P049,standard_care,1,39,Non-Hispanic White,1.0,695.0
+P050,doxy_pep,1,35,Hispanic White,1.0,722.0
+P051,doxy_pep,1,32,Other/Multiracial,1.0,608.0
+P052,doxy_pep,1,43,Non-Hispanic White,1.0,795.0
+P053,doxy_pep,1,29,Non-Hispanic White,1.0,963.0
+P054,doxy_pep,1,29,Other/Multiracial,,
+P055,doxy_pep,1,60,Non-Hispanic White,1.0,1424.0
+P056,standard_care,1,49,Non-Hispanic White,1.0,291.0
+P057,doxy_pep,1,56,Non-Hispanic White,1.0,724.0
+P058,doxy_pep,1,61,Non-Hispanic White,1.0,638.0
+P059,standard_care,1,45,Other/Multiracial,1.0,197.0
+P060,doxy_pep,1,37,Other/Multiracial,1.0,941.0
+P061,doxy_pep,1,50,Non-Hispanic White,1.0,899.0
+P062,doxy_pep,1,35,Non-Hispanic White,1.0,646.0
+P063,doxy_pep,1,38,Non-Hispanic White,1.0,803.0
+P064,doxy_pep,0,36,Other/Multiracial,,
+P065,doxy_pep,0,31,Non-Hispanic White,,
+P066,doxy_pep,1,36,Non-Hispanic White,1.0,889.0
+P067,doxy_pep,0,34,Hispanic White,,
+P068,doxy_pep,0,27,Non-Hispanic White,,
+P069,doxy_pep,0,28,Non-Hispanic White,,
+P070,standard_care,0,31,Other/Multiracial,,
+P071,standard_care,0,42,Hispanic White,,
+P072,doxy_pep,0,30,Non-Hispanic White,,
+P073,standard_care,0,36,Hispanic White,,
+P074,doxy_pep,0,51,Asian/Pacific Islander,,
+P075,standard_care,0,37,Hispanic White,,
+P076,doxy_pep,0,38,Non-Hispanic White,,
+P077,doxy_pep,0,38,Asian/Pacific Islander,,
+P078,standard_care,0,31,Non-Hispanic White,,
+P079,doxy_pep,0,31,Non-Hispanic White,,
+P080,standard_care,0,53,Other/Multiracial,,
+P081,doxy_pep,0,43,Non-Hispanic White,,
+P082,doxy_pep,0,31,Non-Hispanic White,,
+P083,doxy_pep,0,54,Asian/Pacific Islander,,
+P084,doxy_pep,0,27,Unknown,,
+P085,doxy_pep,0,36,Other/Multiracial,,
+P086,doxy_pep,0,25,Non-Hispanic White,,
+P087,standard_care,0,56,Asian/Pacific Islander,,
+P088,standard_care,0,39,Asian/Pacific Islander,,
+P089,doxy_pep,0,35,Asian/Pacific Islander,,
+P090,standard_care,0,40,Other/Multiracial,,
+P091,standard_care,0,26,Non-Hispanic White,,
+P092,doxy_pep,0,30,Non-Hispanic White,,
+P093,standard_care,0,27,Non-Hispanic White,,
+P094,standard_care,0,38,Other/Multiracial,,
+P095,doxy_pep,0,28,Non-Hispanic White,,
+P096,doxy_pep,0,41,Non-Hispanic White,,
+P097,doxy_pep,0,39,Non-Hispanic White,,
+P098,doxy_pep,0,36,Unknown,,
+P099,doxy_pep,0,38,Asian/Pacific Islander,,

@@ -1,0 +1,343 @@
+dataset,variable,storage_type,role,unit,observed_range_or_levels,missing_count,missing_encoding,notes
+baseline_olink.csv,SampleID,string,participant_id,,XB100 | XB107 | XB112 | XB114 | XB115 | XB14 | XB20 | XB21 | ... (20 levels),0,blank or NA,
+baseline_olink.csv,OlinkID,string,feature_id,,OID20049 | OID20050 | OID20051 | OID20052 | OID20053 | OID20054 | OID20055 | OID20056 | ... (1470 levels),0,blank or NA,
+baseline_olink.csv,UniProt,string,assay_attribute_or_measurement,,A1E959 | A1L4H1 | A4D1B5 | A6NI73 | B1AKI9 | NTproBNP | O00161 | O00175 | ... (1461 levels),0,blank or NA,
+baseline_olink.csv,Assay,string,feature_name,,AARSD1 | ABHD14B | ABL1 | ACAA1 | ACAN | ACE2 | ACOX1 | ACP5 | ... (1461 levels),0,blank or NA,
+baseline_olink.csv,MissingFreq,number,assay_attribute_or_measurement,,"[0, 0.9983]",0,blank or NA,
+baseline_olink.csv,Panel,string,assay_attribute_or_measurement,,Cardiometabolic | Inflammation | Neurology | Oncology,0,blank or NA,
+baseline_olink.csv,QC_Warning,string,assay_attribute_or_measurement,,PASS | WARN,0,blank or NA,
+baseline_olink.csv,LOD,number,assay_attribute_or_measurement,,"[-11.0631, 4.6592]",0,blank or NA,
+baseline_olink.csv,NPX,number,assay_attribute_or_measurement,log2 NPX,"[-8.6985, 10.724]",0,blank or NA,
+baseline_olink.csv,Normalization,string,assay_attribute_or_measurement,,Intensity | Plate control,0,blank or NA,
+baseline_olink.csv,Assay_Warning,string,assay_attribute_or_measurement,,PASS | WARN,0,blank or NA,
+baseline_olink.csv,PlateID,string,assay_attribute_or_measurement,,sample_manifest_plate_10 | sample_manifest_plate_11 | sample_manifest_plate_12 | sample_manifest_plate_13 | sample_manifest_plate_2 | sample_manifest_plate_3 | sample_manifest_plate_4 | sample_manifest_plate_5 | ... (12 levels),0,blank or NA,
+baseline_olink.csv,SampleType,string,assay_attribute_or_measurement,,plasma,0,blank or NA,
+baseline_olink.csv,WellID,string,assay_attribute_or_measurement,,,29400,blank or NA,
+baseline_olink.csv,DataAnalysisRefID,string,assay_attribute_or_measurement,,,29400,blank or NA,
+baseline_olink.csv,Block,string,assay_attribute_or_measurement,,,29400,blank or NA,
+baseline_olink.csv,SampleQC,string,assay_attribute_or_measurement,,PASS | WARN,0,blank or NA,
+baseline_olink.csv,ExploreVersion,string,assay_attribute_or_measurement,,,29400,blank or NA,
+baseline_olink.csv,Count,string,assay_attribute_or_measurement,,,29400,blank or NA,
+baseline_olink.csv,ExtNPX,string,assay_attribute_or_measurement,"extended NPX, if present",,29400,blank or NA,
+cgm_curves.csv,glucose,number,measurement,mg/dL,"[43.4275, 309.16589]",0,blank or NA,
+cgm_curves.csv,subject,string,participant_id,,XB1 | XB100 | XB101 | XB107 | XB111 | XB114 | XB115 | XB14 | ... (38 levels),0,blank or NA,
+cgm_curves.csv,foods,string,meal_condition,,Beans | Berries | Bread | Bread+Fat | Bread+Fiber | Bread+Protein | Glucose | Grapes | ... (24 levels),0,blank or NA,Composite condition label; may include a base meal plus preload.
+cgm_curves.csv,mitigator,string,preload_condition,,Fat | Fiber | Protein,16000,blank or NA,Blank means no preload.
+cgm_curves.csv,food,string,base_meal,,Beans | Berries | Bread | Glucose | Grapes | Pasta | Potatoes | Quinoa | ... (9 levels),0,blank or NA,
+cgm_curves.csv,rep,integer,within_participant_replicate,,"[1, 5]",0,blank or NA,
+cgm_curves.csv,mins_since_start,integer,relative_time,min,"[-25, 170]",0,blank or NA,
+meal_nutrients.csv,meal,string,meal_condition,,Beans | Berries | Bread | Grapes | Pasta | Potatoes | Rice,0,blank or NA,
+meal_nutrients.csv,source_food_name,string,attribute,,"Trader Joe's hash brown potatoes | beans, black, canned - drained, low sodium | grapes, fresh | macaroni noodles, white, cooked in unsalted water | mixed berries | rice, jasmine, cooked in unsalted water | trader joes buttermilk bread",0,blank or NA,
+meal_nutrients.csv,food_mass_g,number,attribute,g,"[109.232, 471.632]",0,blank or NA,
+meal_nutrients.csv,energy_kcal,number,attribute,kcal,"[190.564, 324.862]",0,blank or NA,
+meal_nutrients.csv,total_fat_g,number,attribute,g,"[0.261, 9.593]",0,blank or NA,
+meal_nutrients.csv,total_carbohydrate_g,number,attribute,g,"[49.916, 50.001]",0,blank or NA,
+meal_nutrients.csv,total_protein_g,number,attribute,g,"[1.988, 15.796]",0,blank or NA,
+meal_nutrients.csv,starch_g,number,attribute,g,"[0, 42.133]",0,blank or NA,
+meal_nutrients.csv,dietary_fiber_g,number,attribute,g,"[0.603, 20.153]",0,blank or NA,
+meal_nutrients.csv,total_sugars_g,number,attribute,g,"[0.053, 42.753]",0,blank or NA,
+participant_metadata.csv,id,string,participant_id,,XB1 | XB10 | XB100 | XB101 | XB102 | XB106 | XB107 | XB108 | ... (74 levels),0,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,HbA1c,number,participant_attribute,%,"[4.7, 7]",22,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,fasting glucose,number,participant_attribute,mg/dL,"[71, 130]",23,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,fasting insulin,number,participant_attribute,microIU/mL,"[2.8, 29]",25,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,BMI,number,participant_attribute,kg/m^2,"[17.2, 36.066667]",22,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,Systolic bp,number,participant_attribute,mmHg,"[91, 148]",21,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,Diastolic bp,number,participant_attribute,mmHg,"[53.001667, 106.33]",21,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,Total cholesterol,number,participant_attribute,mg/dL,"[119.66667, 278.75]",22,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,LDL,number,participant_attribute,mg/dL,"[45, 190.25]",22,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,HDL,number,participant_attribute,mg/dL,"[34, 118]",22,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,Sex,string,participant_attribute,,Female | Male,13,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,Ethnicity,string,participant_attribute,,Asian | Hispanic or Latino | White,9,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,Free fatty acids,number,participant_attribute,mmol/L,"[0.05, 0.858]",51,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,age,number,participant_attribute,years,"[24.6, 79]",5,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,DI,number,participant_attribute,(pmol/dL)/(kg/mL),"[0.4425, 6.5788462]",33,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,SSPG,number,participant_attribute,mg/dL,"[39, 276]",31,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,IE,number,participant_attribute,%,"[4.8015154, 78.988459]",37,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,Hepatic IR,number,participant_attribute,unitless index,"[3.5750352, 5.0336219]",46,blank or NA,One row per participant; missing values are blank/NA.
+participant_metadata.csv,OGTT120,integer,participant_attribute,mg/dL,"[71, 207]",29,blank or NA,One row per participant; missing values are blank/NA.
+baseline_lipidomics.tsv,X,string,feature_id,,CE(12:0) | CE(14:0) | CE(14:1) | CE(15:0) | CE(16:0) | CE(16:1) | CE(17:0) | CE(18:0) | ... (652 levels),0,blank or NA,
+baseline_lipidomics.tsv,XB59_1,number,sample_measurement,nmol/g,"[0.015941291, 1604.3277]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB45_1,number,sample_measurement,nmol/g,"[0.011595534, 2102.7066]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB100_1,number,sample_measurement,nmol/g,"[0.048692113, 1784.8246]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB14_1,number,sample_measurement,nmol/g,"[0.014426749, 1656.7861]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB2_1,number,sample_measurement,nmol/g,"[0.015955806, 1998.2957]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB68_1,number,sample_measurement,nmol/g,"[0.024117345, 1931.1891]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB70_1,number,sample_measurement,nmol/g,"[0.033118975, 1523.3261]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB70_2,number,sample_measurement,nmol/g,"[0.059908815, 1522.0944]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB100_2,number,sample_measurement,nmol/g,"[0.0594, 1743.5248]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB18_1,number,sample_measurement,nmol/g,"[0.011958038, 1689.288]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB95_1,number,sample_measurement,nmol/g,"[0.015352101, 1799.4616]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB14_2,number,sample_measurement,nmol/g,"[0.030955595, 1592.5403]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB70_3,number,sample_measurement,nmol/g,"[0.012009469, 980.03487]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB101_1,number,sample_measurement,nmol/g,"[0.019659254, 1578.296]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB79_1,number,sample_measurement,nmol/g,"[0.019641732, 1398.8746]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB38_1,number,sample_measurement,nmol/g,"[0.08187019, 2745.2488]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB24_1,number,sample_measurement,nmol/g,"[0.024874684, 1214.0003]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB20_1,number,sample_measurement,nmol/g,"[0.065678193, 1604.5648]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB44_1,number,sample_measurement,nmol/g,"[0.01897725, 1841.0918]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB32_1,number,sample_measurement,nmol/g,"[0.013616796, 2033.203]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB95_2,number,sample_measurement,nmol/g,"[0.015723096, 1986.535]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB59_2,number,sample_measurement,nmol/g,"[0.043765952, 1419.5676]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB111_1,number,sample_measurement,nmol/g,"[0.015966104, 1321.5914]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB20_2,number,sample_measurement,nmol/g,"[0.051404382, 1051.5425]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB79_2,number,sample_measurement,nmol/g,"[0.013573902, 1567.9112]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB54_1,number,sample_measurement,nmol/g,"[0.020767482, 1508.8584]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB79_3,number,sample_measurement,nmol/g,"[0.012337281, 1744.4131]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB89_1,number,sample_measurement,nmol/g,"[0.074541018, 1654.2885]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB1_1,number,sample_measurement,nmol/g,"[0.013233099, 1395.6344]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB68_2,number,sample_measurement,nmol/g,"[0.06756745, 1695.2377]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB21_1,number,sample_measurement,nmol/g,"[0.012941877, 1631.3558]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB98_1,number,sample_measurement,nmol/g,"[0.022552695, 1652.3263]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB79_4,number,sample_measurement,nmol/g,"[0.015442175, 1726.4319]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB54_2,number,sample_measurement,nmol/g,"[0.073758999, 1610.5001]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB70_4,number,sample_measurement,nmol/g,"[0.059008825, 1570.0493]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB89_2,number,sample_measurement,nmol/g,"[0.048389694, 1655.9699]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB38_2,number,sample_measurement,nmol/g,"[0.068330501, 2219.8911]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB107_1,number,sample_measurement,nmol/g,"[0.015172635, 1719.7854]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB42_1,number,sample_measurement,nmol/g,"[0.012597292, 1284.6273]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB33_1,number,sample_measurement,nmol/g,"[0.013828226, 1559.693]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB33_2,number,sample_measurement,nmol/g,"[0.010734308, 1242.1606]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB112_1,number,sample_measurement,nmol/g,"[0.042559542, 1818.9252]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB70_5,number,sample_measurement,nmol/g,"[0.061658015, 1240.3742]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB33_3,number,sample_measurement,nmol/g,"[0.0083598572, 1534.2985]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB100_3,number,sample_measurement,nmol/g,"[0.061265257, 1779.1941]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB38_3,number,sample_measurement,nmol/g,"[0.081181244, 2583.2592]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB21_2,number,sample_measurement,nmol/g,"[0.011779732, 1487.753]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB62_1,number,sample_measurement,nmol/g,"[0.011987099, 1774.0597]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB107_2,number,sample_measurement,nmol/g,"[0.010972875, 1890.3641]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB6_1,number,sample_measurement,nmol/g,"[0.07994743, 1600.4888]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB34_1,number,sample_measurement,nmol/g,"[0.013414828, 1248.1439]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB68_3,number,sample_measurement,nmol/g,"[0.058558285, 1676.4349]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB20_3,number,sample_measurement,nmol/g,"[0.030591212, 2022.1125]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB94_1,number,sample_measurement,nmol/g,"[0.019301077, 2258.3597]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB38_4,number,sample_measurement,nmol/g,"[0.081003993, 2429.684]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB79_5,number,sample_measurement,nmol/g,"[0.010760552, 1605.9144]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB1_2,number,sample_measurement,nmol/g,"[0.010508295, 1277.9333]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB44_2,number,sample_measurement,nmol/g,"[0.056566634, 1608.9911]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB97_1,number,sample_measurement,nmol/g,"[0.017710037, 1932.2394]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB20_4,number,sample_measurement,nmol/g,"[0.054071141, 2170.7004]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB114_1,number,sample_measurement,nmol/g,"[0.029421255, 2091.2909]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB33_4,number,sample_measurement,nmol/g,"[0.011057664, 1347.1555]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB22_1,number,sample_measurement,nmol/g,"[0.016243711, 1907.323]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB107_3,number,sample_measurement,nmol/g,"[0.022824321, 1537.4742]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB111_2,number,sample_measurement,nmol/g,"[0.097752611, 1197.4369]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB100_4,number,sample_measurement,nmol/g,"[0.025389783, 1632.5774]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB111_3,number,sample_measurement,nmol/g,"[0.067763126, 1209.1216]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB59_3,number,sample_measurement,nmol/g,"[0.02096111, 1376.9593]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB1_3,number,sample_measurement,nmol/g,"[0.012301478, 990.53706]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB21_3,number,sample_measurement,nmol/g,"[0.015124842, 1353.6406]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB38_5,number,sample_measurement,nmol/g,"[0.1006434, 2563.9157]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB6_2,number,sample_measurement,nmol/g,"[0.017219125, 1239.3553]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB21_4,number,sample_measurement,nmol/g,"[0.01196369, 1368.571]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB21_5,number,sample_measurement,nmol/g,"[0.011014569, 1585.0663]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB65_1,number,sample_measurement,nmol/g,"[0.015965779, 1575.8799]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB20_5,number,sample_measurement,nmol/g,"[0.018271923, 1682.2335]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB76_1,number,sample_measurement,nmol/g,"[0.014337236, 1215.4594]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB14_3,number,sample_measurement,nmol/g,"[0.011633302, 1548.0228]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB79_6,number,sample_measurement,nmol/g,"[0.014210848, 1573.9465]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB107_4,number,sample_measurement,nmol/g,"[0.022544917, 1650.8565]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB115_1,number,sample_measurement,nmol/g,"[0.01087512, 933.22565]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB94_2,number,sample_measurement,nmol/g,"[0.017949534, 2104.6696]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB95_3,number,sample_measurement,nmol/g,"[0.014195178, 1822.188]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB107_5,number,sample_measurement,nmol/g,"[0.014475833, 1804.679]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB59_4,number,sample_measurement,nmol/g,"[0.017699724, 1461.9462]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB115_2,number,sample_measurement,nmol/g,"[0.0081541121, 829.45676]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB45_2,number,sample_measurement,nmol/g,"[0.0098199955, 1758.7263]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB100_5,number,sample_measurement,nmol/g,"[0.04928613, 1662.7403]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB89_3,number,sample_measurement,nmol/g,"[0.016928823, 1335.9176]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB6_3,number,sample_measurement,nmol/g,"[0.015242006, 1525.3887]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB68_4,number,sample_measurement,nmol/g,"[0.016946725, 1462.0859]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB43_1,number,sample_measurement,nmol/g,"[0.039676258, 1940.895]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB43_2,number,sample_measurement,nmol/g,"[0.0176461, 2002.3626]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB97_2,number,sample_measurement,nmol/g,"[0.015201444, 2017.9369]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB2_2,number,sample_measurement,nmol/g,"[0.017250533, 1944.2827]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB1_4,number,sample_measurement,nmol/g,"[0.012697745, 1144.0865]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB115_3,number,sample_measurement,nmol/g,"[0.014805294, 987.23751]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB43_3,number,sample_measurement,nmol/g,"[0.012564022, 2114.1998]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB1_5,number,sample_measurement,nmol/g,"[0.010656761, 1284.9199]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB65_2,number,sample_measurement,nmol/g,"[0.036589128, 1793.3724]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB114_2,number,sample_measurement,nmol/g,"[0.070232609, 2104.6689]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB97_3,number,sample_measurement,nmol/g,"[0.012106476, 2085.0294]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB25_1,number,sample_measurement,nmol/g,"[0.015586647, 2318.3888]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB112_2,number,sample_measurement,nmol/g,"[0.017993725, 1845.2987]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB79_7,number,sample_measurement,nmol/g,"[0.015302296, 1530.4102]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB114_3,number,sample_measurement,nmol/g,"[0.030505346, 2277.4052]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB94_3,number,sample_measurement,nmol/g,"[0.015946626, 2402.972]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB89_4,number,sample_measurement,nmol/g,"[0.08325219, 1427.9406]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB20_6,number,sample_measurement,nmol/g,"[0.051311381, 2106.3266]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB22_2,number,sample_measurement,nmol/g,"[0.024839634, 2049.627]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB68_5,number,sample_measurement,nmol/g,"[0.017160857, 1645.1532]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB115_4,number,sample_measurement,nmol/g,"[0.010329595, 1109.9386]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_lipidomics.tsv,XB25_2,number,sample_measurement,nmol/g,"[0.014173355, 2221.4198]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,X,integer,feature_id,,"[1, 159751]",0,blank or NA,
+baseline_metabolomics.tsv,Compound,string,feature_annotation,,0.52_268.9979m/z | 0.53_130.0873m/z | 0.53_180.0666m/z | 0.54_114.0663m/z | 0.54_128.0353m/z | 0.54_134.0220n | 0.54_181.0739n | 0.55_111.0087m/z | ... (974 levels),0,blank or NA,
+baseline_metabolomics.tsv,Neutral.mass..Da.,number,feature_annotation,,"[87.06849, 841.52054]",696,blank or NA,
+baseline_metabolomics.tsv,m.z,number,feature_annotation,,"[72.9917, 878.5704]",0,blank or NA,
+baseline_metabolomics.tsv,Charge,integer,feature_annotation,,"[1, 1]",0,blank or NA,
+baseline_metabolomics.tsv,Retention.time..min.,number,feature_annotation,,"[0.52, 19.28]",0,blank or NA,
+baseline_metabolomics.tsv,Chromatographic.peak.width..min.,number,feature_annotation,,"[0.01561667, 6.5334]",0,blank or NA,
+baseline_metabolomics.tsv,Identifications,integer,feature_annotation,,"[0, 0]",0,blank or NA,
+baseline_metabolomics.tsv,Isotope.Distribution,string,feature_annotation,,100 | 100 - 0.0493 | 100 - 0.0565 | 100 - 0.0664 | 100 - 0.072 | 100 - 0.0826 | 100 - 0.0959 | 100 - 0.108 | ... (803 levels),0,blank or NA,
+baseline_metabolomics.tsv,Maximum.Abundance,number,feature_annotation,,"[211.78454, 5.3643999e+08]",0,blank or NA,
+baseline_metabolomics.tsv,Minimum.CV.,number,feature_annotation,,"[11.5, 972.51]",0,blank or NA,
+baseline_metabolomics.tsv,Accepted.Compound.ID,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Accepted.Description,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Adducts,string,feature_annotation,,"M+CH3COO, 2M-H | M+Cl, M+CH3COO | M+Cl, M+CH3COO, 2M-H | M+H, 2M+H | M+H, M+K | M+H, M+Na | M+H, M+Na, M+K | M+H, M+Na, M+K, 2M+H | ... (57 levels)",696,blank or NA,
+baseline_metabolomics.tsv,Formula,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Score,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Fragmentation.Score,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Mass.Error..ppm.,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Isotope.Similarity,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Retention.Time.Error..mins.,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Compound.Link,string,feature_annotation,,,974,blank or NA,
+baseline_metabolomics.tsv,Compounds_ID,string,feature_annotation,,100.0758_1.72 | 102.0562_7.18 | 102.0562_8.4 | 103.0402_5.81 | 103.0403_4.85 | 103.04_0.6 | 103.054_6.37 | 104.0355_10.12 | ... (974 levels),0,blank or NA,
+baseline_metabolomics.tsv,Mode,string,feature_annotation,,nHILIC | nRPLC | pHILIC | pRPLC,0,blank or NA,
+baseline_metabolomics.tsv,med,number,feature_annotation,,"[4.7933649, 5.2096761e+08]",0,blank or NA,
+baseline_metabolomics.tsv,NewRT,number,feature_annotation,,"[0.471541, 18.20186]",0,blank or NA,
+baseline_metabolomics.tsv,Metabolite_New_DB,string,feature_annotation,,"(2R,3R,4R)-2-Amino-4-hydroxy-3-methylpentanoic acid|Fagomine|N-(2-Hydroxyethyl)-morpholine N-oxide|2-Amino-4-hydroxy-3-methylpentanoic acid|(2R,3R,4R)-2-Amino-4-hydroxy-3-methylpentanoic acid|Fagomine|2-(Hydroxymethyl)-3,4-piperidinediol|6-Hydroxy-D-Norleucine|Beta-Hydroxyleucine|6-Hydroxy-L-Norleucine|(3r,4r,5r)-5-(Hydroxymethyl)Piperidine-3,4-Diol | 0 | 1-(beta-D-Ribofuranosyl)-1,4-dihydronicotinamide  | 1-Methylhistidine | 1-Methyluric acid | 11-beta-Hydroxyandrosterone-3-glucuronide | 12(13)Ep-9-KODE|(9Z,11R,12S,13S,15Z)-12,13-Epoxy-11-hydroxy-9,15-octadecadienoic acid|Sterebin A|Auxin b|13(S)-Hydroperoxylinolenic acid|(11R,12S,13S)-Epoxy-hydroxyoctadeca-cis-9-cis-15-dien-1-oic acid|(11S,12S,13S)-Epoxy-hydroxyoctadeca-cis-9-cis-15-dien-1-oic acid|6-Methylgingediol|(9Z,11R,12S,13S,15Z)-12,13-Epoxy-11-hydroxy-9,15-octadecadienoic acid|(8E,10S,12Z)-10-hydroxy-6-oxooctadeca-8,12-dienoic acid|(8R,9Z,12Z)-8-hydroxy-6-oxooctadeca-9,12-dienoic acid | 12a-Hydroxy-3-oxocholadienic acid|9'-Carboxy-alpha-tocotrienol|Medroxyprogesterone Acetate|Medroxyprogesterone Acetate | ... (423 levels)",23,blank or NA,
+baseline_metabolomics.tsv,Formula_New_DB,string,feature_annotation,,0 | C10H12N2O3 | C10H12N2O8 | C10H12N4O5 | C10H12O2 | C10H13N2Na3O8 | C10H16N2O4 | C10H16N2O8 | ... (360 levels),77,blank or NA,
+baseline_metabolomics.tsv,KEGG_New_DB,string,feature_annotation,,0 | C00025 | C00041 | C00047 | C00049 | C00062 | C00064 | C00065 | ... (168 levels),284,blank or NA,
+baseline_metabolomics.tsv,HMDB_New_DB,string,feature_annotation,,0 | HMDB00001 | HMDB0000518 | HMDB0000619 | HMDB0000714 | HMDB00015|HMDB01547|HMDB04030|HMDB06756|HMDB12612|HMDB12849|HMDB29476|HMDB29561|HMDB30280|HMDB35130|HMDB36624|HMDB37378|HMDB38031||||| | HMDB00019 | HMDB00023 | ... (287 levels),142,blank or NA,
+baseline_metabolomics.tsv,Ions_New_DB,string,feature_annotation,,0 | Adduct | Bad chrom | Contaminant | Frag | Fragment | IS | Low intensity | ... (22 levels),13,blank or NA,
+baseline_metabolomics.tsv,MSMS_New_DB,string,feature_annotation,,0 | OK | YES,102,blank or NA,
+baseline_metabolomics.tsv,Used.for.Quant_New_DB,string,feature_annotation,,0 | N | Y,102,blank or NA,
+baseline_metabolomics.tsv,MSI.level,number,feature_annotation,,"[0, 4]",155,blank or NA,
+baseline_metabolomics.tsv,Discard,string,feature_annotation,,0 | Discard | Keep,0,blank or NA,
+baseline_metabolomics.tsv,Dataset,string,feature_annotation,,0 | Discarded cord blood | iPOP Exercise,0,blank or NA,
+baseline_metabolomics.tsv,Class,string,feature_annotation,,0 | Amino Acid | Amino acid | Carbohydrate | Cofactors and Vitamins | Energy | Lipid | Nucleotide | ... (10 levels),192,blank or NA,
+baseline_metabolomics.tsv,Pathway,string,feature_annotation,,0 | Acylcarnitines | Alanine and Aspartate Metabolism | Aminosugar Metabolism | Androgenic Steroids | Ascorbate and Aldarate Metabolism | Ascorbate and aldarate metabolism | Benzoate Metabolism | ... (55 levels),192,blank or NA,
+baseline_metabolomics.tsv,name,string,feature_annotation,,0.52_268.9979m/z | 0.53_130.0873m/z | 0.53_180.0666m/z | 0.54_114.0663m/z | 0.54_128.0353m/z | 0.54_134.0220n | 0.54_181.0739n | 0.55_111.0087m/z | ... (974 levels),0,blank or NA,
+baseline_metabolomics.tsv,mz,number,feature_annotation,,"[72.99172, 878.5704]",0,blank or NA,
+baseline_metabolomics.tsv,rt,number,feature_annotation,,"[31.455, 1156.962]",0,blank or NA,
+baseline_metabolomics.tsv,MS2.spectrum.name,string,feature_annotation,,mz100.075607299805rt100.854528 | mz102.056228637695rt434.613066 | mz102.056243896484rt503.30577 | mz103.040054321289rt41.597784 | mz103.040260730508rt342.529716 | mz103.040280419978rt284.285058 | mz103.054092407227rt373.909356 | mz104.035552978516rt607.03248 | ... (974 levels),0,blank or NA,
+baseline_metabolomics.tsv,Candidate.number,integer,feature_annotation,,"[1, 1]",0,blank or NA,
+baseline_metabolomics.tsv,Level,integer,feature_annotation,,"[1, 2]",0,blank or NA,
+baseline_metabolomics.tsv,Compound.name,string,feature_annotation,,"(+)-Abscisic acid | (+)-Cinchonine | (+-)-Baclofen | (-)-.alpha.-Kainic acid | (1R)-Chrysanthemolactone | (2-oxo-2,3-dihydro-1H-indol-3-yl)acetic acid | (2E,4E)-Hexa-2,4-dienoic acid | (2R)-3-Hydroxyisovaleroylcarnitine | ... (731 levels)",0,blank or NA,
+baseline_metabolomics.tsv,CAS.ID,string,feature_annotation,,0 | 10030-73-6 | 1013-99-6 | 102052-95-9 | 103-90-2 | 1035557-09-5 | 10356-99-7 | 104-98-3 | ... (427 levels),386,blank or NA,
+baseline_metabolomics.tsv,HMDB.ID,string,feature_annotation,,0 | C00025 | C00049 | C00097 | C00141 | C00191 | C00245 | C00258 | ... (267 levels),586,blank or NA,
+baseline_metabolomics.tsv,KEGG.ID,string,feature_annotation,,0 | C00019 | C00037 | C00047 | C00048 | C00049 | C00062 | C00073 | ... (207 levels),655,blank or NA,
+baseline_metabolomics.tsv,Lab.ID,string,feature_annotation,,HILIC_107 | HILIC_122 | HILIC_145 | HILIC_161 | HILIC_162 | HILIC_163 | HILIC_178 | HILIC_300 | ... (767 levels),0,blank or NA,
+baseline_metabolomics.tsv,Adduct,string,feature_annotation,,(2M+H)+ | (2M-H)- | (M+CH3CN+H)+ | (M+CH3CN+Na)+ | (M+CH3COO)- | (M+CH3COO+2H)+ | (M+H)+ | (M+H-2H2O)+ | ... (21 levels),0,blank or NA,
+baseline_metabolomics.tsv,mz.error,number,feature_annotation,,"[0.0004836274, 14.97483]",0,blank or NA,
+baseline_metabolomics.tsv,mz.match.score,number,feature_annotation,,"[0.6075483, 1]",0,blank or NA,
+baseline_metabolomics.tsv,RT.error,number,feature_annotation,,"[0.03764457, 88.68612]",536,blank or NA,
+baseline_metabolomics.tsv,RT.match.score,number,feature_annotation,,"[0.6153846, 0.9999992]",536,blank or NA,
+baseline_metabolomics.tsv,CE,string,feature_annotation,,10 | 10 ev | 15 | 15 % (nominal) | 15 (nominal) | 20 | 20.0 | 25 | ... (46 levels),0,blank or NA,
+baseline_metabolomics.tsv,SS,number,feature_annotation,,"[0.4010298, 0.7856929]",0,blank or NA,
+baseline_metabolomics.tsv,Total.score,number,feature_annotation,,"[0.4873595, 0.8845407]",0,blank or NA,
+baseline_metabolomics.tsv,Database,string,feature_annotation,,hmdbDatabase0.0.1 | massbankDatabase0.0.1 | monaDatabase0.0.1 | msDatabase_hilic0.0.1 | msDatabase_rplc0.0.1 | orbitrapDatabase0.0.1,0,blank or NA,
+baseline_metabolomics.tsv,XB59_1,number,sample_measurement,instrument intensity (arbitrary units),"[1.152941, 6.9761384e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB45_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.2378832, 5.6829814e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB100_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.1022952, 6.1524151e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB14_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.003702904, 5.5545429e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB2_1,number,sample_measurement,instrument intensity (arbitrary units),"[3.7540511, 6.2132289e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB68_1,number,sample_measurement,instrument intensity (arbitrary units),"[2.766555, 5.039971e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB70_1,number,sample_measurement,instrument intensity (arbitrary units),"[1.2893248, 5.1982476e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB70_2,number,sample_measurement,instrument intensity (arbitrary units),"[2.3874993, 4.8781415e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB100_2,number,sample_measurement,instrument intensity (arbitrary units),"[7.187778, 6.0121426e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB18_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.08084723, 5.6168022e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB95_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.2474723, 6.4410516e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB14_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.8970836, 5.6721676e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB70_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.061766173, 5.8934833e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB101_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.027253176, 5.3552673e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB79_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.01309216, 5.472505e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB38_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.76102016, 5.4499395e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB24_1,number,sample_measurement,instrument intensity (arbitrary units),"[3.32914, 5.2110588e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB20_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.1404719, 5.4162321e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB44_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.1886823, 5.2772009e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB95_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.3757168, 5.8624716e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB32_1,number,sample_measurement,instrument intensity (arbitrary units),"[3.834899, 5.4689194e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB59_2,number,sample_measurement,instrument intensity (arbitrary units),"[2.208154, 6.2781137e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB111_1,number,sample_measurement,instrument intensity (arbitrary units),"[1.305579, 5.753839e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB20_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.37423342, 5.2096761e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB79_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.144699, 6.7718067e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB54_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.5548951, 5.7109555e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB79_3,number,sample_measurement,instrument intensity (arbitrary units),"[1.367952, 5.4246785e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB89_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.32767281, 5.3645333e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB1_1,number,sample_measurement,instrument intensity (arbitrary units),"[2.070101, 6.104215e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB68_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.034837171, 5.685039e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB21_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.2268583, 5.7533635e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB98_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.5049514, 5.1084552e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB79_4,number,sample_measurement,instrument intensity (arbitrary units),"[2.011677, 5.9967587e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB54_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.035509203, 5.1171542e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB70_4,number,sample_measurement,instrument intensity (arbitrary units),"[0.072186954, 4.8824351e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB89_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.0079276165, 4.8942856e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB38_2,number,sample_measurement,instrument intensity (arbitrary units),"[4.573416, 5.013403e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB107_1,number,sample_measurement,instrument intensity (arbitrary units),"[13.81336, 5.3347659e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB42_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.095819809, 3.8921421e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB33_1,number,sample_measurement,instrument intensity (arbitrary units),"[15.48112, 5.5759579e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB33_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.011747022, 4.5967172e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB112_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.066669137, 4.9697904e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB70_5,number,sample_measurement,instrument intensity (arbitrary units),"[1.412499, 5.0797019e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB33_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.023530191, 4.6890272e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB100_3,number,sample_measurement,instrument intensity (arbitrary units),"[2.6400154, 4.9241341e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB38_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.95534079, 4.736474e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB21_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.074529689, 4.7223252e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB62_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.005431115, 4.9456725e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB107_2,number,sample_measurement,instrument intensity (arbitrary units),"[2.2854863, 4.8829366e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB6_1,number,sample_measurement,instrument intensity (arbitrary units),"[1.3874116, 4.945164e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB34_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.10099718, 4.7728627e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB68_3,number,sample_measurement,instrument intensity (arbitrary units),"[46.1393, 4.7654374e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB20_3,number,sample_measurement,instrument intensity (arbitrary units),"[12.93382, 4.7088214e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB94_1,number,sample_measurement,instrument intensity (arbitrary units),"[6.341535, 5.071566e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB38_4,number,sample_measurement,instrument intensity (arbitrary units),"[8.289792, 5.74904e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB79_5,number,sample_measurement,instrument intensity (arbitrary units),"[17.37446, 5.1456372e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB1_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.044711191, 5.1420438e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB44_2,number,sample_measurement,instrument intensity (arbitrary units),"[13.222263, 4.9802962e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB97_1,number,sample_measurement,instrument intensity (arbitrary units),"[3.41731, 2.3740121e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB20_4,number,sample_measurement,instrument intensity (arbitrary units),"[0.0064806908, 4.3458984e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB114_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.031958452, 5.7302079e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB33_4,number,sample_measurement,instrument intensity (arbitrary units),"[0.037063532, 5.4834358e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB22_1,number,sample_measurement,instrument intensity (arbitrary units),"[2.427658, 4.9847085e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB107_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.036766788, 5.2073706e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB111_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.1551696, 5.37829e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB100_4,number,sample_measurement,instrument intensity (arbitrary units),"[0.024434757, 5.6520413e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB111_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.0038488035, 5.4822521e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB59_3,number,sample_measurement,instrument intensity (arbitrary units),"[42.53636, 5.4347803e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB1_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.31209725, 5.1778129e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB21_3,number,sample_measurement,instrument intensity (arbitrary units),"[1.022891, 4.7523501e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB38_5,number,sample_measurement,instrument intensity (arbitrary units),"[3.042615, 5.9192955e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB6_2,number,sample_measurement,instrument intensity (arbitrary units),"[3.8146179, 5.5708252e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB21_4,number,sample_measurement,instrument intensity (arbitrary units),"[1.9250073, 4.4564232e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB21_5,number,sample_measurement,instrument intensity (arbitrary units),"[0.0084428235, 4.4167256e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB65_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.0095081262, 4.8214452e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB20_5,number,sample_measurement,instrument intensity (arbitrary units),"[0.0040659638, 4.4376975e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB76_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.042001545, 4.6948904e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB14_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.16500832, 5.1665787e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB79_6,number,sample_measurement,instrument intensity (arbitrary units),"[6.1972097, 5.1768174e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB107_4,number,sample_measurement,instrument intensity (arbitrary units),"[0.046951236, 4.4994394e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB115_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.03477111, 4.795999e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB94_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.4066319, 5.0667629e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB95_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.9114693, 5.3803753e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB107_5,number,sample_measurement,instrument intensity (arbitrary units),"[0.049353853, 4.9176101e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB59_4,number,sample_measurement,instrument intensity (arbitrary units),"[0.020537088, 5.5991572e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB115_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.019222961, 4.6726544e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB45_2,number,sample_measurement,instrument intensity (arbitrary units),"[2.2080788, 4.771962e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB100_5,number,sample_measurement,instrument intensity (arbitrary units),"[0.028396202, 4.9203705e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB89_3,number,sample_measurement,instrument intensity (arbitrary units),"[16.14932, 5.0501611e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB6_3,number,sample_measurement,instrument intensity (arbitrary units),"[19.305216, 5.1332025e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB68_4,number,sample_measurement,instrument intensity (arbitrary units),"[18.681433, 4.9807361e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB43_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.034019581, 5.1320538e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB43_2,number,sample_measurement,instrument intensity (arbitrary units),"[3.57275, 5.0336721e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB97_2,number,sample_measurement,instrument intensity (arbitrary units),"[4.8599753, 5.2464078e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB2_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.3359424, 5.3935425e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB1_4,number,sample_measurement,instrument intensity (arbitrary units),"[0.7089945, 5.5756856e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB115_3,number,sample_measurement,instrument intensity (arbitrary units),"[87.594517, 5.4532577e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB43_3,number,sample_measurement,instrument intensity (arbitrary units),"[15.855402, 4.8291861e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB1_5,number,sample_measurement,instrument intensity (arbitrary units),"[0.0022881174, 5.2108638e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB65_2,number,sample_measurement,instrument intensity (arbitrary units),"[9.108744, 4.916646e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB114_2,number,sample_measurement,instrument intensity (arbitrary units),"[1.51665, 5.1011521e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB97_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.3348844, 5.3800968e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB25_1,number,sample_measurement,instrument intensity (arbitrary units),"[0.069798378, 4.4691784e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB112_2,number,sample_measurement,instrument intensity (arbitrary units),"[14.86867, 5.6298064e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB79_7,number,sample_measurement,instrument intensity (arbitrary units),"[0.7078897, 4.8668213e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB114_3,number,sample_measurement,instrument intensity (arbitrary units),"[0.018523002, 5.6645616e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB94_3,number,sample_measurement,instrument intensity (arbitrary units),"[9.632964, 5.0790066e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB89_4,number,sample_measurement,instrument intensity (arbitrary units),"[41.45796, 5.3114637e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB20_6,number,sample_measurement,instrument intensity (arbitrary units),"[0.3776135, 5.5370243e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB22_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.5878921, 5.1018356e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB68_5,number,sample_measurement,instrument intensity (arbitrary units),"[6.3708483, 4.774325e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB115_4,number,sample_measurement,instrument intensity (arbitrary units),"[0.02729409, 4.9477439e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,XB25_2,number,sample_measurement,instrument intensity (arbitrary units),"[0.8627335, 5.071599e+08]",0,blank or NA,Sample column; suffix denotes visit/sample number.
+baseline_metabolomics.tsv,refmet,string,feature_annotation,,"(S)-Homostachydrine | - | 1,2,4-Trihydroxybenzene | 1,3-Dimethyluric acid | 1-Azaniumylcyclohexane-1-carboxylate | 1-Methyladenosine | 1-Methylhistidine | 1-Methyluric acid | ... (439 levels)",2,blank or NA,
+baseline_metabolomics.tsv,newname,string,feature_annotation,,"(-)-.alpha.-Kainic acid | (1R)-Chrysanthemolactone | (4-Chlorophenyl)biguanide | (S)-Homostachydrine | .alpha.-Asarone | .gamma.-Glutamyl-(S)-allyl-L-cysteine | 1,2,4-Trihydroxybenzene | 1,2-Didocosahexaenoyl-sn-glycero-3-phosphocholine | ... (702 levels)",0,blank or NA,
