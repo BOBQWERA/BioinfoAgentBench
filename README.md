@@ -6,8 +6,6 @@ BioinfoAgentBench provides a unified framework for evaluating bioinformatics age
 
 ![Framework overview (Figure 1)](paper/figures/Figure_1.png)
 
-[Download PDF](paper/figures/Figure_1.pdf?raw=true)
-
 | Tier | Scale | Focus |
 |---|---:|---|
 | Baseline | 810 tasks | Task correctness and end-to-end reliability |
